@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
@@ -34,5 +35,11 @@ public class AuthController {
     @PatchMapping("/accounts/{id}/toggle-status")
     public ResponseEntity<UserResponse> toggleStatus(@PathVariable Long id) {
         return ResponseEntity.ok(authService.toggleStatus(id));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserResponse> getCurrentUser(Authentication authentication) {
+        String username = authentication.getName();
+        return ResponseEntity.ok(authService.getByUsername(username));
     }
 }

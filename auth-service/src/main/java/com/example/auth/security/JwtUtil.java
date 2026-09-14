@@ -24,14 +24,15 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String generateToken(String username, String role, Long userId) {
+    public String generateToken(String username, String role, Long accountId, Long profileId) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
 
         return Jwts.builder()
                 .setSubject(username)
                 .claim("role", role)
-                .claim("userId", userId)
+                .claim("accountId", accountId)
+                .claim("profileId", profileId)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -40,6 +41,18 @@ public class JwtUtil {
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    public String extractRole(String token) {
+        return extractClaim(token, claims -> claims.get("role", String.class));
+    }
+
+    public Long extractAccountId(String token) {
+        return extractClaim(token, claims -> claims.get("accountId", Long.class));
+    }
+
+    public Long extractProfileId(String token) {
+        return extractClaim(token, claims -> claims.get("profileId", Long.class));
     }
 
     public boolean isTokenExpired(String token) {

@@ -6,31 +6,22 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "auth_user")
+@Table(name = "accounts")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String fullName;
-
     @Column(nullable = false, unique = true, length = 50)
     private String username;
 
     @Column(nullable = false)
-    private String password;   // lưu chuỗi đã mã hóa BCrypt
-
-    @Column(unique = true, length = 100)
-    private String email;
-
-    @Column(length = 15)
-    private String phone;
+    private String password; // Chuỗi đã mã hóa BCrypt
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
@@ -43,9 +34,13 @@ public class User {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    private LocalDateTime lastLogin;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
-        if (this.status == null) this.status = true;
+        if (this.status == null) {
+            this.status = true;
+        }
     }
 }
