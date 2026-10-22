@@ -2,10 +2,7 @@ package com.example.auth.service;
 
 import com.example.auth.dto.*;
 import com.example.auth.entity.*;
-import com.example.auth.repository.AccountRepository;
-import com.example.auth.repository.AdminRepository;
-import com.example.auth.repository.StaffRepository;
-import com.example.auth.repository.TeacherRepository;
+import com.example.auth.repository.*;
 import com.example.auth.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +21,7 @@ import java.util.stream.Collectors;
 public class AuthService {
 
     private final AccountRepository accountRepository;
+    private final SuperAdminRepository superAdminRepository;
     private final AdminRepository adminRepository;
     private final StaffRepository staffRepository;
     private final TeacherRepository teacherRepository;
@@ -31,6 +29,9 @@ public class AuthService {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
+    private record ProfileInfo(Long profileId, String fullName) {}
+
+    // ===================== LOGIN =====================
     @Transactional
     public LoginResponse login(LoginRequest request) {
         try {
@@ -44,187 +45,249 @@ public class AuthService {
         Account account = accountRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new BadCredentialsException("Sai tên đăng nhập hoặc mật khẩu"));
 
-        // Cập nhật lastLogin
         account.setLastLogin(LocalDateTime.now());
         accountRepository.save(account);
 
-        // Lấy thông tin Profile theo Role
-        Long profileId = null;
-        String fullName = null;
+        ProfileInfo profile = resolveProfile(account);
 
-        if (account.getRole() == Role.ADMIN) {
-            Admin admin = adminRepository.findByAccountId(account.getId()).orElse(null);
-            if (admin != null) {
-                profileId = admin.getId();
-                fullName = admin.getFullName();
-            }
-        } else if (account.getRole() == Role.STAFF) {
-            Staff staff = staffRepository.findByAccountId(account.getId()).orElse(null);
-            if (staff != null) {
-                profileId = staff.getId();
-                fullName = staff.getFullName();
-            }
-        } else if (account.getRole() == Role.TEACHER) {
-            Teacher teacher = teacherRepository.findByAccountId(account.getId()).orElse(null);
-            if (teacher != null) {
-                profileId = teacher.getId();
-                fullName = teacher.getFullName();
-            }
-        }
-
-        String token = jwtUtil.generateToken(account.getUsername(), account.getRole().name(), account.getId(), profileId);
+        String token = jwtUtil.generateToken(
+                account.getUsername(),
+                account.getRole().name(),
+                account.getId(),
+                profile.profileId(),
+                account.getBranchId()
+        );
 
         return LoginResponse.builder()
                 .token(token)
                 .accountId(account.getId())
-                .profileId(profileId)
+                .profileId(profile.profileId())
+                .branchId(account.getBranchId())
                 .username(account.getUsername())
                 .role(account.getRole().name())
-                .fullName(fullName)
+                .fullName(profile.fullName())
                 .build();
     }
 
+    // ===================== TẠO TÀI KHOẢN =====================
     @Transactional
-    public UserResponse createAccount(CreateUserRequest request) {
+    public UserResponse createAccount(CreateUserRequest request, String callerUsername) {
+        Account caller = getCaller(callerUsername);
+        Role target = request.getRole();
+
         if (accountRepository.existsByUsername(request.getUsername())) {
             throw new IllegalArgumentException("Username đã tồn tại");
         }
-        if (request.getRole() == Role.ADMIN) {
-            throw new IllegalArgumentException("Không thể tự tạo tài khoản Admin qua API này");
+        if (target == Role.SUPER_ADMIN) {
+            throw new IllegalArgumentException("Không thể tạo tài khoản Super Admin qua API này");
         }
 
-        // Bước 1: Lưu Account
-        Account account = Account.builder()
+        Long branchId;
+        if (caller.getRole() == Role.SUPER_ADMIN) {
+            if (request.getBranchId() == null) {
+                throw new IllegalArgumentException("Phải chọn chi nhánh cho tài khoản mới");
+            }
+            branchId = request.getBranchId();
+        } else if (caller.getRole() == Role.ADMIN) {
+            if (target == Role.ADMIN) {
+                throw new IllegalArgumentException("Admin chi nhánh không được tạo tài khoản Admin");
+            }
+            if (caller.getBranchId() == null) {
+                throw new IllegalArgumentException("Tài khoản Admin chưa được gán chi nhánh");
+            }
+            branchId = caller.getBranchId(); // ép theo chi nhánh của Admin
+        } else {
+            throw new IllegalArgumentException("Bạn không có quyền tạo tài khoản");
+        }
+
+        Account savedAccount = accountRepository.save(Account.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(target)
                 .status(true)
-                .build();
-        Account savedAccount = accountRepository.save(account);
+                .branchId(branchId)
+                .build());
 
-        // Bước 2: Lưu Staff hoặc Teacher tương ứng
-        if (request.getRole() == Role.STAFF) {
-            Staff staff = Staff.builder()
-                    .account(savedAccount)
-                    .fullName(request.getFullName())
-                    .email(request.getEmail())
-                    .phone(request.getPhone())
-                    .build();
-            Staff savedStaff = staffRepository.save(staff);
-            return toStaffResponse(savedAccount, savedStaff);
-        } else if (request.getRole() == Role.TEACHER) {
-            Teacher teacher = Teacher.builder()
-                    .account(savedAccount)
-                    .fullName(request.getFullName())
-                    .email(request.getEmail())
-                    .phone(request.getPhone())
-                    .specialization(request.getSpecialization())
-                    .qualification(request.getQualification())
-                    .experience(request.getExperience())
-                    .certificate(request.getCertificate())
-                    .hireDate(request.getHireDate())
-                    .workStatus(request.getWorkStatus() != null ? request.getWorkStatus() : "ACTIVE")
-                    .build();
-            Teacher savedTeacher = teacherRepository.save(teacher);
-            return toTeacherResponse(savedAccount, savedTeacher);
-        }
+        String workStatus = request.getWorkStatus() != null ? request.getWorkStatus() : "ACTIVE";
 
-        throw new IllegalArgumentException("Vai trò không hợp lệ");
+        return switch (target) {
+            case ADMIN -> {
+                Admin saved = adminRepository.save(Admin.builder()
+                        .account(savedAccount)
+                        .fullName(request.getFullName())
+                        .email(request.getEmail())
+                        .phone(request.getPhone())
+                        .hireDate(request.getHireDate())
+                        .workStatus(workStatus)
+                        .build());
+                yield toAdminResponse(savedAccount, saved);
+            }
+            case STAFF -> {
+                Staff saved = staffRepository.save(Staff.builder()
+                        .account(savedAccount)
+                        .fullName(request.getFullName())
+                        .email(request.getEmail())
+                        .phone(request.getPhone())
+                        .hireDate(request.getHireDate())
+                        .workStatus(workStatus)
+                        .position(request.getPosition())
+                        .build());
+                yield toStaffResponse(savedAccount, saved);
+            }
+            case TEACHER -> {
+                Teacher saved = teacherRepository.save(Teacher.builder()
+                        .account(savedAccount)
+                        .fullName(request.getFullName())
+                        .email(request.getEmail())
+                        .phone(request.getPhone())
+                        .specialization(request.getSpecialization())
+                        .qualification(request.getQualification())
+                        .experience(request.getExperience())
+                        .certificate(request.getCertificate())
+                        .hireDate(request.getHireDate())
+                        .workStatus(workStatus)
+                        .build());
+                yield toTeacherResponse(savedAccount, saved);
+            }
+            default -> throw new IllegalArgumentException("Vai trò không hợp lệ");
+        };
     }
 
+    // ===================== DANH SÁCH / KHÓA MỞ / ME =====================
     @Transactional(readOnly = true)
-    public List<UserResponse> getAllUsers() {
-        return accountRepository.findAll().stream()
+    public List<UserResponse> getAllUsers(String callerUsername) {
+        Account caller = getCaller(callerUsername);
+
+        List<Account> accounts;
+        if (caller.getRole() == Role.SUPER_ADMIN) {
+            accounts = accountRepository.findAll();
+        } else {
+            if (caller.getBranchId() == null) {
+                throw new IllegalArgumentException("Tài khoản chưa được gán chi nhánh");
+            }
+            accounts = accountRepository.findByBranchId(caller.getBranchId());
+        }
+
+        return accounts.stream()
                 .map(this::getUserResponseByAccount)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public UserResponse toggleStatus(Long id) {
+    public UserResponse toggleStatus(Long id, String callerUsername) {
+        Account caller = getCaller(callerUsername);
         Account account = accountRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy tài khoản"));
+
+        if (account.getRole() == Role.SUPER_ADMIN) {
+            throw new IllegalArgumentException("Không thể khóa tài khoản Super Admin");
+        }
+        if (caller.getRole() == Role.ADMIN) {
+            boolean sameBranch = caller.getBranchId() != null
+                    && caller.getBranchId().equals(account.getBranchId());
+            if (!sameBranch || account.getRole() == Role.ADMIN) {
+                throw new IllegalArgumentException("Bạn không có quyền thay đổi tài khoản này");
+            }
+        }
+
         account.setStatus(!account.getStatus());
-        Account saved = accountRepository.save(account);
-        return getUserResponseByAccount(saved);
+        return getUserResponseByAccount(accountRepository.save(account));
     }
 
     @Transactional(readOnly = true)
     public UserResponse getByUsername(String username) {
-        Account account = accountRepository.findByUsername(username)
+        return getUserResponseByAccount(getCaller(username));
+    }
+
+    // ===================== HÀM PHỤ =====================
+    private Account getCaller(String username) {
+        return accountRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy tài khoản"));
-        return getUserResponseByAccount(account);
+    }
+
+    private ProfileInfo resolveProfile(Account account) {
+        Long id = account.getId();
+        return switch (account.getRole()) {
+            case SUPER_ADMIN -> superAdminRepository.findByAccountId(id)
+                    .map(p -> new ProfileInfo(p.getId(), p.getFullName()))
+                    .orElse(new ProfileInfo(null, null));
+            case ADMIN -> adminRepository.findByAccountId(id)
+                    .map(p -> new ProfileInfo(p.getId(), p.getFullName()))
+                    .orElse(new ProfileInfo(null, null));
+            case STAFF -> staffRepository.findByAccountId(id)
+                    .map(p -> new ProfileInfo(p.getId(), p.getFullName()))
+                    .orElse(new ProfileInfo(null, null));
+            case TEACHER -> teacherRepository.findByAccountId(id)
+                    .map(p -> new ProfileInfo(p.getId(), p.getFullName()))
+                    .orElse(new ProfileInfo(null, null));
+        };
     }
 
     private UserResponse getUserResponseByAccount(Account account) {
-        if (account.getRole() == Role.ADMIN) {
-            Admin admin = adminRepository.findByAccountId(account.getId()).orElse(null);
-            return toAdminResponse(account, admin);
-        } else if (account.getRole() == Role.STAFF) {
-            Staff staff = staffRepository.findByAccountId(account.getId()).orElse(null);
-            return toStaffResponse(account, staff);
-        } else if (account.getRole() == Role.TEACHER) {
-            Teacher teacher = teacherRepository.findByAccountId(account.getId()).orElse(null);
-            return toTeacherResponse(account, teacher);
-        }
+        Long id = account.getId();
+        return switch (account.getRole()) {
+            case SUPER_ADMIN -> toSuperAdminResponse(account, superAdminRepository.findByAccountId(id).orElse(null));
+            case ADMIN -> toAdminResponse(account, adminRepository.findByAccountId(id).orElse(null));
+            case STAFF -> toStaffResponse(account, staffRepository.findByAccountId(id).orElse(null));
+            case TEACHER -> toTeacherResponse(account, teacherRepository.findByAccountId(id).orElse(null));
+        };
+    }
 
+    private UserResponse.UserResponseBuilder baseResponse(Account account) {
         return UserResponse.builder()
                 .accountId(account.getId())
                 .username(account.getUsername())
                 .role(account.getRole())
                 .status(account.getStatus())
+                .branchId(account.getBranchId())
                 .createdAt(account.getCreatedAt())
-                .lastLogin(account.getLastLogin())
+                .lastLogin(account.getLastLogin());
+    }
+
+    private UserResponse toSuperAdminResponse(Account account, SuperAdmin p) {
+        return baseResponse(account)
+                .profileId(p != null ? p.getId() : null)
+                .fullName(p != null ? p.getFullName() : null)
+                .email(p != null ? p.getEmail() : null)
+                .phone(p != null ? p.getPhone() : null)
                 .build();
     }
 
-    private UserResponse toAdminResponse(Account account, Admin admin) {
-        return UserResponse.builder()
-                .accountId(account.getId())
-                .profileId(admin != null ? admin.getId() : null)
-                .username(account.getUsername())
-                .role(account.getRole())
-                .status(account.getStatus())
-                .createdAt(account.getCreatedAt())
-                .lastLogin(account.getLastLogin())
-                .fullName(admin != null ? admin.getFullName() : null)
-                .email(admin != null ? admin.getEmail() : null)
-                .phone(admin != null ? admin.getPhone() : null)
+    private UserResponse toAdminResponse(Account account, Admin p) {
+        return baseResponse(account)
+                .profileId(p != null ? p.getId() : null)
+                .fullName(p != null ? p.getFullName() : null)
+                .email(p != null ? p.getEmail() : null)
+                .phone(p != null ? p.getPhone() : null)
+                .hireDate(p != null ? p.getHireDate() : null)
+                .workStatus(p != null ? p.getWorkStatus() : null)
                 .build();
     }
 
-    private UserResponse toStaffResponse(Account account, Staff staff) {
-        return UserResponse.builder()
-                .accountId(account.getId())
-                .profileId(staff != null ? staff.getId() : null)
-                .username(account.getUsername())
-                .role(account.getRole())
-                .status(account.getStatus())
-                .createdAt(account.getCreatedAt())
-                .lastLogin(account.getLastLogin())
-                .fullName(staff != null ? staff.getFullName() : null)
-                .email(staff != null ? staff.getEmail() : null)
-                .phone(staff != null ? staff.getPhone() : null)
+    private UserResponse toStaffResponse(Account account, Staff p) {
+        return baseResponse(account)
+                .profileId(p != null ? p.getId() : null)
+                .fullName(p != null ? p.getFullName() : null)
+                .email(p != null ? p.getEmail() : null)
+                .phone(p != null ? p.getPhone() : null)
+                .hireDate(p != null ? p.getHireDate() : null)
+                .workStatus(p != null ? p.getWorkStatus() : null)
+                .position(p != null ? p.getPosition() : null)
                 .build();
     }
 
-    private UserResponse toTeacherResponse(Account account, Teacher teacher) {
-        return UserResponse.builder()
-                .accountId(account.getId())
-                .profileId(teacher != null ? teacher.getId() : null)
-                .username(account.getUsername())
-                .role(account.getRole())
-                .status(account.getStatus())
-                .createdAt(account.getCreatedAt())
-                .lastLogin(account.getLastLogin())
-                .fullName(teacher != null ? teacher.getFullName() : null)
-                .email(teacher != null ? teacher.getEmail() : null)
-                .phone(teacher != null ? teacher.getPhone() : null)
-                .specialization(teacher != null ? teacher.getSpecialization() : null)
-                .qualification(teacher != null ? teacher.getQualification() : null)
-                .experience(teacher != null ? teacher.getExperience() : null)
-                .certificate(teacher != null ? teacher.getCertificate() : null)
-                .hireDate(teacher != null ? teacher.getHireDate() : null)
-                .workStatus(teacher != null ? teacher.getWorkStatus() : null)
+    private UserResponse toTeacherResponse(Account account, Teacher p) {
+        return baseResponse(account)
+                .profileId(p != null ? p.getId() : null)
+                .fullName(p != null ? p.getFullName() : null)
+                .email(p != null ? p.getEmail() : null)
+                .phone(p != null ? p.getPhone() : null)
+                .specialization(p != null ? p.getSpecialization() : null)
+                .qualification(p != null ? p.getQualification() : null)
+                .experience(p != null ? p.getExperience() : null)
+                .certificate(p != null ? p.getCertificate() : null)
+                .hireDate(p != null ? p.getHireDate() : null)
+                .workStatus(p != null ? p.getWorkStatus() : null)
                 .build();
     }
 }

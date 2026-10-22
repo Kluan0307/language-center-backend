@@ -1,3 +1,4 @@
+
 package com.example.auth.controller;
 
 import com.example.auth.dto.*;
@@ -18,28 +19,42 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(
+            @Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
 
     @PostMapping("/accounts")
-    public ResponseEntity<UserResponse> createAccount(@Valid @RequestBody CreateUserRequest request) {
-        return ResponseEntity.ok(authService.createAccount(request));
+    public ResponseEntity<UserResponse> createAccount(
+            @Valid @RequestBody CreateUserRequest request,
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                authService.createAccount(request, authentication.getName())
+        );
     }
 
     @GetMapping("/accounts")
-    public ResponseEntity<List<UserResponse>> getAllAccounts() {
-        return ResponseEntity.ok(authService.getAllUsers());
+    public ResponseEntity<List<UserResponse>> getAllAccounts(
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                authService.getAllUsers(authentication.getName())
+        );
     }
 
     @PatchMapping("/accounts/{id}/toggle-status")
-    public ResponseEntity<UserResponse> toggleStatus(@PathVariable Long id) {
-        return ResponseEntity.ok(authService.toggleStatus(id));
+    public ResponseEntity<UserResponse> toggleStatus(
+            @PathVariable Long id,
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                authService.toggleStatus(id, authentication.getName())
+        );
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserResponse> getCurrentUser(Authentication authentication) {
-        String username = authentication.getName();
-        return ResponseEntity.ok(authService.getByUsername(username));
+    public ResponseEntity<UserResponse> getCurrentUser(
+            Authentication authentication) {
+        return ResponseEntity.ok(
+                authService.getByUsername(authentication.getName())
+        );
     }
 }

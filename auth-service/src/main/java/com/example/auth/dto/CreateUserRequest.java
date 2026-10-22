@@ -25,7 +25,7 @@ public class CreateUserRequest {
     private String password;
 
     @NotNull(message = "Vai trò không được để trống")
-    private Role role; // chỉ nhận STAFF hoặc TEACHER
+    private Role role; // ADMIN (chỉ Super Admin tạo), STAFF hoặc TEACHER
 
     @NotBlank(message = "Họ tên không được để trống")
     private String fullName;
@@ -45,4 +45,7 @@ public class CreateUserRequest {
     private LocalDate hireDate;
 
     private String workStatus;
+
+    private Long branchId;   // bắt buộc khi Super Admin tạo; Admin tạo thì bị bỏ qua (ép theo chi nhánh của Admin)
+    private String position; // chỉ dùng cho STAFF
 }
