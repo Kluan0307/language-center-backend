@@ -1,0 +1,924 @@
+{
+  "info": {
+    "name": "Academic service",
+    "description": "53 endpoints. Roles and scopes are described per request. Configure token with a JWT from auth-service. See README.md for assumptions and setup.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8082/api/v1/academic"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "branchId",
+      "value": "1"
+    },
+    {
+      "key": "leadId",
+      "value": "1"
+    },
+    {
+      "key": "studentId",
+      "value": "1"
+    },
+    {
+      "key": "courseId",
+      "value": "1"
+    },
+    {
+      "key": "roomId",
+      "value": "1"
+    },
+    {
+      "key": "classId",
+      "value": "1"
+    },
+    {
+      "key": "scheduleId",
+      "value": "1"
+    },
+    {
+      "key": "enrollmentId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Branch",
+      "item": [
+        {
+          "name": "GET /branches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/branches",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. Optional query parameters: page, size, keyword, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /branches/{branchId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/branches/{{branchId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /branches",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/branches",
+            "description": "Roles: SUPER_ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"CN03\",\n  \"name\": \"Chi nhánh Quận 3\",\n  \"address\": \"123 Nguyễn Đình Chiểu\",\n  \"phone\": \"0901234567\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /branches/{branchId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/branches/{{branchId}}",
+            "description": "Roles: SUPER_ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"CN03\",\n  \"name\": \"Chi nhánh Quận 3\",\n  \"address\": \"123 Nguyễn Đình Chiểu\",\n  \"phone\": \"0901234567\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /branches/{branchId}/toggle-status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": "{{baseUrl}}/branches/{{branchId}}/toggle-status",
+            "description": "Roles: SUPER_ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Course",
+      "item": [
+        {
+          "name": "GET /courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/courses",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. Optional query parameters: page, size, keyword, status, level, type, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /courses/{courseId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/courses/{{courseId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /courses",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/courses",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"ENG-A1\",\n  \"name\": \"Tiếng Anh A1\",\n  \"type\": \"GENERAL\",\n  \"level\": \"A1\",\n  \"duration\": 24,\n  \"tuitionFee\": 2500000,\n  \"content\": \"Nội dung khóa học\",\n  \"entryRequirement\": \"Đầu vào A0\",\n  \"maxStudents\": 20,\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /courses/{courseId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/courses/{{courseId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"ENG-A1\",\n  \"name\": \"Tiếng Anh A1\",\n  \"type\": \"GENERAL\",\n  \"level\": \"A1\",\n  \"duration\": 24,\n  \"tuitionFee\": 2500000,\n  \"content\": \"Nội dung khóa học\",\n  \"entryRequirement\": \"Đầu vào A0\",\n  \"maxStudents\": 20,\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /courses/{courseId}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/courses/{{courseId}}/status",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"CLOSED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Room",
+      "item": [
+        {
+          "name": "GET /rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/rooms",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. Optional query parameters: page, size, keyword, status, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /rooms/{roomId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/rooms/{{roomId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /rooms",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/rooms",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"P101\",\n  \"name\": \"Phòng 101\",\n  \"location\": \"Tầng 1\",\n  \"capacity\": 25,\n  \"equipment\": \"Máy chiếu\",\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /rooms/{roomId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/rooms/{{roomId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"P101\",\n  \"name\": \"Phòng 101\",\n  \"location\": \"Tầng 1\",\n  \"capacity\": 25,\n  \"equipment\": \"Máy chiếu\",\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /rooms/{roomId}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/rooms/{{roomId}}/status",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"MAINTENANCE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /rooms/{roomId}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/rooms/{{roomId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "GET /students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/students",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. Optional query parameters: page, size, keyword, level, status, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /students/{studentId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/students/{{studentId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /students",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/students",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Nguyễn Văn An\",\n  \"dateOfBirth\": \"2005-06-15\",\n  \"gender\": \"MALE\",\n  \"email\": \"an@example.com\",\n  \"phone\": \"0901234568\",\n  \"address\": \"TP.HCM\",\n  \"contactPerson\": \"Nguyễn Văn Bình\",\n  \"currentLevel\": \"A1\",\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /students/{studentId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/students/{{studentId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Nguyễn Văn An\",\n  \"dateOfBirth\": \"2005-06-15\",\n  \"gender\": \"MALE\",\n  \"email\": \"an@example.com\",\n  \"phone\": \"0901234568\",\n  \"address\": \"TP.HCM\",\n  \"contactPerson\": \"Nguyễn Văn Bình\",\n  \"currentLevel\": \"A1\",\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /students/{studentId}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/students/{{studentId}}/status",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"PAUSED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /students/{studentId}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/students/{{studentId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lead",
+      "item": [
+        {
+          "name": "GET /leads",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/leads",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. Optional query parameters: page, size, keyword, status, assignedTo, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /leads/{leadId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/leads/{{leadId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /leads",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/leads",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Trần Minh Anh\",\n  \"phone\": \"0901234569\",\n  \"email\": \"anh@example.com\",\n  \"source\": \"FACEBOOK\",\n  \"interestedCourseId\": 1,\n  \"desiredLevel\": \"A1\",\n  \"note\": \"Quan tâm lớp buổi tối\",\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /leads/{leadId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/leads/{{leadId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Trần Minh Anh\",\n  \"phone\": \"0901234569\",\n  \"email\": \"anh@example.com\",\n  \"source\": \"FACEBOOK\",\n  \"interestedCourseId\": 1,\n  \"desiredLevel\": \"A1\",\n  \"note\": \"Quan tâm lớp buổi tối\",\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /leads/{leadId}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/leads/{{leadId}}/status",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"CONTACTED\",\n  \"note\": \"Đã gọi tư vấn\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /leads/{leadId}/convert",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/leads/{{leadId}}/convert",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    },
+    {
+      "name": "SchoolClass",
+      "item": [
+        {
+          "name": "GET /classes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/classes",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. Optional query parameters: page, size, keyword, status, courseId, teacherId, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /classes/my",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/classes/my",
+            "description": "Roles: TEACHER. Optional query parameters: page, size. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /classes/{classId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/classes/{{classId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /classes/{classId}/students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/classes/{{classId}}/students",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /classes/{classId}/schedules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/classes/{{classId}}/schedules",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /classes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/classes",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"A1-001\",\n  \"name\": \"Tiếng Anh A1 buổi tối\",\n  \"courseId\": {{courseId}},\n  \"teacherId\": 1,\n  \"teacherName\": \"Nguyễn Thị Giáo\",\n  \"roomId\": {{roomId}},\n  \"startDate\": \"2026-10-01\",\n  \"endDate\": \"2026-12-31\",\n  \"maxSize\": 20,\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /classes/{classId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/classes/{{classId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"A1-001\",\n  \"name\": \"Tiếng Anh A1 buổi tối\",\n  \"courseId\": {{courseId}},\n  \"teacherId\": 1,\n  \"teacherName\": \"Nguyễn Thị Giáo\",\n  \"roomId\": {{roomId}},\n  \"startDate\": \"2026-10-01\",\n  \"endDate\": \"2026-12-31\",\n  \"maxSize\": 20,\n  \"branchId\": {{branchId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /classes/{classId}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/classes/{{classId}}/status",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"FINISHED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /classes/{classId}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/classes/{{classId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schedule",
+      "item": [
+        {
+          "name": "GET /schedules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/schedules",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. Optional query parameters: page, size, classId, dayOfWeek, teacherId, roomId, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /schedules/my",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/schedules/my",
+            "description": "Roles: TEACHER. Optional query parameters: page, size. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /schedules",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/schedules",
+            "description": "Roles: SUPER_ADMIN, ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classId\": {{classId}},\n  \"dayOfWeek\": \"MONDAY\",\n  \"startTime\": \"18:00\",\n  \"endTime\": \"19:30\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PUT /schedules/{scheduleId}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/schedules/{{scheduleId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classId\": {{classId}},\n  \"dayOfWeek\": \"MONDAY\",\n  \"startTime\": \"18:00\",\n  \"endTime\": \"19:30\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /schedules/{scheduleId}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/schedules/{{scheduleId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /schedules/check-conflict",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/schedules/check-conflict",
+            "description": "Roles: SUPER_ADMIN, ADMIN. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classId\": {{classId}},\n  \"dayOfWeek\": \"MONDAY\",\n  \"startTime\": \"18:00\",\n  \"endTime\": \"19:30\",\n  \"excludeScheduleId\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "item": [
+        {
+          "name": "GET /enrollments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/enrollments",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. Optional query parameters: page, size, keyword, studyStatus, classId, studentId, branchId. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /enrollments/{enrollmentId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/enrollments/{{enrollmentId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /enrollments",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/enrollments",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": {{studentId}},\n  \"classId\": {{classId}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /enrollments/{enrollmentId}/status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/enrollments/{{enrollmentId}}/status",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studyStatus\": \"DROPPED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /enrollments/{enrollmentId}/transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/enrollments/{{enrollmentId}}/transfer",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newClassId\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "GET /attendances/sheet?classId={classId}&date=2026-10-27",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/attendances/sheet?classId={{classId}}&date=2026-10-27",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "POST /attendances/bulk",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/attendances/bulk",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classId\": {{classId}},\n  \"sessionDate\": \"2026-10-27\",\n  \"records\": [\n    {\n      \"enrollmentId\": {{enrollmentId}},\n      \"status\": \"PRESENT\",\n      \"hasPermission\": false\n    },\n    {\n      \"enrollmentId\": 2,\n      \"status\": \"ABSENT\",\n      \"hasPermission\": true\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /attendances/history?classId={classId}&from=2026-10-01&to=2026-10-27",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/attendances/history?classId={{classId}}&from=2026-10-01&to=2026-10-27",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "GET /attendances/summary?classId={classId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/attendances/summary?classId={{classId}}",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF, TEACHER. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "GET /stats/overview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/stats/overview",
+            "description": "Roles: SUPER_ADMIN, ADMIN, STAFF. Optional query parameters: branchId, groupByBranch. All non-super users are restricted to their JWT branch. Teachers see only assigned classes. Shared courses are writable only by SUPER_ADMIN."
+          }
+        }
+      ]
+    }
+  ]
+}
