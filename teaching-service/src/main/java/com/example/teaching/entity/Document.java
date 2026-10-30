@@ -3,7 +3,7 @@ package com.example.teaching.entity; // Hoặc package tương ứng trong servi
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "documents")

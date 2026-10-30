@@ -33,7 +33,7 @@ public class Facility {
 
     private Integer quantity;
 
-    @Column(length = 50)
+    @Column(name = "condition_value", length = 50)
     private String condition;
 
     private LocalDateTime purchaseDate;
