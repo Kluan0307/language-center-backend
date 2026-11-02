@@ -24,7 +24,7 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String generateToken(String username, String role, Long accountId, Long profileId) {
+    public String generateToken(String username, String role, Long accountId, Long profileId, Long branchId) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
 
@@ -33,10 +33,15 @@ public class JwtUtil {
                 .claim("role", role)
                 .claim("accountId", accountId)
                 .claim("profileId", profileId)
+                .claim("branchId", branchId)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    public Long extractBranchId(String token) {
+        return extractClaim(token, claims -> claims.get("branchId", Long.class));
     }
 
     public String extractUsername(String token) {

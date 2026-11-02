@@ -36,6 +36,9 @@ public class Account {
 
     private LocalDateTime lastLogin;
 
+    @Column(name = "branch_id")
+    private Long branchId;   // null với SUPER_ADMIN
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

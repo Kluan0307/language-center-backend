@@ -1,5 +1,6 @@
 package com.example.auth.entity;
 
+import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,4 +28,13 @@ public class Staff {
 
     @Column(length = 15)
     private String phone;
+
+    private LocalDate hireDate;
+
+    @Builder.Default
+    @Column(length = 50)
+    private String workStatus = "ACTIVE";
+
+    @Column(length = 100)
+    private String position;
 }

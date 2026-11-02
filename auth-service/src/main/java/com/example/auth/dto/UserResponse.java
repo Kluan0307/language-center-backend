@@ -1,3 +1,4 @@
+
 package com.example.auth.dto;
 
 import com.example.auth.entity.Role;
@@ -19,12 +20,16 @@ public class UserResponse {
     private String username;
     private Role role;
     private Boolean status;
+    private Long branchId;
     private LocalDateTime createdAt;
     private LocalDateTime lastLogin;
 
     private String fullName;
     private String email;
     private String phone;
+
+    // Các trường riêng cho Staff
+    private String position;
 
     // Các trường riêng cho Teacher nếu role = TEACHER
     private String specialization;
