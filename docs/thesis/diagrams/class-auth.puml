@@ -1,0 +1,117 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram auth — entity/domain hiện tại
+package "auth" {
+class "Account" as auth_Account <<Entity: accounts>> {
+ id : Long
+ username : String
+ password : String
+ role : Role
+ status : Boolean
+ sessionVersion : long
+ mustChangePassword : boolean
+ passwordChangedAt : LocalDateTime
+ securityEvents : java.util.List<AccountSecurityEvent>
+ createdAt : LocalDateTime
+ lastLogin : LocalDateTime
+ branchId : Long
+ branchAssignments : java.util.List<AccountBranch>
+ branchEvents : java.util.List<AccountBranchEvent>
+}
+class "AccountBranch" as auth_AccountBranch <<Entity: account_branches>> {
+ id : Long
+ account : Account
+ branchId : Long
+ status : boolean
+ primary : boolean
+ assignedAt : LocalDateTime
+ assignedBy : Long
+ revokedAt : LocalDateTime
+}
+class "AccountBranchEvent" as auth_AccountBranchEvent <<Entity: account_branch_events>> {
+ id : Long
+ account : Account
+ branchId : Long
+ action : String
+ occurredAt : LocalDateTime
+ performedBy : Long
+}
+class "AccountSecurityEvent" as auth_AccountSecurityEvent <<Entity: account_security_events>> {
+ id : Long
+ account : Account
+ action : String
+ actorId : Long
+ occurredAt : LocalDateTime
+ reason : String
+}
+class "Admin" as auth_Admin <<Entity: admins>> {
+ id : Long
+ account : Account
+ fullName : String
+ email : String
+ phone : String
+ hireDate : LocalDate
+ workStatus : String
+}
+class "Staff" as auth_Staff <<Entity: staffs>> {
+ id : Long
+ account : Account
+ fullName : String
+ email : String
+ phone : String
+ hireDate : LocalDate
+ workStatus : String
+ position : String
+}
+class "SuperAdmin" as auth_SuperAdmin <<Entity: super_admins>> {
+ id : Long
+ account : Account
+ fullName : String
+ email : String
+ phone : String
+}
+class "Teacher" as auth_Teacher <<Entity: teachers>> {
+ version : long
+ id : Long
+ account : Account
+ fullName : String
+ email : String
+ phone : String
+ specialization : String
+ qualification : String
+ experience : String
+ certificate : String
+ hireDate : LocalDate
+ workStatus : String
+}
+class "TeacherProfileEvent" as auth_TeacherProfileEvent <<Entity: teacher_profile_events>> {
+ id : Long
+ teacherId : Long
+ action : String
+ beforeState : String
+ afterState : String
+ reason : String
+ actorId : Long
+ actorName : String
+ teacherVersion : long
+ occurredAt : LocalDateTime
+}
+}
+auth_AccountBranch "0..*" --> "1" auth_Account : account
+auth_AccountBranchEvent "0..*" --> "1" auth_Account : account
+auth_AccountSecurityEvent "0..*" --> "1" auth_Account : account
+auth_Admin "0..1" --> "1" auth_Account : account
+auth_Staff "0..1" --> "1" auth_Account : account
+auth_SuperAdmin "0..1" --> "1" auth_Account : account
+auth_Teacher "0..1" --> "1" auth_Account : account
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

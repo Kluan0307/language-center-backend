@@ -1,0 +1,49 @@
+@startuml
+!pragma layout smetana
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Use Case theo role: SUPER_ADMIN — G13
+actor "SUPER_ADMIN" as A
+rectangle "Language Center — ứng dụng web" {
+usecase "UC01\nĐăng nhập, bảo mật phiên và liên hệ cá nhân" as UC01
+usecase "UC02\nQuản lý tài khoản, chi nhánh và phân công" as UC02
+usecase "UC03\nQuản lý hồ sơ và lịch sử học viên" as UC03
+usecase "UC04\nQuản trị hồ sơ giáo viên" as UC04
+usecase "UC05\nBàn giao và ngừng làm việc giáo viên" as UC05
+usecase "UC06\nQuản lý chương trình, khóa, đầu vào và thời lượng" as UC06
+usecase "UC07\nQuản lý phòng, mở lớp và lịch mẫu" as UC07
+usecase "UC08\nGhi nhận và xác nhận đánh giá đầu vào" as UC08
+usecase "UC09\nGợi ý lớp, ghi danh, bảo lưu, học lại và chuyển lớp" as UC09
+usecase "UC10\nĐề nghị và duyệt ngoại lệ đầu vào" as UC10
+usecase "UC11\nĐiều phối buổi, nghỉ/bù/dạy thay và điểm danh" as UC11
+usecase "UC12\nQuản lý bài/quy tắc; sửa điểm đã có" as UC12
+usecase "UC13\nChốt/mở lại kết quả, hoàn thành học vụ và đóng lớp" as UC13
+usecase "UC14\nHọc phí, thu tiền, điều chỉnh, đảo và hoàn" as UC14
+usecase "UC15\nTìm kiếm, dashboard và báo cáo" as UC15
+usecase "UC16\nTài liệu giảng dạy, duyệt và phiên bản" as UC16
+usecase "UC18\nTiếp nhận và chăm sóc khách hàng tiềm năng" as UC18
+}
+A -- UC01
+A -- UC02
+A -- UC03
+A -- UC04
+A -- UC05
+A -- UC06
+A -- UC07
+A -- UC08
+A -- UC09
+A -- UC10
+A -- UC11
+A -- UC12
+A -- UC13
+A -- UC14
+A -- UC15
+A -- UC16
+A -- UC18
+note bottom of A
+Toàn hệ thống; vẫn chịu ràng buộc nghiệp vụ.
+SA không nhập điểm ban đầu thay Teacher.
+Không suy toàn quyền từ đường nối nhóm UC.
+end note
+@enduml

@@ -1,0 +1,197 @@
+{
+  "tool": "PlantUML 1.2025.10, Smetana, Java21; local UTF-8 rendering",
+  "diagrams": [
+    {
+      "source": "activity-enrollment-tuition.puml",
+      "sourceSha256": "617e6be61489a0b5e424a3a327c8c37342eaa57555c55eb654b16d50efbac3c5",
+      "svg": "activity-enrollment-tuition.svg",
+      "svgSha256": "aa6e0d1478081e5d70ab2cf277e25e5d44a6d377d7988a9cce9808125bebd044"
+    },
+    {
+      "source": "activity-final-result-lock.puml",
+      "sourceSha256": "1de60bafed59837055f481dcf38958d7013f8df064ed97a85992ee3e582babee",
+      "svg": "activity-final-result-lock.svg",
+      "svgSha256": "25c82899a55ac8227572b8c8d4c4c7278072ef35540d61a1b6637fd3ac7a51bb"
+    },
+    {
+      "source": "activity-payment-retry.puml",
+      "sourceSha256": "4d19e451e40dc479f5efbd0c1679ab241522e0777cd9509aef01eb921d8610ec",
+      "svg": "activity-payment-retry.svg",
+      "svgSha256": "476cd11168f032ac5877ac1c13c7f02fcfa2fe23b376af53b5b1835ddb229fde"
+    },
+    {
+      "source": "activity-placement-exception.puml",
+      "sourceSha256": "e20d7de21d61d269f1aaea6fb8b62d65e3db7e678012c33f83e4d1e8d41116c3",
+      "svg": "activity-placement-exception.svg",
+      "svgSha256": "11ac5feecbd55dd8423cca9f099cadfd759a30d418b4e4cc92b743c6c57d29e7"
+    },
+    {
+      "source": "activity-teacher-handover.puml",
+      "sourceSha256": "6249cb4ac7bfd2382135e1f0301c0639492dd6c3e346119866dfff8452c069c6",
+      "svg": "activity-teacher-handover.svg",
+      "svgSha256": "5a821f39a2d688e35f121b85b5e333a84abd0fbdf13e4d9d71d7212a824cec17"
+    },
+    {
+      "source": "class-academic-catalog.puml",
+      "sourceSha256": "885d391def0325245e6732660b4f76b1a09df32017f5ef7f31108ab4e964f956",
+      "svg": "class-academic-catalog.svg",
+      "svgSha256": "6c09047342cfba191dfe8e32d642b23df1ab99a1b03d0fac3ed95183aa556374"
+    },
+    {
+      "source": "class-academic-learning.puml",
+      "sourceSha256": "590c40e31d0f3f76677fb7181a45edabb4c5c08f1c3468d91f3f3f535acaa4f4",
+      "svg": "class-academic-learning.svg",
+      "svgSha256": "10652927a1bea1c8a1f60c129293567bfc91e52881b3375e07cf61dd685bcf52"
+    },
+    {
+      "source": "class-academic-placement.puml",
+      "sourceSha256": "ec81f1e8249fb1633ece1933f013a5d9891d9364f0f8796fa2d3148e02ed96fa",
+      "svg": "class-academic-placement.svg",
+      "svgSha256": "92425dd32697dea148ca6e06d17dffbc4454e799bc336d3fbe366ca4b301061f"
+    },
+    {
+      "source": "class-auth.puml",
+      "sourceSha256": "cd5e0a2995c56423a574d16ec3a88bb6f7a4918f1ab910230448b21acb938c70",
+      "svg": "class-auth.svg",
+      "svgSha256": "86bda593ef86def8da92f3e485e4b6fd055508366ea2652b810e0e30cfb17c62"
+    },
+    {
+      "source": "class-finance.puml",
+      "sourceSha256": "6f5bec40e6311d09b7b32366ad13f8ab9a6643261278fa78b4064cf384c96eed",
+      "svg": "class-finance.svg",
+      "svgSha256": "fb1f7827121e271b827c6f105effe69354c5ef5277c92da5e141b04e45c5ed6a"
+    },
+    {
+      "source": "class-overview.puml",
+      "sourceSha256": "f20882e4a089d57a448239095743874f19a324b0d0bdc27d6ffa6e17d0b610cc",
+      "svg": "class-overview.svg",
+      "svgSha256": "a43542d653d0dfaf7c7008202dd7a9ad38ab0d87af65a2598604f629678cde78"
+    },
+    {
+      "source": "class-shared-coordination.puml",
+      "sourceSha256": "8322ca7971319e554539bccbb6afc374af828064f9b7bc03354f40f067d69b9b",
+      "svg": "class-shared-coordination.svg",
+      "svgSha256": "0e7fedb4a1a551d7d497828befd84b145173609d8b4ea89cfd6357c5226e14e2"
+    },
+    {
+      "source": "class-teaching.puml",
+      "sourceSha256": "45162845a55a80207ef3957f3714134beeed2d816d5eb89716a4b91e84d89bf4",
+      "svg": "class-teaching.svg",
+      "svgSha256": "c69041a520a1c82a2e34bfdb0de05e6234c22d6e7a313a303ac751dbee5e1014"
+    },
+    {
+      "source": "erd-academic-catalog.puml",
+      "sourceSha256": "2eb1ce73c181a26c7d9919deb255ba4ace8966cb98051408dc63c436332a7231",
+      "svg": "erd-academic-catalog.svg",
+      "svgSha256": "54e5c40925af70f7fbcd09156425e032dcd25af89d7811868c0801babcefddec"
+    },
+    {
+      "source": "erd-academic-learning.puml",
+      "sourceSha256": "0a84d71ff71009caff3399d813aa3720ee993292fc6bc3b56166723fe59b71f0",
+      "svg": "erd-academic-learning.svg",
+      "svgSha256": "07ca91172b011e0e7e194513b99e87ea42ff26957f959f4fbbc7c17ccd11476a"
+    },
+    {
+      "source": "erd-academic-placement.puml",
+      "sourceSha256": "000c9d73bae35960b4eb0ded36897613f78e4de2a802efdcea251b2444239700",
+      "svg": "erd-academic-placement.svg",
+      "svgSha256": "43650ffef834914351dde80a1b4b5ae320d823d2c09b1b254d19a507cf22226e"
+    },
+    {
+      "source": "erd-auth.puml",
+      "sourceSha256": "b6302fd8fd18602963428bfd6710d1911c23503fdce7dbacf68bd2a15520a30a",
+      "svg": "erd-auth.svg",
+      "svgSha256": "aea13541998923874b1fc2ae9444f051a9d519cb8b535cc804930207105d555d"
+    },
+    {
+      "source": "erd-finance.puml",
+      "sourceSha256": "6d3bd48293edf7bc6bb9b3d9b96ab6bad57c5389b19695b1fd3a458402d0ee44",
+      "svg": "erd-finance.svg",
+      "svgSha256": "4ac8e8504fdd6afbd5e97a80fc58dd99f86a9f9d9d1e0c1b9705dbd5b99f8ed0"
+    },
+    {
+      "source": "erd-logical.puml",
+      "sourceSha256": "1fd6a742c45dc4dd7009174b3ce7933045b420b59af83c7b1cef41bfcee025ff",
+      "svg": "erd-logical.svg",
+      "svgSha256": "a5e67085b2288cd71996fc0f25413a2d1db9c9d1461a11d3effdc7e34d0746cb"
+    },
+    {
+      "source": "erd-physical-overview.puml",
+      "sourceSha256": "5a24324b6bf49c715ef0f6d53edb7f62aad4cdfc74c7787b24a8206afffd58df",
+      "svg": "erd-physical-overview.svg",
+      "svgSha256": "3d6598cd7f3a5c985083e1ef0604a9e842b5422626294b0ff837678e0172d5bb"
+    },
+    {
+      "source": "erd-shared-coordination.puml",
+      "sourceSha256": "1e49eae24cc4dbae9234b5091b703c9818db40ed7e2f1e16aea25d49cb569125",
+      "svg": "erd-shared-coordination.svg",
+      "svgSha256": "c24d0b7e82ecc52e2591122b8cf627282ca93e50d650f0a9b470ad56339b93b0"
+    },
+    {
+      "source": "erd-teaching.puml",
+      "sourceSha256": "6c0b9fdde6704900361253cd75f31bbb66680c1fa7f255c174482f7328028673",
+      "svg": "erd-teaching.svg",
+      "svgSha256": "d098fea4e7b40792c6020032f5633226b8cc1c929e8a58deee704f185ef5f2b4"
+    },
+    {
+      "source": "sequence-enrollment-tuition.puml",
+      "sourceSha256": "5c316e952457fe39f6fdc18bfeeae9eae1d517f9c4a3a101649de6cb836546bf",
+      "svg": "sequence-enrollment-tuition.svg",
+      "svgSha256": "2b250dacf5670690cf2a90508d6534e62cbbb6d15f78f6622b33e797e0bdfa41"
+    },
+    {
+      "source": "sequence-final-result-lock.puml",
+      "sourceSha256": "59aae867eb09d784a96e2a11285d13aad345c395b443caa779bfecb77c5959ae",
+      "svg": "sequence-final-result-lock.svg",
+      "svgSha256": "0a0f366af680ade6784841459418694ff83f9073d25274cfb151a5017bcbd6d8"
+    },
+    {
+      "source": "sequence-payment-retry.puml",
+      "sourceSha256": "3edafe15281cf6695816cd788fd875d4815bbd4f03dd4e65f95332738ffdb889",
+      "svg": "sequence-payment-retry.svg",
+      "svgSha256": "a47b3e5c30617963019afe8cad5c08c23cdd5e113017d3ab20b0e78739d16bf6"
+    },
+    {
+      "source": "sequence-placement-exception.puml",
+      "sourceSha256": "1661c0874cc771b761ef1472b9e4ca6505e48a689e21fc5442680bfd419e11a1",
+      "svg": "sequence-placement-exception.svg",
+      "svgSha256": "eeeee33460a48ca75a1fe0c8300f187ab305f763c68eedbbeedc24ba2fcb0e1e"
+    },
+    {
+      "source": "sequence-teacher-handover.puml",
+      "sourceSha256": "d2774612e213dfa57cb4323b0344dfe5975e4c559aa690591f6e5d8e280a4d9b",
+      "svg": "sequence-teacher-handover.svg",
+      "svgSha256": "752b8d8caebaddb0e7bdc35976067f75ee7ba59fca87137a3258e20c6c229263"
+    },
+    {
+      "source": "use-case-admin.puml",
+      "sourceSha256": "72d45e88b2b501981634d76ae4aa563f4dce4767ad7f0c15e539caffffc2caa1",
+      "svg": "use-case-admin.svg",
+      "svgSha256": "8afdf5e44c12550598b88c281016290691d759961b695edfb8d999238d8e1860"
+    },
+    {
+      "source": "use-case-overview.puml",
+      "sourceSha256": "eb7866217dd0ea72a8097a6ca0683fb78c05e62467a0463b72c77bc2c5a08ef4",
+      "svg": "use-case-overview.svg",
+      "svgSha256": "f781a585e893357dd17eda076cc94a6313d0046ca1246c0d2afa4c2822c3a74f"
+    },
+    {
+      "source": "use-case-staff.puml",
+      "sourceSha256": "7913e13f592164c687f31999183bccb5665e4f459565a5af7e0485fac4ce198e",
+      "svg": "use-case-staff.svg",
+      "svgSha256": "a90c7f56a60503ec298dc93b1877610b4b9e13dddbcb315a754527852ce3b8b0"
+    },
+    {
+      "source": "use-case-super-admin.puml",
+      "sourceSha256": "e059cc872671dd4e17196b5cc8e4c403bc0f4aa5cef28a32578d494cb82514c8",
+      "svg": "use-case-super-admin.svg",
+      "svgSha256": "0b8d20e341da67be0a2d9a9bea42bd1831bc937fdf208520d18b40a1f9a80df5"
+    },
+    {
+      "source": "use-case-teacher.puml",
+      "sourceSha256": "1daa73b56ae70135d07fa330d8e4a89fa0a5daac2b9ec1922b4d3cccfa48e2f2",
+      "svg": "use-case-teacher.svg",
+      "svgSha256": "00146ccf316fe6a7ecd5ecc45f8afac4b996570210af09a223f215d845760074"
+    }
+  ]
+}

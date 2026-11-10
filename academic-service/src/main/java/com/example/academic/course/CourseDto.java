@@ -15,7 +15,9 @@ public record CourseDto(
     String entryRequirement,
     Integer maxStudents,
     Course.Status status,
-    Long branchId) {
+    Long branchId,
+    Integer expectedMinutes,
+    long durationRevision) {
   public static CourseDto of(Course c) {
     return new CourseDto(
         c.getId(),
@@ -29,7 +31,9 @@ public record CourseDto(
         c.getEntryRequirement(),
         c.getMaxStudents(),
         c.getStatus(),
-        c.getBranchId());
+        c.getBranchId(),
+        c.getExpectedMinutes(),
+        c.getDurationRevision());
   }
 
   public record Request(
@@ -37,13 +41,28 @@ public record CourseDto(
       @NotBlank @Size(max = 255) String name,
       @Size(max = 255) String type,
       @Size(max = 255) String level,
-      @NotNull @Positive Integer duration,
+      @Positive Integer duration,
       @NotNull @DecimalMin(value = "0", inclusive = false) @Digits(integer = 13, fraction = 2)
           BigDecimal tuitionFee,
       String content,
       String entryRequirement,
       @NotNull @Positive Integer maxStudents,
-      Long branchId) {}
+      Long branchId,
+      @Min(1) @Max(com.example.academic.duration.DurationDto.MAX_MINUTES) Integer expectedMinutes) {
+    public Request(
+        String code,
+        String name,
+        String type,
+        String level,
+        Integer duration,
+        BigDecimal fee,
+        String content,
+        String entry,
+        Integer maxStudents,
+        Long branchId) {
+      this(code, name, type, level, duration, fee, content, entry, maxStudents, branchId, null);
+    }
+  }
 
   public record StatusRequest(@NotNull Course.Status status) {}
 }

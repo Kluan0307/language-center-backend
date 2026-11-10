@@ -1,0 +1,105 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram academic-placement — entity/domain hiện tại
+package "academic" {
+class "AssessmentEvent" as academic_AssessmentEvent <<Entity: assessment_events>> {
+ id : Long
+ assessmentId : Long
+ action : String
+ beforeState : String
+ afterState : String
+ reason : String
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+ assessmentVersion : long
+}
+class "PlacementAssessment" as academic_PlacementAssessment <<Entity: placement_assessments>> {
+ id : Long
+ version : long
+ student : Student
+ branchId : Long
+ programId : Long
+ programCode : String
+ programName : String
+ levelId : Long
+ levelCode : String
+ levelName : String
+ method : Method
+ status : Status
+ assessedOn : LocalDate
+ assessorName : String
+ source : String
+ score : BigDecimal
+ maxScore : BigDecimal
+ recordedBy : Long
+ recordedByName : String
+ confirmedBy : Long
+ confirmedByName : String
+ confirmedAt : LocalDateTime
+ supersedesId : Long
+ supersededById : Long
+ createdAt : LocalDateTime
+ updatedAt : LocalDateTime
+ currentKey : String
+}
+class "EnrollmentAdmission" as academic_EnrollmentAdmission <<Entity: enrollment_admissions>> {
+ id : Long
+ enrollmentId : Long
+ studentId : Long
+ classId : Long
+ policyId : Long
+ classRevision : long
+ assessmentId : Long
+ assessmentVersion : Long
+ approvalId : Long
+ reusedDecisionId : Long
+ intent : PlacementDto.Intent
+ academicStatus : String
+ fingerprint : String
+ policySnapshot : String
+ assessmentSnapshot : String
+ actorId : Long
+ actorName : String
+ acceptedAt : LocalDateTime
+}
+class "PlacementException" as academic_PlacementException <<Entity: placement_exceptions>> {
+ id : Long
+ version : long
+ studentId : Long
+ classId : Long
+ branchId : Long
+ intent : PlacementDto.Intent
+ sourceEnrollmentId : Long
+ sourceVersion : Long
+ policyId : Long
+ classRevision : long
+ assessmentId : Long
+ assessmentVersion : Long
+ contextSnapshot : String
+ fingerprint : String
+ academicStatus : String
+ requestedReason : String
+ requestedBy : Long
+ requestedByName : String
+ requestedAt : LocalDateTime
+ status : Status
+ decisionReason : String
+ decidedBy : Long
+ decidedByName : String
+ decidedAt : LocalDateTime
+ consumedEnrollmentId : Long
+ consumedAt : LocalDateTime
+}
+}
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

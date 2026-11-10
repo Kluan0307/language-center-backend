@@ -1,5 +1,6 @@
 package com.example.auth.security;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,60 +18,102 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+  @org.springframework.beans.factory.annotation.Value(
+      "${app.cors.allowed-origins:http://localhost:5173}")
+  private String allowedOrigins;
 
-    private final CustomUserDetailsService userDetailsService;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+  @Bean
+  org.springframework.boot.web.servlet.FilterRegistrationBean<JwtAuthenticationFilter>
+      disableServletRegistration(JwtAuthenticationFilter filter) {
+    var registration = new org.springframework.boot.web.servlet.FilterRegistrationBean<>(filter);
+    registration.setEnabled(false);
+    return registration;
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  private final CustomUserDetailsService userDetailsService;
+  private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+  @Bean
+  public DaoAuthenticationProvider authenticationProvider() {
+    DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+    provider.setPasswordEncoder(passwordEncoder());
+    return provider;
+  }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+      throws Exception {
+    return config.getAuthenticationManager();
+  }
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowedOrigins(
+        java.util.Arrays.stream(allowedOrigins.split(","))
+            .map(String::trim)
+            .filter(v -> !v.isEmpty())
+            .toList());
+    config.setExposedHeaders(List.of("Content-Disposition", "X-Request-Id"));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("*"));
+    config.setAllowCredentials(true);
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/login").permitAll()
-                        .requestMatchers("/api/v1/auth/accounts/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                )
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+    return source;
+  }
 
-        return http.build();
-    }
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        .csrf(csrf -> csrf.disable())
+        .sessionManagement(
+            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(
+            auth ->
+                auth.requestMatchers("/actuator/health", "/actuator/health/**")
+                    .permitAll()
+                    .requestMatchers("/actuator/**")
+                    .denyAll()
+                    .requestMatchers("/api/v1/auth/login")
+                    .permitAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
+                    .permitAll()
+                    .requestMatchers("/api/v1/auth/accounts", "/api/v1/auth/accounts/**")
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN")
+                    .requestMatchers("/api/v1/auth/teacher-profiles/**")
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN")
+                    .requestMatchers("/api/v1/auth/teachers", "/api/v1/auth/teachers/**")
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN", "STAFF")
+                    .anyRequest()
+                    .authenticated())
+        .exceptionHandling(
+            e ->
+                e.authenticationEntryPoint(
+                        (req, res, ex) -> {
+                          res.setStatus(401);
+                          res.setContentType("application/json;charset=UTF-8");
+                          res.getWriter().write("{\"message\":\"Unauthenticated\"}");
+                        })
+                    .accessDeniedHandler(
+                        (req, res, ex) -> {
+                          res.setStatus(403);
+                          res.setContentType("application/json;charset=UTF-8");
+                          res.getWriter().write("{\"message\":\"Forbidden\"}");
+                        }))
+        .authenticationProvider(authenticationProvider())
+        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+    return http.build();
+  }
 }

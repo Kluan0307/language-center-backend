@@ -1,0 +1,172 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram teaching — entity/domain hiện tại
+package "teaching" {
+class "Document" as teaching_Document <<Entity: documents>> {
+ revision : int
+ lastSubmittedAt : LocalDateTime
+ branchId : Long
+ title : String
+ classId : Long
+ courseId : Long
+ storageKey : String
+ originalFilename : String
+ fileSize : Long
+ description : String
+ uploadedBy : Long
+ uploadedByName : String
+ uploadedAt : LocalDateTime
+ status : Status
+ reviewedBy : Long
+ reviewedByName : String
+ reviewedAt : LocalDateTime
+ rejectReason : String
+ version : Long
+}
+abstract class "teaching.BaseEntity" as teaching_BaseEntity <<MappedSuperclass>>
+teaching_BaseEntity : id : Long
+teaching_BaseEntity <|-- teaching_Document
+class "DocumentEvent" as teaching_DocumentEvent <<Entity: document_events>> {
+ documentId : Long
+ revision : int
+ action : String
+ status : String
+ storageKey : String
+ title : String
+ description : String
+ filename : String
+ fileSize : Long
+ reason : String
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+}
+teaching_BaseEntity <|-- teaching_DocumentEvent
+class "EvaluationPolicy" as teaching_EvaluationPolicy <<Entity: evaluation_policies>> {
+ id : Long
+ classId : Long
+ branchId : Long
+ courseId : Long
+ revision : long
+ passPercent : BigDecimal
+ minAttendancePercent : BigDecimal
+ actorId : Long
+ actorName : String
+ confirmedAt : LocalDateTime
+ reason : String
+ rules : List<Rule>
+}
+class "EvaluationPolicy.Rule" as teaching_EvaluationPolicy_Rule <<Embeddable>> {
+ examId : Long
+ examVersion : long
+ examName : String
+ examDate : LocalDate
+ required : boolean
+ weight : BigDecimal
+ maxScore : BigDecimal
+}
+teaching_EvaluationPolicy "1" *-- "0..*" teaching_EvaluationPolicy_Rule : ElementCollection
+class "EvaluationState" as teaching_EvaluationState <<Entity: evaluation_states>> {
+ classId : Long
+ branchId : Long
+ revision : long
+ sourceRevision : long
+}
+class "Exam" as teaching_Exam <<Entity: exams>> {
+ version : long
+ branchId : Long
+ classId : Long
+ name : String
+ examType : String
+ examDate : LocalDate
+ weight : BigDecimal
+ maxScore : BigDecimal
+ rosterFrozenAt : LocalDateTime
+ rosterFrozenBy : Long
+ rosterFrozenByName : String
+ createdBy : Long
+ createdByName : String
+ createdAt : LocalDateTime
+}
+teaching_BaseEntity <|-- teaching_Exam
+class "ExamCandidate" as teaching_ExamCandidate <<Entity: exam_candidates>> {
+ enrollmentId : Long
+ examId : Long
+ studentId : Long
+ studentName : String
+ source : String
+}
+teaching_BaseEntity <|-- teaching_ExamCandidate
+class "Grade" as teaching_Grade <<Entity: grades>> {
+ exam : Exam
+ branchId : Long
+ studentId : Long
+ studentName : String
+ score : BigDecimal
+ enteredBy : Long
+ enteredByName : String
+ enteredAt : LocalDateTime
+ lastModifiedBy : Long
+ lastModifiedByName : String
+ lastModifiedAt : LocalDateTime
+ modificationReason : String
+ comment : String
+ version : Long
+}
+teaching_BaseEntity <|-- teaching_Grade
+class "GradeChange" as teaching_GradeChange <<Entity: grade_changes>> {
+ gradeId : Long
+ oldScore : BigDecimal
+ newScore : BigDecimal
+ modifiedBy : Long
+ modifiedByName : String
+ modifiedAt : LocalDateTime
+ reason : String
+}
+teaching_BaseEntity <|-- teaching_GradeChange
+class "FinalResult" as teaching_FinalResult <<Entity: final_results>> {
+ id : Long
+ classId : Long
+ branchId : Long
+ enrollmentId : Long
+ studentId : Long
+ revision : long
+ policyRevision : long
+ academicSourceRevision : long
+ teachingSourceRevision : long
+ requestId : String
+ fingerprint : String
+ outcome : String
+ state : String
+ reason : String
+ confirmedBy : Long
+ confirmedByName : String
+ confirmedAt : LocalDateTime
+ snapshot : String
+ reopenedBy : Long
+ reopenedByName : String
+ reopenedAt : LocalDateTime
+ reopenReason : String
+}
+class "ResultReopen" as teaching_ResultReopen <<Entity: result_reopens>> {
+ requestId : String
+ classId : Long
+ previousRevision : long
+ actorId : Long
+ actorName : String
+ createdAt : LocalDateTime
+ reason : String
+}
+}
+teaching_Grade "0..*" --> "1" teaching_Exam : exam
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

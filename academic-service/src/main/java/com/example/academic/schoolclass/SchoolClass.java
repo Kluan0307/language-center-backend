@@ -19,6 +19,16 @@ import lombok.*;
 @Getter
 @Setter
 public class SchoolClass extends BaseEntity {
+  private Integer expectedMinutes;
+
+  @Column(nullable = false)
+  private long durationRevision;
+
+  private Long admissionPolicyId;
+
+  @Column(nullable = false)
+  private long admissionRevision;
+
   @Column(nullable = false)
   private String code;
 
@@ -44,6 +54,11 @@ public class SchoolClass extends BaseEntity {
 
   @Column(nullable = false)
   private LocalDate endDate;
+
+  private LocalDate sessionEndDate;
+
+  @Column(nullable = false)
+  private boolean sessionsInitialized;
 
   @Column(nullable = false)
   private Integer maxSize;
@@ -73,14 +88,19 @@ public class SchoolClass extends BaseEntity {
 
   @Transient
   public Status effectiveStatus() {
-    if (statusManuallySet || status == Status.FULL || status == Status.FINISHED) return status;
+    if (status == Status.FINISHED) return Status.FINISHED;
     return dateStatus();
   }
 
   @Transient
+  public LocalDate effectiveEndDate() {
+    return sessionEndDate != null && sessionEndDate.isAfter(endDate) ? sessionEndDate : endDate;
+  }
+
+  @Transient
   public Status dateStatus() {
-    LocalDate today = LocalDate.now();
-    return today.isAfter(endDate)
+    LocalDate today = LocalDate.now(com.example.academic.common.BusinessTime.ZONE);
+    return today.isAfter(effectiveEndDate())
         ? Status.FINISHED
         : today.isBefore(startDate) ? Status.UPCOMING : Status.ONGOING;
   }

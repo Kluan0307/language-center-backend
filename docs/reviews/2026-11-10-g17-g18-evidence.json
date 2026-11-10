@@ -1,0 +1,180 @@
+{
+  "runId": "20261110-0365823a",
+  "database": "lc_rehearsal_1794284386660_859a8d",
+  "status": "PASSED",
+  "checks": 86,
+  "phases": [
+    {
+      "phase": "g17",
+      "checks": 20,
+      "status": "PASSED",
+      "finishedAt": "2026-11-10T04:20:34.255Z"
+    },
+    {
+      "phase": "g18",
+      "checks": 38,
+      "status": "PASSED",
+      "finishedAt": "2026-11-10T04:21:34.326Z"
+    },
+    {
+      "phase": "browser",
+      "checks": 12,
+      "status": "PASSED",
+      "finishedAt": "2026-11-10T04:22:02.966Z"
+    },
+    {
+      "phase": "database",
+      "checks": 8,
+      "status": "PASSED",
+      "finishedAt": "2026-11-10T04:22:05.710Z"
+    },
+    {
+      "phase": "g17-crud",
+      "checks": 8,
+      "status": "PASSED",
+      "finishedAt": "2026-11-10T04:21:36.411Z"
+    }
+  ],
+  "generatedAt": "2026-11-10T04:22:44.662Z",
+  "inventory": [
+    {
+      "file": "browser.json",
+      "bytes": 144293,
+      "sha256": "dae329fef35b49a5f779152c8e9c22f6576d7e2547146da9bbf9e3be464f1224"
+    },
+    {
+      "file": "database.json",
+      "bytes": 4036,
+      "sha256": "6987af9dd4597c1fb9ff570ff088ac0431775c05ffbaf95783f1f39bf14469fb"
+    },
+    {
+      "file": "expected.json",
+      "bytes": 1095,
+      "sha256": "31eb365fdb6dfb534ec329dd0c0e3f25f05b2e5df632d275c9f7b3d5579ee7c3"
+    },
+    {
+      "file": "fixture.json",
+      "bytes": 34533,
+      "sha256": "f963309cd52282397a594fa24cd523fb47fcecc2e575d5aa40e05b2368287846"
+    },
+    {
+      "file": "g17-class-closure.png",
+      "bytes": 114092,
+      "sha256": "81da3e023b01c342a55d213f2977b8fa6d6dc0ef9e4fc71f06120c4c0f1c78a6"
+    },
+    {
+      "file": "g17-crud.json",
+      "bytes": 3504,
+      "sha256": "d72bbc94684c812c2cfedb16bdf5fb5b26327bca13760c6354ff2d6a8d6fa207"
+    },
+    {
+      "file": "g17-mobile-profile.png",
+      "bytes": 32859,
+      "sha256": "3dcd4fec0371c930d5bb81da68a3ec2a200db80c71b1e5e2168644e615e2c59c"
+    },
+    {
+      "file": "g17-student-profile.png",
+      "bytes": 96417,
+      "sha256": "5f6b60c30f720dcb96e2acb21544348c3ff1b18e69bb2d3fed010a63c6b5c0cb"
+    },
+    {
+      "file": "g17.json",
+      "bytes": 9027,
+      "sha256": "6ea6c246b08765e1249852c26c5eecbb20e2214118c1e4f7fab57b1f5da34ca2"
+    },
+    {
+      "file": "g18-branch-switch.png",
+      "bytes": 79462,
+      "sha256": "b0ca7eb7c431ce13fc1e5a00a561830c8bb2c9d3714ca996101c5f97569ff76d"
+    },
+    {
+      "file": "g18.json",
+      "bytes": 17505,
+      "sha256": "4ce3566237d4ad4c382f4c78a06a3dc38dd3e51b3be3972d0e38fe59e7e52e9f"
+    },
+    {
+      "file": "http.jsonl",
+      "bytes": 221261,
+      "sha256": "65481d2928af52cf6695efa07fdddbfb35878e69d66eaa004abaf84591c317da"
+    },
+    {
+      "file": "lifecycle.log",
+      "bytes": 1687,
+      "sha256": "64afbec6090e93918cb91d18654d696d83e29123a678eed38c12898c8e71feed"
+    }
+  ],
+  "harnessAtHandoff": [
+    {
+      "file": "browser.mjs",
+      "sha256": "e877bae4c71d562e63b2ce666ef84fb1e613b5523761b3842dc3645934ff3583"
+    },
+    {
+      "file": "client.mjs",
+      "sha256": "1965b9aa3e6d1cebf3cf8324fd2b124d3f72e07aab407f6c902b4b0eb131b211"
+    },
+    {
+      "file": "expected.json",
+      "sha256": "31eb365fdb6dfb534ec329dd0c0e3f25f05b2e5df632d275c9f7b3d5579ee7c3"
+    },
+    {
+      "file": "g17-crud.mjs",
+      "sha256": "323b9fdf7cf76df1558af98d0c63029107e57a220df2bcc2930bad3464d8cc76"
+    },
+    {
+      "file": "g17.mjs",
+      "sha256": "09270a2063044a4a3a625a0b03600f58d933fd6ae311a85ba590eb0d2b96d2a3"
+    },
+    {
+      "file": "g18.mjs",
+      "sha256": "ed1054609b4bae6f86b7eb4ee0b53c69c262ae6706eb0cd15c13b47b124a055e"
+    },
+    {
+      "file": "prepare.cjs",
+      "sha256": "e4153b994e10008df2bf736e72828b19eed444e59f69b14a10c63fc9be4a2097"
+    },
+    {
+      "file": "run.ps1",
+      "sha256": "8a17fd46e4ceb6e79d0be8b22a59f4deb452be1f416eb7b0fe1002b92f156336"
+    },
+    {
+      "file": "runtime.ps1",
+      "sha256": "4d86e3bc1eb0191fb9b9905827db59bff3e959f5b60621828c58c29daf007dad"
+    },
+    {
+      "file": "summarize.mjs",
+      "sha256": "5c20e722b8c9d1c38389fca26bb517f4a743e5e8e6f169b84003890024413d76"
+    },
+    {
+      "file": "verify-db.mjs",
+      "sha256": "631249ee759c1cbd8ce58ccf4781294a9955a0b90b09c17b6c2c07ff5a6373b5"
+    }
+  ],
+  "runtimeJars": [
+    {
+      "file": "academic-service.jar",
+      "sha256": "449f9e1bfc14e8a797a4b922bb5e580bf8a7ee4a204e3fe7311e59bb43700086"
+    },
+    {
+      "file": "api-gateway.jar",
+      "sha256": "5054e3e219e140a5fd313980ca846827355ab77d64f5cfb172c5168174289531"
+    },
+    {
+      "file": "auth-service.jar",
+      "sha256": "8203c7f47d834b5741d3d64ab785e568de7f09d33aa4ae80ebd5f50bde9f3c00"
+    },
+    {
+      "file": "finance-service.jar",
+      "sha256": "75f48ec1248eccc8d7aab9eff4e56bf8ce282221f4543873abc3c6007e1679b7"
+    },
+    {
+      "file": "teaching-service.jar",
+      "sha256": "96c615eb73f7a36a3fba51104a5c3547ef8c3469c8d365f10fd47cf92d58b919"
+    }
+  ],
+  "limits": [
+    "Local gateway/MySQL/Edge acceptance, not Internet/TLS/load qualification",
+    "Failed attempts retained separately; final reports contain successful attempts",
+    "Source dump and private-session.json must stay local; do not publish"
+  ],
+  "sourceUnchangedEvidence": "database.json / DB-08"
+}

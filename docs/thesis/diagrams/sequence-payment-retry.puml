@@ -1,0 +1,50 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Thu tiền và retry cùng intent
+actor "Staff/Admin" as U
+participant "Frontend" as F
+participant "Gateway" as G
+participant "Finance PaymentService" as P
+database "MySQL" as DB
+autonumber
+U -> F: Xác nhận số tiền/phương thức
+F -> F: Giữ requestKey và body cho cùng intent
+F -> G: POST /api/v1/finance/payments\n{tuitionId,amount,paymentMethod,requestKey,...}
+G -> P: Bearer token giữ nguyên
+note over P: Kiểm JWT/live session; Teacher bị403; scope trên Tuition
+group Finance Tx READ_COMMITTED
+ P -> DB: Khóa tuition theo id PESSIMISTIC_WRITE; refresh
+ P -> DB: Tìm payments bằng branch_id + request_key
+ alt Đã có, tuitionId/amount/method/referenceCode/note khớp
+  P -> P: Chọn phiếu thu cũ (không ghi thêm)
+ else Key đã dùng với body khác
+  P -> P: Từ chối 409 Conflict
+ else Intent mới
+  P -> P: Không CANCELLED; requireSynced;\nnet = gross - void - refund; 0 < amount <= amount_due-net
+  P -> DB: INSERT payments (receipt_no PT-UUID,actor,request_key)\nUPDATE tuition.paid_amount qua ledger.setNet
+ end
+ P -> DB: COMMIT nếu thành công; ROLLBACK nếu lỗi
+end
+alt Intent hợp lệ
+ alt Phản hồi nhận được
+  P --> G: 200 PaymentDto (mới hoặc replay)
+  G --> F: Phiếu thu
+ else Mất phản hồi sau commit
+  P --x F: Kết nối mất; kết quả phía client chưa biết
+  F -> G: POST cùng URL/key/body
+  G -> P: Retry cùng intent
+  group Finance Tx mới cho request retry
+   P -> DB: Khóa tuition; tìm payments cũ; kiểm body
+   P -> DB: COMMIT (không ghi phiếu thứ hai)
+  end
+  P --> G: 200 cùng payment.id/receiptNo
+  G --> F: Phiếu đã lưu
+ end
+else Key/body xung đột hoặc vi phạm nghiệp vụ
+ P --> G: 4xx, không ghi phiếu
+ G --> F: Hiển thị lý do
+end
+note over F,P: Đổi key khi chưa biết kết quả có thể thành intent mới.\nRàng buộc unique và khóa bổ sung cho nhau; không sửa phiếu gốc để hoàn tiền.
+@enduml

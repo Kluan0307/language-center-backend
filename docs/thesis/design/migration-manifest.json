@@ -1,0 +1,57 @@
+{
+  "note": "Fingerprints of migration sources inspected for G14; not an execution ledger of the current database",
+  "migrations": [
+    {
+      "name": "V001__account_branch_assignments.sql",
+      "sha256": "2521c5396ef82fd0de753e0c3f513a4e9142723a3b8459f874debebaeb5332f4"
+    },
+    {
+      "name": "V002__account_security.sql",
+      "sha256": "91685d099e0f417dbc3a0f61693348ef9c30995da701f66d973767b0be715090"
+    },
+    {
+      "name": "V003__class_sessions.sql",
+      "sha256": "c7323aa5facf61e9d827fde9c942e6741b849ed58b83b2b807ba37a049c3137b"
+    },
+    {
+      "name": "V004__learning_lifecycle.sql",
+      "sha256": "25a43657f1311a9abed46f35f9c57dfa20c0f52f83434913af8af04735f654a4"
+    },
+    {
+      "name": "V005__finance_ledger.sql",
+      "sha256": "3fa7c21402424596f3c6f850f5ee34cca85fb973cd38c09539bcbdba8ac2bfc8"
+    },
+    {
+      "name": "V006__lead_care_document_revisions.sql",
+      "sha256": "e3eba9d873e9630effb78e5f2f2e4fa22024feedf7363a4cafae21fcca7bb816"
+    },
+    {
+      "name": "V007__teacher_profile_lifecycle.sql",
+      "sha256": "cad71fb58c620821d2e9aa48dd5955f9c71802a098a2ec9dd323ec2fc0ef6d75"
+    },
+    {
+      "name": "V008__programs_course_admission.sql",
+      "sha256": "ddcf60405ed2279da0227a3eec79c3996a1e6d1c0c4457402a4a168d9a2e2b49"
+    },
+    {
+      "name": "V009__placement_assessments.sql",
+      "sha256": "58a20576a59b816a8327dcaadf5d4611e0043118867063dec5ec781aa1a7ee3a"
+    },
+    {
+      "name": "V010__enrollment_placement.sql",
+      "sha256": "b6a1d2d6d08cf8eccbfee66fb68e63fb5beee8bf3f1b89df881e6bc3ebc3160d"
+    },
+    {
+      "name": "V011__verified_duration_plans.sql",
+      "sha256": "8c1f7fccee0ee105f09bd88c39f87b8849a09e12842bb35e8505b5c12ee6782d"
+    },
+    {
+      "name": "V012__class_evaluation_policies.sql",
+      "sha256": "8a3e4e4e2ade7d430596bfa6f93bb38a6fdf09d5fedd7cc95cc4e9183845f886"
+    },
+    {
+      "name": "V013__final_results_learning_profile.sql",
+      "sha256": "42bce4b1ad2c8343d87325dfebf735022303f54262502cfb4794e28467e894af"
+    }
+  ]
+}

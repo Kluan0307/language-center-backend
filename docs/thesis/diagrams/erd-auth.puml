@@ -1,0 +1,113 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý auth — FK thực tế MySQL V013
+package "auth" {
+entity "account_branch_events" as T_account_branch_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} account_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} action : varchar(30) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+ {field} performed_by : bigint [NULL]
+}
+entity "account_branches" as T_account_branches {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} account_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} status : bit(1) [NOT NULL]
+ {field} is_primary : bit(1) [NOT NULL]
+ {field} assigned_at : datetime(6) [NOT NULL]
+ {field} assigned_by : bigint [NULL]
+ {field} revoked_at : datetime(6) [NULL]
+}
+entity "account_security_events" as T_account_security_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} account_id : bigint [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} action : varchar(40) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(255) [NULL]
+}
+entity "accounts" as T_accounts {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} created_at : datetime(6) [NULL]
+ {field} last_login : datetime(6) [NULL]
+ {field} password : varchar(255) [NOT NULL]
+ {field} role : ENUM [NOT NULL]
+ {field} status : bit(1) [NOT NULL]
+ {field} username : varchar(50) [NOT NULL]
+ {field} branch_id : bigint [NULL]
+ {field} session_version : bigint [NOT NULL]
+ {field} must_change_password : bit(1) [NOT NULL]
+ {field} password_changed_at : datetime(6) [NULL]
+}
+entity "admins" as T_admins {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} email : varchar(100) [NULL]
+ {field} full_name : varchar(100) [NOT NULL]
+ {field} phone : varchar(15) [NULL]
+ {field} account_id : bigint [NOT NULL]
+ {field} hire_date : date [NULL]
+ {field} work_status : varchar(50) [NULL]
+}
+entity "staffs" as T_staffs {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} email : varchar(100) [NULL]
+ {field} full_name : varchar(100) [NOT NULL]
+ {field} phone : varchar(15) [NULL]
+ {field} account_id : bigint [NOT NULL]
+ {field} hire_date : date [NULL]
+ {field} position : varchar(100) [NULL]
+ {field} work_status : varchar(50) [NULL]
+}
+entity "super_admins" as T_super_admins {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} email : varchar(100) [NULL]
+ {field} full_name : varchar(100) [NOT NULL]
+ {field} phone : varchar(15) [NULL]
+ {field} account_id : bigint [NOT NULL]
+}
+entity "teacher_profile_events" as T_teacher_profile_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} teacher_id : bigint [NOT NULL]
+ {field} action : varchar(255) [NOT NULL]
+ {field} before_state : longtext [NOT NULL]
+ {field} after_state : longtext [NOT NULL]
+ {field} reason : varchar(500) [NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} teacher_version : bigint [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+}
+entity "teachers" as T_teachers {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} certificate : varchar(255) [NULL]
+ {field} email : varchar(100) [NULL]
+ {field} experience : varchar(50) [NULL]
+ {field} full_name : varchar(100) [NOT NULL]
+ {field} hire_date : date [NULL]
+ {field} phone : varchar(15) [NULL]
+ {field} qualification : varchar(100) [NULL]
+ {field} specialization : varchar(100) [NULL]
+ {field} work_status : varchar(50) [NULL]
+ {field} account_id : bigint [NOT NULL]
+ {field} version : bigint [NOT NULL]
+}
+}
+T_accounts "1" -- "0..*" T_account_branch_events : account_id
+T_accounts "1" -- "0..*" T_account_branches : account_id
+T_accounts "1" -- "0..*" T_account_security_events : account_id
+T_accounts "1" -- "0..1" T_admins : account_id
+T_accounts "1" -- "0..1" T_staffs : account_id
+T_accounts "1" -- "0..1" T_super_admins : account_id
+T_accounts "1" -- "0..1" T_teachers : account_id
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

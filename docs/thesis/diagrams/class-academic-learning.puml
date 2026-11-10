@@ -1,0 +1,236 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram academic-learning — entity/domain hiện tại
+package "academic" {
+class "Attendance" as academic_Attendance <<Entity: attendances>> {
+ enrollment : Enrollment
+ classSession : com.example.academic.session.ClassSession
+ sessionDate : LocalDate
+ status : Status
+ hasPermission : boolean
+ recordedBy : Long
+ recordedByName : String
+}
+abstract class "academic.BaseEntity" as academic_BaseEntity <<MappedSuperclass>>
+academic_BaseEntity : id : Long
+academic_BaseEntity <|-- academic_Attendance
+class "AttendanceChange" as academic_AttendanceChange <<Entity: attendance_changes>> {
+ session : ClassSession
+ enrollmentId : Long
+ studentName : String
+ oldStatus : Attendance.Status
+ newStatus : Attendance.Status
+ oldPermission : Boolean
+ newPermission : boolean
+ previousRecordedBy : Long
+ previousRecordedByName : String
+ changedBy : Long
+ changedByName : String
+ changedAt : LocalDateTime
+ reason : String
+}
+academic_BaseEntity <|-- academic_AttendanceChange
+class "Enrollment" as academic_Enrollment <<Entity: enrollments>> {
+ version : long
+ completionResultId : Long
+ completionResultRevision : Long
+ reservedSince : java.time.LocalDate
+ expectedReturnDate : java.time.LocalDate
+ billingEnrollmentId : Long
+ tuitionFee : java.math.BigDecimal
+ registeredBy : Long
+ registeredByName : String
+ tuitionDelivery : TuitionDelivery
+ tuitionDeliveryError : String
+ student : Student
+ schoolClass : SchoolClass
+ enrolledAt : LocalDateTime
+ studyStatus : StudyStatus
+}
+academic_BaseEntity <|-- academic_Enrollment
+class "EnrollmentPeriod" as academic_EnrollmentPeriod <<Entity: enrollment_periods>> {
+ enrollment : Enrollment
+ activeFrom : LocalDate
+ activeUntil : LocalDate
+}
+academic_BaseEntity <|-- academic_EnrollmentPeriod
+class "Lead" as academic_Lead <<Entity: leads>> {
+ version : long
+ nextContactAt : LocalDateTime
+ updatedAt : LocalDateTime
+ fullName : String
+ phone : String
+ email : String
+ source : String
+ interestedCourse : Course
+ desiredLevel : String
+ status : Status
+ note : String
+ assignedTo : Long
+ assignedToName : String
+ convertedStudent : Student
+ createdAt : LocalDateTime
+ lastContactedAt : LocalDateTime
+ branchId : Long
+}
+academic_BaseEntity <|-- academic_Lead
+class "LeadActivity" as academic_LeadActivity <<Entity: lead_activities>> {
+ leadId : Long
+ action : String
+ note : String
+ channel : String
+ oldStatus : String
+ newStatus : String
+ oldAssigneeId : Long
+ oldAssigneeName : String
+ assigneeId : Long
+ assigneeName : String
+ oldNextContactAt : LocalDateTime
+ nextContactAt : LocalDateTime
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+}
+academic_BaseEntity <|-- academic_LeadActivity
+class "LearningEvent" as academic_LearningEvent <<Entity: learning_events>> {
+ branchId : Long
+ studentId : Long
+ enrollmentId : Long
+ relatedEnrollmentId : Long
+ action : String
+ oldStatus : String
+ newStatus : String
+ reason : String
+ effectiveDate : LocalDate
+ expectedReturnDate : LocalDate
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+}
+academic_BaseEntity <|-- academic_LearningEvent
+class "ClassClosure" as academic_ClassClosure <<Entity: class_closures>> {
+ classId : Long
+ revision : long
+ resultRevision : long
+ sourceRevision : long
+ closed : boolean
+ actorName : String
+ actorId : Long
+ changedAt : LocalDateTime
+ reason : String
+}
+class "ClassClosureEvent" as academic_ClassClosureEvent <<Entity: class_closure_events>> {
+ requestId : String
+ classId : Long
+ expectedRevision : long
+ revision : long
+ closed : boolean
+ actorName : String
+ actorId : Long
+ changedAt : LocalDateTime
+ reason : String
+}
+class "Schedule" as academic_Schedule <<Entity: schedules>> {
+ schoolClass : SchoolClass
+ dayOfWeek : DayOfWeek
+ startTime : LocalTime
+ endTime : LocalTime
+}
+academic_BaseEntity <|-- academic_Schedule
+class "SchoolClass" as academic_SchoolClass <<Entity: school_classes>> {
+ expectedMinutes : Integer
+ durationRevision : long
+ admissionPolicyId : Long
+ admissionRevision : long
+ code : String
+ name : String
+ course : Course
+ teacherId : Long
+ teacherName : String
+ room : Room
+ startDate : LocalDate
+ endDate : LocalDate
+ sessionEndDate : LocalDate
+ sessionsInitialized : boolean
+ maxSize : Integer
+ currentSize : Integer
+ status : Status
+ statusManuallySet : boolean
+ branchId : Long
+ schedules : List<Schedule>
+}
+academic_BaseEntity <|-- academic_SchoolClass
+class "ClassSession" as academic_ClassSession <<Entity: class_sessions>> {
+ schoolClass : SchoolClass
+ sessionDate : LocalDate
+ startTime : LocalTime
+ endTime : LocalTime
+ roomId : Long
+ roomName : String
+ plannedTeacherId : Long
+ plannedTeacherName : String
+ teacherId : Long
+ teacherName : String
+ status : Status
+ kind : Kind
+ sourceDate : LocalDate
+ sourceScheduleId : Long
+ makeupForId : Long
+ makeupSessionId : Long
+ customized : boolean
+ reason : String
+ version : long
+ createdAt : LocalDateTime
+ updatedAt : LocalDateTime
+}
+academic_BaseEntity <|-- academic_ClassSession
+class "SessionEvent" as academic_SessionEvent <<Entity: session_events>> {
+ session : ClassSession
+ action : String
+ reason : String
+ beforeState : String
+ afterState : String
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+}
+academic_BaseEntity <|-- academic_SessionEvent
+class "Student" as academic_Student <<Entity: students>> {
+ version : long
+ studentCode : String
+ guardianName : String
+ guardianPhone : String
+ fullName : String
+ dateOfBirth : LocalDate
+ gender : Gender
+ email : String
+ phone : String
+ address : String
+ contactPerson : String
+ currentLevel : String
+ registeredAt : LocalDate
+ status : Status
+ branchId : Long
+}
+academic_BaseEntity <|-- academic_Student
+}
+academic_Attendance "0..*" --> "1" academic_Enrollment : enrollment
+academic_AttendanceChange "0..*" --> "1" academic_ClassSession : session
+academic_Enrollment "0..*" --> "1" academic_Student : student
+academic_Enrollment "0..*" --> "1" academic_SchoolClass : schoolClass
+academic_EnrollmentPeriod "0..*" --> "1" academic_Enrollment : enrollment
+academic_Lead "0..1" --> "0..1" academic_Student : convertedStudent
+academic_Schedule "0..*" --> "1" academic_SchoolClass : schoolClass
+academic_ClassSession "0..*" --> "1" academic_SchoolClass : schoolClass
+academic_SessionEvent "0..*" --> "1" academic_ClassSession : session
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

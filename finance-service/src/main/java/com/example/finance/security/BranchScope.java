@@ -1,16 +1,17 @@
 package com.example.finance.security;
 
 import com.example.finance.common.ApiException;
-import java.util.Objects;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BranchScope {
   public Long filter(Long requested) {
     var u = Users.current();
+    if (requested != null && requested <= 0) throw ApiException.bad("Invalid branchId");
     if (u.role() == Role.SUPER_ADMIN) return requested;
-    if (u.branchId() == null) throw ApiException.forbidden();
-    return u.branchId();
+    Long selected = requested == null ? u.branchId() : requested;
+    if (selected == null || !u.branchIds().contains(selected)) throw ApiException.missing();
+    return selected;
   }
 
   public Long create(Long requested) {
@@ -20,8 +21,9 @@ public class BranchScope {
   }
 
   public void check(Long actual) {
-    Long own = filter(null);
-    if (own != null && !Objects.equals(own, actual)) throw ApiException.missing();
+    var u = Users.current();
+    if (u.role() != Role.SUPER_ADMIN && !u.branchIds().contains(actual))
+      throw ApiException.missing();
   }
 
   public void finance(Long actual) {

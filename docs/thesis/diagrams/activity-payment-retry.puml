@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Thu tiền — kiểm soát intent và số dư
+start
+:Staff/Admin nhập số tiền;\nFE giữ cùng requestKey/body khi retry;
+:POST /api/v1/finance/payments;
+:Service kiểm JWT/live session, role, scope;
+:Tx READ_COMMITTED; khóa/refresh tuition;
+:Tìm payments theo branch_id/request_key;
+if (Đã có key?) then (Có)
+ if (Cùng tuitionId và toàn bộ nội dung?) then (Có)
+  :200 phiếu cũ, không ghi thêm;
+ else (Không)
+  :409 xung đột intent;
+ endif
+ stop
+endif
+:Kiểm tuition không CANCELLED và ledger đồng bộ;
+if (0 < amount <= số còn nợ?) then (Có)
+ :Lưu payments; cập nhật tuition.paid_amount; COMMIT;
+ if (Client nhận phản hồi?) then (Có)
+  :200 PaymentDto;
+ else (Không)
+  :FE giữ key/body; xác minh hoặc retry cùng intent;\nserver trả phiếu đã commit;
+ endif
+else (Không)
+ :Từ chối 409; không ghi phiếu;
+endif
+stop
+@enduml

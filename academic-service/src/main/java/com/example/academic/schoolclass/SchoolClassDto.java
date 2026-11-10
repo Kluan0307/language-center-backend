@@ -23,7 +23,8 @@ public record SchoolClassDto(
     Integer currentSize,
     SchoolClass.Status status,
     boolean statusManuallySet,
-    Long branchId) {
+    Long branchId,
+    boolean full, LocalDate effectiveEndDate, boolean closed) {
   public static SchoolClassDto of(SchoolClass c) {
     return new SchoolClassDto(
         c.getId(),
@@ -41,7 +42,8 @@ public record SchoolClassDto(
         c.getCurrentSize(),
         c.effectiveStatus(),
         c.isStatusManuallySet(),
-        c.getBranchId());
+        c.getBranchId(),
+        c.getCurrentSize() >= c.getMaxSize(), c.effectiveEndDate(), c.getStatus()==SchoolClass.Status.FINISHED);
   }
 
   public record Request(

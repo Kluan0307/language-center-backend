@@ -1,0 +1,26 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Bàn giao trước khi ngừng công tác
+start
+:Admin/SA xem Responsibility[] qua Auth -> Academic;
+while (Còn CLASS chưa FINISHED hoặc SESSION SCHEDULED?) is (Có)
+ :PUT full ClassRequest đổi giáo viên;\nPUT SessionEdit đổi buổi với version/reason;\nkiểm account khả dụng, chi nhánh và xung đột;
+ :Tải lại trách nhiệm;
+endwhile (Không)
+:PATCH /api/v1/auth/teacher-profiles/{id}/work-status;
+:Auth Tx khóa account rồi teacher;\nkiểm toàn bộ phân công, version và reason;
+:Gọi Academic kiểm trách nhiệm lần cuối;
+if (Không xác minh được?) then (Có)
+ :503, rollback, giữ nguyên hồ sơ;
+ stop
+endif
+if (Đã phát sinh trách nhiệm?) then (Có)
+ :409, yêu cầu bàn giao;
+ stop
+endif
+:INACTIVE + teacher_profile_events; COMMIT;
+:200; không tự khóa account hoặc xóa lịch sử;
+stop
+@enduml

@@ -17,9 +17,10 @@ public class AttendanceController {
 
   @GetMapping("/sheet")
   public AttendanceDto.Sheet sheet(
-      @RequestParam Long classId,
-      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-    return service.sheet(classId, date);
+      @RequestParam(required=false) Long classId,
+      @RequestParam(required=false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+      @RequestParam(required=false) Long sessionId) {
+    return service.sheet(classId, date,sessionId);
   }
 
   @PostMapping("/bulk")

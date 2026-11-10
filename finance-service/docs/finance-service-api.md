@@ -1,3 +1,5 @@
+> Historical reference. See [current contracts](../../docs/api-contracts.md) and [decisions](../../docs/implementation-decisions.md).
+
 # Finance Service API Contract
 
 ## Authentication

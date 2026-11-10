@@ -4,6 +4,6 @@ public enum Role {
   SUPER_ADMIN,
   ADMIN,
   STAFF,
-  ACCOUNTANT,
+
   TEACHER
 }

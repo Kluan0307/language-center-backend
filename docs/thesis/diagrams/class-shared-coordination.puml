@@ -1,0 +1,24 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram shared-coordination — entity/domain hiện tại
+package "shared-coordination" {
+class "ResultBarrier" as academic_ResultBarrier <<Entity: class_result_barriers>> {
+ classId : Long
+ branchId : Long
+ token : String
+ sourceRevision : long
+ resultRevision : long
+ confirmedCount : long
+}
+}
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

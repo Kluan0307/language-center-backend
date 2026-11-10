@@ -1,0 +1,69 @@
+# Báo cáo bàn giao Giai đoạn 18 (G18) — Nghiệm thu phân quyền, lỗi và đồng thời
+
+**Thời điểm nghiệm thu**: 10/11/2026.  
+**Cơ sở kế hoạch**: [KE_HOACH_HOAN_THIEN.md](../../../../KE_HOACH_HOAN_THIEN.md) — Giai đoạn 18 (G18).  
+**Kế thừa**: [G17 — Dữ liệu demo và nghiệm thu luồng thành công](G17.md), [Thiết kế động](../../docs/thesis/design/dynamic-workflows.md) và [Ma trận truy vết](../../docs/thesis/traceability.md).
+
+---
+
+## 1. Mục tiêu và phạm vi giai đoạn 18
+
+* **Phạm vi**: Kiểm thử và nghiệm thu toàn diện các khía cạnh an ninh, phân quyền, xử lý ngoại lệ, xung đột phiên bản dữ liệu (`Optimistic Locking`), đua tranh tài nguyên đồng thời (`Concurrency & Race Conditions`), khả năng chịu lỗi khi dịch vụ phụ thuộc gián đoạn (`Fault Injection & Dependency Outage`), và tính toàn vẹn bất biến của sổ cái tài chính cùng ràng buộc khóa ngoại.
+* **Nguyên tắc**: Không mở rộng tính năng mới ngoài phạm vi; kiểm chứng trên các bộ test tự động độc lập và script xác minh chuyên biệt; không bỏ qua các ca test thất bại để lấy số đẹp.
+* **Kết quả tổng quát**: Toàn bộ các ca kiểm thử bảo mật, phân quyền và đồng thời đều đạt 100% không phát sinh lỗi chặn luồng (`blockers = 0`).
+
+---
+
+## 2. Bảng ma trận nghiệm thu chi tiết G18 (Expected vs. Actual)
+
+| Nhóm | Hạng mục kiểm thử | Kịch bản / Luồng nghiệp vụ | Kết quả kỳ vọng (Expected) | Kết quả thực tế (Actual) | Đánh giá |
+|:---:|---|---|---|---|:---:|
+| **1** | **Phân quyền Đa chi nhánh** | Staff/Admin `HCM01` truy cập dữ liệu `HCM02` | HTTP 403 Forbidden hoặc 404 Not Found; tuyệt đối không rò rỉ dữ liệu ngoài chi nhánh | `MultiBranchSecurityTest` kiểm chứng: Trả về 403/404, phân lập hoàn toàn giữa các chi nhánh | **ĐẠT** |
+| **1** | **Phạm vi Lớp học Giáo viên** | Giáo viên truy cập hoặc điểm danh/nhập điểm lớp của đồng nghiệp | Bị từ chối HTTP 403 Forbidden | Giáo viên chỉ truy cập được các lớp trong danh sách phân công; lớp ngoài bị chặn 403 | **ĐẠT** |
+| **1** | **Gọi API quản trị trực tiếp** | Staff hoặc Teacher gọi trực tiếp API duyệt ngoại lệ, đóng lớp, chốt điểm | HTTP 403 Forbidden (RBAC chặn tại Gateway và tầng Service Security) | Cả 3 endpoint quản trị trọng yếu đều chặn đứng yêu cầu từ vai trò không đủ thẩm quyền | **ĐẠT** |
+| **1** | **Bảo mật Chứng thực JWT** | Gửi token hết hạn hoặc giả mạo chữ ký lên hệ thống | HTTP 401 Unauthorized; buộc đăng nhập lại | Token hết hạn trả về 401; đổi mật khẩu thu hồi token cũ ngay lập tức | **ĐẠT** |
+| **2** | **Đua tranh Ghế cuối (Last Seat Race)** | Lớp còn 1 chỗ trống, 2 request ghi danh gửi đồng thời | Đúng 1 request thành công 200 OK; 1 request nhận 409 Conflict; sĩ số $\le \text{maxStudents}$ | Khóa bi quan hàng lớp học ngăn chặn ghi danh vượt mức; sĩ số chốt chính xác 20/20 | **ĐẠT** |
+| **2** | **Xung đột Phiên bản (Stale Version)** | 2 người dùng cùng sửa một Lead hoặc Kết quả đánh giá | Request gửi kèm version cũ bị từ chối với mã lỗi 409 Conflict | Hibernate `@Version` kích hoạt `OptimisticLockingFailureException`, trả về 409 | **ĐẠT** |
+| **2** | **Chốt điểm đồng thời & Idempotency** | 2 Admin cùng gửi request chốt kết quả lớp học | Hệ thống nhận diện cùng intent, trả về cùng kết quả; không tạo revision rác | Rào cản `ResultBarrier` bảo đảm `confirmedCount = 1`, đóng băng duy nhất 1 snapshot | **ĐẠT** |
+| **2** | **Giáo viên thôi việc vs Phân công mới** | Giáo viên đang có lớp hoạt động bấm thôi việc | Chính sách Fail-closed: Bị chặn đứng, bắt buộc phải hoàn thành bàn giao | Hệ thống từ chối cập nhật trạng thái `INACTIVE` khi còn lớp học hoạt động | **ĐẠT** |
+| **3** | **Sự cố Dịch vụ phụ thuộc (Outage)** | Academic gọi Teaching validate kết quả mà Teaching bị sập (503) | Academic Service ném ngoại lệ an toàn; giữ nguyên trạng thái học viên `STUDYING` | `CompletionBridgeTest` kiểm chứng: Trạng thái không bị đổi dở dang, không sinh dữ liệu rác | **ĐẠT** |
+| **3** | **Dữ liệu đổi giữa Preview & Confirm** | Điểm số/chuyên cần bị đổi sau khi mở Preview | Mã băm dấu vân tay (`fingerprint`) không khớp $\rightarrow$ Chặn commit với mã lỗi 409 Conflict | Hệ thống từ chối xác nhận kết quả nếu phát hiện nguồn dữ liệu đã bị sửa đổi | **ĐẠT** |
+| **4** | **Bất biến Sổ cái Tài chính** | Rà soát công thức tính doanh thu thuần và số dư | Bất biến: $\text{Gross} - \text{Void} - \text{Refund} = \text{Net}$; không âm công nợ | Khớp chính xác 100% dòng tiền; không có hiện tượng nhân đôi giao dịch | **ĐẠT** |
+| **4** | **Chống Double Void / Refund** | Cố tình hủy hoặc hoàn tiền 2 lần trên một phiếu thu | Lần 2 bị chặn với mã lỗi 409 Conflict / 400 Bad Request | Hệ thống ngăn chặn hoàn tiền lặp lại; lịch sử đảo sổ lưu vết kiểm toán đầy đủ | **ĐẠT** |
+| **4** | **Chặn xóa dữ liệu có tham chiếu** | Thử xóa Course đã có Class, xóa Class đã có Enrollment | Bị chặn bởi toàn vẹn khóa ngoại (Foreign Key constraint), trả về 409 Conflict | Hệ thống bảo toàn tính toàn vẹn dữ liệu quan hệ, từ chối mọi thao tác xóa phá hủy | **ĐẠT** |
+
+---
+
+## 3. Bằng chứng thực nghiệm tự động
+
+### 3.1. Các bài kiểm thử bảo mật & luồng đồng thời Backend
+- **Multi-Branch Security (21 ca)**:
+  - `com.example.academic.MultiBranchSecurityTest`: 7/7 ca PASS.
+  - `com.example.finance.MultiBranchSecurityTest`: 7/7 ca PASS.
+  - `com.example.teaching.MultiBranchSecurityTest`: 7/7 ca PASS.
+- **Bảo mật tài khoản & Token (10 ca)**:
+  - `com.example.auth.AccountSecurityTest`: 10/10 ca PASS.
+- **Đua tranh tài nguyên & Rào cản bất biến (60 ca)**:
+  - `com.example.academic.PlacementWorkflowTest`: 25 ca PASS (Last-seat race, atomic exception consume, optimistic lock).
+  - `com.example.finance.FinanceLedgerWorkflowTest`: 17 ca PASS (Idempotent replay, void/refund constraints, balance protection).
+  - `com.example.auth.TeacherLifecycleWorkflowTest`: 12 ca PASS (Pessimistic row lock, fail-closed audit).
+  - `com.example.teaching.FinalResultWorkflowTest`: 6 ca PASS (Result barrier, immutable snapshot, tamper block 409).
+- **Khả năng chịu lỗi gián đoạn dịch vụ (4 ca)**:
+  - `com.example.academic.CompletionBridgeTest`: 4 ca PASS (Dependency outage 503 fault injection, stale reference rejection).
+
+### 3.2. Bộ kiểm thử Frontend (82 ca)
+- Đạt 82/82 tests pass 100%. Bao gồm các ca kiểm tra bắt buộc đổi mật khẩu, xử lý lỗi mạng có thể tái thực hiện (`actionable errors`), hết hạn phiên làm việc và bảo toàn `requestKey` không đổi.
+
+### 3.3. Script nghiệm thu bảo mật & chịu lỗi G18
+- Script tự động: [scripts/g18-verify-security-concurrency.cjs](../../../../scripts/g18-verify-security-concurrency.cjs).
+- Kết quả lưu tại: [storage/g18-results.json](../storage/g18-results.json) (`totalCategories: 4, passed: 4, failed: 0, status: "ALL_PASSED"`).
+
+---
+
+## 4. Đánh giá tính toàn vẹn hệ thống & Không còn Blocker
+
+1. **Không còn lỗ hổng sai quyền**: Toàn bộ 4 vai trò tuân thủ nghiêm ngặt ma trận quyền; truy cập chéo chi nhánh bị chặn đứng.
+2. **Không sai lệch số tiền hoặc kết quả**: Sổ cái tài chính bảo đảm bất biến dòng tiền; rào cản kết quả bảo đảm tính bất biến của điểm số đã chốt.
+3. **Không nhân đôi hoặc mất mát dữ liệu**: Cơ chế Idempotent request keys và khóa dòng bi quan giải quyết triệt để vấn đề mất mạng hoặc gửi lặp request.
+4. **Hệ thống đã sẵn sàng 100% cho Giai đoạn 19 (G19)**: Tổng hợp bản thảo báo cáo khóa luận và kịch bản bảo vệ tốt nghiệp.
+

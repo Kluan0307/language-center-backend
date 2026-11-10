@@ -1,0 +1,238 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý academic-learning — FK thực tế MySQL V013
+package "academic-learning" {
+entity "attendance_changes" as T_attendance_changes {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} session_id : bigint [NOT NULL]
+ {field} enrollment_id : bigint [NOT NULL]
+ {field} student_name : varchar(255) [NOT NULL]
+ {field} old_status : varchar(255) [NULL]
+ {field} new_status : varchar(255) [NOT NULL]
+ {field} old_permission : bit(1) [NULL]
+ {field} new_permission : bit(1) [NOT NULL]
+ {field} previous_recorded_by : bigint [NULL]
+ {field} previous_recorded_by_name : varchar(255) [NULL]
+ {field} changed_by : bigint [NOT NULL]
+ {field} changed_by_name : varchar(255) [NOT NULL]
+ {field} changed_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "attendances" as T_attendances {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} has_permission : bit(1) [NOT NULL]
+ {field} recorded_by : bigint [NOT NULL]
+ {field} recorded_by_name : varchar(255) [NOT NULL]
+ {field} session_date : date [NOT NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} enrollment_id : bigint [NOT NULL]
+ {field} class_session_id : bigint [NULL]
+}
+entity "class_closure_events" as T_class_closure_events {
+ {field} request_id : varchar(36) [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} expected_revision : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} closed : bit(1) [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} changed_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "class_closures" as T_class_closures {
+ {field} class_id : bigint [NOT NULL] <<PK>>
+ {field} revision : bigint [NOT NULL]
+ {field} closed : bit(1) [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} changed_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+ {field} result_revision : bigint [NOT NULL]
+ {field} source_revision : bigint [NOT NULL]
+}
+entity "class_sessions" as T_class_sessions {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} session_date : date [NOT NULL]
+ {field} start_time : time(6) [NULL]
+ {field} end_time : time(6) [NULL]
+ {field} room_id : bigint [NULL]
+ {field} room_name : varchar(255) [NULL]
+ {field} planned_teacher_id : bigint [NULL]
+ {field} planned_teacher_name : varchar(255) [NULL]
+ {field} teacher_id : bigint [NULL]
+ {field} teacher_name : varchar(255) [NULL]
+ {field} status : varchar(20) [NOT NULL]
+ {field} kind : varchar(20) [NOT NULL]
+ {field} source_date : date [NULL]
+ {field} source_schedule_id : bigint [NULL]
+ {field} makeup_for_id : bigint [NULL]
+ {field} makeup_session_id : bigint [NULL]
+ {field} customized : bit(1) [NOT NULL]
+ {field} reason : varchar(500) [NULL]
+ {field} version : bigint [NOT NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+ {field} updated_at : datetime(6) [NOT NULL]
+}
+entity "enrollment_periods" as T_enrollment_periods {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} active_from : date [NOT NULL]
+ {field} active_until : date [NULL]
+ {field} enrollment_id : bigint [NOT NULL]
+}
+entity "enrollments" as T_enrollments {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} enrolled_at : datetime(6) [NOT NULL]
+ {field} study_status : ENUM [NOT NULL]
+ {field} class_id : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} billing_enrollment_id : bigint [NULL]
+ {field} registered_by : bigint [NULL]
+ {field} registered_by_name : varchar(255) [NULL]
+ {field} tuition_delivery : ENUM [NULL]
+ {field} tuition_delivery_error : varchar(255) [NULL]
+ {field} tuition_fee : decimal(15,2) [NULL]
+ {field} version : bigint [NOT NULL]
+ {field} reserved_since : date [NULL]
+ {field} expected_return_date : date [NULL]
+ {field} completion_result_id : bigint [NULL]
+ {field} completion_result_revision : bigint [NULL]
+}
+entity "lead_activities" as T_lead_activities {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} lead_id : bigint [NOT NULL]
+ {field} action : varchar(255) [NOT NULL]
+ {field} note : varchar(2000) [NOT NULL]
+ {field} channel : varchar(255) [NULL]
+ {field} old_status : varchar(255) [NULL]
+ {field} new_status : varchar(255) [NOT NULL]
+ {field} old_assignee_id : bigint [NULL]
+ {field} old_assignee_name : varchar(255) [NULL]
+ {field} assignee_id : bigint [NOT NULL]
+ {field} assignee_name : varchar(255) [NOT NULL]
+ {field} old_next_contact_at : datetime(6) [NULL]
+ {field} next_contact_at : datetime(6) [NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+}
+entity "leads" as T_leads {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} assigned_to : bigint [NOT NULL]
+ {field} assigned_to_name : varchar(255) [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+ {field} desired_level : varchar(255) [NULL]
+ {field} email : varchar(255) [NULL]
+ {field} full_name : varchar(255) [NOT NULL]
+ {field} last_contacted_at : datetime(6) [NULL]
+ {field} note : longtext [NULL]
+ {field} phone : varchar(255) [NOT NULL]
+ {field} source : varchar(255) [NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} converted_student_id : bigint [NULL]
+ {field} interested_course_id : bigint [NULL]
+ {field} version : bigint [NOT NULL]
+ {field} next_contact_at : datetime(6) [NULL]
+ {field} updated_at : datetime(6) [NULL]
+}
+entity "learning_events" as T_learning_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} enrollment_id : bigint [NULL]
+ {field} related_enrollment_id : bigint [NULL]
+ {field} action : varchar(255) [NOT NULL]
+ {field} old_status : varchar(255) [NULL]
+ {field} new_status : varchar(255) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+ {field} effective_date : date [NOT NULL]
+ {field} expected_return_date : date [NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+}
+entity "schedules" as T_schedules {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} day_of_week : ENUM [NOT NULL]
+ {field} end_time : time [NOT NULL]
+ {field} start_time : time [NOT NULL]
+ {field} class_id : bigint [NOT NULL]
+}
+entity "school_classes" as T_school_classes {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} code : varchar(255) [NOT NULL]
+ {field} current_size : int [NOT NULL]
+ {field} end_date : date [NOT NULL]
+ {field} max_size : int [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} start_date : date [NOT NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} status_manually_set : bit(1) [NOT NULL]
+ {field} teacher_id : bigint [NOT NULL]
+ {field} teacher_name : varchar(255) [NOT NULL]
+ {field} course_id : bigint [NOT NULL]
+ {field} room_id : bigint [NOT NULL]
+ {field} session_end_date : date [NULL]
+ {field} sessions_initialized : bit(1) [NOT NULL]
+ {field} admission_policy_id : bigint [NULL]
+ {field} admission_revision : bigint [NOT NULL]
+ {field} expected_minutes : int [NULL]
+ {field} duration_revision : bigint [NOT NULL]
+}
+entity "session_events" as T_session_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} session_id : bigint [NOT NULL]
+ {field} action : varchar(40) [NOT NULL]
+ {field} reason : varchar(500) [NULL]
+ {field} before_state : text [NULL]
+ {field} after_state : text [NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+}
+entity "students" as T_students {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} address : varchar(255) [NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} contact_person : varchar(255) [NULL]
+ {field} current_level : varchar(255) [NULL]
+ {field} date_of_birth : date [NULL]
+ {field} email : varchar(255) [NULL]
+ {field} full_name : varchar(255) [NOT NULL]
+ {field} gender : ENUM [NULL]
+ {field} phone : varchar(255) [NOT NULL]
+ {field} registered_at : date [NOT NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} guardian_name : varchar(255) [NULL]
+ {field} guardian_phone : varchar(255) [NULL]
+ {field} student_code : varchar(40) [NULL]
+ {field} version : bigint [NOT NULL]
+}
+}
+entity "courses" as T_courses <<FK target ngoài module>>
+entity "rooms" as T_rooms <<FK target ngoài module>>
+T_class_sessions "1" -- "0..*" T_attendance_changes : session_id
+T_enrollments "1" -- "0..*" T_attendances : enrollment_id
+T_class_sessions "0..1" -- "0..*" T_attendances : class_session_id
+T_school_classes "1" -- "0..*" T_class_sessions : class_id
+T_enrollments "1" -- "0..*" T_enrollment_periods : enrollment_id
+T_students "1" -- "0..*" T_enrollments : student_id
+T_school_classes "1" -- "0..*" T_enrollments : class_id
+T_courses "0..1" -- "0..*" T_leads : interested_course_id
+T_students "0..1" -- "0..1" T_leads : converted_student_id
+T_school_classes "1" -- "0..*" T_schedules : class_id
+T_rooms "1" -- "0..*" T_school_classes : room_id
+T_courses "1" -- "0..*" T_school_classes : course_id
+T_class_sessions "1" -- "0..*" T_session_events : session_id
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

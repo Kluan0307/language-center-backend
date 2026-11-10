@@ -1,0 +1,255 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram overview — entity/domain hiện tại
+package "auth" {
+class "Account" as auth_Account <<Entity: accounts>> {
+ id : Long
+ username : String
+ role : Role
+ status : Boolean
+ branchId : Long
+}
+class "AccountBranch" as auth_AccountBranch <<Entity: account_branches>> {
+ id : Long
+ branchId : Long
+ status : boolean
+}
+class "Teacher" as auth_Teacher <<Entity: teachers>> {
+ version : long
+ id : Long
+ fullName : String
+ workStatus : String
+}
+}
+package "academic" {
+class "CourseAdmissionPolicy" as academic_CourseAdmissionPolicy <<Entity: course_admission_policies>> {
+ id : Long
+ courseId : Long
+ revision : long
+ programId : Long
+ outputLevelId : Long
+}
+class "CourseAdmissionPolicy.LevelSnapshot" as academic_CourseAdmissionPolicy_LevelSnapshot <<Embeddable>> {
+ levelId : Long
+ code : String
+ name : String
+}
+academic_CourseAdmissionPolicy "1" *-- "0..*" academic_CourseAdmissionPolicy_LevelSnapshot : ElementCollection
+class "Program" as academic_Program <<Entity: programs>> {
+ id : Long
+ version : long
+}
+class "ProgramLevel" as academic_ProgramLevel <<Entity: program_levels>> {
+ id : Long
+ version : long
+}
+class "PlacementAssessment" as academic_PlacementAssessment <<Entity: placement_assessments>> {
+ id : Long
+ version : long
+ branchId : Long
+ programId : Long
+ levelId : Long
+ status : Status
+ score : BigDecimal
+ supersedesId : Long
+ supersededById : Long
+}
+class "Branch" as academic_Branch <<Entity: branches>> {
+ id : Long [inherited]
+ status : Status
+}
+class "Course" as academic_Course <<Entity: courses>> {
+ id : Long [inherited]
+ expectedMinutes : Integer
+ durationRevision : long
+ tuitionFee : BigDecimal
+ status : Status
+ branchId : Long
+}
+class "Enrollment" as academic_Enrollment <<Entity: enrollments>> {
+ id : Long [inherited]
+ version : long
+ completionResultId : Long
+ completionResultRevision : Long
+ billingEnrollmentId : Long
+ tuitionFee : java.math.BigDecimal
+ studyStatus : StudyStatus
+}
+class "EnrollmentPeriod" as academic_EnrollmentPeriod <<Entity: enrollment_periods>> {
+ id : Long [inherited]
+ activeFrom : LocalDate
+ activeUntil : LocalDate
+}
+class "PlacementException" as academic_PlacementException <<Entity: placement_exceptions>> {
+ id : Long
+ version : long
+ studentId : Long
+ classId : Long
+ branchId : Long
+ sourceEnrollmentId : Long
+ policyId : Long
+ classRevision : long
+ assessmentId : Long
+ fingerprint : String
+ academicStatus : String
+ status : Status
+ consumedEnrollmentId : Long
+}
+class "ClassClosure" as academic_ClassClosure <<Entity: class_closures>> {
+ classId : Long
+ revision : long
+ resultRevision : long
+ sourceRevision : long
+ closed : boolean
+ actorId : Long
+}
+class "SchoolClass" as academic_SchoolClass <<Entity: school_classes>> {
+ id : Long [inherited]
+ expectedMinutes : Integer
+ durationRevision : long
+ admissionPolicyId : Long
+ admissionRevision : long
+ teacherId : Long
+ status : Status
+ statusManuallySet : boolean
+ branchId : Long
+}
+class "ClassSession" as academic_ClassSession <<Entity: class_sessions>> {
+ id : Long [inherited]
+ roomId : Long
+ plannedTeacherId : Long
+ teacherId : Long
+ status : Status
+ sourceScheduleId : Long
+ makeupForId : Long
+ makeupSessionId : Long
+ version : long
+}
+class "Student" as academic_Student <<Entity: students>> {
+ id : Long [inherited]
+ version : long
+ fullName : String
+ status : Status
+ branchId : Long
+}
+}
+package "shared-coordination" {
+class "ResultBarrier" as academic_ResultBarrier <<Entity: class_result_barriers>> {
+ classId : Long
+ branchId : Long
+ sourceRevision : long
+ resultRevision : long
+ confirmedCount : long
+}
+}
+package "teaching" {
+class "Document" as teaching_Document <<Entity: documents>> {
+ id : Long [inherited]
+ revision : int
+ branchId : Long
+ classId : Long
+ courseId : Long
+ status : Status
+ version : Long
+}
+class "EvaluationPolicy" as teaching_EvaluationPolicy <<Entity: evaluation_policies>> {
+ id : Long
+ classId : Long
+ branchId : Long
+ courseId : Long
+ revision : long
+ passPercent : BigDecimal
+ minAttendancePercent : BigDecimal
+ actorId : Long
+}
+class "EvaluationPolicy.Rule" as teaching_EvaluationPolicy_Rule <<Embeddable>> {
+ examId : Long
+ examVersion : long
+ examName : String
+ examDate : LocalDate
+ required : boolean
+ weight : BigDecimal
+ maxScore : BigDecimal
+}
+teaching_EvaluationPolicy "1" *-- "0..*" teaching_EvaluationPolicy_Rule : ElementCollection
+class "Exam" as teaching_Exam <<Entity: exams>> {
+ id : Long [inherited]
+ version : long
+ branchId : Long
+ classId : Long
+}
+class "Grade" as teaching_Grade <<Entity: grades>> {
+ id : Long [inherited]
+ branchId : Long
+ studentId : Long
+ score : BigDecimal
+ version : Long
+}
+class "FinalResult" as teaching_FinalResult <<Entity: final_results>> {
+ id : Long
+ classId : Long
+ branchId : Long
+ enrollmentId : Long
+ studentId : Long
+ revision : long
+ policyRevision : long
+ academicSourceRevision : long
+ teachingSourceRevision : long
+ requestId : String
+ fingerprint : String
+ snapshot : String
+}
+}
+package "finance" {
+class "Payment" as finance_Payment <<Entity: payments>> {
+ id : Long [inherited]
+ tuitionId : Long
+ amount : BigDecimal
+ requestKey : String
+ status : Status
+ branchId : Long
+}
+class "Tuition" as finance_Tuition <<Entity: tuition>> {
+ id : Long [inherited]
+ version : long
+ enrollmentId : Long
+ studentId : Long
+ classId : Long
+ courseId : Long
+ originalAmount : BigDecimal
+ discountAmount : BigDecimal
+ amount : BigDecimal
+ paidAmount : BigDecimal
+ status : Status
+ branchId : Long
+}
+}
+auth_AccountBranch "0..*" --> "1" auth_Account : account
+auth_Teacher "0..1" --> "1" auth_Account : account
+academic_ProgramLevel "0..*" --> "1" academic_Program : program
+academic_PlacementAssessment "0..*" --> "1" academic_Student : student
+academic_Enrollment "0..*" --> "1" academic_Student : student
+academic_Enrollment "0..*" --> "1" academic_SchoolClass : schoolClass
+academic_EnrollmentPeriod "0..*" --> "1" academic_Enrollment : enrollment
+academic_SchoolClass "0..*" --> "1" academic_Course : course
+academic_ClassSession "0..*" --> "1" academic_SchoolClass : schoolClass
+teaching_Grade "0..*" --> "1" teaching_Exam : exam
+academic_SchoolClass ..> auth_Teacher : teacherId [scalar ID; không JPA]
+auth_AccountBranch ..> academic_Branch : branchId [scalar ID; không JPA]
+teaching_Exam ..> academic_SchoolClass : classId [scalar ID; không JPA]
+teaching_Grade ..> academic_Student : studentId [scalar ID; không JPA]
+teaching_FinalResult ..> academic_Enrollment : enrollmentId [scalar ID; không JPA]
+academic_Enrollment ..> teaching_FinalResult : completionResultId [scalar ID; không JPA]
+finance_Tuition ..> academic_Enrollment : enrollmentId [scalar ID; không JPA]
+finance_Payment ..> finance_Tuition : tuitionId [scalar ID; không JPA]
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

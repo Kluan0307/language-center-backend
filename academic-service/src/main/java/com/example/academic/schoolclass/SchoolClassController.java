@@ -15,6 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SchoolClassController {
   private final SchoolClassService service;
+  private final com.example.academic.enrollment.DatedRoster datedRoster;
+
+  @GetMapping("/{id}/roster")
+  public java.util.List<com.example.academic.enrollment.DatedRoster.Student> roster(
+      @PathVariable Long id, @RequestParam java.time.LocalDate date) {
+    service.require(id);
+    return datedRoster.students(id, date);
+  }
 
   @GetMapping
   public PageResponse<SchoolClassDto> list(

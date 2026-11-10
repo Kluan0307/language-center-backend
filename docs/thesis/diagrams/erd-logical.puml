@@ -1,0 +1,49 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD logic — nghiệp vụ, không thay ERD vật lý
+left to right direction
+entity "accounts" as L_accounts
+entity "account_branches" as L_account_branches
+entity "teachers" as L_teachers
+entity "branches" as L_branches
+entity "programs" as L_programs
+entity "program_levels" as L_program_levels
+entity "courses" as L_courses
+entity "school_classes" as L_school_classes
+entity "class_sessions" as L_class_sessions
+entity "students" as L_students
+entity "enrollments" as L_enrollments
+entity "placement_assessments" as L_placement_assessments
+entity "placement_exceptions" as L_placement_exceptions
+entity "exams" as L_exams
+entity "grades" as L_grades
+entity "final_results" as L_final_results
+entity "tuition" as L_tuition
+entity "payments" as L_payments
+entity "class_result_barriers" as L_class_result_barriers
+L_accounts ..> L_account_branches : phân công
+L_accounts ..> L_teachers : hồ sơ theo role
+L_branches ..> L_school_classes : scope ID
+L_teachers ..> L_school_classes : phân công ID/HTTP
+L_programs ..> L_program_levels : thang
+L_courses ..> L_school_classes : mở lớp
+L_school_classes ..> L_class_sessions : buổi thực tế
+L_students ..> L_enrollments : lượt học
+L_school_classes ..> L_enrollments : danh sách đăng ký
+L_students ..> L_placement_assessments : đầu vào
+L_placement_exceptions ..> L_enrollments : chấp nhận ngoại lệ
+L_school_classes ..> L_exams : ID/HTTP
+L_exams ..> L_grades : chấm điểm
+L_enrollments ..> L_final_results : kết quả theo lượt học
+L_enrollments ..> L_tuition : billing root ID/HTTP
+L_tuition ..> L_payments : phiếu thu ID
+L_class_result_barriers ..> L_final_results : khóa phối hợp shared schema
+legend bottom
+ Các đường trong sơ đồ logic chỉ quan hệ nghiệp vụ, không tuyên bố FK.
+ Cardinality / khóa / nullable chính xác: ERD vật lý và từ điển V013.
+ Shared schema có owner logic; không vẽ thành bốn database độc lập.
+endlegend
+@enduml

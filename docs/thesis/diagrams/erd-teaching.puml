@@ -1,0 +1,172 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý teaching — FK thực tế MySQL V013
+package "teaching" {
+entity "document_events" as T_document_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} document_id : bigint [NOT NULL]
+ {field} revision : int [NOT NULL]
+ {field} action : varchar(255) [NOT NULL]
+ {field} status : varchar(255) [NOT NULL]
+ {field} storage_key : varchar(255) [NOT NULL]
+ {field} title : varchar(255) [NOT NULL]
+ {field} description : varchar(1000) [NULL]
+ {field} filename : varchar(255) [NULL]
+ {field} file_size : bigint [NULL]
+ {field} reason : varchar(500) [NULL]
+ {field} actor_id : bigint [NULL]
+ {field} actor_name : varchar(255) [NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+}
+entity "documents" as T_documents {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} class_id : bigint [NULL]
+ {field} course_id : bigint [NULL]
+ {field} description : varchar(1000) [NULL]
+ {field} file_size : bigint [NULL]
+ {field} original_filename : varchar(255) [NULL]
+ {field} reject_reason : varchar(500) [NULL]
+ {field} reviewed_at : datetime(6) [NULL]
+ {field} reviewed_by : bigint [NULL]
+ {field} reviewed_by_name : varchar(255) [NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} storage_key : varchar(255) [NOT NULL]
+ {field} title : varchar(255) [NOT NULL]
+ {field} uploaded_at : datetime(6) [NOT NULL]
+ {field} uploaded_by : bigint [NOT NULL]
+ {field} uploaded_by_name : varchar(255) [NULL]
+ {field} version : bigint [NOT NULL]
+ {field} revision : int [NOT NULL]
+ {field} last_submitted_at : datetime(6) [NULL]
+}
+entity "evaluation_policies" as T_evaluation_policies {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} course_id : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} pass_percent : decimal(5,2) [NOT NULL]
+ {field} min_attendance_percent : decimal(5,2) [NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} confirmed_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "evaluation_policy_exams" as T_evaluation_policy_exams {
+ {field} policy_id : bigint [NOT NULL]
+ {field} exam_id : bigint [NOT NULL]
+ {field} exam_version : bigint [NOT NULL]
+ {field} exam_name : varchar(255) [NOT NULL]
+ {field} exam_date : date [NOT NULL]
+ {field} required : bit(1) [NOT NULL]
+ {field} weight : decimal(7,2) [NOT NULL]
+ {field} max_score : decimal(7,2) [NOT NULL]
+ note: no physical PK
+}
+entity "evaluation_states" as T_evaluation_states {
+ {field} class_id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} source_revision : bigint [NOT NULL]
+}
+entity "exam_candidates" as T_exam_candidates {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} exam_id : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} student_name : varchar(255) [NOT NULL]
+ {field} source : varchar(255) [NOT NULL]
+ {field} enrollment_id : bigint [NULL]
+}
+entity "exams" as T_exams {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} class_id : bigint [NOT NULL]
+ {field} created_at : datetime(6) [NULL]
+ {field} created_by : bigint [NULL]
+ {field} created_by_name : varchar(255) [NULL]
+ {field} exam_date : date [NOT NULL]
+ {field} exam_type : varchar(255) [NOT NULL]
+ {field} max_score : decimal(7,2) [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} weight : decimal(7,2) [NOT NULL]
+ {field} roster_frozen_at : datetime(6) [NULL]
+ {field} roster_frozen_by : bigint [NULL]
+ {field} roster_frozen_by_name : varchar(255) [NULL]
+ {field} version : bigint [NOT NULL]
+}
+entity "final_results" as T_final_results {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} enrollment_id : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} policy_revision : bigint [NOT NULL]
+ {field} academic_source_revision : bigint [NOT NULL]
+ {field} teaching_source_revision : bigint [NOT NULL]
+ {field} request_id : varchar(36) [NOT NULL]
+ {field} fingerprint : varchar(64) [NOT NULL]
+ {field} outcome : varchar(20) [NOT NULL]
+ {field} state : varchar(20) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+ {field} confirmed_by : bigint [NOT NULL]
+ {field} confirmed_by_name : varchar(255) [NOT NULL]
+ {field} confirmed_at : datetime(6) [NOT NULL]
+ {field} snapshot : longtext [NOT NULL]
+ {field} reopened_by : bigint [NULL]
+ {field} reopened_by_name : varchar(255) [NULL]
+ {field} reopened_at : datetime(6) [NULL]
+ {field} reopen_reason : varchar(500) [NULL]
+ {field} current_enrollment_id : bigint [NULL] [GENERATED]
+}
+entity "grade_changes" as T_grade_changes {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} grade_id : bigint [NULL]
+ {field} modified_at : datetime(6) [NULL]
+ {field} modified_by : bigint [NULL]
+ {field} modified_by_name : varchar(255) [NULL]
+ {field} new_score : decimal(7,2) [NULL]
+ {field} old_score : decimal(7,2) [NULL]
+ {field} reason : varchar(500) [NULL]
+}
+entity "grades" as T_grades {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} comment : varchar(1000) [NULL]
+ {field} entered_at : datetime(6) [NOT NULL]
+ {field} entered_by : bigint [NOT NULL]
+ {field} entered_by_name : varchar(255) [NULL]
+ {field} last_modified_at : datetime(6) [NULL]
+ {field} last_modified_by : bigint [NULL]
+ {field} last_modified_by_name : varchar(255) [NULL]
+ {field} modification_reason : varchar(500) [NULL]
+ {field} score : decimal(7,2) [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} student_name : varchar(255) [NULL]
+ {field} version : bigint [NOT NULL]
+ {field} exam_id : bigint [NOT NULL]
+}
+entity "result_reopens" as T_result_reopens {
+ {field} request_id : varchar(36) [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} previous_revision : bigint [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+}
+T_exams "1" -- "0..*" T_evaluation_policy_exams : exam_id
+T_evaluation_policies "1" -- "0..*" T_evaluation_policy_exams : policy_id
+T_exams "1" -- "0..*" T_grades : exam_id
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

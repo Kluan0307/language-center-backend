@@ -1,9 +1,8 @@
 package com.example.auth.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDateTime;
+import lombok.*;
 
 @Entity
 @Table(name = "accounts")
@@ -13,37 +12,84 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Account {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
-    private String username;
+  @Column(nullable = false, unique = true, length = 50)
+  private String username;
 
-    @Column(nullable = false)
-    private String password; // Chuỗi đã mã hóa BCrypt
+  @Column(nullable = false)
+  @ToString.Exclude
+  private String password; // Chuỗi đã mã hóa BCrypt
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
-    private Role role;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false, length = 20)
+  private Role role;
 
-    @Builder.Default
-    @Column(nullable = false)
-    private Boolean status = true;
+  @Builder.Default
+  @Column(nullable = false)
+  private Boolean status = true;
 
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
+  @Builder.Default
+  @Column(nullable = false)
+  private long sessionVersion = 0;
 
-    private LocalDateTime lastLogin;
+  @Builder.Default
+  @Column(nullable = false)
+  private boolean mustChangePassword = false;
 
-    @Column(name = "branch_id")
-    private Long branchId;   // null với SUPER_ADMIN
+  private LocalDateTime passwordChangedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-        if (this.status == null) {
-            this.status = true;
-        }
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+  @Builder.Default
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private java.util.List<AccountSecurityEvent> securityEvents = new java.util.ArrayList<>();
+
+  public void recordSecurityEvent(String action, Long actorId, String reason) {
+    var event = new AccountSecurityEvent();
+    event.setAccount(this);
+    event.setAction(action);
+    event.setActorId(actorId);
+    event.setReason(reason);
+    event.setOccurredAt(LocalDateTime.now(com.example.auth.common.BusinessTime.ZONE));
+    securityEvents.add(event);
+  }
+
+  @Column(updatable = false)
+  private LocalDateTime createdAt;
+
+  private LocalDateTime lastLogin;
+
+  @Column(name = "branch_id")
+  private Long branchId; // null với SUPER_ADMIN
+
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+  @Builder.Default
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private java.util.List<AccountBranch> branchAssignments = new java.util.ArrayList<>();
+
+  public java.util.List<Long> activeBranchIds() {
+    return branchAssignments.stream()
+        .filter(AccountBranch::isStatus)
+        .map(AccountBranch::getBranchId)
+        .sorted()
+        .toList();
+  }
+
+  @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+  @Builder.Default
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
+  private java.util.List<AccountBranchEvent> branchEvents = new java.util.ArrayList<>();
+
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = LocalDateTime.now(com.example.auth.common.BusinessTime.ZONE);
+    if (this.status == null) {
+      this.status = true;
     }
+  }
 }

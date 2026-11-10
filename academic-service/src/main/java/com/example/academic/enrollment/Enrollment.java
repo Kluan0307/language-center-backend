@@ -17,6 +17,29 @@ import lombok.*;
 @Getter
 @Setter
 public class Enrollment extends BaseEntity {
+  @Version private long version;
+  private Long completionResultId;private Long completionResultRevision;
+  private java.time.LocalDate reservedSince;
+  private java.time.LocalDate expectedReturnDate;
+  private Long billingEnrollmentId;
+
+  @Column(precision = 15, scale = 2)
+  private java.math.BigDecimal tuitionFee;
+
+  private Long registeredBy;
+  private String registeredByName;
+
+  @Enumerated(EnumType.STRING)
+  private TuitionDelivery tuitionDelivery = TuitionDelivery.PENDING;
+
+  private String tuitionDeliveryError;
+
+  public enum TuitionDelivery {
+    PENDING,
+    CREATED,
+    FAILED
+  }
+
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "student_id", nullable = false)
   private Student student;
@@ -26,7 +49,8 @@ public class Enrollment extends BaseEntity {
   private SchoolClass schoolClass;
 
   @Column(nullable = false, updatable = false)
-  private LocalDateTime enrolledAt = LocalDateTime.now();
+  private LocalDateTime enrolledAt =
+      LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE);
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)

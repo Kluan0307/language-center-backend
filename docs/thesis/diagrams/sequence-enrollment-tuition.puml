@@ -1,0 +1,50 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Ghi danh và phân phối học phí — các transaction cục bộ
+actor "Staff/Admin" as U
+participant "Frontend" as F
+participant "Gateway (routing/CORS)" as G
+participant "Academic" as A
+participant "TuitionDeliveryService" as D
+participant "Finance" as P
+database "MySQL dùng chung" as DB
+autonumber
+U -> F: Xác nhận ghi danh
+F -> G: POST /api/v1/academic/enrollments\n{studentId,classId,approvalId?}
+G -> A: Chuyển tiếp Bearer JWT (không tự cấp identity)
+note over A: JWT + live session + role/scope tại service
+group Academic Tx READ_COMMITTED
+ A -> DB: Khóa branch -> student -> class -> course\nkiểm tra sĩ số/lịch/đầu vào/ngoại lệ
+ A -> DB: ResultBarrier.mutable(classId)\nINSERT enrollments, enrollment_periods, learning_events\nINSERT enrollment_admissions; consume approval nếu có
+ A -> A: publish EnrollmentCreated(id,token)
+ A -> DB: COMMIT
+end
+group Listener AFTER_COMMIT đồng bộ (không @Async)
+ A -> D: deliver(id,token) REQUIRES_NEW
+ D -> DB: Refresh/khóa enrollment billing root
+ D -> P: POST /api/v1/finance/tuitions\n{enrollmentId: billingRootId} + token
+ group Finance Tx riêng
+  P -> A: GET /api/v1/academic/enrollments/{id}/billing
+  A --> P: Giá và chủ thể snapshot theo billing root
+  P -> DB: Tìm tuition theo enrollment_id\ntồn tại: trả bản cũ; mới: INSERT tuition
+ end
+ alt Tạo/trả bill thành công
+  P --> D: 200 TuitionDto
+  D -> DB: tuitionDelivery=CREATED, xóa lỗi; commit Tx delivery
+ else Finance/kết nối lỗi
+  P --x D: Lỗi/timeout
+  D -> DB: tuitionDelivery=FAILED; commit Tx delivery
+  note over A,D: Enrollment đã commit; không rollback theo Finance
+ end
+end
+A --> G: 200 EnrollmentDto\nđọc lại khi cần xem delivery mới nhất
+G --> F: 200
+opt Delivery chưa CREATED, retry có chủ đích
+ F -> G: POST /api/v1/academic/enrollments/{id}/tuition/retry
+ G -> A: retry
+ A -> D: deliver(id,token), cùng billing root
+ note over D,P: Không có 2PC/broker/outbox bền vững; bill chống trùng theo enrollment
+end
+@enduml

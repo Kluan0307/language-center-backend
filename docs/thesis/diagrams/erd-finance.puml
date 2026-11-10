@@ -1,0 +1,89 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý finance — FK thực tế MySQL V013
+package "finance" {
+entity "payment_corrections" as T_payment_corrections {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} payment_id : bigint [NOT NULL]
+ {field} tuition_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} type : varchar(255) [NOT NULL]
+ {field} amount : decimal(15,2) [NOT NULL]
+ {field} payment_method : varchar(255) [NULL]
+ {field} reference_code : varchar(100) [NULL]
+ {field} reason : varchar(500) [NOT NULL]
+ {field} request_key : varchar(100) [NOT NULL]
+ {field} expected_version : bigint [NOT NULL]
+ {field} recorded_by : bigint [NOT NULL]
+ {field} recorded_by_name : varchar(255) [NOT NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+}
+entity "payments" as T_payments {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} amount : decimal(15,2) [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} note : varchar(500) [NULL]
+ {field} paid_at : datetime(6) [NOT NULL]
+ {field} payment_method : ENUM [NOT NULL]
+ {field} receipt_no : varchar(255) [NULL]
+ {field} recorded_by : bigint [NULL]
+ {field} recorded_by_name : varchar(255) [NULL]
+ {field} reference_code : varchar(100) [NULL]
+ {field} request_key : varchar(100) [NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} tuition_id : bigint [NOT NULL]
+}
+entity "tuition" as T_tuition {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} adjusted_at : datetime(6) [NULL]
+ {field} adjusted_by : bigint [NULL]
+ {field} adjusted_by_name : varchar(255) [NULL]
+ {field} adjustment_reason : varchar(500) [NULL]
+ {field} amount : decimal(15,2) [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} class_id : bigint [NOT NULL]
+ {field} class_name : varchar(255) [NULL]
+ {field} course_id : bigint [NULL]
+ {field} course_name : varchar(255) [NULL]
+ {field} currency : varchar(10) [NOT NULL]
+ {field} discount_amount : decimal(15,2) [NULL]
+ {field} due_date : date [NOT NULL]
+ {field} enrollment_id : bigint [NULL]
+ {field} original_amount : decimal(15,2) [NULL]
+ {field} paid_amount : decimal(15,2) [NULL]
+ {field} status : ENUM [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} student_name : varchar(255) [NULL]
+ {field} version : bigint [NOT NULL]
+}
+entity "tuition_adjustments" as T_tuition_adjustments {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} tuition_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} old_original : decimal(15,2) [NOT NULL]
+ {field} old_discount : decimal(15,2) [NOT NULL]
+ {field} old_amount : decimal(15,2) [NOT NULL]
+ {field} old_due_date : date [NOT NULL]
+ {field} new_original : decimal(15,2) [NOT NULL]
+ {field} new_discount : decimal(15,2) [NOT NULL]
+ {field} new_amount : decimal(15,2) [NOT NULL]
+ {field} new_due_date : date [NOT NULL]
+ {field} paid_at_change : decimal(15,2) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+ {field} request_key : varchar(100) [NOT NULL]
+ {field} expected_version : bigint [NOT NULL]
+ {field} recorded_by : bigint [NOT NULL]
+ {field} recorded_by_name : varchar(255) [NOT NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+}
+}
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

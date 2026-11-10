@@ -1,0 +1,44 @@
+@startuml
+!pragma layout smetana
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Use Case theo role: STAFF — G13
+actor "STAFF" as A
+rectangle "Language Center — ứng dụng web" {
+usecase "UC01\nĐăng nhập, bảo mật phiên và liên hệ cá nhân" as UC01
+usecase "UC03\nQuản lý hồ sơ và lịch sử học viên" as UC03
+usecase "UC04\nTra cứu giáo viên khả dụng" as UC04
+usecase "UC06\nĐọc khóa/policy; sửa thông tin khóa giữ giá" as UC06
+usecase "UC07\nPhòng và hồ sơ lớp trong giới hạn Staff" as UC07
+usecase "UC08\nGhi nhận và xác nhận đánh giá đầu vào" as UC08
+usecase "UC09\nGợi ý lớp, ghi danh, bảo lưu, học lại và chuyển lớp" as UC09
+usecase "UC10\nĐề nghị/tiêu thụ ngoại lệ được duyệt" as UC10
+usecase "UC11\nĐọc lịch và điểm danh trước hoàn tất" as UC11
+usecase "UC13\nSummary và đồng bộ hoàn thành học vụ" as UC13
+usecase "UC14\nXem phí/phiếu và thu tiền" as UC14
+usecase "UC15\nTra cứu và dashboard vận hành" as UC15
+usecase "UC16\nXem/tải tài liệu APPROVED" as UC16
+usecase "UC18\nTiếp nhận và chăm sóc khách hàng tiềm năng" as UC18
+}
+A -- UC01
+A -- UC03
+A -- UC04
+A -- UC06
+A -- UC07
+A -- UC08
+A -- UC09
+A -- UC10
+A -- UC11
+A -- UC13
+A -- UC14
+A -- UC15
+A -- UC16
+A -- UC18
+note bottom of A
+Đọc Teacher khả dụng; không quản trị hồ sơ nhân sự.
+UC13 chỉ summary và đồng bộ COMPLETED; UC10 không duyệt.
+UC14 chỉ xem/thu; UC16 chỉ APPROVED; UC15 không báo cáo quản trị.
+Không suy toàn quyền từ đường nối nhóm UC.
+end note
+@enduml

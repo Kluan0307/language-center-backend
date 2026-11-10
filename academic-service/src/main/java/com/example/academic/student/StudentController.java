@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN','STAFF')")
 public class StudentController {
   private final StudentService service;
+  private final com.example.academic.lifecycle.LearningHistory history;
+
+  @GetMapping("/{id}/history")
+  public java.util.List<com.example.academic.lifecycle.LearningHistory.Event> history(
+      @PathVariable Long id) {
+    return history.student(id);
+  }
 
   @GetMapping
   public PageResponse<StudentDto> list(
@@ -41,7 +48,7 @@ public class StudentController {
 
   @PatchMapping("/{id}/status")
   public StudentDto status(@PathVariable Long id, @Valid @RequestBody StudentDto.StatusRequest r) {
-    return service.status(id, r.status());
+    return service.status(id, r);
   }
 
   @DeleteMapping("/{id}")

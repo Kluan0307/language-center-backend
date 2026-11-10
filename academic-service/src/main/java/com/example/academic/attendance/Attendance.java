@@ -20,6 +20,9 @@ public class Attendance extends BaseEntity {
   @JoinColumn(name = "enrollment_id", nullable = false)
   private Enrollment enrollment;
 
+  @ManyToOne(fetch=FetchType.LAZY) @JoinColumn(name="class_session_id")
+  private com.example.academic.session.ClassSession classSession;
+
   @Column(nullable = false)
   private LocalDate sessionDate;
 

@@ -18,16 +18,24 @@ public class BranchService {
   }
 
   public void lock(Long id) {
-    repository.lock(id).orElseThrow(ApiException::missing);
+    Branch branch = repository.lock(id).orElseThrow(ApiException::missing);
+    if (branch.getStatus() != Branch.Status.ACTIVE) throw ApiException.bad("Branch is inactive");
   }
 
   @Transactional(readOnly = true)
   public PageResponse<BranchDto> list(int page, int size, String keyword, Long branchId) {
-    Long id = scope.filter(branchId);
+    if (branchId != null) scope.check(branchId);
+    Long id = branchId;
     return PageResponse.of(
         repository
             .findAll(
-                Query.<Branch>eq("id", id).and(Query.keyword(keyword, "name", "code")),
+                Query.<Branch>eq("id", id)
+                    .and(
+                        (r, q, cb) ->
+                            Users.current().role() == Role.SUPER_ADMIN
+                                ? cb.conjunction()
+                                : r.get("id").in(Users.current().branchIds()))
+                    .and(Query.keyword(keyword, "name", "code")),
                 Query.page(page, size))
             .map(BranchDto::of));
   }

@@ -2,63 +2,78 @@ package com.example.finance.payment;
 
 import com.example.finance.common.*;
 import com.example.finance.security.*;
+import com.example.finance.tuition.*;
+import java.math.BigDecimal;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.*;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class PaymentService {
   private final PaymentRepository repository;
+  private final TuitionService tuitions;
   private final BranchScope scope;
+  private final com.example.finance.ledger.FinanceLedger ledger;
 
-  public Payment require(Long id) {
-    Payment p = repository.findById(id).orElseThrow(ApiException::missing);
-    scope.finance(p.getBranchId());
-    return p;
-  }
-
-  public Specification<Payment> visible(Long requested) {
-    Long branch = scope.filter(requested);
-    return (r, q, b) ->
-        branch == null ? b.conjunction() : b.or(b.isNull(r.get("branchId")), b.equal(r.get("branchId"), branch));
-  }
-
-  public PageResponse<PaymentDto> list(int page, int size, String keyword, Payment.Status status, Long branchId) {
-    return PageResponse.of(
-        repository
-            .findAll(
-                visible(branchId)
-                    .and(Query.keyword(keyword, "referenceCode"))
-                    .and(Query.eq("status", status)),
-                Query.page(page, size))
-            .map(PaymentDto::of));
+  public PageResponse<PaymentDto> list(
+      int page, int size, String keyword, Long branchId, Long tuitionId) {
+    if (tuitionId != null) tuitions.require(tuitionId);
+    var rows =
+        repository.findAll(
+            Query.<Payment>branch(scope.filter(branchId))
+                .and(Query.eq("tuitionId", tuitionId))
+                .and(Query.keyword(keyword, "receiptNo", "referenceCode")),
+            Query.page(page, size));
+    var totals = ledger.totals(rows.getContent().stream().map(Payment::getId).toList());
+    return PageResponse.of(rows.map(p -> ledger.dto(p, totals)));
   }
 
   public PaymentDto get(Long id) {
-    return PaymentDto.of(require(id));
+    Payment p = repository.findById(id).orElseThrow(ApiException::missing);
+    scope.check(p.getBranchId());
+    return ledger.dto(p);
   }
 
-  @Transactional
-  public PaymentDto save(Long id, PaymentDto.Request r) {
-    Payment p = id == null ? new Payment() : require(id);
-    Long branch = id == null ? scope.create(r.branchId()) : p.getBranchId();
-    p.setTuitionId(r.tuitionId());
+  @Transactional(isolation = Isolation.READ_COMMITTED)
+  public PaymentDto create(PaymentDto.Request r) {
+    if (r.paymentMethod() != Payment.PaymentMethod.CASH
+        && r.paymentMethod() != Payment.PaymentMethod.BANK_TRANSFER)
+      throw ApiException.bad("Use CASH or BANK_TRANSFER");
+    if (Users.current().role() == Role.TEACHER) throw ApiException.forbidden();
+    Tuition t = tuitions.lock(r.tuitionId());
+    var prior = repository.findByBranchIdAndRequestKey(t.getBranchId(), r.requestKey());
+    if (prior.isPresent()) {
+      Payment p = prior.get();
+      if (!p.getTuitionId().equals(r.tuitionId())
+          || p.getAmount().compareTo(r.amount()) != 0
+          || p.getPaymentMethod() != r.paymentMethod()
+          || !java.util.Objects.equals(p.getReferenceCode(), r.referenceCode())
+          || !java.util.Objects.equals(p.getNote(), r.note()))
+        throw ApiException.conflict("requestKey was used for a different payment");
+      return PaymentDto.of(p);
+    }
+    if (t.getStatus() == Tuition.Status.CANCELLED)
+      throw ApiException.conflict("Tuition is cancelled");
+    ledger.requireSynced(t);
+    BigDecimal collected = ledger.net(t.getId());
+    if (r.amount().signum() <= 0 || r.amount().compareTo(t.getAmount().subtract(collected)) > 0)
+      throw ApiException.conflict("Payment exceeds outstanding balance");
+    Payment p = new Payment();
+    p.setTuitionId(t.getId());
+    p.setBranchId(t.getBranchId());
     p.setAmount(r.amount());
     p.setPaymentMethod(r.paymentMethod());
     p.setReferenceCode(r.referenceCode());
-    p.setPaidAt(r.paidAt() == null ? java.time.LocalDateTime.now() : r.paidAt());
-    p.setStatus(r.status());
-    p.setBranchId(branch);
-    return PaymentDto.of(repository.save(p));
-  }
-
-  @Transactional
-  public PaymentDto status(Long id, Payment.Status status) {
-    Payment p = require(id);
-    p.setStatus(status);
-    return PaymentDto.of(repository.save(p));
+    p.setRequestKey(r.requestKey());
+    p.setReceiptNo("PT-" + UUID.randomUUID());
+    p.setRecordedBy(Users.current().accountId());
+    p.setRecordedByName(Users.current().username());
+    p.setNote(r.note());
+    repository.saveAndFlush(p);
+    ledger.setNet(t, collected.add(r.amount()));
+    return PaymentDto.of(p);
   }
 }

@@ -28,7 +28,8 @@ public class Branch extends BaseEntity {
   private Status status = Status.ACTIVE;
 
   @Column(nullable = false, updatable = false)
-  private LocalDateTime createdAt = LocalDateTime.now();
+  private LocalDateTime createdAt =
+      LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE);
 
   public enum Status {
     ACTIVE,

@@ -39,7 +39,7 @@ public final class Query {
               + "%";
       return b.or(
           Arrays.stream(fields)
-              .map(f -> b.like(path(r, f).as(String.class), pattern, '\\'))
+              .map(f -> b.like(b.lower(path(r, f).as(String.class)), pattern, '\\'))
               .toArray(Predicate[]::new));
     };
   }

@@ -24,8 +24,12 @@ public class Course extends BaseEntity {
   private String type;
   private String level;
 
-  @Column(nullable = false)
+  // Legacy value: no unit is inferred. New plans use expectedMinutes.
   private Integer duration;
+  private Integer expectedMinutes;
+
+  @Column(nullable = false)
+  private long durationRevision;
 
   @Column(nullable = false, precision = 15, scale = 2)
   private BigDecimal tuitionFee;
@@ -50,7 +54,7 @@ public class Course extends BaseEntity {
       name = "scope_key",
       insertable = false,
       updatable = false,
-      columnDefinition = "bigint generated always as (coalesce(branch_id,0)) stored")
+      columnDefinition = "bigint generated always as (coalesce(branch_id,0))")
   private Long scopeKey;
 
   public enum Status {

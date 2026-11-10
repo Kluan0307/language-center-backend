@@ -1,0 +1,45 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Bàn giao giáo viên và ngừng làm việc
+actor "Admin/SA đủ mọi phân công" as U
+participant "Frontend/Gateway" as F
+participant "Auth" as A
+participant "Academic" as C
+database "MySQL dùng chung" as DB
+autonumber
+U -> F: Xem trách nhiệm teacher profileId
+F -> A: GET /api/v1/auth/teacher-profiles/{id}/responsibilities
+A -> C: GET /api/v1/academic/teachers/{id}/responsibilities\nSA: toàn bộ; Admin: từng active branch
+C --> A: Mảng CLASS chưa FINISHED + SESSION SCHEDULED
+A --> F: Responsibility[]
+opt Còn trách nhiệm cần bàn giao
+ F -> C: PUT /api/v1/academic/classes/{classId}\nfull ClassRequest với teacherId mới
+ C -> DB: Khóa branch/class/course; TeacherDirectory.lock(account giáo viên mới)
+ C -> A: GET /api/v1/auth/teachers/{id}?branchId=...
+ A --> C: Teacher khả dụng hoặc lỗi
+ C -> DB: Cập nhật lớp, kiểm lịch/phạm vi
+ F -> C: PUT /api/v1/academic/sessions/{sessionId}\nSessionEdit có version/reason/teacherId mới
+ C -> DB: Kiểm lịch và Teacher account lock; cập nhật buổi
+end
+F -> A: PATCH /api/v1/auth/teacher-profiles/{id}/work-status\n{version,workStatus:INACTIVE,reason}
+group Auth Tx
+ A -> DB: Khóa accounts trước; refresh teachers PESSIMISTIC_WRITE
+ A -> A: Đủ phạm vi mọi phân công, version và reason hợp lệ
+ A -> C: GET responsibilities theo phạm vi cần xác minh
+ alt HTTP lỗi/timeout/nguồn không xác minh được
+  C --x A: Lỗi
+  A -> DB: ROLLBACK
+  A --> F: 503; giữ workStatus
+ else Còn trách nhiệm
+  C --> A: Mảng không rỗng
+  A --> F: 409; bàn giao trước
+ else Không còn trách nhiệm
+  C --> A: []
+  A -> DB: teachers.work_status=INACTIVE\nINSERT teacher_profile_events; COMMIT
+  A --> F: 200 TeacherProfileDto
+ end
+end
+note over A,DB: Academic phân công và Auth ngừng/thu hồi cùng khóa account.\nShared schema là phụ thuộc kiến trúc thật, không phải database-per-service.
+@enduml

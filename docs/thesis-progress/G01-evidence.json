@@ -1,0 +1,84 @@
+{
+  "clientDate": "2026-11-07",
+  "stage": "G01",
+  "verificationKind": "static-documentation-review",
+  "requirements": [
+    "RQ01",
+    "RQ02",
+    "RQ03",
+    "RQ04",
+    "RQ05",
+    "RQ06",
+    "RQ07",
+    "RQ08",
+    "RQ09",
+    "RQ10",
+    "RQ11",
+    "RQ12"
+  ],
+  "plannedAcceptanceCases": 41,
+  "businessRuleGroups": 13,
+  "documentsChecked": 6,
+  "linksChecked": 11,
+  "forwardHandoffLinkPending": false,
+  "protectedSourceFilesCompared": 493,
+  "protectedSourceFilesChanged": 0,
+  "baselineGit": {
+    "backend": {
+      "commit": "b5f6daed09109c04822ea045de5f9991c078dc96",
+      "dirty": true,
+      "changedEntries": 327,
+      "statusSha256": "9e44226d3d074c8d301f232105fb05eaab5cc215691f4be788179ade4a7dd364"
+    },
+    "frontend": {
+      "commit": "bafa8246575948b558fddc692892f22a6d732d4e",
+      "dirty": true,
+      "changedEntries": 199,
+      "statusSha256": "f308b4479b4f0a2dac95730eb98587a1c14f7a0b4483d32196eaec3c380e0f22"
+    }
+  },
+  "checks": {
+    "requirementsTraceability": true,
+    "plannedCaseIdsMatch": true,
+    "ruleReferencesResolve": true,
+    "utf8AndFences": true,
+    "sourceUnchanged": true,
+    "allNewDocumentLinks": true
+  },
+  "historicalVerification": {
+    "source": "docs/verification.md; storage/improvement7-results.json",
+    "backendTests": 195,
+    "frontendTestsBaseline": 72,
+    "operationsTests": 9,
+    "rerunInG01": false
+  },
+  "runtimeChecksRun": false,
+  "databaseAccessed": false,
+  "applicationProcessesChanged": false,
+  "finalDocumentChecks": {
+    "markdownFiles": 7,
+    "localLinksChecked": 18,
+    "brokenLinks": 0,
+    "protectedSourceFileSetUnchanged": true,
+    "protectedSourceFilesCompared": 493,
+    "sourceChanges": 0,
+    "pendingLaterStages": 19,
+    "g01ProgressRecorded": true,
+    "t1ProgressRecorded": true,
+    "whitespaceAndUtf8": true
+  },
+  "baselineGitAfter": {
+    "backend": {
+      "commit": "b5f6daed09109c04822ea045de5f9991c078dc96",
+      "dirty": true,
+      "changedEntries": 335,
+      "statusSha256": "500f5d0033da101371db58180fb11663a7ed3e9739dbffe5def580f3d14b932a"
+    },
+    "frontend": {
+      "commit": "bafa8246575948b558fddc692892f22a6d732d4e",
+      "dirty": true,
+      "changedEntries": 199,
+      "statusSha256": "f308b4479b4f0a2dac95730eb98587a1c14f7a0b4483d32196eaec3c380e0f22"
+    }
+  }
+}

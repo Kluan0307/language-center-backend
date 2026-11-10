@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Ghi danh và học phí — hoạt động
+start
+:Staff/Admin gửi POST /api/v1/academic/enrollments;
+:Service kiểm JWT/live session, role và chi nhánh;
+:Tx Academic khóa branch/student/class/course;\nkiểm sĩ số, lịch, điều kiện và approval;
+if (Có ràng buộc cứng hoặc approval không hợp lệ?) then (Có)
+ :Từ chối 409; không tạo enrollment;
+ stop
+endif
+:Kiểm ResultBarrier.mutable;\nlưu enrollment, khoảng học, lịch sử, admission;\nconsume approval trong cùng Tx nếu có;
+:Phát EnrollmentCreated; COMMIT Academic;
+:Listener AFTER_COMMIT đồng bộ gọi deliver REQUIRES_NEW;
+:Khóa enrollment billing root;\nPOST /api/v1/finance/tuitions {enrollmentId};
+:Finance đọc billing qua Academic HTTP;\nTx Finance tìm/tạo tuition theo billing root;
+if (Finance thành công?) then (Có)
+ :Ghi CREATED và xóa lỗi trong Tx delivery;
+else (Không)
+ :Ghi FAILED, giữ enrollment đã commit;
+endif
+:Trả 200; FE đọc lại trạng thái delivery;
+if (Cần retry?) then (Có)
+ :POST /api/v1/academic/enrollments/{id}/tuition/retry;\ncùng billing root, không tạo bill kép;
+endif
+stop
+@enduml

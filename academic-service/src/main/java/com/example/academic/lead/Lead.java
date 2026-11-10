@@ -8,10 +8,28 @@ import java.time.LocalDateTime;
 import lombok.*;
 
 @Entity
-@Table(name = "leads")
+@Table(
+    name = "leads",
+    indexes = @Index(name = "idx_lead_followup", columnList = "branch_id,status,next_contact_at"))
 @Getter
 @Setter
 public class Lead extends BaseEntity {
+  @Version private long version;
+  private LocalDateTime nextContactAt;
+  private LocalDateTime updatedAt =
+      LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE);
+
+  public enum FollowUp {
+    OVERDUE,
+    TODAY,
+    UPCOMING,
+    UNSCHEDULED
+  }
+
+  public boolean active() {
+    return status != Status.CONVERTED && status != Status.LOST;
+  }
+
   @Column(nullable = false)
   private String fullName;
 
@@ -45,7 +63,8 @@ public class Lead extends BaseEntity {
   private Student convertedStudent;
 
   @Column(nullable = false, updatable = false)
-  private LocalDateTime createdAt = LocalDateTime.now();
+  private LocalDateTime createdAt =
+      LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE);
 
   private LocalDateTime lastContactedAt;
 

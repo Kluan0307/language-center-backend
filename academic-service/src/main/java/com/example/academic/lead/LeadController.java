@@ -12,6 +12,29 @@ import org.springframework.web.bind.annotation.*;
 @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN','STAFF')")
 public class LeadController {
   private final LeadService service;
+  private final LeadAssigneeDirectory assignees;
+
+  @GetMapping("/assignees")
+  @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
+  public java.util.List<LeadAssigneeDirectory.Assignee> assignees(@RequestParam Long branchId) {
+    return assignees.list(branchId);
+  }
+
+  @GetMapping("/{id}/history")
+  public java.util.List<LeadActivity> history(@PathVariable Long id) {
+    return service.history(id);
+  }
+
+  @PostMapping("/{id}/interactions")
+  public LeadDto interact(@PathVariable Long id, @Valid @RequestBody LeadDto.Interaction r) {
+    return service.interact(id, r);
+  }
+
+  @PutMapping("/{id}/assignment")
+  @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN')")
+  public LeadDto assign(@PathVariable Long id, @Valid @RequestBody LeadDto.Assignment r) {
+    return service.assign(id, r);
+  }
 
   @GetMapping
   public PageResponse<LeadDto> list(
@@ -20,8 +43,10 @@ public class LeadController {
       @RequestParam(required = false) String keyword,
       @RequestParam(required = false) Lead.Status status,
       @RequestParam(required = false) Long assignedTo,
-      @RequestParam(required = false) Long branchId) {
-    return service.list(page, size, keyword, status, assignedTo, branchId);
+      @RequestParam(required = false) Long branchId,
+      @RequestParam(required = false) Lead.FollowUp followUp,
+      @RequestParam(required = false) Boolean active) {
+    return service.list(page, size, keyword, status, assignedTo, branchId, followUp, active);
   }
 
   @GetMapping("/{id}")
@@ -45,7 +70,7 @@ public class LeadController {
   }
 
   @PostMapping("/{id}/convert")
-  public LeadDto convert(@PathVariable Long id) {
-    return service.convert(id);
+  public LeadDto convert(@PathVariable Long id, @Valid @RequestBody LeadDto.Conversion r) {
+    return service.convert(id, r.version());
   }
 }

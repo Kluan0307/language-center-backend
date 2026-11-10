@@ -1,0 +1,130 @@
+{
+  "reviewedAt": "2026-11-10",
+  "scope": "Manual controller/DTO/service review for five G15 flows; static hashes detect source drift, not a semantic proof",
+  "sources": [
+    {
+      "file": "api-gateway/src/main/java/com/example/gateway/SecurityConfig.java",
+      "sha256": "6d94e4cc5db83239330dc387df92696c683f76df12f8b96a83a8e71f41eb0958"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/enrollment/EnrollmentController.java",
+      "sha256": "1e34013d0864179a8071f52fd880f414174c324024dd01ad6b163adf460993d3"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/enrollment/EnrollmentService.java",
+      "sha256": "39b1e650f44218dbe82f4652abb30c12024237c6459104e42a66f9c3aedcdaf6"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/enrollment/TuitionListener.java",
+      "sha256": "afd2d9a0bb6c829abb60201f292b6a2352acacad82c00d4643cf1e3f167563d1"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/enrollment/TuitionDeliveryService.java",
+      "sha256": "fab79bf064c505382056a8ba0a429404ade317dfd62b47828bb0ee79d005adcf"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/placement/PlacementController.java",
+      "sha256": "2e8cb46313b5575b659d8df0e95758c58495c57c43cc75679b49a43e69231f48"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/placement/PlacementService.java",
+      "sha256": "e17ed2a5cc6b7edaab6685931aa0b8fb0aa3d1c950424a90d84c9a9a136fe442"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/placement/PlacementDto.java",
+      "sha256": "ad6c61433297991b0aab299bdbbdde69fa2e7e8b16bbc83a1105eba6e0d999f0"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/session/SessionController.java",
+      "sha256": "d9bb2af19ec7e912f3bf6d21727b0e3b6c8bb7e6eb95bb1c7e0add64e50359f4"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/session/SessionPlanner.java",
+      "sha256": "486c4e5aca2c934b47221d20b89e600b1c55ec2ac2f6395c2287bbfec584ece7"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/schoolclass/SchoolClassService.java",
+      "sha256": "c80254bb78944d228a20965f7c5a42bcd71d2a14aa4bec19d99be4012018ae50"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/security/TeacherDirectory.java",
+      "sha256": "fcc1a15cf569b3065e3acbe1a70542239d70ed86f3819565ab65008df29219ce"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/results/ResultBarrierService.java",
+      "sha256": "e4a36645c686a874357ee20363893d035f83b365836bc4b4f19276c0c35a96b0"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/results/CompletionBridge.java",
+      "sha256": "6dda281fd7e113ba5021e5132e4666292e346e0feeff2193ae20ec05f9406d0d"
+    },
+    {
+      "file": "academic-service/src/main/java/com/example/academic/results/ClassClosureService.java",
+      "sha256": "d3b2b59c6d3e5dd0d7a2649e4d965f54b7ffbf139428b0e320d52e32eaeab3f6"
+    },
+    {
+      "file": "auth-service/src/main/java/com/example/auth/service/TeacherProfileService.java",
+      "sha256": "ee9730b6b3079dd0fe2e5826b9f7be64cf7ad66e3c36ecc90c316ab8409026ec"
+    },
+    {
+      "file": "auth-service/src/main/java/com/example/auth/integration/BranchDirectory.java",
+      "sha256": "4e9494ac64efd847cef4b9015842a2fdb138397688af99d067a4f2e8d933ec22"
+    },
+    {
+      "file": "auth-service/src/main/java/com/example/auth/security/JwtUtil.java",
+      "sha256": "08d627b5aeef446b89c0be66ad3430faace7172c3ff6932c1bed8b60dcfc0454"
+    },
+    {
+      "file": "finance-service/src/main/java/com/example/finance/payment/PaymentController.java",
+      "sha256": "ebd8afd9e660cfb7ff95cc0e26b08d735723291f3affef922a7d8361932c0b12"
+    },
+    {
+      "file": "finance-service/src/main/java/com/example/finance/payment/PaymentService.java",
+      "sha256": "d2ce90d711c5d7b2e9aaa48211506f110723e24de2c5eb6e0dd79ce08cea2997"
+    },
+    {
+      "file": "finance-service/src/main/java/com/example/finance/tuition/TuitionService.java",
+      "sha256": "5b85543fc24b253b9870289438323e0858ff67b8fce52051a395af5164f7414d"
+    },
+    {
+      "file": "finance-service/src/main/java/com/example/finance/ledger/FinanceLedger.java",
+      "sha256": "c625b145c28a698188475c7d8c186ef75721051d0a1f14a2d24dc2220ff2c175"
+    },
+    {
+      "file": "finance-service/src/main/java/com/example/finance/stats/RevenueController.java",
+      "sha256": "e73e4b1eb170b9e25ab82bcb09fe994fec2f15df0a66f6cc887f5ea54036c409"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/results/FinalResultController.java",
+      "sha256": "87cb00b7299c494deb8d3074822031630c957b189a3b63b2b751b86276ff016d"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/results/FinalResultDto.java",
+      "sha256": "b5f4feb6d5a77acd1cbce260e64041310f6c0c2964158186027366caf294dbd8"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/results/FinalResultService.java",
+      "sha256": "9ca9dc9b31e7e5f21e2fef992f1d709d7e6b1beab0cf616b3373ae7f96177e02"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/results/ResultBarrierService.java",
+      "sha256": "941a5a40b0105290d8266efea98d8d6884a184b3c58ad650a698437a5343575a"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/evaluation/EvaluationLock.java",
+      "sha256": "9c1fc97003b029752e5b650352ff9a1d95572ccaf03bccbc2bbdb0d6d555895a"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/evaluation/EvaluationService.java",
+      "sha256": "23a34250af0fcc0054e095351ea7b145890504476c6ea302daf38e6c39f97a1c"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/integration/AcademicDirectory.java",
+      "sha256": "e8f93c213e18dc714372ce1ef2757319ab056f91d980064ef5b5abebe2a38ed7"
+    },
+    {
+      "file": "teaching-service/src/main/java/com/example/teaching/grade/GradeController.java",
+      "sha256": "69fde92aaaa5e8d87b14251b7da551aeddba17f585ef5e0635dd16779a658206"
+    }
+  ]
+}

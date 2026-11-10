@@ -21,7 +21,10 @@ import org.springframework.transaction.annotation.*;
 @RequiredArgsConstructor
 @Transactional(isolation = Isolation.READ_COMMITTED)
 public class SchoolClassService {
+  private final com.example.academic.placement.PlacementExceptionRepository placementExceptions;
   private final SchoolClassRepository repository;
+  private final com.example.academic.duration.DurationPlanService durationPlans;
+  private final com.example.academic.duration.DurationProgressService durationProgress;
   private final BranchScope scope;
   private final BranchService branches;
   private final CourseService courses;
@@ -30,6 +33,9 @@ public class SchoolClassService {
   private final ScheduleConflictService conflicts;
   private final EnrollmentRepository enrollments;
   private final EntityManager entityManager;
+  private final TeacherDirectory teachers;
+  private final com.example.academic.session.SessionPlanner sessionPlanner;
+  private final com.example.academic.admission.AdmissionPolicyService admissionPolicies;
 
   public SchoolClass require(Long id) {
     SchoolClass c = repository.findById(id).orElseThrow(ApiException::missing);
@@ -112,10 +118,24 @@ public class SchoolClassService {
     Long branch = id == null ? scope.create(r.branchId()) : c.getBranchId();
     branches.lock(branch);
     if (id != null) c = lock(id);
+    if (id != null
+        && Users.current().role() == Role.STAFF
+        && (!Objects.equals(c.getTeacherId(), r.teacherId())
+            || !Objects.equals(c.getRoom().getId(), r.roomId())
+            || !Objects.equals(c.getStartDate(), r.startDate())
+            || !Objects.equals(c.getEndDate(), r.endDate())
+            || !Objects.equals(c.getCourse().getId(), r.courseId())))
+      throw ApiException.forbidden();
+    if (id != null
+        && enrollments.existsBySchoolClassId(id)
+        && !Objects.equals(c.getCourse().getId(), r.courseId()))
+      throw ApiException.conflict("Cannot change course after enrollment");
     if (r.endDate().isBefore(r.startDate()))
       throw ApiException.bad("endDate không được trước startDate");
     Course course = courses.lockForBranch(r.courseId(), branch);
     Room room = rooms.require(r.roomId());
+    if (room.getStatus() == Room.Status.MAINTENANCE)
+      throw ApiException.bad("Room is under maintenance");
     if (!room.getBranchId().equals(branch)) throw ApiException.missing();
     if ((id == null || !c.getCourse().getId().equals(course.getId()))
         && course.getStatus() == Course.Status.CLOSED)
@@ -132,11 +152,13 @@ public class SchoolClassService {
     c.setBranchId(branch);
     c.setCode(r.code().trim());
     c.setName(r.name().trim());
+    boolean admissionChanged = id == null || !Objects.equals(c.getCourse().getId(), course.getId());
     c.setCourse(course);
     c.setRoom(room);
-    // TODO: verify teacher branch with auth-service when inter-service communication is available.
+    sessionPlanner.lockClassTeachers(c, r.teacherId());
+    var teacher = teachers.require(r.teacherId(), branch);
     c.setTeacherId(r.teacherId());
-    c.setTeacherName(r.teacherName().trim());
+    c.setTeacherName(teacher.fullName());
     c.setStartDate(r.startDate());
     c.setEndDate(r.endDate());
     c.setMaxSize(r.maxSize());
@@ -152,9 +174,14 @@ public class SchoolClassService {
         s.setEndTime(slot.endTime());
         slots.add(s);
       }
-    conflicts.recheck(c, slots);
     repository.save(c);
+    if (admissionChanged) {
+      admissionPolicies.initializeClass(c);
+      durationPlans.initializeClass(c);
+    }
     if (id == null) schedules.saveAll(slots);
+    schedules.flush();
+    sessionPlanner.sync(c, id == null);
     if (c.effectiveStatus() != SchoolClass.Status.FINISHED) {
       if (c.getCurrentSize() >= c.getMaxSize()) c.setStatus(SchoolClass.Status.FULL);
       else if (c.getStatus() == SchoolClass.Status.FULL) {
@@ -166,18 +193,23 @@ public class SchoolClassService {
   }
 
   public SchoolClassDto status(Long id, SchoolClass.Status status) {
+    if (Users.current().role() == Role.STAFF) throw ApiException.forbidden();
+    if (status == SchoolClass.Status.FULL)
+      throw ApiException.bad("Capacity is derived; use full field");
     SchoolClass c = require(id);
     branches.lock(c.getBranchId());
     c = lock(id);
     if (status == SchoolClass.Status.FULL && c.getCurrentSize() < c.getMaxSize())
       throw ApiException.bad("Lớp chưa đủ sĩ số");
-    if (status != SchoolClass.Status.FULL
-        && status != SchoolClass.Status.FINISHED
-        && c.getCurrentSize() >= c.getMaxSize()) throw ApiException.bad("Lớp đã đủ sĩ số");
-    if (status != SchoolClass.Status.FINISHED)
-      conflicts.recheck(c, schedules.findBySchoolClassId(id));
+    if(c.getStatus()==SchoolClass.Status.FINISHED)throw ApiException.conflict("Dùng luồng mở lại lớp có lý do");
+    if (status != SchoolClass.Status.FINISHED && status != c.dateStatus())
+      throw ApiException.bad("Class progress must match its dates");
+    if (status == SchoolClass.Status.FINISHED) throw ApiException.conflict("Dùng luồng đóng lớp có lý do và đối soát kết quả cuối khóa");
+    sessionPlanner.lockClassTeachers(c, c.getTeacherId());
+    if (status != SchoolClass.Status.FINISHED) teachers.require(c.getTeacherId(), c.getBranchId());
     c.setStatus(status);
     c.setStatusManuallySet(true);
+    sessionPlanner.sync(c, false);
     return SchoolClassDto.of(c);
   }
 
@@ -186,6 +218,11 @@ public class SchoolClassService {
     branches.lock(c.getBranchId());
     if (enrollments.existsBySchoolClassId(id))
       throw ApiException.conflict("Không thể xóa lớp đã có đăng ký");
+    if (placementExceptions.existsByClassId(id))
+      throw ApiException.conflict("Lớp có lịch sử đề nghị ngoại lệ; không được xóa");
+    sessionPlanner.deleteDraft(c);
+    admissionPolicies.discardDraft(c);
+    durationPlans.discardDraft(c);
     repository.delete(c);
     repository.flush();
   }

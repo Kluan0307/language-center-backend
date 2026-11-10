@@ -8,13 +8,18 @@ import lombok.*;
 @Entity
 @Table(
     name = "students",
-    uniqueConstraints =
-        @UniqueConstraint(
-            name = "uk_student_phone_branch",
-            columnNames = {"phone", "branch_id"}))
+    indexes = @Index(name = "idx_student_phone_branch", columnList = "phone,branch_id"))
 @Getter
 @Setter
 public class Student extends BaseEntity {
+  @Version private long version;
+
+  @Column(unique = true, length = 40, updatable = false)
+  private String studentCode = "HV-" + java.util.UUID.randomUUID();
+
+  private String guardianName;
+  private String guardianPhone;
+
   @Column(nullable = false)
   private String fullName;
 
@@ -33,7 +38,7 @@ public class Student extends BaseEntity {
   private String currentLevel;
 
   @Column(nullable = false, updatable = false)
-  private LocalDate registeredAt = LocalDate.now();
+  private LocalDate registeredAt = LocalDate.now(com.example.academic.common.BusinessTime.ZONE);
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)

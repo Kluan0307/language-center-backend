@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(isolation = Isolation.READ_COMMITTED)
 public class CourseService {
   private final CourseRepository repository;
+  private final com.example.academic.duration.DurationPlanService durationPlans;
   private final BranchScope scope;
   private final BranchService branches;
   private final SchoolClassRepository classes;
@@ -83,12 +84,17 @@ public class CourseService {
 
   public CourseDto save(Long id, CourseDto.Request r) {
     Course c = id == null ? new Course() : require(id);
+    if (id == null && Users.current().role() == Role.STAFF) throw ApiException.forbidden();
+    Long branch = id == null ? scope.filter(r.branchId()) : c.getBranchId();
+    // Match class creation's lock order: branch first, course second.
+    if (branch != null) branches.lock(branch);
     if (id != null) {
       c = lockForBranch(id, c.getBranchId());
       writable(c);
     }
-    Long branch = id == null ? scope.filter(r.branchId()) : c.getBranchId();
-    if (branch != null) branches.require(branch);
+    // Refresh under the lock before checking the price; an Admin may have changed it.
+    if (Users.current().role() == Role.STAFF && c.getTuitionFee().compareTo(r.tuitionFee()) != 0)
+      throw ApiException.forbidden();
     if (repository.existsByCodeIgnoreCaseAndBranchIdAndIdNot(
         r.code().trim(), branch, id == null ? -1L : id))
       throw ApiException.conflict("Mã khóa học đã tồn tại");
@@ -98,14 +104,25 @@ public class CourseService {
     c.setName(r.name().trim());
     c.setType(r.type());
     c.setLevel(r.level());
-    c.setDuration(r.duration());
+    if (id == null || c.getDuration() == null) c.setDuration(r.duration());
+    else if (r.duration() != null && !c.getDuration().equals(r.duration()))
+      throw ApiException.bad(
+          "Giá trị duration cũ được giữ để đối soát; xác nhận kế hoạch phút qua chức năng thời"
+              + " lượng");
+    if (id != null
+        && r.expectedMinutes() != null
+        && !java.util.Objects.equals(r.expectedMinutes(), c.getExpectedMinutes()))
+      throw ApiException.bad("Đổi thời lượng qua xác nhận kế hoạch có phiên bản/lý do");
     c.setTuitionFee(r.tuitionFee());
     c.setContent(r.content());
     c.setEntryRequirement(r.entryRequirement());
     c.setMaxStudents(r.maxStudents());
     if (id != null && classes.existsByCourseIdAndMaxSizeGreaterThan(id, r.maxStudents()))
       throw ApiException.bad("Giới hạn khóa học nhỏ hơn sĩ số tối đa của lớp hiện có");
-    return CourseDto.of(repository.save(c));
+    var saved = repository.save(c);
+    if (id == null && r.expectedMinutes() != null)
+      durationPlans.initializeCourse(saved, r.expectedMinutes());
+    return CourseDto.of(saved);
   }
 
   public CourseDto status(Long id, Course.Status status) {

@@ -16,7 +16,11 @@ public record StudentDto(
     String currentLevel,
     LocalDate registeredAt,
     Student.Status status,
-    Long branchId) {
+    Long branchId,
+    String studentCode,
+    String guardianName,
+    String guardianPhone,
+    long version) {
   public static StudentDto of(Student s) {
     return new StudentDto(
         s.getId(),
@@ -30,7 +34,11 @@ public record StudentDto(
         s.getCurrentLevel(),
         s.getRegisteredAt(),
         s.getStatus(),
-        s.getBranchId());
+        s.getBranchId(),
+        s.getStudentCode(),
+        s.getGuardianName(),
+        s.getGuardianPhone(),
+        s.getVersion());
   }
 
   public record Request(
@@ -42,9 +50,14 @@ public record StudentDto(
       @Size(max = 255) String address,
       @Size(max = 255) String contactPerson,
       @Size(max = 255) String currentLevel,
-      Long branchId) {}
+      Long branchId,
+      @Size(max = 255) String guardianName,
+      @Size(max = 30) String guardianPhone) {}
 
-  public record StatusRequest(@NotNull Student.Status status) {}
+  public record StatusRequest(
+      @NotNull Student.Status status,
+      @NotBlank @Size(min = 3, max = 500) String reason,
+      @NotNull @PositiveOrZero Long version) {}
 
   public record Registration(
       Long id,

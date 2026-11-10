@@ -1,0 +1,23 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý shared-coordination — FK thực tế MySQL V013
+package "shared-coordination" {
+entity "class_result_barriers" as T_class_result_barriers {
+ {field} class_id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} token : varchar(36) [NOT NULL]
+ {field} source_revision : bigint [NOT NULL]
+ {field} result_revision : bigint [NOT NULL]
+ {field} confirmed_count : bigint [NOT NULL]
+}
+}
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

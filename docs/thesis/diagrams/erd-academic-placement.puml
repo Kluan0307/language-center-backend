@@ -1,0 +1,114 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý academic-placement — FK thực tế MySQL V013
+package "academic-placement" {
+entity "assessment_events" as T_assessment_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} assessment_id : bigint [NOT NULL]
+ {field} action : varchar(255) [NOT NULL]
+ {field} before_state : longtext [NOT NULL]
+ {field} after_state : longtext [NOT NULL]
+ {field} reason : varchar(500) [NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+ {field} assessment_version : bigint [NOT NULL]
+}
+entity "enrollment_admissions" as T_enrollment_admissions {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} enrollment_id : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} class_id : bigint [NOT NULL]
+ {field} policy_id : bigint [NULL]
+ {field} class_revision : bigint [NOT NULL]
+ {field} assessment_id : bigint [NULL]
+ {field} assessment_version : bigint [NULL]
+ {field} approval_id : bigint [NULL]
+ {field} reused_decision_id : bigint [NULL]
+ {field} intent : varchar(20) [NOT NULL]
+ {field} academic_status : varchar(40) [NOT NULL]
+ {field} fingerprint : varchar(64) [NOT NULL]
+ {field} policy_snapshot : longtext [NOT NULL]
+ {field} assessment_snapshot : longtext [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} accepted_at : datetime(6) [NOT NULL]
+}
+entity "placement_assessments" as T_placement_assessments {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} version : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} program_id : bigint [NOT NULL]
+ {field} program_code : varchar(50) [NOT NULL]
+ {field} program_name : varchar(255) [NOT NULL]
+ {field} level_id : bigint [NOT NULL]
+ {field} level_code : varchar(50) [NOT NULL]
+ {field} level_name : varchar(255) [NOT NULL]
+ {field} method : varchar(20) [NOT NULL]
+ {field} status : varchar(20) [NOT NULL]
+ {field} assessed_on : date [NOT NULL]
+ {field} assessor_name : varchar(255) [NOT NULL]
+ {field} source : varchar(2000) [NOT NULL]
+ {field} score : decimal(12,4) [NULL]
+ {field} max_score : decimal(12,4) [NULL]
+ {field} recorded_by : bigint [NOT NULL]
+ {field} recorded_by_name : varchar(255) [NOT NULL]
+ {field} confirmed_by : bigint [NULL]
+ {field} confirmed_by_name : varchar(255) [NULL]
+ {field} confirmed_at : datetime(6) [NULL]
+ {field} supersedes_id : bigint [NULL]
+ {field} superseded_by_id : bigint [NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+ {field} updated_at : datetime(6) [NOT NULL]
+ {field} current_key : varchar(90) [NULL] [GENERATED]
+}
+entity "placement_exceptions" as T_placement_exceptions {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} version : bigint [NOT NULL]
+ {field} student_id : bigint [NOT NULL]
+ {field} class_id : bigint [NOT NULL]
+ {field} branch_id : bigint [NOT NULL]
+ {field} intent : varchar(20) [NOT NULL]
+ {field} source_enrollment_id : bigint [NULL]
+ {field} source_version : bigint [NULL]
+ {field} policy_id : bigint [NULL]
+ {field} class_revision : bigint [NOT NULL]
+ {field} assessment_id : bigint [NULL]
+ {field} assessment_version : bigint [NULL]
+ {field} context_snapshot : longtext [NOT NULL]
+ {field} fingerprint : varchar(64) [NOT NULL]
+ {field} academic_status : varchar(40) [NOT NULL]
+ {field} requested_reason : varchar(500) [NOT NULL]
+ {field} requested_by : bigint [NOT NULL]
+ {field} requested_by_name : varchar(255) [NOT NULL]
+ {field} requested_at : datetime(6) [NOT NULL]
+ {field} status : varchar(20) [NOT NULL]
+ {field} decision_reason : varchar(500) [NULL]
+ {field} decided_by : bigint [NULL]
+ {field} decided_by_name : varchar(255) [NULL]
+ {field} decided_at : datetime(6) [NULL]
+ {field} consumed_enrollment_id : bigint [NULL]
+ {field} consumed_at : datetime(6) [NULL]
+}
+}
+entity "enrollments" as T_enrollments <<FK target ngoài module>>
+entity "students" as T_students <<FK target ngoài module>>
+entity "school_classes" as T_school_classes <<FK target ngoài module>>
+T_placement_exceptions "0..1" -- "0..*" T_enrollment_admissions : approval_id
+T_enrollments "1" -- "0..*" T_enrollment_admissions : enrollment_id
+T_students "1" -- "0..*" T_placement_assessments : student_id
+T_school_classes "1" -- "0..*" T_placement_exceptions : class_id
+T_enrollments "0..1" -- "0..*" T_placement_exceptions : consumed_enrollment_id
+T_enrollments "0..1" -- "0..*" T_placement_exceptions : source_enrollment_id
+T_students "1" -- "0..*" T_placement_exceptions : student_id
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

@@ -1,58 +1,77 @@
 package com.example.teaching.security;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import java.util.List;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.List;
+import org.springframework.web.cors.*;
 
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+  @org.springframework.beans.factory.annotation.Value(
+      "${app.cors.allowed-origins:http://localhost:5173}")
+  private String allowedOrigins;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                 JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
-        return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/teaching/rooms/health").permitAll()
-                        .requestMatchers("/api/v1/teaching/**").authenticated()
-                        .anyRequest().permitAll())
-                .exceptionHandling(ex -> ex
-                        .authenticationEntryPoint((request, response, authException) -> {
-                            response.setStatus(401);
-                            response.setContentType("application/json;charset=UTF-8");
-                            response.getWriter().write("{\"message\":\"Chưa đăng nhập\"}");
+  @Bean
+  SecurityFilterChain security(HttpSecurity http, JwtAuthenticationFilter jwt) throws Exception {
+    return http.cors(c -> c.configurationSource(cors()))
+        .csrf(c -> c.disable())
+        .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(
+            a ->
+                a.requestMatchers("/actuator/health", "/actuator/health/**")
+                    .permitAll()
+                    .requestMatchers("/actuator/**")
+                    .denyAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated())
+        .exceptionHandling(
+            e ->
+                e.authenticationEntryPoint(
+                        (req, res, ex) -> {
+                          res.setStatus(401);
+                          res.setContentType("application/json;charset=UTF-8");
+                          res.getWriter().write("{\"message\":\"Chưa đăng nhập\"}");
                         })
-                        .accessDeniedHandler((request, response, accessDeniedException) -> {
-                            response.setStatus(403);
-                            response.setContentType("application/json;charset=UTF-8");
-                            response.getWriter().write("{\"message\":\"Bạn không có quyền thực hiện thao tác này\"}");
+                    .accessDeniedHandler(
+                        (req, res, ex) -> {
+                          res.setStatus(403);
+                          res.setContentType("application/json;charset=UTF-8");
+                          res.getWriter()
+                              .write("{\"message\":\"Bạn không có quyền thực hiện thao tác này\"}");
                         }))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+        .addFilterBefore(jwt, UsernamePasswordAuthenticationFilter.class)
+        .build();
+  }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:3000"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-        configuration.setAllowCredentials(true);
+  @Bean
+  FilterRegistrationBean<JwtAuthenticationFilter> disableServletRegistration(
+      JwtAuthenticationFilter filter) {
+    var registration = new FilterRegistrationBean<>(filter);
+    registration.setEnabled(false);
+    return registration;
+  }
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+  @Bean
+  CorsConfigurationSource cors() {
+    var c = new CorsConfiguration();
+    c.setAllowedOrigins(
+        java.util.Arrays.stream(allowedOrigins.split(","))
+            .map(String::trim)
+            .filter(v -> !v.isEmpty())
+            .toList());
+    c.setExposedHeaders(List.of("Content-Disposition", "X-Request-Id"));
+    c.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    c.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Branch-Id", "X-Request-Id"));
+    var source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", c);
+    return source;
+  }
 }

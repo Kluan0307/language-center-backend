@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "description": "Expected results for isolated G17/G18 acceptance; defined before API execution.",
+  "roles": [
+    "SUPER_ADMIN",
+    "ADMIN",
+    "STAFF",
+    "TEACHER"
+  ],
+  "courseMinutes": 180,
+  "sessionMinutes": 180,
+  "tuitionAmount": 3000000,
+  "installments": [
+    1000000,
+    2000000
+  ],
+  "finalThresholdPercent": 60,
+  "studentScores": [
+    85,
+    40
+  ],
+  "finalOutcomes": [
+    "PASS",
+    "FAIL"
+  ],
+  "revenue": {
+    "grossCollected": 3000000,
+    "voided": 0,
+    "refunded": 0,
+    "collected": 3000000,
+    "outstanding": 3000000
+  },
+  "race": {
+    "differentIntentStatuses": [
+      200,
+      409
+    ],
+    "sameIntentStatuses": [
+      200,
+      200
+    ]
+  },
+  "notes": [
+    "Short workshop fixture, not a claim that a three-hour course certifies a CEFR level.",
+    "Placement uses an accepted level set, not an invented score gate or seven-day expiry.",
+    "Unpaid tuition does not block academic completion."
+  ],
+  "requiredChecks": {
+    "g17": 20,
+    "g18": 38,
+    "browser": 12,
+    "database": 8,
+    "g17-crud": 8
+  }
+}

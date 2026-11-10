@@ -1,0 +1,6235 @@
+{
+  "entities": [
+    {
+      "service": "auth",
+      "className": "Account",
+      "table": "accounts",
+      "file": "auth-service/src/main/java/com/example/auth/entity/Account.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "column": "username",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, unique = true, length = 50)"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "column": "password",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false) @ToString.Exclude"
+        },
+        {
+          "name": "role",
+          "type": "Role",
+          "column": "role",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "status",
+          "type": "Boolean",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Builder.Default @Column(nullable = false)"
+        },
+        {
+          "name": "sessionVersion",
+          "type": "long",
+          "column": "session_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Builder.Default @Column(nullable = false)"
+        },
+        {
+          "name": "mustChangePassword",
+          "type": "boolean",
+          "column": "must_change_password",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Builder.Default @Column(nullable = false)"
+        },
+        {
+          "name": "passwordChangedAt",
+          "type": "LocalDateTime",
+          "column": "password_changed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "securityEvents",
+          "type": "java.util.List<AccountSecurityEvent>",
+          "column": "security_events",
+          "relation": "OneToMany",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToMany(mappedBy = \"account\", cascade = CascadeType.ALL) @Builder.Default @ToString.Exclude @EqualsAndHashCode.Exclude"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "lastLogin",
+          "type": "LocalDateTime",
+          "column": "last_login",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(name = \"branch_id\")"
+        },
+        {
+          "name": "branchAssignments",
+          "type": "java.util.List<AccountBranch>",
+          "column": "branch_assignments",
+          "relation": "OneToMany",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToMany(mappedBy = \"account\", cascade = CascadeType.ALL) @Builder.Default @ToString.Exclude @EqualsAndHashCode.Exclude"
+        },
+        {
+          "name": "branchEvents",
+          "type": "java.util.List<AccountBranchEvent>",
+          "column": "branch_events",
+          "relation": "OneToMany",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToMany(mappedBy = \"account\", cascade = CascadeType.ALL) @Builder.Default @ToString.Exclude @EqualsAndHashCode.Exclude"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "f4fb36528f628b7e4117194ddb2a8805debd36bb4a90bcf287476a2952f02418"
+    },
+    {
+      "service": "auth",
+      "className": "AccountBranch",
+      "table": "account_branches",
+      "file": "auth-service/src/main/java/com/example/auth/entity/AccountBranch.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"account_id\", nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(name = \"branch_id\", nullable = false)"
+        },
+        {
+          "name": "status",
+          "type": "boolean",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "primary",
+          "type": "boolean",
+          "column": "is_primary",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(name = \"is_primary\", nullable = false)"
+        },
+        {
+          "name": "assignedAt",
+          "type": "LocalDateTime",
+          "column": "assigned_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "assignedBy",
+          "type": "Long",
+          "column": "assigned_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "revokedAt",
+          "type": "LocalDateTime",
+          "column": "revoked_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "741de0602c2421ad74b5293a532252a5489347538640ce92f751cdd62832a5a1"
+    },
+    {
+      "service": "auth",
+      "className": "AccountBranchEvent",
+      "table": "account_branch_events",
+      "file": "auth-service/src/main/java/com/example/auth/entity/AccountBranchEvent.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"account_id\", nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 30)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "performedBy",
+          "type": "Long",
+          "column": "performed_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "30d36233e8220ea1a3419981c3352a25e5f5561950e5030f4b263b03f4014d6b"
+    },
+    {
+      "service": "auth",
+      "className": "AccountSecurityEvent",
+      "table": "account_security_events",
+      "file": "auth-service/src/main/java/com/example/auth/entity/AccountSecurityEvent.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"account_id\", nullable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 40)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 255)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "f3500fa57473b517f51529c8ee84ecb962e8d96406135e4fc06390000ab3b5ef"
+    },
+    {
+      "service": "auth",
+      "className": "Admin",
+      "table": "admins",
+      "file": "auth-service/src/main/java/com/example/auth/entity/Admin.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "OneToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"account_id\", nullable = false, unique = true)"
+        },
+        {
+          "name": "fullName",
+          "type": "String",
+          "column": "full_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 100)"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "column": "email",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 15)"
+        },
+        {
+          "name": "hireDate",
+          "type": "LocalDate",
+          "column": "hire_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "workStatus",
+          "type": "String",
+          "column": "work_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Builder.Default @Column(length = 50)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "c0957ea28b95ce55704a63284215c4a039b86a123a82f24cccf80fbba78efc54"
+    },
+    {
+      "service": "auth",
+      "className": "Staff",
+      "table": "staffs",
+      "file": "auth-service/src/main/java/com/example/auth/entity/Staff.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "OneToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"account_id\", nullable = false, unique = true)"
+        },
+        {
+          "name": "fullName",
+          "type": "String",
+          "column": "full_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 100)"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "column": "email",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 15)"
+        },
+        {
+          "name": "hireDate",
+          "type": "LocalDate",
+          "column": "hire_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "workStatus",
+          "type": "String",
+          "column": "work_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Builder.Default @Column(length = 50)"
+        },
+        {
+          "name": "position",
+          "type": "String",
+          "column": "position",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "5c6ebd25d9f65931bcf4ce62e46db1432f1e34bb1257385f7efaf3d1dded735c"
+    },
+    {
+      "service": "auth",
+      "className": "SuperAdmin",
+      "table": "super_admins",
+      "file": "auth-service/src/main/java/com/example/auth/entity/SuperAdmin.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "OneToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"account_id\", nullable = false, unique = true)"
+        },
+        {
+          "name": "fullName",
+          "type": "String",
+          "column": "full_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 100)"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "column": "email",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 15)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "117d10f0698a0b58128041edbbb643ae7079ff8db876052aac071dc2993d9b1f"
+    },
+    {
+      "service": "auth",
+      "className": "Teacher",
+      "table": "teachers",
+      "file": "auth-service/src/main/java/com/example/auth/entity/Teacher.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "account",
+          "type": "Account",
+          "column": "account_id",
+          "relation": "OneToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"account_id\", nullable = false, unique = true)"
+        },
+        {
+          "name": "fullName",
+          "type": "String",
+          "column": "full_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 100)"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "column": "email",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 15)"
+        },
+        {
+          "name": "specialization",
+          "type": "String",
+          "column": "specialization",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        },
+        {
+          "name": "qualification",
+          "type": "String",
+          "column": "qualification",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100)"
+        },
+        {
+          "name": "experience",
+          "type": "String",
+          "column": "experience",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 50)"
+        },
+        {
+          "name": "certificate",
+          "type": "String",
+          "column": "certificate",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 255)"
+        },
+        {
+          "name": "hireDate",
+          "type": "LocalDate",
+          "column": "hire_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "workStatus",
+          "type": "String",
+          "column": "work_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Builder.Default @Column(length = 50)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "b828789923a75ceec615770137570403ff21b2f29a5a1d96c2934f36d0dca916"
+    },
+    {
+      "service": "auth",
+      "className": "TeacherProfileEvent",
+      "table": "teacher_profile_events",
+      "file": "auth-service/src/main/java/com/example/auth/entity/TeacherProfileEvent.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "teacherId",
+          "type": "Long",
+          "column": "teacher_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "beforeState",
+          "type": "String",
+          "column": "before_state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"longtext\", nullable = false, updatable = false)"
+        },
+        {
+          "name": "afterState",
+          "type": "String",
+          "column": "after_state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"longtext\", nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500, updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "teacherVersion",
+          "type": "long",
+          "column": "teacher_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "d299c071f12a755ed5d4ed4e6236a0027cb7b104e1a4da432cf42ce50703504e"
+    },
+    {
+      "service": "academic",
+      "className": "ClassAdmissionEvent",
+      "table": "class_admission_events",
+      "file": "academic-service/src/main/java/com/example/academic/admission/ClassAdmissionEvent.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldPolicyId",
+          "type": "Long",
+          "column": "old_policy_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "newPolicyId",
+          "type": "Long",
+          "column": "new_policy_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false, length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "57eb03554c0d11d59bef6c001dc1b2bc165d3864b9182b473bd75ae4ec0dcaac"
+    },
+    {
+      "service": "academic",
+      "className": "CourseAdmissionPolicy",
+      "table": "course_admission_policies",
+      "file": "academic-service/src/main/java/com/example/academic/admission/CourseAdmissionPolicy.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "courseId",
+          "type": "Long",
+          "column": "course_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "mode",
+          "type": "Mode",
+          "column": "mode",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, updatable = false, length = 40)"
+        },
+        {
+          "name": "programId",
+          "type": "Long",
+          "column": "program_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "programCode",
+          "type": "String",
+          "column": "program_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false, length = 50)"
+        },
+        {
+          "name": "programName",
+          "type": "String",
+          "column": "program_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "outputLevelId",
+          "type": "Long",
+          "column": "output_level_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "outputLevelCode",
+          "type": "String",
+          "column": "output_level_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false, length = 50)"
+        },
+        {
+          "name": "outputLevelName",
+          "type": "String",
+          "column": "output_level_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "acceptedLevels",
+          "type": "List<LevelSnapshot>",
+          "column": "policy_id",
+          "relation": "ElementCollection",
+          "id": false,
+          "version": false,
+          "annotations": "@ElementCollection(fetch = FetchType.EAGER) @CollectionTable( name = \"course_admission_levels\", joinColumns = @JoinColumn(name = \"policy_id\"), uniqueConstraints = @UniqueConstraint( name = \"uk_admission_level\", columnNames = {\"policy_id\", \"level_id\"})) @OrderBy(\"levelId ASC\")"
+        },
+        {
+          "name": "confirmedBy",
+          "type": "Long",
+          "column": "confirmed_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "confirmedByName",
+          "type": "String",
+          "column": "confirmed_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "confirmedAt",
+          "type": "LocalDateTime",
+          "column": "confirmed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false, length = 500)"
+        }
+      ],
+      "collections": [
+        "course_admission_levels"
+      ],
+      "embedded": [
+        {
+          "name": "LevelSnapshot",
+          "fields": [
+            {
+              "name": "levelId",
+              "type": "Long",
+              "column": "level_id",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(name = \"level_id\", nullable = false)"
+            },
+            {
+              "name": "code",
+              "type": "String",
+              "column": "code",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false, length = 50)"
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "column": "name",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false)"
+            }
+          ]
+        }
+      ],
+      "sha256": "6e48a8f44876a5eea22f313dbf6fc123195ec350e60bf5772f71df9d7101c8ce"
+    },
+    {
+      "service": "academic",
+      "className": "Program",
+      "table": "programs",
+      "file": "academic-service/src/main/java/com/example/academic/admission/Program.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "column": "code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 50)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 255)"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "column": "active",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "fb45edff05d15c6bad4c28b6eaa97c5c624cadd62a366db0fe94111e9ec6348b"
+    },
+    {
+      "service": "academic",
+      "className": "ProgramLevel",
+      "table": "program_levels",
+      "file": "academic-service/src/main/java/com/example/academic/admission/ProgramLevel.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "program",
+          "type": "Program",
+          "column": "program_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"program_id\", nullable = false)"
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "column": "code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 50)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 255)"
+        },
+        {
+          "name": "rank",
+          "type": "int",
+          "column": "sort_order",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(name = \"sort_order\", nullable = false)"
+        },
+        {
+          "name": "active",
+          "type": "boolean",
+          "column": "active",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "4f81782195bce5668e7b0c7d1f781ab8973e4a8780024b68f98a32539009ef9f"
+    },
+    {
+      "service": "academic",
+      "className": "AssessmentEvent",
+      "table": "assessment_events",
+      "file": "academic-service/src/main/java/com/example/academic/assessment/AssessmentEvent.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "assessmentId",
+          "type": "Long",
+          "column": "assessment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "beforeState",
+          "type": "String",
+          "column": "before_state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"longtext\", nullable = false, updatable = false)"
+        },
+        {
+          "name": "afterState",
+          "type": "String",
+          "column": "after_state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"longtext\", nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500, updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "assessmentVersion",
+          "type": "long",
+          "column": "assessment_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "7c31e1c6877f3166b44e9bdcc37af9b3560d744a9ce98041f3f7fc1e5d5ec1d2"
+    },
+    {
+      "service": "academic",
+      "className": "PlacementAssessment",
+      "table": "placement_assessments",
+      "file": "academic-service/src/main/java/com/example/academic/assessment/PlacementAssessment.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "student",
+          "type": "Student",
+          "column": "student_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"student_id\", nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "programId",
+          "type": "Long",
+          "column": "program_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "programCode",
+          "type": "String",
+          "column": "program_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 50)"
+        },
+        {
+          "name": "programName",
+          "type": "String",
+          "column": "program_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "levelId",
+          "type": "Long",
+          "column": "level_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "levelCode",
+          "type": "String",
+          "column": "level_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 50)"
+        },
+        {
+          "name": "levelName",
+          "type": "String",
+          "column": "level_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "method",
+          "type": "Method",
+          "column": "method",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "assessedOn",
+          "type": "LocalDate",
+          "column": "assessed_on",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "assessorName",
+          "type": "String",
+          "column": "assessor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "column": "source",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 2000)"
+        },
+        {
+          "name": "score",
+          "type": "BigDecimal",
+          "column": "score",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 12, scale = 4)"
+        },
+        {
+          "name": "maxScore",
+          "type": "BigDecimal",
+          "column": "max_score",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 12, scale = 4)"
+        },
+        {
+          "name": "recordedBy",
+          "type": "Long",
+          "column": "recorded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "recordedByName",
+          "type": "String",
+          "column": "recorded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "confirmedBy",
+          "type": "Long",
+          "column": "confirmed_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "confirmedByName",
+          "type": "String",
+          "column": "confirmed_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "confirmedAt",
+          "type": "LocalDateTime",
+          "column": "confirmed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "supersedesId",
+          "type": "Long",
+          "column": "supersedes_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "supersededById",
+          "type": "Long",
+          "column": "superseded_by_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "updatedAt",
+          "type": "LocalDateTime",
+          "column": "updated_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "currentKey",
+          "type": "String",
+          "column": "current_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column( name = \"current_key\", insertable = false, updatable = false, length = 90, columnDefinition = \"varchar(90) generated always as (case when status='CONFIRMED' then\" + \" concat(student_id,':',program_id) else null end)\")"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "2da0e05364b5b7bee2df663ad8d2f771acf461ee68e48e17bd01dab3129f3c5f"
+    },
+    {
+      "service": "academic",
+      "className": "Attendance",
+      "table": "attendances",
+      "file": "academic-service/src/main/java/com/example/academic/attendance/Attendance.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "enrollment",
+          "type": "Enrollment",
+          "column": "enrollment_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"enrollment_id\", nullable = false)"
+        },
+        {
+          "name": "classSession",
+          "type": "com.example.academic.session.ClassSession",
+          "column": "class_session_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch=FetchType.LAZY) @JoinColumn(name=\"class_session_id\")"
+        },
+        {
+          "name": "sessionDate",
+          "type": "LocalDate",
+          "column": "session_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "hasPermission",
+          "type": "boolean",
+          "column": "has_permission",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "recordedBy",
+          "type": "Long",
+          "column": "recorded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "recordedByName",
+          "type": "String",
+          "column": "recorded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "2c758f1210be27fb548366fd02783eab4e3a7bedca8e5dab0d3ddaadb12b7222"
+    },
+    {
+      "service": "academic",
+      "className": "AttendanceChange",
+      "table": "attendance_changes",
+      "file": "academic-service/src/main/java/com/example/academic/attendance/AttendanceChange.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "session",
+          "type": "ClassSession",
+          "column": "session_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"session_id\", nullable = false)"
+        },
+        {
+          "name": "enrollmentId",
+          "type": "Long",
+          "column": "enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentName",
+          "type": "String",
+          "column": "student_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "oldStatus",
+          "type": "Attendance.Status",
+          "column": "old_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING)"
+        },
+        {
+          "name": "newStatus",
+          "type": "Attendance.Status",
+          "column": "new_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "oldPermission",
+          "type": "Boolean",
+          "column": "old_permission",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "newPermission",
+          "type": "boolean",
+          "column": "new_permission",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "previousRecordedBy",
+          "type": "Long",
+          "column": "previous_recorded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "previousRecordedByName",
+          "type": "String",
+          "column": "previous_recorded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "changedBy",
+          "type": "Long",
+          "column": "changed_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "changedByName",
+          "type": "String",
+          "column": "changed_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "changedAt",
+          "type": "LocalDateTime",
+          "column": "changed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "04ca88fd988b8febab6ce4a832ab3b65fe694bf748d8284dec3be55724dfa2b7"
+    },
+    {
+      "service": "academic",
+      "className": "Branch",
+      "table": "branches",
+      "file": "academic-service/src/main/java/com/example/academic/branch/Branch.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "code",
+          "type": "String",
+          "column": "code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "column": "address",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "de4506b6fc7a333666cec0163bcb293537fd3152c5fa3b9e6b43f5de634efa53"
+    },
+    {
+      "service": "academic",
+      "className": "Course",
+      "table": "courses",
+      "file": "academic-service/src/main/java/com/example/academic/course/Course.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "code",
+          "type": "String",
+          "column": "code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "column": "type",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "level",
+          "type": "String",
+          "column": "level",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "duration",
+          "type": "Integer",
+          "column": "duration",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "expectedMinutes",
+          "type": "Integer",
+          "column": "expected_minutes",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "durationRevision",
+          "type": "long",
+          "column": "duration_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "tuitionFee",
+          "type": "BigDecimal",
+          "column": "tuition_fee",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 15, scale = 2)"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "column": "content",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"text\")"
+        },
+        {
+          "name": "entryRequirement",
+          "type": "String",
+          "column": "entry_requirement",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"text\")"
+        },
+        {
+          "name": "maxStudents",
+          "type": "Integer",
+          "column": "max_students",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "scopeKey",
+          "type": "Long",
+          "column": "scope_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column( name = \"scope_key\", insertable = false, updatable = false, columnDefinition = \"bigint generated always as (coalesce(branch_id,0))\")"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "dde9bf73ac750901701a787a0fcbe5e66c13480fbff90f4a72e1a612ea139f48"
+    },
+    {
+      "service": "academic",
+      "className": "ClassDurationPlan",
+      "table": "class_duration_plans",
+      "file": "academic-service/src/main/java/com/example/academic/duration/ClassDurationPlan.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "expectedMinutes",
+          "type": "Integer",
+          "column": "expected_minutes",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "courseId",
+          "type": "Long",
+          "column": "course_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "courseRevision",
+          "type": "Long",
+          "column": "course_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "source",
+          "type": "Source",
+          "column": "source",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20, updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "6f765b7f1817dd21ea789ea2af781c4cf841bd9cecde84b51fedaa01069e8aaf"
+    },
+    {
+      "service": "academic",
+      "className": "CourseDurationPlan",
+      "table": "course_duration_plans",
+      "file": "academic-service/src/main/java/com/example/academic/duration/CourseDurationPlan.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "courseId",
+          "type": "Long",
+          "column": "course_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "expectedMinutes",
+          "type": "Integer",
+          "column": "expected_minutes",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "7c9df00662bb5571e8e9bc73e850b8a1234cf8c08caead8f63fc817beb127f07"
+    },
+    {
+      "service": "academic",
+      "className": "Enrollment",
+      "table": "enrollments",
+      "file": "academic-service/src/main/java/com/example/academic/enrollment/Enrollment.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "completionResultId",
+          "type": "Long",
+          "column": "completion_result_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "completionResultRevision",
+          "type": "Long",
+          "column": "completion_result_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reservedSince",
+          "type": "java.time.LocalDate",
+          "column": "reserved_since",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "expectedReturnDate",
+          "type": "java.time.LocalDate",
+          "column": "expected_return_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "billingEnrollmentId",
+          "type": "Long",
+          "column": "billing_enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "tuitionFee",
+          "type": "java.math.BigDecimal",
+          "column": "tuition_fee",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2)"
+        },
+        {
+          "name": "registeredBy",
+          "type": "Long",
+          "column": "registered_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "registeredByName",
+          "type": "String",
+          "column": "registered_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "tuitionDelivery",
+          "type": "TuitionDelivery",
+          "column": "tuition_delivery",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING)"
+        },
+        {
+          "name": "tuitionDeliveryError",
+          "type": "String",
+          "column": "tuition_delivery_error",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "student",
+          "type": "Student",
+          "column": "student_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"student_id\", nullable = false)"
+        },
+        {
+          "name": "schoolClass",
+          "type": "SchoolClass",
+          "column": "class_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"class_id\", nullable = false)"
+        },
+        {
+          "name": "enrolledAt",
+          "type": "LocalDateTime",
+          "column": "enrolled_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "studyStatus",
+          "type": "StudyStatus",
+          "column": "study_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "14bf2f0662810546646c5aa1b162c7c8ee8021576504d370e759c551d9cdf425"
+    },
+    {
+      "service": "academic",
+      "className": "EnrollmentPeriod",
+      "table": "enrollment_periods",
+      "file": "academic-service/src/main/java/com/example/academic/enrollment/EnrollmentPeriod.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "enrollment",
+          "type": "Enrollment",
+          "column": "enrollment_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"enrollment_id\", nullable = false)"
+        },
+        {
+          "name": "activeFrom",
+          "type": "LocalDate",
+          "column": "active_from",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "activeUntil",
+          "type": "LocalDate",
+          "column": "active_until",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "69f8fee56a3a8001373cdb035f3b188e3b2ad76d11e851ace769fc1f227b2247"
+    },
+    {
+      "service": "academic",
+      "className": "Lead",
+      "table": "leads",
+      "file": "academic-service/src/main/java/com/example/academic/lead/Lead.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "nextContactAt",
+          "type": "LocalDateTime",
+          "column": "next_contact_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "updatedAt",
+          "type": "LocalDateTime",
+          "column": "updated_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "fullName",
+          "type": "String",
+          "column": "full_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "column": "email",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "column": "source",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "interestedCourse",
+          "type": "Course",
+          "column": "interested_course_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"interested_course_id\")"
+        },
+        {
+          "name": "desiredLevel",
+          "type": "String",
+          "column": "desired_level",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "column": "note",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"longtext\")"
+        },
+        {
+          "name": "assignedTo",
+          "type": "Long",
+          "column": "assigned_to",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "assignedToName",
+          "type": "String",
+          "column": "assigned_to_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "convertedStudent",
+          "type": "Student",
+          "column": "converted_student_id",
+          "relation": "OneToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = \"converted_student_id\", unique = true)"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "lastContactedAt",
+          "type": "LocalDateTime",
+          "column": "last_contacted_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "84ebded394819e6d322c8e4a8c05e1dbdd95508792ab99d555e892af770ca18f"
+    },
+    {
+      "service": "academic",
+      "className": "LeadActivity",
+      "table": "lead_activities",
+      "file": "academic-service/src/main/java/com/example/academic/lead/LeadActivity.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "leadId",
+          "type": "Long",
+          "column": "lead_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "column": "note",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 2000, nullable = false, updatable = false)"
+        },
+        {
+          "name": "channel",
+          "type": "String",
+          "column": "channel",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "oldStatus",
+          "type": "String",
+          "column": "old_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "newStatus",
+          "type": "String",
+          "column": "new_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldAssigneeId",
+          "type": "Long",
+          "column": "old_assignee_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "oldAssigneeName",
+          "type": "String",
+          "column": "old_assignee_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "assigneeId",
+          "type": "Long",
+          "column": "assignee_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "assigneeName",
+          "type": "String",
+          "column": "assignee_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldNextContactAt",
+          "type": "LocalDateTime",
+          "column": "old_next_contact_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "nextContactAt",
+          "type": "LocalDateTime",
+          "column": "next_contact_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "4445333826cbbdc73aa886f1bbd9950d32ed17b2f25b24e3bc46647fad98fc7b"
+    },
+    {
+      "service": "academic",
+      "className": "LearningEvent",
+      "table": "learning_events",
+      "file": "academic-service/src/main/java/com/example/academic/lifecycle/LearningEvent.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "enrollmentId",
+          "type": "Long",
+          "column": "enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "relatedEnrollmentId",
+          "type": "Long",
+          "column": "related_enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "oldStatus",
+          "type": "String",
+          "column": "old_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "newStatus",
+          "type": "String",
+          "column": "new_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500)"
+        },
+        {
+          "name": "effectiveDate",
+          "type": "LocalDate",
+          "column": "effective_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "expectedReturnDate",
+          "type": "LocalDate",
+          "column": "expected_return_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "58b565360bccfc0c600db953cab7c66873f0a97384076b85d5458b1137783ec9"
+    },
+    {
+      "service": "academic",
+      "className": "EnrollmentAdmission",
+      "table": "enrollment_admissions",
+      "file": "academic-service/src/main/java/com/example/academic/placement/EnrollmentAdmission.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "enrollmentId",
+          "type": "Long",
+          "column": "enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "policyId",
+          "type": "Long",
+          "column": "policy_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "classRevision",
+          "type": "long",
+          "column": "class_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "assessmentId",
+          "type": "Long",
+          "column": "assessment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "assessmentVersion",
+          "type": "Long",
+          "column": "assessment_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "approvalId",
+          "type": "Long",
+          "column": "approval_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "reusedDecisionId",
+          "type": "Long",
+          "column": "reused_decision_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "intent",
+          "type": "PlacementDto.Intent",
+          "column": "intent",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20, updatable = false)"
+        },
+        {
+          "name": "academicStatus",
+          "type": "String",
+          "column": "academic_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 40, updatable = false)"
+        },
+        {
+          "name": "fingerprint",
+          "type": "String",
+          "column": "fingerprint",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 64, updatable = false)"
+        },
+        {
+          "name": "policySnapshot",
+          "type": "String",
+          "column": "policy_snapshot",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, columnDefinition = \"longtext\", updatable = false)"
+        },
+        {
+          "name": "assessmentSnapshot",
+          "type": "String",
+          "column": "assessment_snapshot",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, columnDefinition = \"longtext\", updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "acceptedAt",
+          "type": "LocalDateTime",
+          "column": "accepted_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "9f58c10cdcca0449c1f35f20fc8945e497fc63293820b3121fc380f9f19e7d0e"
+    },
+    {
+      "service": "academic",
+      "className": "PlacementException",
+      "table": "placement_exceptions",
+      "file": "academic-service/src/main/java/com/example/academic/placement/PlacementException.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "intent",
+          "type": "PlacementDto.Intent",
+          "column": "intent",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20, updatable = false)"
+        },
+        {
+          "name": "sourceEnrollmentId",
+          "type": "Long",
+          "column": "source_enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "sourceVersion",
+          "type": "Long",
+          "column": "source_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "policyId",
+          "type": "Long",
+          "column": "policy_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "classRevision",
+          "type": "long",
+          "column": "class_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "assessmentId",
+          "type": "Long",
+          "column": "assessment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "assessmentVersion",
+          "type": "Long",
+          "column": "assessment_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "contextSnapshot",
+          "type": "String",
+          "column": "context_snapshot",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false, columnDefinition = \"longtext\")"
+        },
+        {
+          "name": "fingerprint",
+          "type": "String",
+          "column": "fingerprint",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 64, updatable = false)"
+        },
+        {
+          "name": "academicStatus",
+          "type": "String",
+          "column": "academic_status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 40, updatable = false)"
+        },
+        {
+          "name": "requestedReason",
+          "type": "String",
+          "column": "requested_reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500, updatable = false)"
+        },
+        {
+          "name": "requestedBy",
+          "type": "Long",
+          "column": "requested_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "requestedByName",
+          "type": "String",
+          "column": "requested_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "requestedAt",
+          "type": "LocalDateTime",
+          "column": "requested_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "decisionReason",
+          "type": "String",
+          "column": "decision_reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        },
+        {
+          "name": "decidedBy",
+          "type": "Long",
+          "column": "decided_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "decidedByName",
+          "type": "String",
+          "column": "decided_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "decidedAt",
+          "type": "LocalDateTime",
+          "column": "decided_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "consumedEnrollmentId",
+          "type": "Long",
+          "column": "consumed_enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "consumedAt",
+          "type": "LocalDateTime",
+          "column": "consumed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "ba2cad907ca4831f16e73930a2fac0bdbcc29e1c45ecc20466d1ba27244db796"
+    },
+    {
+      "service": "academic",
+      "className": "ClassClosure",
+      "table": "class_closures",
+      "file": "academic-service/src/main/java/com/example/academic/results/ClassClosure.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "resultRevision",
+          "type": "long",
+          "column": "result_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "sourceRevision",
+          "type": "long",
+          "column": "source_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "closed",
+          "type": "boolean",
+          "column": "closed",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "changedAt",
+          "type": "LocalDateTime",
+          "column": "changed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "1a56a3d3cd9b06ac9e01583ad20988b19c00bcea52ea556b13bf4a60e9c92b02"
+    },
+    {
+      "service": "academic",
+      "className": "ClassClosureEvent",
+      "table": "class_closure_events",
+      "file": "academic-service/src/main/java/com/example/academic/results/ClassClosureEvent.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "requestId",
+          "type": "String",
+          "column": "request_id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @Column(length = 36)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "expectedRevision",
+          "type": "long",
+          "column": "expected_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "closed",
+          "type": "boolean",
+          "column": "closed",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "changedAt",
+          "type": "LocalDateTime",
+          "column": "changed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "478765cb4c2bf1e1f87d687994f239eb09447c6151fa890cc2f771f2f78a367a"
+    },
+    {
+      "service": "academic",
+      "className": "ResultBarrier",
+      "table": "class_result_barriers",
+      "file": "academic-service/src/main/java/com/example/academic/results/ResultBarrier.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "token",
+          "type": "String",
+          "column": "token",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 36)"
+        },
+        {
+          "name": "sourceRevision",
+          "type": "long",
+          "column": "source_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "resultRevision",
+          "type": "long",
+          "column": "result_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "confirmedCount",
+          "type": "long",
+          "column": "confirmed_count",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "0d0318969250646fdceeecfb1e7bc04bae3bda38455a38f6000a502c6272eaf9"
+    },
+    {
+      "service": "academic",
+      "className": "Room",
+      "table": "rooms",
+      "file": "academic-service/src/main/java/com/example/academic/room/Room.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "code",
+          "type": "String",
+          "column": "code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "location",
+          "type": "String",
+          "column": "location",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "capacity",
+          "type": "Integer",
+          "column": "capacity",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "equipment",
+          "type": "String",
+          "column": "equipment",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"text\")"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "2423d36f1019718e0a75fb4d9aa1c3b3aa3ad7acdc754bb1b0341d3d3629e25b"
+    },
+    {
+      "service": "academic",
+      "className": "Schedule",
+      "table": "schedules",
+      "file": "academic-service/src/main/java/com/example/academic/schedule/Schedule.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "schoolClass",
+          "type": "SchoolClass",
+          "column": "class_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"class_id\", nullable = false)"
+        },
+        {
+          "name": "dayOfWeek",
+          "type": "DayOfWeek",
+          "column": "day_of_week",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "startTime",
+          "type": "LocalTime",
+          "column": "start_time",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "endTime",
+          "type": "LocalTime",
+          "column": "end_time",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "9fba03b8968184c91316df36159d7692d6acfaffcae606565cdeccfe4dc4cce2"
+    },
+    {
+      "service": "academic",
+      "className": "SchoolClass",
+      "table": "school_classes",
+      "file": "academic-service/src/main/java/com/example/academic/schoolclass/SchoolClass.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "expectedMinutes",
+          "type": "Integer",
+          "column": "expected_minutes",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "durationRevision",
+          "type": "long",
+          "column": "duration_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "admissionPolicyId",
+          "type": "Long",
+          "column": "admission_policy_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "admissionRevision",
+          "type": "long",
+          "column": "admission_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "column": "code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "course",
+          "type": "Course",
+          "column": "course_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"course_id\", nullable = false)"
+        },
+        {
+          "name": "teacherId",
+          "type": "Long",
+          "column": "teacher_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "teacherName",
+          "type": "String",
+          "column": "teacher_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "room",
+          "type": "Room",
+          "column": "room_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"room_id\", nullable = false)"
+        },
+        {
+          "name": "startDate",
+          "type": "LocalDate",
+          "column": "start_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "endDate",
+          "type": "LocalDate",
+          "column": "end_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "sessionEndDate",
+          "type": "LocalDate",
+          "column": "session_end_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "sessionsInitialized",
+          "type": "boolean",
+          "column": "sessions_initialized",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "maxSize",
+          "type": "Integer",
+          "column": "max_size",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "currentSize",
+          "type": "Integer",
+          "column": "current_size",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "statusManuallySet",
+          "type": "boolean",
+          "column": "status_manually_set",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "schedules",
+          "type": "List<Schedule>",
+          "column": "schedules",
+          "relation": "OneToMany",
+          "id": false,
+          "version": false,
+          "annotations": "@OneToMany(mappedBy = \"schoolClass\", cascade = CascadeType.REMOVE, orphanRemoval = true)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "e1d717755ca45e31e3363f5060ed09439c2c61211a2c6a17d752821941cfad8e"
+    },
+    {
+      "service": "academic",
+      "className": "ClassSession",
+      "table": "class_sessions",
+      "file": "academic-service/src/main/java/com/example/academic/session/ClassSession.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "schoolClass",
+          "type": "SchoolClass",
+          "column": "class_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"class_id\", nullable = false)"
+        },
+        {
+          "name": "sessionDate",
+          "type": "LocalDate",
+          "column": "session_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "startTime",
+          "type": "LocalTime",
+          "column": "start_time",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "endTime",
+          "type": "LocalTime",
+          "column": "end_time",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "roomId",
+          "type": "Long",
+          "column": "room_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "roomName",
+          "type": "String",
+          "column": "room_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "plannedTeacherId",
+          "type": "Long",
+          "column": "planned_teacher_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "plannedTeacherName",
+          "type": "String",
+          "column": "planned_teacher_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "teacherId",
+          "type": "Long",
+          "column": "teacher_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "teacherName",
+          "type": "String",
+          "column": "teacher_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "kind",
+          "type": "Kind",
+          "column": "kind",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "sourceDate",
+          "type": "LocalDate",
+          "column": "source_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "sourceScheduleId",
+          "type": "Long",
+          "column": "source_schedule_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "makeupForId",
+          "type": "Long",
+          "column": "makeup_for_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "makeupSessionId",
+          "type": "Long",
+          "column": "makeup_session_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "customized",
+          "type": "boolean",
+          "column": "customized",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        },
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "updatedAt",
+          "type": "LocalDateTime",
+          "column": "updated_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "8a6aee7d98ee30e2115e3b95cd2df1afd29be812e57036aaff3ce51ffaba858a"
+    },
+    {
+      "service": "academic",
+      "className": "SessionEvent",
+      "table": "session_events",
+      "file": "academic-service/src/main/java/com/example/academic/session/SessionEvent.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "session",
+          "type": "ClassSession",
+          "column": "session_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"session_id\", nullable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 40)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        },
+        {
+          "name": "beforeState",
+          "type": "String",
+          "column": "before_state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"text\")"
+        },
+        {
+          "name": "afterState",
+          "type": "String",
+          "column": "after_state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(columnDefinition = \"text\")"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "3afbe9c78f37fd18a7ef83121e832147e77c54474ac13cf7485d8430dbdcb8a9"
+    },
+    {
+      "service": "academic",
+      "className": "Student",
+      "table": "students",
+      "file": "academic-service/src/main/java/com/example/academic/student/Student.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "studentCode",
+          "type": "String",
+          "column": "student_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(unique = true, length = 40, updatable = false)"
+        },
+        {
+          "name": "guardianName",
+          "type": "String",
+          "column": "guardian_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "guardianPhone",
+          "type": "String",
+          "column": "guardian_phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "fullName",
+          "type": "String",
+          "column": "full_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "dateOfBirth",
+          "type": "LocalDate",
+          "column": "date_of_birth",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "gender",
+          "type": "Gender",
+          "column": "gender",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING)"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "column": "email",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "column": "phone",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "column": "address",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "contactPerson",
+          "type": "String",
+          "column": "contact_person",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "currentLevel",
+          "type": "String",
+          "column": "current_level",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "registeredAt",
+          "type": "LocalDate",
+          "column": "registered_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "94576a07737ba9fb6bce15cda5633ec94eaede1ebd1dcfa075f80c2f73fc4872"
+    },
+    {
+      "service": "teaching",
+      "className": "Document",
+      "table": "documents",
+      "file": "teaching-service/src/main/java/com/example/teaching/document/Document.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "revision",
+          "type": "int",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "lastSubmittedAt",
+          "type": "LocalDateTime",
+          "column": "last_submitted_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "column": "title",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "courseId",
+          "type": "Long",
+          "column": "course_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "storageKey",
+          "type": "String",
+          "column": "storage_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "originalFilename",
+          "type": "String",
+          "column": "original_filename",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "fileSize",
+          "type": "Long",
+          "column": "file_size",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "column": "description",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 1000)"
+        },
+        {
+          "name": "uploadedBy",
+          "type": "Long",
+          "column": "uploaded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "uploadedByName",
+          "type": "String",
+          "column": "uploaded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "uploadedAt",
+          "type": "LocalDateTime",
+          "column": "uploaded_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "reviewedBy",
+          "type": "Long",
+          "column": "reviewed_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reviewedByName",
+          "type": "String",
+          "column": "reviewed_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reviewedAt",
+          "type": "LocalDateTime",
+          "column": "reviewed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "rejectReason",
+          "type": "String",
+          "column": "reject_reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        },
+        {
+          "name": "version",
+          "type": "Long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "2066bbdd1a5fe44b6ebb715fe16834306d7002ff060d769fc1fa6425841a6520"
+    },
+    {
+      "service": "teaching",
+      "className": "DocumentEvent",
+      "table": "document_events",
+      "file": "teaching-service/src/main/java/com/example/teaching/document/DocumentEvent.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "documentId",
+          "type": "Long",
+          "column": "document_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "int",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "column": "action",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "storageKey",
+          "type": "String",
+          "column": "storage_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "column": "title",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "column": "description",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false, length = 1000)"
+        },
+        {
+          "name": "filename",
+          "type": "String",
+          "column": "filename",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "fileSize",
+          "type": "Long",
+          "column": "file_size",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false, length = 500)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "occurredAt",
+          "type": "LocalDateTime",
+          "column": "occurred_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "a65db13c18bf6fba319829f7d3ed023e1a07dba5a42ec14f3adace4250dbf39f"
+    },
+    {
+      "service": "teaching",
+      "className": "EvaluationPolicy",
+      "table": "evaluation_policies",
+      "file": "teaching-service/src/main/java/com/example/teaching/evaluation/EvaluationPolicy.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "courseId",
+          "type": "Long",
+          "column": "course_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "passPercent",
+          "type": "BigDecimal",
+          "column": "pass_percent",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 5, scale = 2, updatable = false)"
+        },
+        {
+          "name": "minAttendancePercent",
+          "type": "BigDecimal",
+          "column": "min_attendance_percent",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 5, scale = 2, updatable = false)"
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "confirmedAt",
+          "type": "LocalDateTime",
+          "column": "confirmed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500, updatable = false)"
+        },
+        {
+          "name": "rules",
+          "type": "List<Rule>",
+          "column": "policy_id",
+          "relation": "ElementCollection",
+          "id": false,
+          "version": false,
+          "annotations": "@ElementCollection(fetch = FetchType.EAGER) @CollectionTable( name = \"evaluation_policy_exams\", joinColumns = @JoinColumn(name = \"policy_id\"), uniqueConstraints = @UniqueConstraint( name = \"uk_evaluation_policy_exam\", columnNames = {\"policy_id\", \"exam_id\"})) @OrderBy(\"examId ASC\")"
+        }
+      ],
+      "collections": [
+        "evaluation_policy_exams"
+      ],
+      "embedded": [
+        {
+          "name": "Rule",
+          "fields": [
+            {
+              "name": "examId",
+              "type": "Long",
+              "column": "exam_id",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false)"
+            },
+            {
+              "name": "examVersion",
+              "type": "long",
+              "column": "exam_version",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false)"
+            },
+            {
+              "name": "examName",
+              "type": "String",
+              "column": "exam_name",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false)"
+            },
+            {
+              "name": "examDate",
+              "type": "LocalDate",
+              "column": "exam_date",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false)"
+            },
+            {
+              "name": "required",
+              "type": "boolean",
+              "column": "required",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false)"
+            },
+            {
+              "name": "weight",
+              "type": "BigDecimal",
+              "column": "weight",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false, precision = 7, scale = 2)"
+            },
+            {
+              "name": "maxScore",
+              "type": "BigDecimal",
+              "column": "max_score",
+              "relation": null,
+              "id": false,
+              "version": false,
+              "annotations": "@Column(nullable = false, precision = 7, scale = 2)"
+            }
+          ]
+        }
+      ],
+      "sha256": "eba87aa793e96f40d6405e596113f5fef98abdb9846ce7c44075274d8559bfcc"
+    },
+    {
+      "service": "teaching",
+      "className": "EvaluationState",
+      "table": "evaluation_states",
+      "file": "teaching-service/src/main/java/com/example/teaching/evaluation/EvaluationState.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "sourceRevision",
+          "type": "long",
+          "column": "source_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "e657e64baede5ed10fdf8d38ac54527ec5b8c02e42d8252284b6c07f246899ee"
+    },
+    {
+      "service": "teaching",
+      "className": "Exam",
+      "table": "exams",
+      "file": "teaching-service/src/main/java/com/example/teaching/exam/Exam.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "column": "name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "examType",
+          "type": "String",
+          "column": "exam_type",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "examDate",
+          "type": "LocalDate",
+          "column": "exam_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "weight",
+          "type": "BigDecimal",
+          "column": "weight",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 7, scale = 2)"
+        },
+        {
+          "name": "maxScore",
+          "type": "BigDecimal",
+          "column": "max_score",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 7, scale = 2)"
+        },
+        {
+          "name": "rosterFrozenAt",
+          "type": "LocalDateTime",
+          "column": "roster_frozen_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "rosterFrozenBy",
+          "type": "Long",
+          "column": "roster_frozen_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "rosterFrozenByName",
+          "type": "String",
+          "column": "roster_frozen_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "createdBy",
+          "type": "Long",
+          "column": "created_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "createdByName",
+          "type": "String",
+          "column": "created_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "e7ddbc585e7d441c8bf7c11edab0f88bd674e89ee543f0965d5795a761994a1b"
+    },
+    {
+      "service": "teaching",
+      "className": "ExamCandidate",
+      "table": "exam_candidates",
+      "file": "teaching-service/src/main/java/com/example/teaching/exam/ExamCandidate.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "enrollmentId",
+          "type": "Long",
+          "column": "enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "examId",
+          "type": "Long",
+          "column": "exam_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentName",
+          "type": "String",
+          "column": "student_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "column": "source",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "8d673fd055c1d705328f795a7a06e26ad1eb9454581b644de61fcd6a37f10069"
+    },
+    {
+      "service": "teaching",
+      "className": "Grade",
+      "table": "grades",
+      "file": "teaching-service/src/main/java/com/example/teaching/grade/Grade.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "exam",
+          "type": "Exam",
+          "column": "exam_id",
+          "relation": "ManyToOne",
+          "id": false,
+          "version": false,
+          "annotations": "@ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = \"exam_id\", nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentName",
+          "type": "String",
+          "column": "student_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "score",
+          "type": "BigDecimal",
+          "column": "score",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 7, scale = 2)"
+        },
+        {
+          "name": "enteredBy",
+          "type": "Long",
+          "column": "entered_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "enteredByName",
+          "type": "String",
+          "column": "entered_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "enteredAt",
+          "type": "LocalDateTime",
+          "column": "entered_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "lastModifiedBy",
+          "type": "Long",
+          "column": "last_modified_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "lastModifiedByName",
+          "type": "String",
+          "column": "last_modified_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "lastModifiedAt",
+          "type": "LocalDateTime",
+          "column": "last_modified_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "modificationReason",
+          "type": "String",
+          "column": "modification_reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        },
+        {
+          "name": "comment",
+          "type": "String",
+          "column": "comment",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 1000)"
+        },
+        {
+          "name": "version",
+          "type": "Long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "c26cf22e02aab95f477f23ac01011a3bbc115dea61cc9cd89de4a10f61c4fee5"
+    },
+    {
+      "service": "teaching",
+      "className": "GradeChange",
+      "table": "grade_changes",
+      "file": "teaching-service/src/main/java/com/example/teaching/grade/GradeChange.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "gradeId",
+          "type": "Long",
+          "column": "grade_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "oldScore",
+          "type": "BigDecimal",
+          "column": "old_score",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 7, scale = 2)"
+        },
+        {
+          "name": "newScore",
+          "type": "BigDecimal",
+          "column": "new_score",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 7, scale = 2)"
+        },
+        {
+          "name": "modifiedBy",
+          "type": "Long",
+          "column": "modified_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "modifiedByName",
+          "type": "String",
+          "column": "modified_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "modifiedAt",
+          "type": "LocalDateTime",
+          "column": "modified_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "908b92b5b283647c7b040127be93717d9aa01affcb46236a99a2f79a3907d483"
+    },
+    {
+      "service": "teaching",
+      "className": "FinalResult",
+      "table": "final_results",
+      "file": "teaching-service/src/main/java/com/example/teaching/results/FinalResult.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "id",
+          "type": "Long",
+          "column": "id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @GeneratedValue(strategy = GenerationType.IDENTITY)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "enrollmentId",
+          "type": "Long",
+          "column": "enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "revision",
+          "type": "long",
+          "column": "revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "policyRevision",
+          "type": "long",
+          "column": "policy_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "academicSourceRevision",
+          "type": "long",
+          "column": "academic_source_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "teachingSourceRevision",
+          "type": "long",
+          "column": "teaching_source_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "requestId",
+          "type": "String",
+          "column": "request_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 36)"
+        },
+        {
+          "name": "fingerprint",
+          "type": "String",
+          "column": "fingerprint",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 64)"
+        },
+        {
+          "name": "outcome",
+          "type": "String",
+          "column": "outcome",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "state",
+          "type": "String",
+          "column": "state",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 20)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500)"
+        },
+        {
+          "name": "confirmedBy",
+          "type": "Long",
+          "column": "confirmed_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "confirmedByName",
+          "type": "String",
+          "column": "confirmed_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "confirmedAt",
+          "type": "LocalDateTime",
+          "column": "confirmed_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "snapshot",
+          "type": "String",
+          "column": "snapshot",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Lob @Column(columnDefinition = \"LONGTEXT\", nullable = false)"
+        },
+        {
+          "name": "reopenedBy",
+          "type": "Long",
+          "column": "reopened_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reopenedByName",
+          "type": "String",
+          "column": "reopened_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reopenedAt",
+          "type": "LocalDateTime",
+          "column": "reopened_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reopenReason",
+          "type": "String",
+          "column": "reopen_reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "4ac07aeccf5c31fd21e8c846ee802eb937caa341526e9beeaef90cefe862ed59"
+    },
+    {
+      "service": "teaching",
+      "className": "ResultBarrier",
+      "table": "class_result_barriers",
+      "file": "teaching-service/src/main/java/com/example/teaching/results/ResultBarrier.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "token",
+          "type": "String",
+          "column": "token",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 36)"
+        },
+        {
+          "name": "sourceRevision",
+          "type": "long",
+          "column": "source_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "resultRevision",
+          "type": "long",
+          "column": "result_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "confirmedCount",
+          "type": "long",
+          "column": "confirmed_count",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "c702693005bbdbd72e9e9159fd37e2cce63d41aa089c34dd28c099a9261d953e"
+    },
+    {
+      "service": "teaching",
+      "className": "ResultReopen",
+      "table": "result_reopens",
+      "file": "teaching-service/src/main/java/com/example/teaching/results/ResultReopen.java",
+      "extends": null,
+      "fields": [
+        {
+          "name": "requestId",
+          "type": "String",
+          "column": "request_id",
+          "relation": null,
+          "id": true,
+          "version": false,
+          "annotations": "@Id @Column(length = 36)"
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "previousRevision",
+          "type": "long",
+          "column": "previous_revision",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorId",
+          "type": "Long",
+          "column": "actor_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "actorName",
+          "type": "String",
+          "column": "actor_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "fdcf00f2b31c44a402e3333b7e2f282e34bf64ca33709ee2271f4b186d48d464"
+    },
+    {
+      "service": "finance",
+      "className": "PaymentCorrection",
+      "table": "payment_corrections",
+      "file": "finance-service/src/main/java/com/example/finance/ledger/PaymentCorrection.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "paymentId",
+          "type": "Long",
+          "column": "payment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "tuitionId",
+          "type": "Long",
+          "column": "tuition_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "type",
+          "type": "Type",
+          "column": "type",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "amount",
+          "type": "BigDecimal",
+          "column": "amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 15, scale = 2, updatable = false)"
+        },
+        {
+          "name": "paymentMethod",
+          "type": "Payment.PaymentMethod",
+          "column": "payment_method",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(updatable = false)"
+        },
+        {
+          "name": "referenceCode",
+          "type": "String",
+          "column": "reference_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500, updatable = false)"
+        },
+        {
+          "name": "requestKey",
+          "type": "String",
+          "column": "request_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 100, updatable = false)"
+        },
+        {
+          "name": "expectedVersion",
+          "type": "Long",
+          "column": "expected_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "recordedBy",
+          "type": "Long",
+          "column": "recorded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "recordedByName",
+          "type": "String",
+          "column": "recorded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "ff099dca45dbe2db9024bcd847902fe3e99ae88e161680330bb20e1d114ca351"
+    },
+    {
+      "service": "finance",
+      "className": "TuitionAdjustment",
+      "table": "tuition_adjustments",
+      "file": "finance-service/src/main/java/com/example/finance/ledger/TuitionAdjustment.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "tuitionId",
+          "type": "Long",
+          "column": "tuition_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldOriginal",
+          "type": "BigDecimal",
+          "column": "old_original",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldDiscount",
+          "type": "BigDecimal",
+          "column": "old_discount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldAmount",
+          "type": "BigDecimal",
+          "column": "old_amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "oldDueDate",
+          "type": "LocalDate",
+          "column": "old_due_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "newOriginal",
+          "type": "BigDecimal",
+          "column": "new_original",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "newDiscount",
+          "type": "BigDecimal",
+          "column": "new_discount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "newAmount",
+          "type": "BigDecimal",
+          "column": "new_amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "newDueDate",
+          "type": "LocalDate",
+          "column": "new_due_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "paidAtChange",
+          "type": "BigDecimal",
+          "column": "paid_at_change",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2, nullable = false, updatable = false)"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "column": "reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 500, updatable = false)"
+        },
+        {
+          "name": "requestKey",
+          "type": "String",
+          "column": "request_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 100, updatable = false)"
+        },
+        {
+          "name": "expectedVersion",
+          "type": "Long",
+          "column": "expected_version",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "recordedBy",
+          "type": "Long",
+          "column": "recorded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "recordedByName",
+          "type": "String",
+          "column": "recorded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "createdAt",
+          "type": "LocalDateTime",
+          "column": "created_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "621e90bc7388da368aa5e05774265a00acd06ab1c8cd65afd7022b131ddd374d"
+    },
+    {
+      "service": "finance",
+      "className": "Payment",
+      "table": "payments",
+      "file": "finance-service/src/main/java/com/example/finance/payment/Payment.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "tuitionId",
+          "type": "Long",
+          "column": "tuition_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "amount",
+          "type": "BigDecimal",
+          "column": "amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 15, scale = 2, updatable = false)"
+        },
+        {
+          "name": "paymentMethod",
+          "type": "PaymentMethod",
+          "column": "payment_method",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "referenceCode",
+          "type": "String",
+          "column": "reference_code",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100, updatable = false)"
+        },
+        {
+          "name": "receiptNo",
+          "type": "String",
+          "column": "receipt_no",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "requestKey",
+          "type": "String",
+          "column": "request_key",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 100, updatable = false)"
+        },
+        {
+          "name": "paidAt",
+          "type": "LocalDateTime",
+          "column": "paid_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, updatable = false)"
+        },
+        {
+          "name": "recordedBy",
+          "type": "Long",
+          "column": "recorded_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "recordedByName",
+          "type": "String",
+          "column": "recorded_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(updatable = false)"
+        },
+        {
+          "name": "note",
+          "type": "String",
+          "column": "note",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500, updatable = false)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "e97dca8a3ecdc078c070ca0e8519e798807be6fdd189bda06f5bf952d8608abc"
+    },
+    {
+      "service": "finance",
+      "className": "Tuition",
+      "table": "tuition",
+      "file": "finance-service/src/main/java/com/example/finance/tuition/Tuition.java",
+      "extends": "BaseEntity",
+      "fields": [
+        {
+          "name": "version",
+          "type": "long",
+          "column": "version",
+          "relation": null,
+          "id": false,
+          "version": true,
+          "annotations": "@Version"
+        },
+        {
+          "name": "enrollmentId",
+          "type": "Long",
+          "column": "enrollment_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "studentId",
+          "type": "Long",
+          "column": "student_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "studentName",
+          "type": "String",
+          "column": "student_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "classId",
+          "type": "Long",
+          "column": "class_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "className",
+          "type": "String",
+          "column": "class_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "courseId",
+          "type": "Long",
+          "column": "course_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "courseName",
+          "type": "String",
+          "column": "course_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "originalAmount",
+          "type": "BigDecimal",
+          "column": "original_amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2)"
+        },
+        {
+          "name": "discountAmount",
+          "type": "BigDecimal",
+          "column": "discount_amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2)"
+        },
+        {
+          "name": "amount",
+          "type": "BigDecimal",
+          "column": "amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, precision = 15, scale = 2)"
+        },
+        {
+          "name": "paidAmount",
+          "type": "BigDecimal",
+          "column": "paid_amount",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(precision = 15, scale = 2)"
+        },
+        {
+          "name": "currency",
+          "type": "String",
+          "column": "currency",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false, length = 10)"
+        },
+        {
+          "name": "dueDate",
+          "type": "LocalDate",
+          "column": "due_date",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "status",
+          "type": "Status",
+          "column": "status",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Enumerated(EnumType.STRING) @Column(nullable = false)"
+        },
+        {
+          "name": "branchId",
+          "type": "Long",
+          "column": "branch_id",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(nullable = false)"
+        },
+        {
+          "name": "adjustedBy",
+          "type": "Long",
+          "column": "adjusted_by",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "adjustedByName",
+          "type": "String",
+          "column": "adjusted_by_name",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "adjustedAt",
+          "type": "LocalDateTime",
+          "column": "adjusted_at",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": ""
+        },
+        {
+          "name": "adjustmentReason",
+          "type": "String",
+          "column": "adjustment_reason",
+          "relation": null,
+          "id": false,
+          "version": false,
+          "annotations": "@Column(length = 500)"
+        }
+      ],
+      "collections": [],
+      "embedded": [],
+      "sha256": "513614b688072dab599a6067630333867df7439eb85d678f2789c8eed05f7fea"
+    }
+  ],
+  "owners": {
+    "accounts": "auth",
+    "account_branches": "auth",
+    "account_branch_events": "auth",
+    "account_security_events": "auth",
+    "admins": "auth",
+    "staffs": "auth",
+    "super_admins": "auth",
+    "teachers": "auth",
+    "teacher_profile_events": "auth",
+    "class_admission_events": "academic",
+    "course_admission_policies": "academic",
+    "course_admission_levels": "academic",
+    "programs": "academic",
+    "program_levels": "academic",
+    "assessment_events": "academic",
+    "placement_assessments": "academic",
+    "attendances": "academic",
+    "attendance_changes": "academic",
+    "branches": "academic",
+    "courses": "academic",
+    "class_duration_plans": "academic",
+    "course_duration_plans": "academic",
+    "enrollments": "academic",
+    "enrollment_periods": "academic",
+    "leads": "academic",
+    "lead_activities": "academic",
+    "learning_events": "academic",
+    "enrollment_admissions": "academic",
+    "placement_exceptions": "academic",
+    "class_closures": "academic",
+    "class_closure_events": "academic",
+    "class_result_barriers": "shared-coordination",
+    "rooms": "academic",
+    "schedules": "academic",
+    "school_classes": "academic",
+    "class_sessions": "academic",
+    "session_events": "academic",
+    "students": "academic",
+    "documents": "teaching",
+    "document_events": "teaching",
+    "evaluation_policies": "teaching",
+    "evaluation_policy_exams": "teaching",
+    "evaluation_states": "teaching",
+    "exams": "teaching",
+    "exam_candidates": "teaching",
+    "grades": "teaching",
+    "grade_changes": "teaching",
+    "final_results": "teaching",
+    "result_reopens": "teaching",
+    "payment_corrections": "finance",
+    "tuition_adjustments": "finance",
+    "payments": "finance",
+    "tuition": "finance"
+  },
+  "groups": {
+    "account_branch_events": "auth",
+    "account_branches": "auth",
+    "account_security_events": "auth",
+    "accounts": "auth",
+    "admins": "auth",
+    "assessment_events": "academic-placement",
+    "attendance_changes": "academic-learning",
+    "attendances": "academic-learning",
+    "branches": "academic-catalog",
+    "class_admission_events": "academic-catalog",
+    "class_closure_events": "academic-learning",
+    "class_closures": "academic-learning",
+    "class_duration_plans": "academic-catalog",
+    "class_result_barriers": "shared-coordination",
+    "class_sessions": "academic-learning",
+    "course_admission_levels": "academic-catalog",
+    "course_admission_policies": "academic-catalog",
+    "course_duration_plans": "academic-catalog",
+    "courses": "academic-catalog",
+    "document_events": "teaching",
+    "documents": "teaching",
+    "enrollment_admissions": "academic-placement",
+    "enrollment_periods": "academic-learning",
+    "enrollments": "academic-learning",
+    "evaluation_policies": "teaching",
+    "evaluation_policy_exams": "teaching",
+    "evaluation_states": "teaching",
+    "exam_candidates": "teaching",
+    "exams": "teaching",
+    "final_results": "teaching",
+    "grade_changes": "teaching",
+    "grades": "teaching",
+    "lead_activities": "academic-learning",
+    "leads": "academic-learning",
+    "learning_events": "academic-learning",
+    "payment_corrections": "finance",
+    "payments": "finance",
+    "placement_assessments": "academic-placement",
+    "placement_exceptions": "academic-placement",
+    "program_levels": "academic-catalog",
+    "programs": "academic-catalog",
+    "result_reopens": "teaching",
+    "rooms": "academic-catalog",
+    "schedules": "academic-learning",
+    "school_classes": "academic-learning",
+    "session_events": "academic-learning",
+    "staffs": "auth",
+    "students": "academic-learning",
+    "super_admins": "auth",
+    "teacher_profile_events": "auth",
+    "teachers": "auth",
+    "tuition": "finance",
+    "tuition_adjustments": "finance"
+  }
+}

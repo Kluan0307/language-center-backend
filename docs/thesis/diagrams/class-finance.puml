@@ -1,0 +1,92 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram finance — entity/domain hiện tại
+package "finance" {
+class "PaymentCorrection" as finance_PaymentCorrection <<Entity: payment_corrections>> {
+ paymentId : Long
+ tuitionId : Long
+ branchId : Long
+ type : Type
+ amount : BigDecimal
+ paymentMethod : Payment.PaymentMethod
+ referenceCode : String
+ reason : String
+ requestKey : String
+ expectedVersion : Long
+ recordedBy : Long
+ recordedByName : String
+ createdAt : LocalDateTime
+}
+abstract class "finance.BaseEntity" as finance_BaseEntity <<MappedSuperclass>>
+finance_BaseEntity : id : Long
+finance_BaseEntity <|-- finance_PaymentCorrection
+class "TuitionAdjustment" as finance_TuitionAdjustment <<Entity: tuition_adjustments>> {
+ tuitionId : Long
+ branchId : Long
+ oldOriginal : BigDecimal
+ oldDiscount : BigDecimal
+ oldAmount : BigDecimal
+ oldDueDate : LocalDate
+ newOriginal : BigDecimal
+ newDiscount : BigDecimal
+ newAmount : BigDecimal
+ newDueDate : LocalDate
+ paidAtChange : BigDecimal
+ reason : String
+ requestKey : String
+ expectedVersion : Long
+ recordedBy : Long
+ recordedByName : String
+ createdAt : LocalDateTime
+}
+finance_BaseEntity <|-- finance_TuitionAdjustment
+class "Payment" as finance_Payment <<Entity: payments>> {
+ tuitionId : Long
+ amount : BigDecimal
+ paymentMethod : PaymentMethod
+ referenceCode : String
+ receiptNo : String
+ requestKey : String
+ paidAt : LocalDateTime
+ status : Status
+ branchId : Long
+ recordedBy : Long
+ recordedByName : String
+ note : String
+}
+finance_BaseEntity <|-- finance_Payment
+class "Tuition" as finance_Tuition <<Entity: tuition>> {
+ version : long
+ enrollmentId : Long
+ studentId : Long
+ studentName : String
+ classId : Long
+ className : String
+ courseId : Long
+ courseName : String
+ originalAmount : BigDecimal
+ discountAmount : BigDecimal
+ amount : BigDecimal
+ paidAmount : BigDecimal
+ currency : String
+ dueDate : LocalDate
+ status : Status
+ branchId : Long
+ adjustedBy : Long
+ adjustedByName : String
+ adjustedAt : LocalDateTime
+ adjustmentReason : String
+}
+finance_BaseEntity <|-- finance_Tuition
+}
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

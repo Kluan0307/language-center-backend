@@ -14,7 +14,8 @@ public class StatsController {
   @GetMapping("/overview")
   public StatsDto.Response overview(
       @RequestParam(required = false) Long branchId,
-      @RequestParam(defaultValue = "false") boolean groupByBranch) {
-    return service.overview(branchId, groupByBranch);
+      @RequestParam(defaultValue = "false") boolean groupByBranch,
+      @RequestParam(defaultValue = "false") boolean allAssigned) {
+    return service.overview(branchId, groupByBranch, allAssigned);
   }
 }

@@ -16,8 +16,15 @@ public final class AttendanceDto {
 
   public record Bulk(
       @NotNull @Positive Long classId,
-      @NotNull @PastOrPresent LocalDate sessionDate,
-      @NotNull List<@NotNull @Valid Item> records) {}
+      @NotNull LocalDate sessionDate,
+      @NotNull List<@NotNull @Valid Item> records,
+      @Positive Long sessionId,
+      @PositiveOrZero Long version,
+      @Size(max = 500) String reason) {
+    public Bulk(Long classId, LocalDate sessionDate, List<Item> records) {
+      this(classId, sessionDate, records, null, null, null);
+    }
+  }
 
   public record Row(
       Long enrollmentId,
@@ -30,7 +37,46 @@ public final class AttendanceDto {
       Long recordedBy,
       String recordedByName) {}
 
-  public record Sheet(Long classId, String className, LocalDate sessionDate, List<Row> records) {}
+  public record Sheet(
+      Long classId,
+      String className,
+      LocalDate sessionDate,
+      List<Row> records,
+      Long sessionId,
+      long version,
+      com.example.academic.session.ClassSession.Status sessionStatus,
+      java.time.LocalTime startTime,
+      java.time.LocalTime endTime,
+      String teacherName,
+      boolean canEdit,
+      boolean correctionRequired,
+      boolean canViewClassHistory) {}
+
+  public record Change(
+      Long id,
+      String studentName,
+      Attendance.Status oldStatus,
+      Attendance.Status newStatus,
+      Boolean oldPermission,
+      boolean newPermission,
+      String previousRecordedByName,
+      String changedByName,
+      java.time.LocalDateTime changedAt,
+      String reason) {
+    public static Change of(AttendanceChange a) {
+      return new Change(
+          a.getId(),
+          a.getStudentName(),
+          a.getOldStatus(),
+          a.getNewStatus(),
+          a.getOldPermission(),
+          a.isNewPermission(),
+          a.getPreviousRecordedByName(),
+          a.getChangedByName(),
+          a.getChangedAt(),
+          a.getReason());
+    }
+  }
 
   public record History(LocalDate sessionDate, long present, long absent, long late) {}
 

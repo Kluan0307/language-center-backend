@@ -1,0 +1,40 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Ngoại lệ phân lớp — hoạt động
+start
+:POST /api/v1/academic/enrollments/preview\n{studentId,classId,intent,sourceEnrollmentId?};
+if (Có blockers về chi nhánh/sĩ số/lịch/trạng thái?) then (Có)
+ :Không cho ngoại lệ vượt ràng buộc cứng;
+ stop
+endif
+if (eligible?) then (Có)
+ :Ghi danh thông thường;
+ stop
+endif
+:Staff/Admin đề nghị {context,fingerprint,reason};\nkhóa context và kiểm lại fingerprint;
+:200 REQUESTED;
+:Admin/SA quyết định {version,approve,reason};\nkiểm scope/phiên bản và căn cứ;
+if (Căn cứ đã đổi?) then (Có)
+ :200 INVALIDATED;
+ stop
+endif
+if (approve?) then (Không)
+ :200 REJECTED;
+ stop
+endif
+:200 APPROVED; không giữ chỗ;
+:Ghi danh kèm approvalId; khóa học vụ;
+if (Đã CONSUMED và đúng context?) then (Có)
+ :200 trả enrollment cũ, retry an toàn;
+ stop
+endif
+if (APPROVED + fingerprint khớp + không blockers?) then (Có)
+ :Barrier mutable; tạo enrollment;\nlưu admission và consume trong cùng Tx;
+ :200 enrollment mới;
+else (Không)
+ :409; tải lại preview và quyết định;
+endif
+stop
+@enduml

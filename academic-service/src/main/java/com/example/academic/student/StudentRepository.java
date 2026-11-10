@@ -7,8 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface StudentRepository
     extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
-  boolean existsByPhoneAndBranchIdAndIdNot(String phone, Long branchId, Long id);
-
   @Lock(LockModeType.PESSIMISTIC_WRITE)
   @Query("select s from Student s where s.id=:id")
   Optional<Student> lock(@Param("id") Long id);

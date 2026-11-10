@@ -1,9 +1,8 @@
 package com.example.auth.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
+import lombok.*;
 
 @Entity
 @Table(name = "teachers")
@@ -13,38 +12,40 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Teacher {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Version private long version;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id", nullable = false, unique = true)
-    private Account account;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String fullName;
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "account_id", nullable = false, unique = true)
+  private Account account;
 
-    @Column(length = 100)
-    private String email;
+  @Column(nullable = false, length = 100)
+  private String fullName;
 
-    @Column(length = 15)
-    private String phone;
+  @Column(length = 100)
+  private String email;
 
-    @Column(length = 100)
-    private String specialization;
+  @Column(length = 15)
+  private String phone;
 
-    @Column(length = 100)
-    private String qualification;
+  @Column(length = 100)
+  private String specialization;
 
-    @Column(length = 50)
-    private String experience;
+  @Column(length = 100)
+  private String qualification;
 
-    @Column(length = 255)
-    private String certificate;
+  @Column(length = 50)
+  private String experience;
 
-    private LocalDate hireDate;
+  @Column(length = 255)
+  private String certificate;
 
-    @Builder.Default
-    @Column(length = 50)
-    private String workStatus = "ACTIVE";
+  private LocalDate hireDate;
+
+  @Builder.Default
+  @Column(length = 50)
+  private String workStatus = "ACTIVE";
 }

@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginResponse {
-    private String token;
-    private Long accountId;
-    private Long profileId;
-    private String username;
-    private String role;
-    private String fullName;
-    private Long branchId;
+  private boolean mustChangePassword;
+  @lombok.ToString.Exclude private String token;
+  private Long accountId;
+  private Long profileId;
+  private String username;
+  private String role;
+  private String fullName;
+  private Long branchId;
+  private java.util.List<Long> branchIds;
 }

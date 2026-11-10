@@ -21,6 +21,8 @@ public class ScheduleService {
   private final BranchService branches;
   private final BranchScope scope;
   private final RoomService rooms;
+  private final TeacherDirectory teachers;
+  private final com.example.academic.session.SessionPlanner sessionPlanner;
 
   private Schedule require(Long id) {
     Schedule s = repository.findById(id).orElseThrow(ApiException::missing);
@@ -63,18 +65,28 @@ public class ScheduleService {
       throw ApiException.bad("Không thể đổi lớp của lịch học");
     branches.lock(c.getBranchId());
     c = classes.lock(c.getId());
-    conflicts.enforce(c, r.dayOfWeek(), r.startTime(), r.endTime(), id, false);
+    if(c.getStatus()==SchoolClass.Status.FINISHED)throw ApiException.conflict("Lớp đã đóng; mở lại trước khi sửa lịch mẫu");
+    sessionPlanner.lockClassTeachers(c,c.getTeacherId());
+    teachers.require(c.getTeacherId(), c.getBranchId());
+    for (Schedule existing : repository.findBySchoolClassId(c.getId()))
+      if (!Objects.equals(existing.getId(), id) && existing.getDayOfWeek() == r.dayOfWeek())
+        throw ApiException.conflict("Only one session per class/day is supported");
+    if(!r.endTime().isAfter(r.startTime()))throw ApiException.bad("Giờ kết thúc phải sau giờ bắt đầu");
     s.setSchoolClass(c);
     s.setDayOfWeek(r.dayOfWeek());
     s.setStartTime(r.startTime());
     s.setEndTime(r.endTime());
-    return ScheduleDto.of(repository.save(s));
+    repository.saveAndFlush(s);
+    sessionPlanner.sync(c,false);
+    return ScheduleDto.of(s);
   }
 
   public void delete(Long id) {
     Schedule s = require(id);
     branches.lock(s.getSchoolClass().getBranchId());
-    repository.delete(s);
+    var c=classes.lock(s.getSchoolClass().getId());
+    repository.delete(s);repository.flush();
+    sessionPlanner.sync(c,false);
   }
 
   @Transactional(readOnly = true)
@@ -91,6 +103,7 @@ public class ScheduleService {
       c = new SchoolClass();
       c.setBranchId(scope.create(r.branchId()));
       branches.require(c.getBranchId());
+      teachers.require(r.teacherId(), c.getBranchId());
       c.setTeacherId(r.teacherId());
       c.setRoom(rooms.require(r.roomId()));
       c.setStartDate(r.startDate());
@@ -104,7 +117,6 @@ public class ScheduleService {
       if (!Objects.equals(s.getSchoolClass().getId(), c.getId()))
         throw ApiException.bad("Lịch loại trừ không thuộc lớp");
     }
-    return conflicts.conflicts(
-        c, r.dayOfWeek(), r.startTime(), r.endTime(), r.excludeScheduleId(), false);
+    return sessionPlanner.previewWeekly(c,r.dayOfWeek(),r.startTime(),r.endTime(),r.excludeScheduleId());
   }
 }

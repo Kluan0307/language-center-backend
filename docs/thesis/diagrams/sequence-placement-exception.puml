@@ -1,0 +1,50 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Ngoại lệ phân lớp — đúng context và fingerprint
+actor "Staff" as S
+actor "Admin/SA" as M
+participant "Frontend/Gateway" as F
+participant "Academic PlacementService" as A
+database "MySQL" as DB
+autonumber
+S -> F: Xem trước học viên/lớp
+F -> A: POST /api/v1/academic/enrollments/preview\n{studentId,classId,intent:ENROLL}
+A --> F: eligible, blockers, canRequestException, fingerprint
+alt Chỉ thiếu điều kiện học thuật và không có blockers
+ S -> F: Đề nghị kèm lý do
+ F -> A: POST /api/v1/academic/placement-exceptions\n{context,fingerprint,reason}
+ group Tx request
+  A -> DB: Khóa branch/student/class/course; tính lại preview
+  A -> DB: Fingerprint khớp -> INSERT placement_exceptions REQUESTED
+ end
+ A --> F: 200 ExceptionView
+ M -> F: Quyết định
+ F -> A: POST /api/v1/academic/placement-exceptions/{id}/decision\n{version,approve,reason}
+ group Tx decision
+  A -> DB: Kiểm role/scope; khóa context rồi exception; kiểm version
+  alt Căn cứ thay đổi
+   A -> DB: INVALIDATED + lý do/actor
+  else Căn cứ còn đúng
+   A -> DB: APPROVED hoặc REJECTED + lý do/actor
+  end
+ end
+ A --> F: 200 trạng thái thực tế (không mặc định đã APPROVED)
+ S -> F: Ghi danh với approvalId đã duyệt
+ F -> A: POST /api/v1/academic/enrollments\n{studentId,classId,approvalId}
+ group Tx enrollment
+  A -> DB: Khóa branch/student/class; kiểm replay approval
+  alt CONSUMED và đúng context
+   A --> F: 200 enrollment đã tạo
+  else Chưa consumed
+   A -> DB: Khóa course; kiểm blockers; khóa approval\nAPPROVED + đúng context/fingerprint
+   A -> DB: Barrier mutable; INSERT enrollment/period/history\nINSERT enrollment_admissions; approval=CONSUMED
+  end
+ end
+ A --> F: 200 hoặc409 nếu không còn hợp lệ
+else Có ràng buộc cứng
+ A --> F: Không cho request exception để bỏ qua sĩ số/lịch/chi nhánh
+end
+note over A,DB: Không có expiresAt/TTL7ngày. Validity dựa context và fingerprint.\nApproval không giữ chỗ; ghi danh kiểm lại điều kiện cứng.
+@enduml

@@ -1,0 +1,67 @@
+{
+  "tables": 53,
+  "columns": 625,
+  "entityClasses": 52,
+  "uniqueEntityTables": 51,
+  "collectionTables": [
+    "course_admission_levels",
+    "evaluation_policy_exams"
+  ],
+  "mappedFieldsMissingColumns": [],
+  "sqlColumnsNotMappedByEntity": [
+    "final_results.current_enrollment_id"
+  ],
+  "scalarFieldsWithPhysicalFK": [
+    "class_duration_plans.class_id -> school_classes",
+    "course_admission_policies.course_id -> courses",
+    "course_duration_plans.course_id -> courses",
+    "enrollment_admissions.approval_id -> placement_exceptions",
+    "enrollment_admissions.enrollment_id -> enrollments",
+    "placement_exceptions.class_id -> school_classes",
+    "placement_exceptions.consumed_enrollment_id -> enrollments",
+    "placement_exceptions.source_enrollment_id -> enrollments",
+    "placement_exceptions.student_id -> students"
+  ],
+  "currentSchema": {
+    "tables": 33,
+    "columns": 388,
+    "missingTables": [
+      "assessment_events",
+      "class_admission_events",
+      "class_closure_events",
+      "class_closures",
+      "class_duration_plans",
+      "class_result_barriers",
+      "course_admission_levels",
+      "course_admission_policies",
+      "course_duration_plans",
+      "enrollment_admissions",
+      "evaluation_policies",
+      "evaluation_policy_exams",
+      "evaluation_states",
+      "final_results",
+      "placement_assessments",
+      "placement_exceptions",
+      "program_levels",
+      "programs",
+      "result_reopens",
+      "teacher_profile_events"
+    ],
+    "missingColumns": [
+      "courses.expected_minutes",
+      "courses.duration_revision",
+      "enrollments.completion_result_id",
+      "enrollments.completion_result_revision",
+      "exam_candidates.enrollment_id",
+      "exams.version",
+      "school_classes.admission_policy_id",
+      "school_classes.admission_revision",
+      "school_classes.expected_minutes",
+      "school_classes.duration_revision",
+      "teachers.version"
+    ],
+    "typeOrNullabilityDifferences": [
+      "courses.duration: int/NO -> int/YES"
+    ]
+  }
+}

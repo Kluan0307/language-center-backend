@@ -17,6 +17,8 @@ public class RoomService {
   private final BranchScope scope;
   private final BranchService branches;
   private final SchoolClassRepository classes;
+  private final com.example.academic.session.ClassSessionRepository sessions;
+  private final jakarta.persistence.EntityManager em;
 
   public Room require(Long id) {
     Room r = repository.findById(id).orElseThrow(ApiException::missing);
@@ -49,7 +51,8 @@ public class RoomService {
     if (repository.existsByCodeIgnoreCaseAndBranchIdAndIdNot(
         req.code().trim(), branch, id == null ? -1L : id))
       throw ApiException.conflict("Mã phòng đã tồn tại");
-    if (id != null && classes.existsByRoomIdAndMaxSizeGreaterThan(id, req.capacity()))
+    if(id!=null)em.refresh(r,jakarta.persistence.LockModeType.PESSIMISTIC_WRITE);
+    if (id != null && (classes.existsByRoomIdAndMaxSizeGreaterThan(id, req.capacity())||sessions.exceedsCapacity(id,req.capacity())))
       throw ApiException.bad("Sức chứa phòng nhỏ hơn sĩ số tối đa của lớp đã gán");
     r.setBranchId(branch);
     r.setCode(req.code().trim());
@@ -62,6 +65,8 @@ public class RoomService {
 
   public RoomDto status(Long id, Room.Status status) {
     Room r = require(id);
+    branches.lock(r.getBranchId());em.refresh(r,jakarta.persistence.LockModeType.PESSIMISTIC_WRITE);
+    if(status==Room.Status.MAINTENANCE && sessions.existsByRoomIdAndStatus(id,com.example.academic.session.ClassSession.Status.SCHEDULED))throw ApiException.conflict("Đổi phòng các buổi chưa học trước khi bảo trì");
     r.setStatus(status);
     return RoomDto.of(r);
   }
@@ -69,7 +74,7 @@ public class RoomService {
   public void delete(Long id) {
     Room r = require(id);
     branches.lock(r.getBranchId());
-    if (classes.existsByRoomId(id)) throw ApiException.conflict("Không thể xóa phòng đã gán lớp");
+    if (classes.existsByRoomId(id)||sessions.existsByRoomId(id)) throw ApiException.conflict("Không thể xóa phòng đã gán lớp");
     repository.delete(r);
     repository.flush();
   }

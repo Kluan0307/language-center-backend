@@ -1,3 +1,5 @@
+> Historical reference. See [current contracts](../../docs/api-contracts.md) and [decisions](../../docs/implementation-decisions.md).
+
 # Teaching Service API Contract
 
 ## Base URL

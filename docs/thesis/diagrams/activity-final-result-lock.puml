@@ -1,0 +1,36 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Kết quả cuối khóa và đóng lớp
+start
+:Teacher ghi điểm; người có quyền ghi điểm danh;\nđủ dữ liệu/buổi/phút để đánh giá;
+:Admin/SA chọn enrollment; POST preview;
+:Teaching khóa barrier rồi evaluation_states;\nAcademic result-source + evaluation-context;\ntính PASS/FAIL và fingerprint;
+if (Có blockers?) then (Có)
+ :Hiển thị lý do; bổ sung dữ liệu hợp lệ;
+ stop
+endif
+:POST confirm theo classId/enrollmentId\n{requestId,fingerprint,reason};
+:Khóa/tính lại; kiểm replay và fingerprint;
+if (Nguồn đổi?) then (Có)
+ :409; tải preview mới;
+ stop
+endif
+:CONFIRMED một enrollment; snapshot;\nbarrier confirmed_count tăng; 200;
+:confirmed_count > 0 chặn sửa nguồn cả lớp;
+if (Cần hiệu chỉnh?) then (Có)
+ :POST final-results/reopen toàn lớp\n{requestId,expectedRevision,reason};
+ :REOPENED + result_reopens; confirmed_count=0;
+ if (Lớp đã đóng?) then (Có)
+  :POST Academic classes/{id}/reopen có kiểm toán;
+ endif
+ :Sửa nguồn theo quyền; preview/chốt lại từng enrollment;
+endif
+:SA/Admin/Staff PATCH enrollment COMPLETED\nvới version và finalResultId/revision hiện hành;
+:Academic xác minh final từ Teaching;\nFAIL không đồng nghĩa chưa hoàn thành; nợ không chặn học thuật;
+:Admin/SA POST classes/{id}/close với expectedRevision;
+:Đủ phút; không STUDYING/RESERVED;\nrefs từng COMPLETED khớp final/barrier hiện tại;
+:FINISHED + closure.closed=true, VERIFIED;\nkhông có enum lớp CLOSED;
+stop
+@enduml

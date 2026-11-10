@@ -1,0 +1,58 @@
+@startuml
+!pragma layout smetana
+skinparam shadowing false
+skinparam defaultFontSize 13
+title Chốt theo enrollment, mở lại toàn lớp và đồng bộ completion
+actor "Admin/SA" as U
+participant "Frontend/Gateway" as F
+participant "Teaching" as T
+participant "Academic" as A
+database "MySQL dùng chung" as DB
+autonumber
+F -> T: POST /api/v1/teaching/classes/{classId}/final-results/{enrollmentId}/preview
+T -> A: GET /api/v1/academic/classes/{classId} (scope/Teacher chính)
+T -> DB: Tx: khóa class_result_barriers -> evaluation_states
+T -> A: GET /api/v1/academic/classes/{classId}/result-source
+A --> T: token + sourceRevision phải khớp barrier
+T -> A: GET /api/v1/academic/classes/{classId}/evaluation-context\n?includeAttendance=true/false theo policy
+A --> T: enrollments/periods/duration; attendance khi policy yêu cầu
+T -> DB: Đọc policy/exams/grades/candidates
+T --> F: 200 preview cho enrollment: fingerprint, blockers, evaluation
+F -> T: POST /api/v1/teaching/classes/{classId}/final-results/{enrollmentId}/confirm\n{requestId,fingerprint,reason}
+group Teaching Tx READ_COMMITTED
+ T -> A: Kiểm class/phạm vi
+ T -> DB: Khóa barrier -> evaluation_states; tìm requestId
+ alt Replay cùng class/enrollment/fingerprint/reason
+  T --> F: 200 kết quả đã lưu
+ else Intent mới
+  T -> A: Đọc lại result-source và evaluation-context
+  T -> T: PASS/FAIL, phút xác minh, lớp chưa đóng,\nkhông có current final; fingerprint còn đúng
+  T -> DB: INSERT final_results (1 enrollment, snapshot,revision)\nconfirmed_count += 1; result_revision += 1; COMMIT
+  T --> F: 200 FinalResult Summary
+ end
+end
+opt Sửa nguồn sau chốt
+ F -> T: PUT /api/v1/teaching/grades
+ T -> DB: Barrier.mutable: confirmed_count > 0
+ T --> F: 409 (điểm danh Academic cũng dùng barrier chung)
+end
+opt Phúc khảo có kiểm toán
+ F -> T: POST /api/v1/teaching/classes/{classId}/final-results/reopen\n{requestId,expectedRevision,reason}
+ T -> DB: Khóa barrier; replay/expectedRevision\nCONFIRMED -> REOPENED; INSERT result_reopens\nconfirmed_count=0; result_revision +=1; COMMIT
+ T --> F: 200 ClassResults
+ opt Lớp đã đóng
+  F -> A: POST /api/v1/academic/classes/{classId}/reopen\n{requestId,expectedRevision,reason}
+ end
+ F -> T: PUT /api/v1/teaching/grades (hiệu chỉnh có quyền/lý do)
+ F -> T: Preview mới và confirm lại TỪNG enrollment cần kết quả
+end
+F -> A: PATCH /api/v1/academic/enrollments/{id}/status\n{studyStatus:COMPLETED,version,finalResultId,finalResultRevision,reason}
+A -> T: GET /api/v1/teaching/classes/{classId}/final-results
+A -> A: Xác minh current final + barrier/source + refs; FAIL vẫn có thể COMPLETED
+A --> F: 200; dependency lỗi503 không đổi enrollment
+F -> A: POST /api/v1/academic/classes/{classId}/close\n{requestId,expectedRevision,reason}
+A -> T: Đọc final summaries, xác minh refs từng COMPLETED
+A -> DB: Kiểm đủ phút, không STUDYING/RESERVED;\nFINISHED + class_closures/class_closure_events
+A --> F: 200; closure.closed=true, verification=VERIFIED
+note over T,A: HTTP không tạo distributed transaction. Barrier/token/sourceRevision cùng schema\nlà giao thức phối hợp; snapshot không tự cấp trình độ hay thanh toán học phí.
+@enduml

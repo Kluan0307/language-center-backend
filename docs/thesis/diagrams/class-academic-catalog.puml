@@ -1,0 +1,128 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Class Diagram academic-catalog — entity/domain hiện tại
+package "academic" {
+class "ClassAdmissionEvent" as academic_ClassAdmissionEvent <<Entity: class_admission_events>> {
+ id : Long
+ classId : Long
+ oldPolicyId : Long
+ newPolicyId : Long
+ revision : long
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+ reason : String
+}
+class "CourseAdmissionPolicy" as academic_CourseAdmissionPolicy <<Entity: course_admission_policies>> {
+ id : Long
+ courseId : Long
+ revision : long
+ mode : Mode
+ programId : Long
+ programCode : String
+ programName : String
+ outputLevelId : Long
+ outputLevelCode : String
+ outputLevelName : String
+ acceptedLevels : List<LevelSnapshot>
+ confirmedBy : Long
+ confirmedByName : String
+ confirmedAt : LocalDateTime
+ reason : String
+}
+class "CourseAdmissionPolicy.LevelSnapshot" as academic_CourseAdmissionPolicy_LevelSnapshot <<Embeddable>> {
+ levelId : Long
+ code : String
+ name : String
+}
+academic_CourseAdmissionPolicy "1" *-- "0..*" academic_CourseAdmissionPolicy_LevelSnapshot : ElementCollection
+class "Program" as academic_Program <<Entity: programs>> {
+ id : Long
+ version : long
+ code : String
+ name : String
+ active : boolean
+}
+class "ProgramLevel" as academic_ProgramLevel <<Entity: program_levels>> {
+ id : Long
+ version : long
+ program : Program
+ code : String
+ name : String
+ rank : int
+ active : boolean
+}
+class "Branch" as academic_Branch <<Entity: branches>> {
+ code : String
+ name : String
+ address : String
+ phone : String
+ status : Status
+ createdAt : LocalDateTime
+}
+abstract class "academic.BaseEntity" as academic_BaseEntity <<MappedSuperclass>>
+academic_BaseEntity : id : Long
+academic_BaseEntity <|-- academic_Branch
+class "Course" as academic_Course <<Entity: courses>> {
+ code : String
+ name : String
+ type : String
+ level : String
+ duration : Integer
+ expectedMinutes : Integer
+ durationRevision : long
+ tuitionFee : BigDecimal
+ content : String
+ entryRequirement : String
+ maxStudents : Integer
+ status : Status
+ branchId : Long
+ scopeKey : Long
+}
+academic_BaseEntity <|-- academic_Course
+class "ClassDurationPlan" as academic_ClassDurationPlan <<Entity: class_duration_plans>> {
+ id : Long
+ classId : Long
+ revision : long
+ expectedMinutes : Integer
+ courseId : Long
+ courseRevision : Long
+ source : Source
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+ reason : String
+}
+class "CourseDurationPlan" as academic_CourseDurationPlan <<Entity: course_duration_plans>> {
+ id : Long
+ courseId : Long
+ revision : long
+ expectedMinutes : Integer
+ actorId : Long
+ actorName : String
+ occurredAt : LocalDateTime
+ reason : String
+}
+class "Room" as academic_Room <<Entity: rooms>> {
+ code : String
+ name : String
+ location : String
+ capacity : Integer
+ equipment : String
+ status : Status
+ branchId : Long
+}
+academic_BaseEntity <|-- academic_Room
+}
+academic_ProgramLevel "0..*" --> "1" academic_Program : program
+legend bottom
+ Liền = object association JPA trong module; thoi = ElementCollection.
+ Chấm = scalar ID nghiệp vụ, không phải object association/FK tự sinh.
+ Scalar vẫn có thể có FK SQL từ migration: xem ERD vật lý.
+ BaseEntity là mapped superclass; DTO/framework không vẽ thành entity.
+ ResultBarrier Academic/Teaching là hai mapping cùng một bảng metadata.
+endlegend
+@enduml

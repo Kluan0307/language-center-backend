@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+title Use Case theo role: TEACHER — G13
+actor "TEACHER" as A
+rectangle "Language Center — ứng dụng web" {
+usecase "UC01\nĐăng nhập, bảo mật phiên và liên hệ cá nhân" as UC01
+usecase "UC06\nĐọc khóa/chương trình được phép" as UC06
+usecase "UC07\nXem lớp phụ trách" as UC07
+usecase "UC11\nXem lịch và điểm danh buổi được giao" as UC11
+usecase "UC12\nBài kiểm tra, điểm và xem đánh giá tạm" as UC12
+usecase "UC13\nXem kết quả/lịch sử lớp chính" as UC13
+usecase "UC15\nTra cứu và dashboard giảng dạy" as UC15
+usecase "UC16\nTài liệu sở hữu, gửi lại và tải phiên bản" as UC16
+}
+A -- UC01
+A -- UC06
+A -- UC07
+A -- UC11
+A -- UC12
+A -- UC13
+A -- UC15
+A -- UC16
+note bottom of A
+UC06/07/15 chỉ đọc nguồn lớp/lịch được phép.
+UC11 ghi điểm danh buổi thực tế được giao; UC12/13 chỉ lớp chính.
+Không CRM/tài chính, không chốt/mở lại, không quản trị Teacher.
+Không suy toàn quyền từ đường nối nhóm UC.
+end note
+@enduml

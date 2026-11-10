@@ -1,0 +1,221 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý physical-overview — FK thực tế MySQL V013
+package "auth" {
+entity "account_branch_events" as T_account_branch_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "account_branches" as T_account_branches {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "account_security_events" as T_account_security_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "accounts" as T_accounts {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "admins" as T_admins {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "staffs" as T_staffs {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "super_admins" as T_super_admins {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "teacher_profile_events" as T_teacher_profile_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "teachers" as T_teachers {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+}
+package "academic-placement" {
+entity "assessment_events" as T_assessment_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "enrollment_admissions" as T_enrollment_admissions {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "placement_assessments" as T_placement_assessments {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "placement_exceptions" as T_placement_exceptions {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+}
+package "academic-learning" {
+entity "attendance_changes" as T_attendance_changes {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "attendances" as T_attendances {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "class_closure_events" as T_class_closure_events {
+ {field} request_id : varchar(36) [NOT NULL] <<PK>>
+}
+entity "class_closures" as T_class_closures {
+ {field} class_id : bigint [NOT NULL] <<PK>>
+}
+entity "class_sessions" as T_class_sessions {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "enrollment_periods" as T_enrollment_periods {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "enrollments" as T_enrollments {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "lead_activities" as T_lead_activities {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "leads" as T_leads {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "learning_events" as T_learning_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "schedules" as T_schedules {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "school_classes" as T_school_classes {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "session_events" as T_session_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "students" as T_students {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+}
+package "academic-catalog" {
+entity "branches" as T_branches {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "class_admission_events" as T_class_admission_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "class_duration_plans" as T_class_duration_plans {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "course_admission_levels" as T_course_admission_levels {
+ note: no physical PK
+}
+entity "course_admission_policies" as T_course_admission_policies {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "course_duration_plans" as T_course_duration_plans {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "courses" as T_courses {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "program_levels" as T_program_levels {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "programs" as T_programs {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "rooms" as T_rooms {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+}
+package "shared-coordination" {
+entity "class_result_barriers" as T_class_result_barriers {
+ {field} class_id : bigint [NOT NULL] <<PK>>
+}
+}
+package "teaching" {
+entity "document_events" as T_document_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "documents" as T_documents {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "evaluation_policies" as T_evaluation_policies {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "evaluation_policy_exams" as T_evaluation_policy_exams {
+ note: no physical PK
+}
+entity "evaluation_states" as T_evaluation_states {
+ {field} class_id : bigint [NOT NULL] <<PK>>
+}
+entity "exam_candidates" as T_exam_candidates {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "exams" as T_exams {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "final_results" as T_final_results {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "grade_changes" as T_grade_changes {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "grades" as T_grades {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "result_reopens" as T_result_reopens {
+ {field} request_id : varchar(36) [NOT NULL] <<PK>>
+}
+}
+package "finance" {
+entity "payment_corrections" as T_payment_corrections {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "payments" as T_payments {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "tuition" as T_tuition {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+entity "tuition_adjustments" as T_tuition_adjustments {
+ {field} id : bigint [NOT NULL] <<PK>>
+}
+}
+T_accounts "1" -- "0..*" T_account_branch_events : account_id
+T_accounts "1" -- "0..*" T_account_branches : account_id
+T_accounts "1" -- "0..*" T_account_security_events : account_id
+T_accounts "1" -- "0..1" T_admins : account_id
+T_class_sessions "1" -- "0..*" T_attendance_changes : session_id
+T_enrollments "1" -- "0..*" T_attendances : enrollment_id
+T_class_sessions "0..1" -- "0..*" T_attendances : class_session_id
+T_school_classes "1" -- "0..*" T_class_duration_plans : class_id
+T_school_classes "1" -- "0..*" T_class_sessions : class_id
+T_course_admission_policies "1" -- "0..*" T_course_admission_levels : policy_id
+T_courses "1" -- "0..*" T_course_admission_policies : course_id
+T_courses "1" -- "0..*" T_course_duration_plans : course_id
+T_placement_exceptions "0..1" -- "0..*" T_enrollment_admissions : approval_id
+T_enrollments "1" -- "0..*" T_enrollment_admissions : enrollment_id
+T_enrollments "1" -- "0..*" T_enrollment_periods : enrollment_id
+T_students "1" -- "0..*" T_enrollments : student_id
+T_school_classes "1" -- "0..*" T_enrollments : class_id
+T_exams "1" -- "0..*" T_evaluation_policy_exams : exam_id
+T_evaluation_policies "1" -- "0..*" T_evaluation_policy_exams : policy_id
+T_exams "1" -- "0..*" T_grades : exam_id
+T_courses "0..1" -- "0..*" T_leads : interested_course_id
+T_students "0..1" -- "0..1" T_leads : converted_student_id
+T_students "1" -- "0..*" T_placement_assessments : student_id
+T_school_classes "1" -- "0..*" T_placement_exceptions : class_id
+T_enrollments "0..1" -- "0..*" T_placement_exceptions : consumed_enrollment_id
+T_enrollments "0..1" -- "0..*" T_placement_exceptions : source_enrollment_id
+T_students "1" -- "0..*" T_placement_exceptions : student_id
+T_programs "1" -- "0..*" T_program_levels : program_id
+T_school_classes "1" -- "0..*" T_schedules : class_id
+T_rooms "1" -- "0..*" T_school_classes : room_id
+T_courses "1" -- "0..*" T_school_classes : course_id
+T_class_sessions "1" -- "0..*" T_session_events : session_id
+T_accounts "1" -- "0..1" T_staffs : account_id
+T_accounts "1" -- "0..1" T_super_admins : account_id
+T_accounts "1" -- "0..1" T_teachers : account_id
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml

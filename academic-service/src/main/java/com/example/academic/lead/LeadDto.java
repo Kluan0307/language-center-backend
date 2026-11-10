@@ -20,7 +20,10 @@ public record LeadDto(
     StudentDto convertedStudent,
     LocalDateTime createdAt,
     LocalDateTime lastContactedAt,
-    Long branchId) {
+    Long branchId,
+    long version,
+    LocalDateTime nextContactAt,
+    boolean overdue) {
   public static LeadDto of(Lead l) {
     return new LeadDto(
         l.getId(),
@@ -38,7 +41,13 @@ public record LeadDto(
         l.getConvertedStudent() == null ? null : StudentDto.of(l.getConvertedStudent()),
         l.getCreatedAt(),
         l.getLastContactedAt(),
-        l.getBranchId());
+        l.getBranchId(),
+        l.getVersion(),
+        l.getNextContactAt(),
+        l.active()
+            && l.getNextContactAt() != null
+            && l.getNextContactAt()
+                .isBefore(LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE)));
   }
 
   public record Request(
@@ -48,8 +57,46 @@ public record LeadDto(
       @Size(max = 255) String source,
       Long interestedCourseId,
       @Size(max = 255) String desiredLevel,
-      String note,
-      Long branchId) {}
+      @Size(max = 2000) String note,
+      Long branchId,
+      @PositiveOrZero Long version) {
+    public Request(
+        String fullName,
+        String phone,
+        String email,
+        String source,
+        Long interestedCourseId,
+        String desiredLevel,
+        String note,
+        Long branchId) {
+      this(fullName, phone, email, source, interestedCourseId, desiredLevel, note, branchId, null);
+    }
+  }
 
-  public record StatusRequest(@NotNull Lead.Status status, String note) {}
+  public record StatusRequest(
+      @NotNull Lead.Status status,
+      @NotBlank @Size(min = 3, max = 2000) String note,
+      @NotNull @PositiveOrZero Long version) {}
+
+  public enum Channel {
+    CALL,
+    EMAIL,
+    MESSAGE,
+    IN_PERSON,
+    NOTE
+  }
+
+  public record Interaction(
+      @NotNull Channel channel,
+      @NotBlank @Size(min = 3, max = 2000) String note,
+      @NotNull Lead.Status status,
+      LocalDateTime nextContactAt,
+      @NotNull @PositiveOrZero Long version) {}
+
+  public record Assignment(
+      @NotNull @Positive Long accountId,
+      @NotBlank @Size(min = 3, max = 2000) String reason,
+      @NotNull @PositiveOrZero Long version) {}
+
+  public record Conversion(@NotNull @PositiveOrZero Long version) {}
 }

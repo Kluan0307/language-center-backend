@@ -1,0 +1,130 @@
+@startuml
+!pragma layout smetana
+hide methods
+skinparam shadowing false
+skinparam packageStyle rectangle
+title ERD vật lý academic-catalog — FK thực tế MySQL V013
+package "academic-catalog" {
+entity "branches" as T_branches {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} address : varchar(255) [NULL]
+ {field} code : varchar(255) [NOT NULL]
+ {field} created_at : datetime(6) [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} phone : varchar(255) [NOT NULL]
+ {field} status : ENUM [NOT NULL]
+}
+entity "class_admission_events" as T_class_admission_events {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} old_policy_id : bigint [NULL]
+ {field} new_policy_id : bigint [NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "class_duration_plans" as T_class_duration_plans {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} class_id : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} expected_minutes : int [NULL]
+ {field} course_id : bigint [NOT NULL]
+ {field} course_revision : bigint [NULL]
+ {field} source : varchar(20) [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "course_admission_levels" as T_course_admission_levels {
+ {field} policy_id : bigint [NOT NULL]
+ {field} level_id : bigint [NOT NULL]
+ {field} code : varchar(50) [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ note: no physical PK
+}
+entity "course_admission_policies" as T_course_admission_policies {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} course_id : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} mode : varchar(40) [NOT NULL]
+ {field} program_id : bigint [NOT NULL]
+ {field} program_code : varchar(50) [NOT NULL]
+ {field} program_name : varchar(255) [NOT NULL]
+ {field} output_level_id : bigint [NOT NULL]
+ {field} output_level_code : varchar(50) [NOT NULL]
+ {field} output_level_name : varchar(255) [NOT NULL]
+ {field} confirmed_by : bigint [NOT NULL]
+ {field} confirmed_by_name : varchar(255) [NOT NULL]
+ {field} confirmed_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "course_duration_plans" as T_course_duration_plans {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} course_id : bigint [NOT NULL]
+ {field} revision : bigint [NOT NULL]
+ {field} expected_minutes : int [NOT NULL]
+ {field} actor_id : bigint [NOT NULL]
+ {field} actor_name : varchar(255) [NOT NULL]
+ {field} occurred_at : datetime(6) [NOT NULL]
+ {field} reason : varchar(500) [NOT NULL]
+}
+entity "courses" as T_courses {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NULL]
+ {field} code : varchar(255) [NOT NULL]
+ {field} content : text [NULL]
+ {field} duration : int [NULL]
+ {field} entry_requirement : text [NULL]
+ {field} level : varchar(255) [NULL]
+ {field} max_students : int [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} scope_key : bigint [NULL] [GENERATED]
+ {field} status : ENUM [NOT NULL]
+ {field} tuition_fee : decimal(15,2) [NOT NULL]
+ {field} type : varchar(255) [NULL]
+ {field} expected_minutes : int [NULL]
+ {field} duration_revision : bigint [NOT NULL]
+}
+entity "program_levels" as T_program_levels {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} version : bigint [NOT NULL]
+ {field} program_id : bigint [NOT NULL]
+ {field} code : varchar(50) [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} sort_order : int [NOT NULL]
+ {field} active : bit(1) [NOT NULL]
+}
+entity "programs" as T_programs {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} version : bigint [NOT NULL]
+ {field} code : varchar(50) [NOT NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} active : bit(1) [NOT NULL]
+}
+entity "rooms" as T_rooms {
+ {field} id : bigint [NOT NULL] <<PK>>
+ {field} branch_id : bigint [NOT NULL]
+ {field} capacity : int [NOT NULL]
+ {field} code : varchar(255) [NOT NULL]
+ {field} equipment : text [NULL]
+ {field} location : varchar(255) [NULL]
+ {field} name : varchar(255) [NOT NULL]
+ {field} status : ENUM [NOT NULL]
+}
+}
+entity "school_classes" as T_school_classes <<FK target ngoài module>>
+T_school_classes "1" -- "0..*" T_class_duration_plans : class_id
+T_course_admission_policies "1" -- "0..*" T_course_admission_levels : policy_id
+T_courses "1" -- "0..*" T_course_admission_policies : course_id
+T_courses "1" -- "0..*" T_course_duration_plans : course_id
+T_programs "1" -- "0..*" T_program_levels : program_id
+legend bottom
+ Liền = FK SQL có thật; cardinality dựa nullable và unique của FK.
+ Không có đường nối không đồng nghĩa không có quan hệ nghiệp vụ.
+ Scalar ID / HTTP / snapshot không được tự thêm thành FK.
+ Chi tiết index/UK/default/generated: data-dictionary.md.
+endlegend
+@enduml
