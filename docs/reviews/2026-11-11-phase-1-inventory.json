@@ -1,0 +1,338 @@
+{
+  "date": "2026-11-11",
+  "method": "Static source/import graph plus existing evidence. No new runtime acceptance or database query.",
+  "routes": [
+    {
+      "id": "dashboard",
+      "path": "/dashboard",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF",
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "branches",
+      "path": "/branches",
+      "roles": [
+        "SUPER_ADMIN"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "administrators",
+      "path": "/administrators",
+      "roles": [
+        "SUPER_ADMIN"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "accounts",
+      "path": "/accounts",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "teachers",
+      "path": "/teachers",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "staff",
+      "path": "/staff",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "leads",
+      "path": "/leads",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "students",
+      "path": "/students",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "courses",
+      "path": "/courses",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "classes",
+      "path": "/classes",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "rooms",
+      "path": "/rooms",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "schedule",
+      "path": "/schedule",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "enrollment",
+      "path": "/enrollment",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "my-classes",
+      "path": "/my-classes",
+      "roles": [
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "my-schedule",
+      "path": "/my-schedule",
+      "roles": [
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "attendance",
+      "path": "/attendance",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF",
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "exams",
+      "path": "/exams",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "grades",
+      "path": "/grades",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "documents",
+      "path": "/documents",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF",
+        "TEACHER"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "tuition",
+      "path": "/tuition",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "payments",
+      "path": "/payments",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN",
+        "STAFF"
+      ],
+      "hasConcretePage": true
+    },
+    {
+      "id": "reports",
+      "path": "/reports",
+      "roles": [
+        "SUPER_ADMIN",
+        "ADMIN"
+      ],
+      "hasConcretePage": true
+    }
+  ],
+  "reachableMockFiles": [],
+  "legacyCandidates": [
+    {
+      "path": "data/attendances.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/courses.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/enrollment.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/leads.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/rooms.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/schoolClasses.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/staffs.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/students.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "data/teachers.mock.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "pages/StaffManagement/index.tsx",
+      "reachableFromMain": false
+    },
+    {
+      "path": "pages/StaffManagement/StaffManagement.styles.ts",
+      "reachableFromMain": false
+    },
+    {
+      "path": "pages/TeacherManagement/index.tsx",
+      "reachableFromMain": false
+    },
+    {
+      "path": "pages/TeacherManagement/TeacherManagement.styles.ts",
+      "reachableFromMain": false
+    }
+  ],
+  "sourceFingerprint": "23e0f0ff10051cece372b95cb6205a5b9530e86ed0c042a02e0b8c424ab0fcde",
+  "backendControllers": [
+    "auth-service/src/main/java/com/example/auth/controller/AccountSecurityController.java",
+    "auth-service/src/main/java/com/example/auth/controller/AuthController.java",
+    "auth-service/src/main/java/com/example/auth/controller/TeacherProfileController.java",
+    "academic-service/src/main/java/com/example/academic/admission/AdmissionPolicyController.java",
+    "academic-service/src/main/java/com/example/academic/admission/ProgramCatalogController.java",
+    "academic-service/src/main/java/com/example/academic/assessment/PlacementAssessmentController.java",
+    "academic-service/src/main/java/com/example/academic/attendance/AttendanceController.java",
+    "academic-service/src/main/java/com/example/academic/branch/BranchController.java",
+    "academic-service/src/main/java/com/example/academic/course/CourseController.java",
+    "academic-service/src/main/java/com/example/academic/duration/DurationController.java",
+    "academic-service/src/main/java/com/example/academic/enrollment/EnrollmentController.java",
+    "academic-service/src/main/java/com/example/academic/evaluation/EvaluationContextController.java",
+    "academic-service/src/main/java/com/example/academic/lead/LeadController.java",
+    "academic-service/src/main/java/com/example/academic/placement/PlacementController.java",
+    "academic-service/src/main/java/com/example/academic/results/ClassClosureController.java",
+    "academic-service/src/main/java/com/example/academic/results/LearningProfileController.java",
+    "academic-service/src/main/java/com/example/academic/results/ResultSourceController.java",
+    "academic-service/src/main/java/com/example/academic/room/RoomController.java",
+    "academic-service/src/main/java/com/example/academic/schedule/ScheduleController.java",
+    "academic-service/src/main/java/com/example/academic/schoolclass/SchoolClassController.java",
+    "academic-service/src/main/java/com/example/academic/schoolclass/TeacherResponsibilitiesController.java",
+    "academic-service/src/main/java/com/example/academic/session/SessionController.java",
+    "academic-service/src/main/java/com/example/academic/stats/StatsController.java",
+    "academic-service/src/main/java/com/example/academic/student/StudentController.java",
+    "teaching-service/src/main/java/com/example/teaching/document/DocumentController.java",
+    "teaching-service/src/main/java/com/example/teaching/evaluation/EvaluationController.java",
+    "teaching-service/src/main/java/com/example/teaching/exam/ExamController.java",
+    "teaching-service/src/main/java/com/example/teaching/grade/GradeController.java",
+    "teaching-service/src/main/java/com/example/teaching/HomeController.java",
+    "teaching-service/src/main/java/com/example/teaching/results/FinalResultController.java",
+    "finance-service/src/main/java/com/example/finance/HomeController.java",
+    "finance-service/src/main/java/com/example/finance/ledger/LedgerController.java",
+    "finance-service/src/main/java/com/example/finance/payment/PaymentController.java",
+    "finance-service/src/main/java/com/example/finance/stats/RevenueController.java",
+    "finance-service/src/main/java/com/example/finance/tuition/TuitionController.java"
+  ],
+  "evidence": [
+    {
+      "path": "storage/g20-backend-tests.json",
+      "exists": true,
+      "sha256": "7bb0e5396ad3c9f4a7318c0ce33e2f6d9ec3fd2f024d90da3a3351d320df9854"
+    },
+    {
+      "path": "storage/acceptance/20261110-g20-3d704261/acceptance-summary.json",
+      "exists": true,
+      "sha256": "2f13b46644d9fd64b04f73ff34d287220d9ab7a4817eaeceb2d2035ad92fce64"
+    },
+    {
+      "path": "storage/timegrid-preview/result.json",
+      "exists": true,
+      "sha256": "aeaf0118932a52ebce68edb92f5d6d90116f6a1300c125bfb55a263b76ee9880"
+    },
+    {
+      "path": "storage/table-actions-preview/result.json",
+      "exists": true,
+      "sha256": "29463faa6d886dd098679ee53e500b568471bc429f75032893ba9f3bd74bab0d"
+    },
+    {
+      "path": "storage/admin-preview/result.json",
+      "exists": true,
+      "sha256": "92a6d516a16ee4e105f9e6a62d28b17853906f93022cb2e0506b0d8f4714e5a0"
+    }
+  ]
+}

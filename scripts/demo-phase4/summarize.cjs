@@ -1,0 +1,6 @@
+﻿const fs=require('fs'),path=require('path'),crypto=require('crypto');const dir=fs.readFileSync('storage/demo-phase4-latest.txt','utf8').trim();const read=name=>JSON.parse(fs.readFileSync(path.join(dir,name),'utf8').replace(/^\uFEFF/,''));
+const files=['g4-core.json','g4-details.json','database-proof.json','browser-demo.json'];const reports=files.map(read);
+for(const r of reports)if(r.status!=='PASSED')throw Error('Incomplete demo evidence');
+if(reports[0].checks.length!==20||reports[1].checks.length!==20||reports[2].checks.length!==8||reports[3].checks.length!==4)throw Error('Expected40 API+8SQL+4UI checks');
+const runtime=read('runtime.json');const summary={runId:runtime.runId,database:runtime.database,status:'PASSED',scope:'Phase4 demo fixture; not phase5 regression or production acceptance',apiChecks:40,sqlChecks:8,uiReadChecks:4,counts:read('demo-counts.json'),nextMonday:read('fixture.json').nextMonday,sourceDataUnchanged:read('source-before.json').dataSha256===read('source-after.json').dataSha256,evidenceSha256:Object.fromEntries(files.map(file=>[file,crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,file))).digest('hex')])),finishedAt:new Date().toISOString()};
+fs.writeFileSync(path.join(dir,'phase4-summary.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));

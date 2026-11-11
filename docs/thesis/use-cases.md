@@ -1,5 +1,7 @@
 # Use Case và đặc tả nghiệp vụ — G13
 
+**Cập nhật11/11:** các use case hiện có được truy cập rõ hơn qua trang Quản trị viên, Chương trình & trình độ, Time-grid và lịch sử trước/sau. Không phát sinh role/API/domain mới. [Ma trận hiện hành](traceability.md), [23route](../current-state.md).
+
 Ngày 08/11/2026; đối chiếu source G01–G12. SA=SUPER_ADMIN, A=ADMIN, S=STAFF, T=TEACHER. Đây là đặc tả phần mềm đã triển khai theo giả định G01-v1; không phải kết quả khảo sát trung tâm.
 
 ## Quy ước

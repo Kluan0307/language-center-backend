@@ -1,0 +1,15 @@
+﻿import fs from 'node:fs';import path from 'node:path';
+const dir=fs.readFileSync('storage/demo-phase4-latest.txt','utf8').trim();
+process.env.ACCEPTANCE_RUN_DIR=dir;
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));
+const credentials=read(path.join(dir,'bootstrap.private.json'));
+process.env.ACCEPTANCE_BOOTSTRAP_USERNAME=credentials.username;process.env.ACCEPTANCE_BOOTSTRAP_PASSWORD=credentials.password;
+const expected=read('scripts/demo-phase4/expected.json');expected.requiredChecks['g4-core']=20;
+fs.writeFileSync(path.join(dir,'expected.json'),JSON.stringify(expected,null,2));
+const hour=Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',hour12:false}).format(new Date()));
+if(hour<3)throw Error('Run this same-day three-hour workshop demo after03:00 Vietnam time.');
+await import('./core.mjs');
+if(process.exitCode)throw Error('Core fixture failed; inspect isolated run logs.');
+await import('./details.mjs');
+if(process.exitCode)throw Error('Detailed demo fixture failed.');
+console.log('40 real API checks passed; complete demo persisted on isolated schema.');

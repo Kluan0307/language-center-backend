@@ -1,5 +1,7 @@
 # Bộ tài liệu hoàn thiện khóa luận
 
+**Hiện hành11/11:** [Tổng quan cập nhật](../current-state.md), [giai đoạn5](../reviews/2026-11-11-phase-5-completion.md). Các mốc ngày10/11 bên dưới là lịch sử;96FE là tổng mới.
+
 **Hiện trạng10/11/2026: G15–G16 đã sửa theo code, G17–G18 đạt86 kiểm tra thật; G19 hoàn thành bản thảo kỹ thuật, G20 đã nghiệm thu release local/restore/demo; bản nộp và production còn checklist.** [G13](../thesis-progress/G13.md) · [G14](../thesis-progress/G14.md) · [G15](../thesis-progress/G15.md) · [G16](../thesis-progress/G16.md) · [G17](../thesis-progress/G17.md) · [G18](../thesis-progress/G18.md) · [G19](../thesis-progress/G19.md) · [G20](../thesis-progress/G20.md). Các mục ghi ngày phía dưới giữ lịch sử triển khai. Chính sách là giả định G01-v1; dữ liệu khảo sát thực tế vẫn CẦN BỔ SUNG, không phải kết quả phỏng vấn đã có.
 
 | Tài liệu | Mục đích |

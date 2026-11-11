@@ -1,6 +1,6 @@
 # Danh sách API hiện có
 
-Cập nhật và kiểm kê theo controller, cấu hình security và kiểm tra quyền trong service thực tế ngày **10/11/2026** (G16 đối chiếu lại).
+Cập nhật và kiểm kê theo controller, cấu hình security và kiểm tra quyền trong service thực tế ngày **11/11/2026** (kiểm kê lại controller).
 
 Có **173 cặp HTTP method + đường dẫn nghiệp vụ chính**: Auth 19, Academic 114, Finance 12, Teaching 28.
 Ngoài ra có 3 alias học phí cũ và 2 endpoint chẩn đoán chỉ gọi trực tiếp service.

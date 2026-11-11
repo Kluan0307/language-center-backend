@@ -7,6 +7,12 @@ $file=Join-Path $RunDir 'runtime.json';$run=Get-Content $file -Raw -Encoding UTF
 $release=(Resolve-Path -LiteralPath $run.releaseRoot).Path
 if(!$release.StartsWith((Join-Path $backendRoot 'storage/releases')+[IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)){throw 'Release must be an isolated local package'}
 if($run.database -notmatch '^lc_rehearsal_[A-Za-z0-9_]+$' -or $run.runId -notmatch '^[A-Za-z0-9-]+$'){throw 'Only isolated rehearsal database/run allowed'}
+function Write-Lifecycle([string]$Message) {
+ for($attempt=0;$attempt -lt 5;$attempt++) {
+  try {[IO.File]::AppendAllText((Join-Path $RunDir 'lifecycle.log'),$Message+[Environment]::NewLine,(New-Object Text.UTF8Encoding($false)));return}
+  catch [IO.IOException] {if($attempt -eq 4){throw};Start-Sleep -Milliseconds 100}
+ }
+}
 $entries=@(@('auth-service',1),@('academic-service',2),@('teaching-service',3),@('finance-service',4),@('api-gateway',0))
 $chosen=@($entries|Where-Object{$Service -eq 'all' -or $_[0] -eq $Service})
 $tag="-Dlc.rehearsal=$($run.runId)"
@@ -16,7 +22,7 @@ if($Action -in @('stop','restart')){
   Get-CimInstance Win32_Process -Filter "Name='java.exe'" | Where-Object { $_.CommandLine -and $_.CommandLine.Contains($tag) -and $_.CommandLine.Replace('\','/').Contains($jar) } | ForEach-Object {
    Stop-Process -Id $_.ProcessId -ErrorAction SilentlyContinue
    Wait-Process -Id $_.ProcessId -Timeout 15 -ErrorAction SilentlyContinue
-   Add-Content (Join-Path $RunDir 'lifecycle.log') "Stopped packaged $($entry[0]) PID=$($_.ProcessId)"
+   Write-Lifecycle "Stopped packaged $($entry[0]) PID=$($_.ProcessId)"
   }
  }
  if($Action -eq 'stop'){
@@ -51,7 +57,7 @@ foreach($entry in $chosen){
  foreach($suffix in @('out','err')){if(Test-Path (Join-Path $RunDir "$name.$suffix.log")){Copy-Item (Join-Path $RunDir "$name.$suffix.log") (Join-Path $RunDir "$name.$stamp.previous.$suffix.log")}}
  $launcher=Join-Path $release 'scripts/start-release.ps1'
  Start-Process powershell.exe -ArgumentList @('-NoProfile','-File',"`"$launcher`"",'-Release',"`"$release`"",'-Service',$name,'-EnvFile',"`"$privateEnv`"",'-RunTag',$run.runId) -WindowStyle Hidden -WorkingDirectory $release -RedirectStandardOutput (Join-Path $RunDir "$name.out.log") -RedirectStandardError (Join-Path $RunDir "$name.err.log")|Out-Null
- Add-Content (Join-Path $RunDir 'lifecycle.log') "Started packaged $name port=$port sha256=$((Get-FileHash (Join-Path $release "backend/$name.jar")).Hash)"
+ Write-Lifecycle "Started packaged $name port=$port sha256=$((Get-FileHash (Join-Path $release "backend/$name.jar")).Hash)"
 }
 if($Action -eq 'start' -and $Service -eq 'all'){
  foreach($port in @($run.frontendPort,$run.browserPort)){if(Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue){throw 'Private frontend/CDP port occupied'}}

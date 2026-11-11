@@ -1,0 +1,26 @@
+﻿const fs=require('fs'),path=require('path'),crypto=require('crypto'),{execFileSync}=require('child_process');
+const dir=fs.readFileSync('storage/demo-phase4-latest.txt','utf8').trim(),read=p=>JSON.parse(fs.readFileSync(p,'utf8').replace(/^\uFEFF/,''));
+const runtime=read(path.join(dir,'runtime.json')),s=read(path.join(dir,'fixture.json'));
+if(!/^lc_rehearsal_demo_g4_\w+$/.test(runtime.database))throw Error('Demo schema required');
+const env={...process.env};for(const line of fs.readFileSync('.env.local','utf8').split(/\r?\n/)){const m=line.match(/^(DB_URL|DB_USERNAME|DB_PASSWORD)=(.*)$/);if(m)env[m[1]]=m[2];}
+const u=new URL(env.DB_URL.slice(5)),source=u.pathname.slice(1),bin='C:/Program Files/MySQL/MySQL Server 8.0/bin';env.MYSQL_PWD=env.DB_PASSWORD;
+const args=['--host='+u.hostname,'--port='+(u.port||3306),'--user='+env.DB_USERNAME,'--default-character-set=utf8mb4'];
+function run(binary,extra){const output=execFileSync(path.join(bin,binary+'.exe'),[...args,...extra],{env,windowsHide:true,encoding:'utf8',maxBuffer:64*1024*1024});return binary==='mysqldump'?output:output.trim();}
+function sql(q){return JSON.parse(run('mysql',['--batch','--raw','--skip-column-names',runtime.database,'--execute',q]));}
+const checks=[];function check(id,expected,actual){const passed=require('node:util').isDeepStrictEqual(expected,actual);checks.push({id,expected,actual,passed});fs.writeFileSync(path.join(dir,'database-proof.json'),JSON.stringify({database:runtime.database,status:checks.every(c=>c.passed)?'PASSED':'FAILED',checks},null,2));if(!passed)throw Error(id+' failed');}
+const counts=sql("SELECT JSON_OBJECT('accounts',(SELECT COUNT(*) FROM accounts),'branches',(SELECT COUNT(*) FROM branches),'programs',(SELECT COUNT(*) FROM programs),'levels',(SELECT COUNT(*) FROM program_levels),'courses',(SELECT COUNT(*) FROM courses),'classes',(SELECT COUNT(*) FROM school_classes),'rooms',(SELECT COUNT(*) FROM rooms),'sessions',(SELECT COUNT(*) FROM class_sessions),'students',(SELECT COUNT(*) FROM students),'enrollments',(SELECT COUNT(*) FROM enrollments),'tuition',(SELECT COUNT(*) FROM tuition),'receipts',(SELECT COUNT(*) FROM payments),'assessments',(SELECT COUNT(*) FROM placement_assessments),'exceptions',(SELECT COUNT(*) FROM placement_exceptions),'finals',(SELECT COUNT(*) FROM final_results))");
+check('DB01-counts',{accounts:6,branches:2,programs:3,levels:8,courses:4,classes:4,rooms:3,sessions:25,students:10,enrollments:8,tuition:8,receipts:4,assessments:5,exceptions:3,finals:4},counts);
+check('DB02-current-size',0,sql("SELECT COUNT(*) FROM school_classes c WHERE c.current_size<>(SELECT COUNT(*) FROM enrollments e WHERE e.class_id=c.id AND e.study_status='STUDYING')"));
+check('DB03-finance',{paid:7000000,debt:18000000,duplicates:0},sql("SELECT JSON_OBJECT('paid',(SELECT SUM(amount) FROM payments WHERE status='PAID'),'debt',(SELECT SUM(amount-paid_amount) FROM tuition WHERE status<>'CANCELLED'),'duplicates',(SELECT COUNT(*) FROM (SELECT enrollment_id FROM tuition GROUP BY enrollment_id HAVING COUNT(*)>1) x))"));
+check('DB04-completion-refs',2,sql("SELECT COUNT(*) FROM enrollments e JOIN final_results f ON f.id=e.completion_result_id AND f.revision=e.completion_result_revision WHERE e.study_status='COMPLETED' AND f.state='CONFIRMED' AND f.enrollment_id=e.id"));
+check('DB05-session-conflicts',0,sql("SELECT COUNT(*) FROM class_sessions a JOIN class_sessions b ON a.id<b.id AND a.session_date=b.session_date AND a.start_time<b.end_time AND b.start_time<a.end_time AND(a.teacher_id=b.teacher_id OR a.room_id=b.room_id) WHERE a.status<>'CANCELLED' AND b.status<>'CANCELLED'"));
+check('DB06-business-history',true,sql("SELECT (EXISTS(SELECT 1 FROM learning_events WHERE action='COMPLETION_RESULT_REFRESHED') AND EXISTS(SELECT 1 FROM grade_changes) AND EXISTS(SELECT 1 FROM class_closure_events))")===1);
+check('DB07-api-admission-evidence',8,sql("SELECT COUNT(*) FROM enrollment_admissions WHERE policy_snapshot LIKE 'Policy[%' AND LENGTH(fingerprint)=64"));
+const data=run('mysqldump',['--single-transaction','--no-create-info','--skip-comments','--skip-add-locks','--skip-disable-keys','--skip-extended-insert','--compact','--order-by-primary','--no-tablespaces','--set-gtid-purged=OFF','--hex-blob',source]);
+const sourceAfter={database:source,dataSha256:crypto.createHash('sha256').update(data.replaceAll('\r\n','\n')).digest('hex')};fs.writeFileSync(path.join(dir,'source-after.json'),JSON.stringify(sourceAfter,null,2));
+check('DB08-source-unchanged',read(path.join(dir,'source-before.json')).dataSha256,sourceAfter.dataSha256);
+const preflight=JSON.parse(run('mysql',['--batch','--raw','--skip-column-names',source,'--execute',"SELECT JSON_OBJECT('database',DATABASE(),'legacyDurationNullable',(SELECT is_nullable FROM information_schema.columns WHERE table_schema=DATABASE() AND table_name='courses' AND column_name='duration'))"]));
+preflight.requiresV011Review=preflight.legacyDurationNullable!=='YES';
+fs.writeFileSync(path.join(dir,'source-schema-preflight.json'),JSON.stringify(preflight,null,2));
+fs.writeFileSync(path.join(dir,'demo-counts.json'),JSON.stringify(counts,null,2));console.log('PASS:8 SQL/source checks; accounts6 courses4 classes4 students10 sessions25; source unchanged.');
+

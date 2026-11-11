@@ -1,5 +1,7 @@
 # Phụ lục B — Đề cương18 slide và20 câu hỏi
 
+**Mốc hiện hành11/11:** [23route, Time-grid và chức năng](../../current-state.md), [bằng chứng335BE/96FE/86tích hợp và phục hồi](../../reviews/2026-11-11-phase-5-completion.md). Chọn đúng bộ dữ liệu và ngày khi demo; gói mới cần đọc qualification đi kèm. Khảo sát/mẫu khoa chưa được tự điền.
+
 Đây là **nội dung để dựng slide**, chưa tạo file PPTX hoặc video bảo vệ. Điều chỉnh số slide/thời lượng theo quy định khoa. Dùng hình nguồn/SVG và ảnh thật ở chương4/6, không chiếu secret hay tài khoản nguồn.
 
 ## 1. Đề cương18 slide

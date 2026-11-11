@@ -11,6 +11,13 @@ $rehearsal=Get-Content (Join-Path $run.backup 'rehearsal.json') -Raw -Encoding U
 if($rehearsal.database -notmatch '^lc_rehearsal_[a-zA-Z0-9_]+$'){throw 'Refuse non-rehearsal database'}
 $run|Add-Member database $rehearsal.database -Force
 $run|ConvertTo-Json -Depth 8|Set-Content $runtimeFile -Encoding UTF8
+function Write-Lifecycle([string]$Message) {
+  $path=Join-Path $RunDir 'lifecycle.log'
+  for($attempt=0;$attempt -lt 5;$attempt++) {
+    try {[IO.File]::AppendAllText($path,$Message+[Environment]::NewLine,(New-Object Text.UTF8Encoding($false)));return}
+    catch [IO.IOException] {if($attempt -eq 4){throw};Start-Sleep -Milliseconds 100}
+  }
+}
 $entries=@(@('auth-service',1),@('academic-service',2),@('teaching-service',3),@('finance-service',4),@('api-gateway',0))
 $chosen=@($entries|Where-Object{$Service -eq 'all' -or $_[0] -eq $Service})
 $jarDir=Join-Path $RunDir 'jars';$normalizedJarDir=$jarDir.Replace('\','/')
@@ -22,7 +29,7 @@ if($Action -in @('stop','restart')) {
     foreach($process in $processes) {
       Stop-Process -Id $process.ProcessId -ErrorAction SilentlyContinue
       Wait-Process -Id $process.ProcessId -Timeout 15 -ErrorAction SilentlyContinue
-      Add-Content (Join-Path $RunDir 'lifecycle.log') "Stopped $($entry[0]) private PID=$($process.ProcessId)"
+      Write-Lifecycle "Stopped $($entry[0]) private PID=$($process.ProcessId)"
     }
   }
   if($Action -eq 'stop') {
@@ -46,7 +53,7 @@ if($env:DB_URL -notmatch '^jdbc:mysql://([^/]+)/[^?]+(\?.*)?$'){throw 'Expected 
 $dbAuthority=$Matches[1]
 $env:DB_URL="jdbc:mysql://$dbAuthority/$($rehearsal.database)?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh";$env:SPRING_PROFILES_ACTIVE='prod';$env:SPRING_CONFIG_IMPORT='optional:file:/nonexistent-acceptance-secrets.properties';$env:CORS_ALLOWED_ORIGINS="http://127.0.0.1:$($run.frontendPort)";$env:DOCUMENT_STORAGE=$rehearsal.restoredDocuments;$env:SERVER_ADDRESS='127.0.0.1';$env:AUTH_URL="http://127.0.0.1:$([int]$run.basePort+1)";$env:ACADEMIC_URL="http://127.0.0.1:$([int]$run.basePort+2)";$env:TEACHING_URL="http://127.0.0.1:$([int]$run.basePort+3)";$env:FINANCE_URL="http://127.0.0.1:$([int]$run.basePort+4)"
 New-Item -ItemType Directory -Path $jarDir -Force|Out-Null
-foreach($e in $chosen){$name=$e[0];$port=[int]$run.basePort+[int]$e[1];if(Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue){throw 'Private port occupied'};$jars=@(Get-ChildItem (Join-Path $backendRoot "$name/target/*.jar"));if($jars.Count -ne 1){throw 'Expected one packaged JAR'};$target=Join-Path $jarDir "$name.jar";Copy-Item -LiteralPath $jars[0].FullName -Destination $target -Force;$log=Join-Path $RunDir $name;$stamp=[DateTime]::UtcNow.ToString("yyyyMMddHHmmssfff");foreach($suffix in @("out","err")){if(Test-Path -LiteralPath "$log.$suffix.log"){Copy-Item -LiteralPath "$log.$suffix.log" -Destination "$log.$stamp.previous.$suffix.log"}};$p=Start-Process java -ArgumentList @('-Xmx256m','-jar',$target,"--server.port=$port",'--spring.jpa.hibernate.ddl-auto=validate','--logging.level.root=INFO') -WindowStyle Hidden -WorkingDirectory $backendRoot -PassThru -RedirectStandardOutput "$log.out.log" -RedirectStandardError "$log.err.log";Add-Content (Join-Path $RunDir 'lifecycle.log') "Started $name port=$port launcherPID=$($p.Id) sha256=$((Get-FileHash $target -Algorithm SHA256).Hash)"}
+foreach($e in $chosen){$name=$e[0];$port=[int]$run.basePort+[int]$e[1];if(Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue){throw 'Private port occupied'};$jars=@(Get-ChildItem (Join-Path $backendRoot "$name/target/*.jar"));if($jars.Count -ne 1){throw 'Expected one packaged JAR'};$target=Join-Path $jarDir "$name.jar";Copy-Item -LiteralPath $jars[0].FullName -Destination $target -Force;$log=Join-Path $RunDir $name;$stamp=[DateTime]::UtcNow.ToString("yyyyMMddHHmmssfff");foreach($suffix in @("out","err")){if(Test-Path -LiteralPath "$log.$suffix.log"){Copy-Item -LiteralPath "$log.$suffix.log" -Destination "$log.$stamp.previous.$suffix.log"}};$p=Start-Process java -ArgumentList @('-Xmx256m','-jar',$target,"--server.port=$port",'--spring.jpa.hibernate.ddl-auto=validate','--logging.level.root=INFO') -WindowStyle Hidden -WorkingDirectory $backendRoot -PassThru -RedirectStandardOutput "$log.out.log" -RedirectStandardError "$log.err.log";Write-Lifecycle "Started $name port=$port launcherPID=$($p.Id) sha256=$((Get-FileHash $target -Algorithm SHA256).Hash)"}
 if($Action -eq 'start' -and $Service -eq 'all'){
 if(Get-NetTCPConnection -LocalPort $run.frontendPort -State Listen -ErrorAction SilentlyContinue){throw 'Private FE port occupied'}
 $env:VITE_API_BASE_URL="http://127.0.0.1:$($run.basePort)/api/v1";$front=(Resolve-Path (Join-Path $backendRoot '../../language-center-web-frontend')).Path

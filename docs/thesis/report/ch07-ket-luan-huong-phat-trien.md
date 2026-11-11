@@ -6,7 +6,7 @@
 
 Các điểm kỹ thuật đã triển khai gồm billing root và retry học phí, requestKey bảo vệ cùng intent, khóa account khi phân công/ngừng Teacher, và barrier/snapshot/revision cho final theo enrollment. Nợ học phí, hoàn thành học vụ và đạt học lực được tách để tránh suy diễn trạng thái.
 
-Bằng chứng hiện có:335 test backend,82 test Node frontend,86 kiểm tra API/MySQL/Edge/SQL cùng ops/smoke riêng. Trong bộ ca bắt buộc không phát hiện sai quyền/sai tiền/kết quả hoặc nhân đôi dữ liệu chưa được xử lý. Không suy các con số này thành coverage100%, an toàn tuyệt đối, hiệu năng sản xuất hoặc xác nhận toàn bộ20giai đoạn.
+Bằng chứng hiện có:335 test backend,96 test Node frontend,86 kiểm tra API/MySQL/Edge/SQL cùng ops/smoke riêng. Trong bộ ca bắt buộc không phát hiện sai quyền/sai tiền/kết quả hoặc nhân đôi dữ liệu chưa được xử lý. Không suy các con số này thành coverage100%, an toàn tuyệt đối, hiệu năng sản xuất hoặc xác nhận toàn bộ20giai đoạn.
 
 ## 7.2. Hạn chế
 
@@ -14,7 +14,7 @@ Chưa có khảo sát thực địa/đánh giá người dùng để xác minh g
 
 Các service chung schema và có khóa điều phối SQL, phụ thuộc Auth live-session/HTTP, nên chưa độc lập triển khai theo database-per-service. Delivery sau commit chưa có durable outbox/broker; cần theo dõi PENDING/FAILED và retry có chủ đích. Một số dữ liệu legacy thiếu phút/đánh giá cần xác minh thủ công, không được tự chuẩn hóa.
 
-Chưa thử tải/Internet/TLS/khôi phục với mục tiêu RPO/RTO. Bộ release G20 cũ cần đóng gói/xác minh lại theo source và tài liệu mới. Chuyển khoản thủ công, chưa LMS/portal/QR/thi online hoặc chứng chỉ; các chức năng đó không được tính là đã làm.
+Chưa thử tải/Internet/TLS/khôi phục với mục tiêu RPO/RTO. Gói G20 ngày10/11 giữ lịch sử; snapshot mới11/11 được kiểm chứng theo hồ sơ qualification kèm gói, không sửa manifest của gói cũ. Chuyển khoản thủ công, chưa LMS/portal/QR/thi online hoặc chứng chỉ; các chức năng đó không được tính là đã làm.
 
 ## 7.3. Hướng hoàn thiện
 

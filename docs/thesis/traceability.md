@@ -1,6 +1,6 @@
-# Ma trận truy vết hiện hành — G16
+# Ma trận truy vết yêu cầu — cập nhật 11/11/2026
 
-Cập nhật10/11/2026, đối chiếu source và nghiệm thu thật G17/G18. Mã RQ giữ theo [yêu cầu gốc](requirements.md), UC theo [đặc tả](use-cases.md). requirements.md là snapshot G01 ngày 07/11: các mục thiếu trong đó không phải kết luận thiếu hiện tại. Mức đã có source, đã test và sẵn sàng nộp là ba mức khác nhau.
+Cập nhật11/11/2026, đối chiếu source và nghiệm thu thật G17/G18. Mã RQ giữ theo [yêu cầu gốc](requirements.md), UC theo [đặc tả](use-cases.md). requirements.md là snapshot G01 ngày 07/11: các mục thiếu trong đó không phải kết luận thiếu hiện tại. Mức đã có source, đã test và sẵn sàng nộp là ba mức khác nhau.
 
 [API đầy đủ](../api-list.md) · [DTO/hợp đồng](../api-contracts.md) · [quyền](role-permissions.md) · [thiết kế động](design/dynamic-workflows.md) · [bằng chứng86 ca](../reviews/2026-11-10-g17-g18-real-acceptance.md). API viết đầy đủ prefix, path parameter được đặt theo controller; không dùng ví dụ endpoint rút gọn như contract.
 
@@ -17,11 +17,11 @@ Cập nhật10/11/2026, đối chiếu source và nghiệm thu thật G17/G18. M
 |RQ09|Tìm kiếm/thống kê; [UC03](use-cases.md#uc03), [UC12](use-cases.md#uc12), [UC15](use-cases.md#uc15), [UC18](use-cases.md#uc18)|Overview,Reports|GET /api/v1/finance/stats/overview|students,enrollments,payments,payment_corrections,tuition|G17-18/20; G18-35; StatsQueryTest,RevenueReportTest; [source](../../finance-service/src/main/java/com/example/finance/stats/RevenueController.java)|
 |RQ10|Quyền/nhất quán/UI; [UC01](use-cases.md#uc01), [UC02](use-cases.md#uc02), [UC05](use-cases.md#uc05), [UC10](use-cases.md#uc10), [UC13](use-cases.md#uc13), [UC14](use-cases.md#uc14), [UC16](use-cases.md#uc16)|AccountManagement,ChangePassword|POST /api/v1/auth/me/logout-all|accounts,account_branches,account_security_events,class_result_barriers|G18-01–08/14–26; UI-02/03/09/10/12; DB-05; [source](../../auth-service/src/main/java/com/example/auth/security/AccountPrincipal.java)|
 |RQ11|Phân tích/thiết kế; [UC17](use-cases.md#uc17)|Tài liệu|Không là API riêng|53 bảng target V013|32 hình; metadata/source/hash/link check; review G15; chưa phải khảo sát thực tế; [source](../../academic-service/src/main/java/com/example/academic/results/ClassClosureService.java)|
-|RQ12|Phát triển/kiểm thử/bàn giao; [UC17](use-cases.md#uc17)|Tài liệu|Không là API riêng|schema/file/backup|Maven335,FE82,ops9,smoke19,acceptance86; G20 release cuối chưa chốt; [source](../../academic-service/src/main/java/com/example/academic/operations/ProductionSafety.java)|
+|RQ12|Phát triển/kiểm thử/bàn giao; [UC17](use-cases.md#uc17)|Tài liệu|Không là API riêng|schema/file/backup|Maven335,FE96,ops12,smoke19 mỗi lượt,acceptance86; UI bổ sung12 trước/sau restore; G20 local10/11 đã đạt; source mới đã nghiệm thu giai đoạn5; [source](../../academic-service/src/main/java/com/example/academic/operations/ProductionSafety.java)|
 
 ## Quy tắc đọc bằng chứng
 
-G17-xx/G18-xx/CRUD-xx/UI-xx/DB-xx trỏ từng kiểm tra trong báo cáo86 ca; không phải số test được suy từ tên giai đoạn. Các test Java nêu tên có trong source và nằm trong tổng335 đã chạy cùng ngày; không gán số ca riêng khi chưa đối soát. Frontend82 dùng node --test, không phải82component/DOM tests; UI12 dùng Edge thật. RQ11 có thiết kế và kiểm tra tĩnh, còn khảo sát cần chứng cứ người dùng. RQ12 có công cụ/diễn tập nhưng **G20 gói release cuối chưa nghiệm thu lại**.
+G17-xx/G18-xx/CRUD-xx/UI-xx/DB-xx trỏ từng kiểm tra trong báo cáo86 ca; không phải số test được suy từ tên giai đoạn. Các test Java nêu tên có trong source và nằm trong tổng335 đã chạy cùng ngày; không gán số ca riêng khi chưa đối soát. Frontend96 dùng node --test, không phải82component/DOM tests; UI12 dùng Edge thật. RQ11 có thiết kế và kiểm tra tĩnh, còn khảo sát cần chứng cứ người dùng. RQ12 có công cụ/diễn tập nhưng **release11/11 phải được qualification riêng; xem hồ sơ kèm gói**.
 
 ## Các điều chỉnh contract cần giữ nhất quán
 
@@ -31,7 +31,11 @@ G17-xx/G18-xx/CRUD-xx/UI-xx/DB-xx trỏ từng kiểm tra trong báo cáo86 ca; 
 - Account assignments là account_branches, lịch sử account_branch_events; giáo viên teacher_profile_events.
 - Class FINISHED khác closure.closed và verification. Học xong FAIL vẫn COMPLETED; nợ không chặn học thuật.
 - Gateway định tuyến, service kiểm JWT/live session; shared account/barrier là ngoại lệ điều phối SQL.
-- TeacherManagement cũ không là bằng chứng route thực: App.tsx dùng AccountManagement cho quản trị Teacher, TeacherDirectory cho Staff; session nằm trong ScheduleManagement như cấu trúc hiện tại.
+- TeacherManagement/StaffManagement cũ đã được xóa (archive local); App.tsx dùng AccountManagement cho quản trị Teacher, TeacherDirectory cho Staff; session nằm trong ScheduleManagement như cấu trúc hiện tại.
+
+## Cập nhật giao diện và bằng chứng11/11
+
+[Hiện trạng và23route](../current-state.md), [giai đoạn5](../reviews/2026-11-11-phase-5-completion.md). RQ02/RQ10 có `/administrators`; RQ03/RQ05 có `/programs`; RQ06 dùng Time-grid. Bảng trước/sau được khôi phục cho lịch sử giáo viên/buổi/đầu vào/căn cứ. Các mã G17/G18 trong bảng là ca đã chạy lại11/11 trên schema riêng.
 
 ## Bằng chứng nguồn FE
 

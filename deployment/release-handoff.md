@@ -4,6 +4,14 @@ Gói gồm năm JAR trong backend, frontend đã build với API `/api/v1`, SQL 
 
 Manifest release.json ghi mọi file/byte/SHA-256, Git revision và dirtyWorkingTree. Source snapshot/hash mô tả nội dung working tree thực; Git HEAD đơn lẻ không đủ khi dirty. Gói là snapshot bất biến trước lúc chạy kiểm chứng. **Kết quả kiểm chứng cuối nằm trong hồ sơ qualification riêng đi kèm**, có hash release.json; không sửa manifest sau kiểm thử để ghép kết quả tương lai vào gói đã chạy.
 
+## Cập nhật snapshot11/11
+
+Có trang Admin và Chương trình & trình độ, Time-grid và lịch sử trước/sau; source FE kèm tests/docs.335BE/96FE/86ca nghiệm thu source đã đạt ở giai đoạn5. Snapshot này chưa tự mang kết quả qualification tương lai; đọc báo cáo riêng kèm gói và kiểm đúng hash release.json.
+
+## Khởi tạo database sạch
+
+Có `docs/migrations/schema-v013-clean.sql`: cấu trúc53bảng/625cột, không có account/mật khẩu/dữ liệu; ID bắt đầu nhỏ. Chỉ chạy trên database rỗng đã chọn, không chạy lên database đang dùng. Sau đó bootstrap Super Admin một lần theo hướng dẫn cài mới trong source docs/migrations/README.md, dừng bootstrap và chạy prod/validate. Với database cũ, backup và đối chiếu migration thay vì chạy clean schema.
+
 ## Kiểm tra và chạy
 
 Từ gói đã giải nén, dùng Node22+, Java21, MySQL8 và PowerShell:

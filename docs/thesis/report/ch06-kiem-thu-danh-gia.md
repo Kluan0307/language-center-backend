@@ -1,5 +1,17 @@
 # Chương 6 — Kiểm thử và đánh giá
 
+## Cập nhật nghiệm thu hiện hành — 11/11/2026
+
+Source hiện tại đã đạt335tests BE,96FE,12ops,86ca API/MySQL/UI baseline,12ca UI mới trước và12sau restore,19smoke mỗi lượt. [Báo cáo và giới hạn](../../reviews/2026-11-11-phase-5-completion.md). F13/V011 trên nguồn đã sửa sau backup, dữ liệu giữ nguyên. Các phần ngày10/11 bên dưới là lịch sử phương pháp/kết quả; không dùng số82FE cũ làm tổng hiện hành.
+
+Ảnh11/11 từ Edge/API thật, không phải mockup:
+
+![Time-grid và bộ lọc thực](figures/phase5-calendar.png)
+
+![Lịch sử buổi học trước/sau](figures/phase5-session-audit.png)
+
+![Lịch dạy trên mobile](figures/phase5-mobile-calendar.png)
+
 ## 6.1. Phương pháp và nguồn kết quả
 
 Kết quả ngày 10/11/2026 được tách theo tầng. Regression source đã chạy ở review cùng ngày; nghiệm thu G17/G18 chạy riêng trên MySQL thật với JAR private prod/validate, Gateway và Edge. G19 chỉ sửa tài liệu/hình, không chạy lại toàn bộ nghiệp vụ để đổi ngày bằng chứng. Không có tỷ lệ coverage nguồn hoặc kiểm thử tải để công bố100% bao phủ.

@@ -47,7 +47,8 @@ try {
   for (const file of ['pom.xml', 'README.md', '.env.example']) copy(path.join(root, file), backendSource + '/' + file);
   for (const folder of ['docs', 'scripts', 'deployment']) copy(path.join(root, folder), backendSource + '/' + folder);
   const frontendSource = sourceRoot + '/language-center-web-frontend';
-  for (const folder of ['src', 'public']) if (fs.existsSync(path.join(frontend, folder))) copy(path.join(frontend, folder), frontendSource + '/' + folder);
+  for (const folder of ['src', 'public', 'tests', 'docs']) if (fs.existsSync(path.join(frontend, folder))) copy(path.join(frontend, folder), frontendSource + '/' + folder);
+  for (const file of ['.env.example', '.gitignore']) if (fs.existsSync(path.join(frontend, file))) copy(path.join(frontend, file), frontendSource + '/' + file);
   for (const file of fs.readdirSync(frontend).filter(f => /^(package(?:-lock)?\.json|tsconfig.*\.json|vite\.config\.ts|eslint\.config\.js|index\.html|README\.md)$/.test(f))) copy(path.join(frontend, file), frontendSource + '/' + file);
   for (const file of ['README.md', 'KE_HOACH_HOAN_THIEN.md']) copy(path.resolve(root, '../..', file), sourceRoot + '/' + file);
   copy(path.join(root, 'deployment/release-handoff.md'), 'HANDOFF.md');

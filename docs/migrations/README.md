@@ -1,5 +1,13 @@
 # Migration V002 — tài khoản và phiên
 
+## Cài mới và mốc11/11/2026
+
+Database rỗng: tạo schema rồi chọn schema đó trong MySQL và chạy `SOURCE docs/migrations/schema-v013-clean.sql;` bằng đường dẫn thực trên máy. File chỉ có cấu trúc V013, không có dữ liệu/tài khoản và không DROP bảng; không dùng để sửa database đang có dữ liệu. Đã kiểm tra53bảng/625cột và replay13migration trên schema thử riêng.
+
+Khởi tạo Super Admin một lần bằng auth JAR với profile bootstrap và cấu hình riêng: DB_URL/USERNAME/PASSWORD, JWT_SECRET, auth.bootstrap.enabled=true, auth.bootstrap.username, auth.bootstrap.password (12–72byte), spring.jpa.hibernate.ddl-auto=validate. Không bật bootstrap trong prod. Dừng tiến trình bootstrap, bỏ/tắt bootstrap, rồi chạy năm service với prod/validate và cấu hình production riêng. Không lưu mật khẩu thực vào source.
+
+Database nguồn đã được áp dụng V011 ngày11/11 sau backup/verify, giữ nguyên dữ liệu/tài khoản. Máy khác cần kiểm `courses.duration` nullable để tạo khóa chỉ có expectedMinutes; không coi có cột expected_minutes là đã chạy đủ migration. [Bằng chứng](../reviews/2026-11-11-phase-5-completion.md). Phần migration database cũ bên dưới vẫn áp dụng.
+
 Áp dụng [V002__account_security.sql](V002__account_security.sql) sau V001 và sau khi sao lưu. Thêm session_version, must_change_password, password_changed_at và account_security_events; không sửa mật khẩu hiện có. Database local đã áp dụng và đối chiếu hash mật khẩu. Chạy lại không reset phiên/cờ đổi mật khẩu. [Hướng dẫn](../improvements/phase-two-account-security.md).
 
 # Migration mới: phân công chi nhánh

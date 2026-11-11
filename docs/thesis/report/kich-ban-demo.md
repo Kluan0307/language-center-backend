@@ -1,5 +1,7 @@
 # Phụ lục A — Kịch bản demo15–20 phút
 
+**Mốc hiện hành11/11:** [23route, Time-grid và chức năng](../../current-state.md), [bằng chứng335BE/96FE/86tích hợp và phục hồi](../../reviews/2026-11-11-phase-5-completion.md). Chọn đúng bộ dữ liệu và ngày khi demo; gói mới cần đọc qualification đi kèm. Khảo sát/mẫu khoa chưa được tự điền.
+
 Cập nhật10/11/2026 theo fixture thật G17/G18. Mặc định trình bày **dữ liệu đã nghiệm thu**, không bấm lại các thao tác tạo/thu trên trạng thái đã hoàn thành. Kịch bản là hướng dẫn diễn tập; chưa ghi nhận một buổi bảo vệ liên tục có Hội đồng hoặc video chính thức.
 
 ## Chuẩn bị

@@ -1,4 +1,21 @@
-# Language Center Backend
+﻿# Language Center Backend
+
+**Giai đoạn 6 hoàn thành (11/11/2026):** [Báo cáo và ZIP bàn giao](docs/reviews/2026-11-11-phase-6-completion.md). Đúng gói release đạt 86 ca tích hợp, UI 4 role và backup/restore; ZIP 990 file đã đối chiếu hash. Còn thông tin khảo sát và hồ sơ nộp cần bổ sung.
+
+**Cập nhật giai đoạn 5 (11/11/2026):** [Nghiệm thu bản hiện tại và backup/restore](docs/reviews/2026-11-11-phase-5-completion.md):335 BE,96 FE,86 ca tích hợp,12 UI bổ sung trước/sau restore. F13/V011 đã sửa trên database gốc sau backup, dữ liệu/tài khoản giữ nguyên. Bản ZIP mới thuộc giai đoạn6.
+
+
+**Cập nhật giai đoạn 4 (11/11/2026):** [Bộ demo qua API thật:40 API+8SQL+4UI](docs/reviews/2026-11-11-phase-4-completion.md), [lệnh mở/tái tạo](scripts/demo-phase4/README.md). Database nguồn giữ nguyên; phát hiện F13 cần đối chiếu migration V011 của schema nguồn.
+
+
+**Cập nhật giai đoạn 3 (11/11/2026):** [Time-grid: URL, bộ lọc và tách nguồn tải dữ liệu](docs/reviews/2026-11-11-phase-3-completion.md); 96 tests FE đạt, browser với API giả lập.
+
+
+**Cập nhật giai đoạn 2 (11/11/2026):** [Lịch sử trước/sau, trang chương trình và dọn code cũ](docs/reviews/2026-11-11-phase-2-completion.md); 89 tests FE đạt, chưa nghiệm thu lại full-stack.
+
+
+**Rà soát hiện trạng 11/11/2026:** [Giai đoạn 1 — ma trận yêu cầu, 12 công việc và lộ trình sửa](docs/reviews/2026-11-11-phase-1-current-state.md). Phân biệt source hiện tại, fixture xem UI và bằng chứng G20 trước cập nhật; chưa nghiệm thu lại toàn hệ thống.
+
 
 **Nghiệm thu lại G17–G18 ngày 10/11/2026:** 86 kiểm tra API/MySQL/Edge thật đạt trên schema riêng; source database không đổi. [Hướng dẫn chạy/demo](deployment/acceptance-g17-g18.md) · [G17](docs/thesis-progress/G17.md) · [G18](docs/thesis-progress/G18.md). G15–G16 đã sửa theo source; [G19](docs/thesis-progress/G19.md) đã đồng bộ bản thảo/demo/slide và số liệu. [G20](docs/thesis-progress/G20.md) đã đạt release local900artifact,86ca, restore và demo4role; bản nộp/production còn checklist.
 
@@ -339,3 +356,4 @@ Trước chạy bản mới: backup/apply migration còn thiếu đến [V013](d
 [Bộ tài liệu](docs/thesis/README.md) có18 nhóm Use Case, quyền theo bốn role, luồng/ngoại lệ và khảo sát tách giả định khỏi chứng cứ thật. [Nguồn sơ đồ và SVG](docs/thesis/diagrams/README.md) có22 sơ đồ; [thiết kế/từ điển](docs/thesis/design/README.md) bao phủ53bảng/625cột và52lớp entity, phân biệt FK SQL với ID/HTTP/JPA.
 
 [Bàn giao G13](docs/thesis-progress/G13.md) · [G14](docs/thesis-progress/G14.md). Chỉ đọc metadata: database hiện tại33bảng còn khác target V013; chưa chạy migration/DDL hoặc sửa code nghiệp vụ. Khảo sát thực tế **CẦN BỔ SUNG**. Tiếp **G15 — Activity/Sequence**; các mục G11/G12 trước đó là lịch sử, chưa nghiệm thu toàn đồ án/production.
+

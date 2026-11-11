@@ -1,6 +1,6 @@
 # Hợp đồng API và body mẫu
 
-Đối chiếu và chuẩn hóa theo mã nguồn thực tế ngày **10/11/2026** (G16 đối chiếu lại). Toàn bộ method/path/query/quyền nằm ở [danh sách API](api-list.md).
+Đối chiếu và chuẩn hóa theo mã nguồn thực tế ngày **11/11/2026** (kiểm kê lại controller). Toàn bộ method/path/query/quyền nằm ở [danh sách API](api-list.md).
 Các path rút gọn dưới đây phải ghép với prefix của service tương ứng.
 
 ## 1. Quy ước chung

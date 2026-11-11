@@ -6,6 +6,10 @@ Backend có parent pom.xml và năm module api-gateway/auth-service/academic-ser
 
 Teacher route dùng AccountManagement fixedRole=TEACHER cho quản trị và TeacherDirectory cho Staff. SessionManagement tích hợp trong ScheduleManagement. Sidebar và route guard phản ánh4 role; quyền cuối cùng vẫn được service kiểm. Hướng dẫn hiện hành ở [README backend](../../../README.md) và [README FE](../../../../../language-center-web-frontend/README.md).
 
+## Giao diện cập nhật11/11
+
+Có trang /administrators và /programs riêng cho Super Admin; lịch học/lịch dạy dùng FullCalendar Weekly Time-grid, ngày hoặc danh sách. Bộ lọc và ngày lưu URL, lịch lấy buổi thực tế thay vì tự lặp lịch mẫu. Đã dọn các trang mock không reachable; lịch sử trình bày trước/sau theo nhãn nghiệp vụ. Xem [23route và mốc kiểm thử](../../current-state.md).
+
 ## 5.2. Cấu hình
 
 | Thành phần | Cổng mặc định local | Cổng nghiệm thu riêng |

@@ -1,5 +1,7 @@
 # Actor và quyền theo thao tác — G13
 
+**Giao diện11/11:** `/administrators` và `/programs` chỉ SUPER_ADMIN; dùng chung API hiện có, không mở quyền mới cho Admin/Staff. `/schedule` và `/my-schedule` có Time-grid, quyền xem/sửa vẫn theo lớp/buổi/chi nhánh ở backend. [23route hiện hành](../current-state.md).
+
 Ngày08/11/2026; đối chiếu controller, service, BranchScope/TeacherDirectory và navigation hiện tại. SA=SUPER_ADMIN, A=ADMIN, S=STAFF, T=TEACHER. **Không dùng kế thừa actor để suy quyền.** Mọi ô còn chịu scope/trạng thái/sở hữu; API là nguồn thực thi, sidebar không cấp quyền.
 
 | Thao tác | SA | A | S | T |
