@@ -780,7 +780,7 @@ Không tự chỉnh dữ liệu legacy thiếu giờ đã hoàn tất; giữ UNK
 ## G10 — quy tắc theo lớp và đánh giá tạm (08/11/2026)
 
 Tổng **161 API chính** (Auth19, Academic108, Teaching22, Finance12), thêm5API. Hợp đồng report cũ được thay cùng FE: kết quả theo **enrollmentId**, passed nullable và trạng thái rõ, không còn chuẩn50% tự động. Client cũ phải cập nhật khi nâng cấp.
-
+*
 ### Quy tắc đã xác nhận
 
 ```json
