@@ -17,9 +17,12 @@ public class ResultBarrierService {
 
   public ResultBarrier lock(Long id, Long branch) {
     em.flush();
-    if (read(id) == null) bootstrap.ensure(id, branch);
-    var b = em.find(ResultBarrier.class, id, LockModeType.PESSIMISTIC_WRITE);
-    em.refresh(b, LockModeType.PESSIMISTIC_WRITE);
+    var cached = read(id);
+    if (cached == null) bootstrap.ensure(id, branch);
+    else em.detach(cached);
+    // Force a locking/current read after bootstrap in a separate transaction.
+    var b = em.createQuery("select b from ResultBarrier b where b.classId=:id",ResultBarrier.class)
+        .setParameter("id",id).setLockMode(LockModeType.PESSIMISTIC_WRITE).getSingleResult();
     if (!b.getBranchId().equals(branch)) throw ApiException.missing();
     return b;
   }

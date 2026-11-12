@@ -19,6 +19,7 @@ public class ExamService {
   private final AcademicDirectory academic;
   private final GradeRepository grades;
   private final ExamCandidateRepository candidates;
+  private final com.example.teaching.publication.GradePublicationRepository publications;
 
   public Exam require(Long id) {
     Exam e = repository.findById(id).orElseThrow(ApiException::missing);
@@ -78,6 +79,7 @@ public class ExamService {
   public void delete(Long id) {
     Exam e = locked(id);
     if(policies.referencesExam(id))throw ApiException.conflict("Bài có lịch sử quy tắc đánh giá; không được xóa");
+    if (publications.existsByExamId(id)) throw ApiException.conflict("Exam has publication history");
     if (grades.existsByExamId(id)) throw ApiException.conflict("Exam has grades");
     candidates.deleteByExamId(id);
     repository.delete(e);

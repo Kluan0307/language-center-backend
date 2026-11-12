@@ -141,7 +141,9 @@ public class TuitionService {
     t.setAmount(b.tuitionFee());
     t.setDueDate(b.dueDate());
     t.setStatus(t.paymentStatus());
-    return TuitionDto.of(repository.saveAndFlush(t));
+    repository.saveAndFlush(t);
+    if(t.getStudentId()!=null)com.example.finance.notification.StudentEvents.add(entityManager,"finance:tuition:"+t.getId(),"TUITION","TUITION_CREATED","Có khoản học phí mới","Mở học phí để xem khoản thu và thời hạn thanh toán.",t.getStudentId(),null,null,null,t.getBranchId(),"TUITION",t.getId().toString(),null,null);
+    return TuitionDto.of(t);
   }
 
   public TuitionDto existing(Long id) {
@@ -203,6 +205,7 @@ public class TuitionService {
     t.setAdjustmentReason(reason);
     t.setStatus(t.paymentStatus());
     repository.flush();
+    if(t.getStudentId()!=null)com.example.finance.notification.StudentEvents.add(entityManager,"finance:adjustment:"+a.getId(),"TUITION","TUITION_ADJUSTED","Học phí có cập nhật","Trung tâm đã cập nhật khoản học phí. Mở chi tiết để kiểm tra số dư hiện hành.",t.getStudentId(),null,null,null,t.getBranchId(),"TUITION",t.getId().toString(),null,null);
     return TuitionDto.of(t);
   }
 }

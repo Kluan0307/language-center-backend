@@ -30,8 +30,15 @@ public class SecurityConfig {
                     .denyAll()
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
                     .permitAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/academic/student/me/profile", "/api/v1/academic/student/me/enrollments", "/api/v1/academic/student/me/enrollments/*", "/api/v1/academic/student/me/schedule", "/api/v1/academic/student/me/sessions/*", "/api/v1/academic/student/me/next-session").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/academic/student/me/enrollments/*/attendance","/api/v1/academic/student/me/enrollments/*/result-source").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/academic/student/me/document-scopes","/api/v1/academic/student/me/support-requests","/api/v1/academic/student/me/support-requests/*","/api/v1/academic/student/me/support-requests/operations/*").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.POST,"/api/v1/academic/student/me/support-requests","/api/v1/academic/student/me/support-requests/*/messages","/api/v1/academic/student/me/support-requests/*/close").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/academic/student/me/billing-scopes").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/academic/student/me/notifications","/api/v1/academic/student/me/notifications/*","/api/v1/academic/student/me/notification-preferences").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.PUT,"/api/v1/academic/student/me/notifications/*/read","/api/v1/academic/student/me/notification-preferences").hasRole("STUDENT")
                     .anyRequest()
-                    .authenticated())
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN", "STAFF", "TEACHER"))
         .exceptionHandling(
             e ->
                 e.authenticationEntryPoint(

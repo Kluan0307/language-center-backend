@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.*;
 @Transactional(isolation = Isolation.READ_COMMITTED)
 public class CorrectionService {
   private final PaymentRepository payments;
+  @org.springframework.beans.factory.annotation.Autowired private jakarta.persistence.EntityManager em;
   private final TuitionService tuitions;
   private final PaymentCorrectionRepository corrections;
   private final FinanceLedger ledger;
@@ -96,6 +97,7 @@ public class CorrectionService {
     c.setRecordedByName(Users.current().username());
     corrections.saveAndFlush(c);
     ledger.setNet(t, ledger.net(t.getId()));
+    if(t.getStudentId()!=null)com.example.finance.notification.StudentEvents.add(em,"finance:correction:"+c.getId(),"PAYMENT","RECEIPT_CORRECTED","Phiếu thu có cập nhật","Phiếu thu có lịch sử xử lý mới. Mở phiếu để kiểm tra.",t.getStudentId(),null,null,null,t.getBranchId(),"RECEIPT",paymentId.toString(),null,null);
     return c;
   }
 }

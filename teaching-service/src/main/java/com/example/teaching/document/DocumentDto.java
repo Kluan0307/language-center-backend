@@ -22,7 +22,7 @@ public record DocumentDto(
     String rejectReason,
     Long version,
     int revision,
-    LocalDateTime lastSubmittedAt) {
+    LocalDateTime lastSubmittedAt, boolean sharedToStudents, LocalDateTime sharedAt) {
   public static DocumentDto of(Document d) {
     return new DocumentDto(
         d.getId(),
@@ -43,7 +43,7 @@ public record DocumentDto(
         d.getRejectReason(),
         d.getVersion(),
         d.getRevision(),
-        d.getLastSubmittedAt() == null ? d.getUploadedAt() : d.getLastSubmittedAt());
+        d.getLastSubmittedAt() == null ? d.getUploadedAt() : d.getLastSubmittedAt(),d.isSharedToStudents(),d.getSharedAt());
   }
 
   public record Review(

@@ -17,7 +17,7 @@ public record GradeDto(
     String lastModifiedByName,
     LocalDateTime lastModifiedAt,
     String modificationReason,
-    String comment) {
+    String comment, String studentComment) {
   public static GradeDto of(Grade g) {
     return new GradeDto(
         g.getId(),
@@ -32,7 +32,7 @@ public record GradeDto(
         g.getLastModifiedByName(),
         g.getLastModifiedAt(),
         g.getModificationReason(),
-        g.getComment());
+        g.getComment(), g.getStudentComment());
   }
 
   public record Request(
@@ -40,7 +40,10 @@ public record GradeDto(
       @NotNull @Positive Long studentId,
       @NotNull @DecimalMin("0") @Digits(integer = 5, fraction = 2) BigDecimal score,
       @Size(max = 1000) String comment,
-      @Size(max = 500) String reason) {}
+      @Size(max = 500) String reason,
+      @Size(max = 1000) String studentComment) {
+    public Request(Long examId,Long studentId,BigDecimal score,String comment,String reason){this(examId,studentId,score,comment,reason,null);}
+  }
 
   public record Change(
       BigDecimal oldScore,

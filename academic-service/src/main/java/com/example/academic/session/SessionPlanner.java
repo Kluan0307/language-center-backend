@@ -231,6 +231,10 @@ public class SessionPlanner {
     e.setActorName(Users.current().username());
     e.setOccurredAt(LocalDateTime.now(BusinessTime.ZONE));
     events.save(e);
+    if(java.util.Set.of("UPDATED","CANCELLED","RESTORED","MAKEUP_CREATED","MAKEUP_LINKED","TEMPLATE_SYNC","TIME_CORRECTED").contains(action)){
+      java.time.LocalDate previous=null;if(before!=null&&before.startsWith("date="))previous=java.time.LocalDate.parse(before.substring(5,15));
+      com.example.academic.notification.StudentEvents.add(em,"academic:session:"+e.getId(),"SCHEDULE","SESSION_"+action,"Lịch học có cập nhật","Trung tâm đã cập nhật một buổi học. Mở lịch để xem thông tin hiện hành.",null,null,s.getSchoolClass().getId(),null,s.getSchoolClass().getBranchId(),"SESSION",s.getId().toString(),s.getSessionDate(),previous);
+    }
   }
 
   private ClassSession copy(ClassSession s) {

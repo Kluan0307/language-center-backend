@@ -135,3 +135,28 @@ Sau backup SQL/file và thử restore, áp dụng [V013](V013__final_results_lea
 
 Academic/Teaching hiện bắt buộc cùng schema MySQL cho hạ tầng khóa metadata này; không cấu hình hai database tách biệt rồi bỏ kiểm token. Nâng đồng thời hai service và FE. V013 đã apply/replay trên rehearsal, prod/validate và API/UI/race đạt; source database vẫn chưa nâng các migration sau V006. Maven không tự chạy SQL. DDL MySQL không rollback: giữ bản backup, không drop audit để hạ phiên bản. [G11](../thesis-progress/G11.md), [G12](../thesis-progress/G12.md).
 
+
+## Student App — V014
+
+[V014__student_accounts.sql](V014__student_accounts.sql) chạy sau V013; thêm STUDENT, liên kết account của học viên và provisioning. New install dùng clean V013 rồi V014. Không sửa bản clean/ZIP đã nghiệm thu. [Hướng dẫn triển khai](../student-app/account-user-guide.md). Đã kiểm tra trên schema riêng, chưa áp dụng database gốc.
+
+
+
+## Student App — V015
+
+[V015__student_grade_publications.sql](V015__student_grade_publications.sql) sau V014; thêm grades.student_comment, grade_publications, published_grades. Không backfill nhận xét nội bộ hoặc tự công bố điểm cũ. [Hướng dẫn nâng cấp/sử dụng](../student-app/phase-5-completion.md). Backup trước khi chạy; Maven không tự thực thi SQL. Database nguồn chưa áp dụng V015.
+
+
+## Student App — V016
+
+[V016__student_documents_support.sql](V016__student_documents_support.sql) sau V015: cờ chia sẻ/audit tài liệu và ba bảng hỗ trợ. Không bật chia sẻ tài liệu cũ, không sửa dữ liệu nghiệp vụ/tài khoản. Backup trước khi chạy; [hướng dẫn áp dụng](../student-app/phase-6-completion.md). Đã replay trên MySQL riêng, database nguồn chưa áp dụng.
+
+
+## V017 — payment orders sandbox
+
+[V017__online_payment_orders.sql](V017__online_payment_orders.sql): thêm orders, provider inbox/transactions, reconcile audit và outbox. Áp dụng sau V016 có backup, không sửa phiếu cũ. Đã replay trên MySQL kiểm thử riêng; chưa áp dụng database nguồn. [Cấu hình G8](../student-app/phase-8-completion.md).
+
+
+## V018 — student notifications
+
+[V018__student_notifications.sql](V018__student_notifications.sql): thêm outbox, inbox, preferences, devices và push deliveries. Áp dụng sau V017 có backup; đã replay trên MySQL riêng, chưa áp dụng database nguồn. [Hướng dẫn G9](../student-app/phase-9-completion.md).

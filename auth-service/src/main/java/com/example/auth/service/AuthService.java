@@ -29,6 +29,7 @@ public class AuthService {
   private final JwtUtil jwtUtil;
   private final AuthenticationManager authenticationManager;
   private final BranchDirectory branches;
+  private final com.example.auth.student.StudentAccountService studentAccounts;
 
   private record ProfileInfo(Long profileId, String fullName) {}
 
@@ -52,7 +53,7 @@ public class AuthService {
 
     ProfileInfo profile = resolveProfile(account);
     if (profile.profileId() == null
-        || (account.getRole() != Role.SUPER_ADMIN && account.activeBranchIds().isEmpty()))
+        || (account.getRole() != Role.SUPER_ADMIN && account.getRole() != Role.STUDENT && account.activeBranchIds().isEmpty()))
       throw ApiException.forbidden();
 
     String token =
@@ -89,6 +90,7 @@ public class AuthService {
     if (accountRepository.existsByUsername(request.getUsername())) {
       throw ApiException.conflict("Username đã tồn tại");
     }
+    if (target == Role.STUDENT) throw ApiException.bad("Use student account provisioning");
     if (target == Role.SUPER_ADMIN) {
       throw ApiException.bad("Không thể tạo tài khoản Super Admin qua API này");
     }
@@ -169,6 +171,7 @@ public class AuthService {
     Account caller = getCaller(callerUsername);
     requireManager(caller);
     Account account = accountRepository.lock(id).orElseThrow(ApiException::missing);
+    if (account.getRole() == Role.STUDENT) throw ApiException.forbidden();
     if (account.getRole() == Role.SUPER_ADMIN)
       throw ApiException.bad("Không thể khóa tài khoản Super Admin");
     if (caller.getRole() == Role.ADMIN) {
@@ -251,6 +254,7 @@ public class AuthService {
     Account account = accountRepository.lock(id).orElseThrow(ApiException::missing);
     if (account.getRole() == Role.SUPER_ADMIN)
       throw ApiException.bad("Super Admin có phạm vi toàn hệ thống");
+    if (account.getRole() == Role.STUDENT) throw ApiException.forbidden();
     var ids = request.branchIds();
     if (ids == null
         || ids.size() > 100
@@ -371,6 +375,7 @@ public class AuthService {
       String username, int page, int size, Long branchId, Role role, String keyword) {
     Account caller = getCaller(username);
     requireManager(caller);
+    if (role == Role.STUDENT) throw ApiException.bad("Use student account management");
     Long branch = branch(caller, branchId);
     return PageResponse.of(
         accountRepository
@@ -386,7 +391,7 @@ public class AuthService {
                                   cb.isTrue(membership.get("status")));
                           return r.get("id").in(sub);
                         })
-                    .and(Query.eq("role", role))
+                    .and((r,q,cb) -> cb.notEqual(r.get("role"), Role.STUDENT)).and(Query.eq("role", role))
                     .and(
                         (r, q, cb) -> {
                           if (keyword == null || keyword.isBlank()) return cb.conjunction();
@@ -459,6 +464,7 @@ public class AuthService {
   private ProfileInfo resolveProfile(Account account) {
     Long id = account.getId();
     return switch (account.getRole()) {
+      case STUDENT -> { var p = studentAccounts.profile(id); yield new ProfileInfo(p.id(), p.fullName()); }
       case SUPER_ADMIN ->
           superAdminRepository
               .findByAccountId(id)
@@ -485,6 +491,7 @@ public class AuthService {
   private UserResponse getUserResponseByAccount(Account account) {
     Long id = account.getId();
     return switch (account.getRole()) {
+      case STUDENT -> { var p = studentAccounts.profile(id); yield baseResponse(account).profileId(p.id()).branchId(p.branchId()).branchIds(java.util.List.of()).fullName(p.fullName()).email(account.isMustChangePassword() ? null : p.email()).phone(account.isMustChangePassword() ? null : p.phone()).build(); }
       case SUPER_ADMIN ->
           toSuperAdminResponse(account, superAdminRepository.findByAccountId(id).orElse(null));
       case ADMIN -> toAdminResponse(account, adminRepository.findByAccountId(id).orElse(null));

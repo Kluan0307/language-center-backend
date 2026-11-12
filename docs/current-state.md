@@ -4,9 +4,9 @@
 
 ## Chức năng và kiến trúc
 
-Bốn role SUPER_ADMIN/ADMIN/STAFF/TEACHER; bốn service nghiệp vụ và Gateway, MySQL dùng chung schema với phân chia bảng sở hữu.173 API nghiệp vụ chính (Auth19,Academic114,Teaching28,Finance12),3alias,2endpoint chẩn đoán. Kiểm kê controller11/11 không phát sinh API mới do cập nhật UI.
+Bốn role vận hành web SUPER_ADMIN/ADMIN/STAFF/TEACHER; STUDENT dành cho app học viên (G3). Bốn service nghiệp vụ và Gateway, MySQL dùng chung schema với phân chia bảng sở hữu.184 API nghiệp vụ chính (Auth24,Academic120,Teaching28,Finance12),3alias,2endpoint chẩn đoán. Student G3/G4 bổ sung11API; bản release G6 trước đó giữ nguyên ở173API.
 
-Đã có quản lý học viên/nhân sự/chi nhánh/chương trình/khóa/lớp/phòng, đánh giá đầu vào/ngoại lệ, ghi danh/bảo lưu/chuyển lớp, buổi học/điểm danh/dạy thay/học bù, điểm/quy tắc/chốt kết quả/đóng lớp, tài liệu, thu phí nhiều đợt/điều chỉnh/đảo/hoàn và báo cáo. Không có tài khoản học viên, thi online, QR hoặc tự xác nhận ngân hàng trong phạm vi hiện tại.
+Đã có quản lý học viên/nhân sự/chi nhánh/chương trình/khóa/lớp/phòng, đánh giá đầu vào/ngoại lệ, ghi danh/bảo lưu/chuyển lớp, buổi học/điểm danh/dạy thay/học bù, điểm/quy tắc/chốt kết quả/đóng lớp, tài liệu, thu phí nhiều đợt/điều chỉnh/đảo/hoàn và báo cáo. Đã có tài khoản học viên và hồ sơ cá nhân ở Student App G3; đã có lớp/lịch/chi tiết buổi trên app ở G4; điểm/học phí mobile ở các giai đoạn tiếp theo. Chưa có thi online, QR hoặc tự xác nhận ngân hàng.
 
 React19/TypeScript, Ant Design6, styled-components, FullCalendar6 Time-grid và múi giờ Asia/Ho_Chi_Minh. Lịch tuần/ngày/danh sách dùng buổi thực tế, lấy đủ trang, lọc giáo viên/phòng/lớp/chi nhánh/trạng thái; trạng thái/ngày lưu trên URL. Không bật kéo thả. Sidebar cố định, menu thao tác gọn; lịch sử có bảng trước/sau và cảnh báo khi không đọc được định dạng cũ.13file mock/trang cũ đã dọn, có archive local.
 
@@ -54,3 +54,31 @@ Khảo sát thực tế, thông tin sinh viên/GVHD, mẫu khoa và dàn trang b
 
 Giai đoạn 6 đã hoàn thành nghiệm thu đúng gói. Xem [báo cáo bàn giao](reviews/2026-11-11-phase-6-completion.md) và hồ sơ qualification kèm ZIP. Hồ sơ cuối lưu ngoài snapshot bất biến và ràng buộc SHA256 manifest.
 
+
+
+
+
+
+## Student App G5 — 12/11/2026
+
+[Điểm công bố, kết quả chính thức và chuyên cần cá nhân](student-app/phase-5-completion.md). Hiện192API (Auth24/Academic122/Teaching34/Finance12); V015 chỉ áp dụng trên schema kiểm thử riêng, chưa nâng database nguồn.
+
+
+## Student App G6 — 12/11/2026
+
+[Tài liệu và hỗ trợ](student-app/phase-6-completion.md). Tổng207API (Auth24/Academic134/Teaching37/Finance12); V016 chưa áp dụng database nguồn. 407BE/43app/96web và56API/12UI G6 đạt.
+
+
+## Student App G7 — 12/11/2026
+
+[Học phí/công nợ/phiếu thu cá nhân](student-app/phase-7-completion.md). Tổng213API (Auth24/Academic135/Teaching37/Finance17); không migration mới sau V016. 428BE/48app/96web và52API/11UI G7 đạt. Database nguồn không đổi.
+
+
+## Student App G8
+
+Đã hiện thực orders/IPN/querydr và đối soát, UI app/web, V017; [phạm vi và nghiệm thu](student-app/phase-8-completion.md). Không tuyên bố đã tích hợp sandbox thật.
+
+
+## Student App G9
+
+Đã có inbox, tùy chọn, badge/home và adapter Expo, 8API mới, migration V018. [Phạm vi và evidence](student-app/phase-9-completion.md). Push thật/VNPAY thật/thiết bị vẫn là gate chưa nghiệm thu.

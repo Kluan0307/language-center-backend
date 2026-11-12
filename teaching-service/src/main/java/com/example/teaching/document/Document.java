@@ -12,6 +12,8 @@ import lombok.*;
 @Getter
 @Setter
 public class Document extends BaseEntity {
+  @Column(nullable=false) private boolean sharedToStudents;
+  private LocalDateTime sharedAt;
   @Column(nullable = false)
   private int revision = 1;
 

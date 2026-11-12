@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class BranchScope {
   public Long filter(Long requested) {
     var u = Users.current();
+    if (u.role() == Role.STUDENT) throw ApiException.forbidden();
     if (requested != null && requested <= 0) throw ApiException.bad("Invalid branchId");
     if (u.role() == Role.SUPER_ADMIN) return requested;
     Long selected = requested == null ? u.branchId() : requested;

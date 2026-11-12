@@ -286,7 +286,7 @@ class AccountSecurityTest {
 
   @Test
   void eachRoleCanUpdateOwnContactsWithoutChangingRoleOrAssignments() {
-    for (Role role : Role.values()) {
+    for (Role role : java.util.List.of(Role.SUPER_ADMIN, Role.ADMIN, Role.STAFF, Role.TEACHER)) {
       var a = role == Role.SUPER_ADMIN ? account(role) : account(role, 11L);
       actor(a);
       var response =

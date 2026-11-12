@@ -31,6 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(
       HttpServletRequest req, HttpServletResponse res, FilterChain chain)
       throws ServletException, IOException {
+    if(req.getMethod().equals("GET")&&java.util.Set.of("/api/v1/finance/payment-providers/vnpay/ipn","/api/v1/finance/payment-providers/vnpay/return").contains(req.getRequestURI())){chain.doFilter(req,res);return;}
     String header = req.getHeader("Authorization");
     if (header != null) {
       try {
@@ -65,7 +66,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         branch = live.branchId();
         var ids = live.branchIds() == null ? java.util.List.<Long>of() : live.branchIds();
         String selected = req.getHeader("X-Branch-Id");
-        if (selected != null) {
+        if (selected != null && role != Role.STUDENT) {
           try {
             branch = Long.valueOf(selected);
             if (branch <= 0) throw new NumberFormatException();
@@ -74,7 +75,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
           }
         }
-        if (role != Role.SUPER_ADMIN
+        if (role != Role.SUPER_ADMIN && role != Role.STUDENT
             && (ids.isEmpty() || branch == null || !ids.contains(branch))) {
           error(res, 403, "Chi nhánh không được phân công");
           return;

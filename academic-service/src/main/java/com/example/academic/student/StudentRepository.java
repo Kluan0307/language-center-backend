@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface StudentRepository
     extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
+  Optional<Student> findByAccountId(Long accountId);
+
   @Lock(LockModeType.PESSIMISTIC_WRITE)
   @Query("select s from Student s where s.id=:id")
   Optional<Student> lock(@Param("id") Long id);

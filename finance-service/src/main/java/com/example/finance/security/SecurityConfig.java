@@ -32,8 +32,12 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers("/", "/error")
                     .permitAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/finance/student/me/tuitions","/api/v1/finance/student/me/tuitions/summary","/api/v1/finance/student/me/tuitions/*","/api/v1/finance/student/me/tuitions/*/payment-context","/api/v1/finance/student/me/receipts","/api/v1/finance/student/me/receipts/*").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/finance/payment-providers/vnpay/ipn","/api/v1/finance/payment-providers/vnpay/return").permitAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/finance/student/me/payment-config","/api/v1/finance/student/me/payment-contexts","/api/v1/finance/student/me/payment-orders","/api/v1/finance/student/me/payment-orders/*","/api/v1/finance/student/me/payment-orders/requests/*").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.POST,"/api/v1/finance/student/me/payment-orders").hasRole("STUDENT")
                     .anyRequest()
-                    .authenticated())
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN", "STAFF", "TEACHER"))
         .exceptionHandling(
             e ->
                 e.authenticationEntryPoint(

@@ -17,6 +17,8 @@ import lombok.*;
 @Getter
 @Setter
 public class Grade extends BaseEntity {
+  @Column(length = 1000)
+  private String studentComment;
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "exam_id", nullable = false)
   private Exam exam;

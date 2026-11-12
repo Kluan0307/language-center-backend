@@ -86,6 +86,7 @@ public class AccountSecurityService {
     if (caller.getId().equals(targetId))
       throw ApiException.bad("Dùng chức năng đổi mật khẩu cá nhân cho tài khoản của bạn");
     var target = accounts.lock(targetId).orElseThrow(ApiException::missing);
+    if (target.getRole() == Role.STUDENT) throw ApiException.forbidden();
     if (target.getRole() == Role.SUPER_ADMIN) throw ApiException.forbidden();
     if (caller.getRole() == Role.ADMIN) {
       if (Collections.disjoint(caller.activeBranchIds(), target.activeBranchIds()))
@@ -111,6 +112,7 @@ public class AccountSecurityService {
     var account = lockSelf(username);
     if (account.isMustChangePassword()) throw ApiException.forbidden();
     switch (account.getRole()) {
+      case STUDENT -> throw ApiException.forbidden();
       case SUPER_ADMIN -> {
         var profile =
             superAdmins.findByAccountId(account.getId()).orElseThrow(ApiException::missing);

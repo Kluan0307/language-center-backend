@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.*;
 @Transactional(readOnly = true)
 public class PaymentService {
   private final PaymentRepository repository;
+  @org.springframework.beans.factory.annotation.Autowired private jakarta.persistence.EntityManager em;
   private final TuitionService tuitions;
   private final BranchScope scope;
   private final com.example.finance.ledger.FinanceLedger ledger;
@@ -39,6 +40,7 @@ public class PaymentService {
 
   @Transactional(isolation = Isolation.READ_COMMITTED)
   public PaymentDto create(PaymentDto.Request r) {
+    if(r.requestKey()!=null&&r.requestKey().toUpperCase(java.util.Locale.ROOT).startsWith("ONLINE-"))throw ApiException.bad("Reserved payment request prefix");
     if (r.paymentMethod() != Payment.PaymentMethod.CASH
         && r.paymentMethod() != Payment.PaymentMethod.BANK_TRANSFER)
       throw ApiException.bad("Use CASH or BANK_TRANSFER");
@@ -74,6 +76,7 @@ public class PaymentService {
     p.setNote(r.note());
     repository.saveAndFlush(p);
     ledger.setNet(t, collected.add(r.amount()));
+    if(t.getStudentId()!=null)com.example.finance.notification.StudentEvents.add(em,"finance:receipt:"+p.getId(),"PAYMENT","RECEIPT_CREATED","Phiếu thu đã được ghi nhận","Trung tâm đã ghi nhận phiếu thu. Mở phiếu để xem số tiền và lịch sử.",t.getStudentId(),null,null,null,t.getBranchId(),"RECEIPT",p.getId().toString(),null,null);
     return PaymentDto.of(p);
   }
 }

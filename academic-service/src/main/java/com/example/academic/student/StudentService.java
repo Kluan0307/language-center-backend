@@ -136,6 +136,7 @@ public class StudentService {
     Student s = require(id);
     branches.lock(s.getBranchId());
     s = lock(id);
+    if (s.getAccountId() != null) throw ApiException.conflict("Student has an account; lock the account instead of deleting");
     if (enrollments.existsByStudentId(id))
       throw ApiException.conflict("Không thể xóa học viên đã có đăng ký");
     if (leads.existsByConvertedStudentId(id))

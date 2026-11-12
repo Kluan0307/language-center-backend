@@ -78,6 +78,7 @@ public class GradeService {
     g.setStudentId(r.studentId());
     g.setScore(r.score());
     g.setComment(r.comment());
+    g.setStudentComment(r.studentComment());
     return GradeDto.of(repository.save(g));
   }
 

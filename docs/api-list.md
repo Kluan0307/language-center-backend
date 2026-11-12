@@ -1,8 +1,8 @@
-# Danh sách API hiện có
+﻿# Danh sách API hiện có
 
-Cập nhật và kiểm kê theo controller, cấu hình security và kiểm tra quyền trong service thực tế ngày **11/11/2026** (kiểm kê lại controller).
+Cập nhật và kiểm kê theo controller, cấu hình security và kiểm tra quyền trong service thực tế ngày **12/11/2026** (kiểm kê lại controller).
 
-Có **173 cặp HTTP method + đường dẫn nghiệp vụ chính**: Auth 19, Academic 114, Finance 12, Teaching 28.
+Có **233 cặp HTTP method + đường dẫn nghiệp vụ chính**: Auth 26, Academic 141, Finance 29, Teaching 37. Student App G3–G9 bổ sung60API; các số173/179/184/192/207 trong phần lịch sử giữ đúng mốc tương ứng.
 Ngoài ra có 3 alias học phí cũ và 2 endpoint chẩn đoán chỉ gọi trực tiếp service.
 Gateway định tuyến, không bổ sung controller nghiệp vụ.
 
@@ -11,7 +11,7 @@ Gateway định tuyến, không bổ sung controller nghiệp vụ.
 - Gọi qua gateway: `http://localhost:8080` + đường dẫn đầy đủ trong bảng.
 - Gọi trực tiếp: Auth 8081, Academic 8082, Teaching 8083, Finance 8084; giữ nguyên đường dẫn.
 - **SA** = SUPER_ADMIN; **A** = ADMIN; **S** = STAFF; **T** = TEACHER.
-- Mọi API nghiệp vụ trừ login đều cần `Authorization: Bearer <token>`.
+- Mọi API nghiệp vụ trừ login và đúng hai GET callback VNPAY đều cần `Authorization: Bearer <token>`; callback kiểm chữ ký ngân hàng.
 - A/S/T dùng phân công hiện tại từ Auth; `X-Branch-Id` chọn chi nhánh làm việc, thiếu header dùng chi nhánh chính. Query/body ngoài phân công bị từ chối. T chỉ thao tác lớp được giao.
   T vẫn được đọc chi nhánh của mình và khóa học trong phạm vi được phép.
 - `page` mặc định 0, `size` mặc định 20 và nằm trong 1–200. Những bảng dưới ghi `page, size` là có phân trang.
@@ -19,7 +19,7 @@ Gateway định tuyến, không bổ sung controller nghiệp vụ.
 - Tên body như `StudentRequest` được giải thích trong [hợp đồng và body mẫu](api-contracts.md).
 - Quyền trong bảng là quyền thực tế sau cả security/controller/service; vẫn phải thỏa điều kiện nghiệp vụ.
 
-## 1. Auth — 19 API
+## 1. Auth — 19 API vận hành (5 API Student G3 ở cuối tài liệu)
 
 | Method | Đường dẫn | Quyền | Input / kết quả chính |
 |---|---|---|---|
@@ -410,3 +410,79 @@ Tổng hiện tại **173 API nghiệp vụ**: Auth19, Academic114, Teaching28, 
 PATCH /academic/enrollments/{id}/status nhận thêm finalResultId/finalResultRevision khi COMPLETED; kể cả cùng COMPLETED phải tham chiếu đúng current CONFIRMED. PASS hoặc FAIL đều được kết thúc quá trình học. INSUFFICIENT, nguồn sai, refs cũ, dependency lỗi đều chặn. Kết quả trả thêm completionResultId/completionResultRevision. Học phí/billing root không thay đổi. PATCH /classes/{id}/status không còn nhận FINISHED hoặc mở lại lớp đã đóng; dùng hai POST có lý do ở trên.
 
 reason 3–500 ký tự. expectedRevision/version nguyên >=0. requestId cùng intent trả cùng kết quả, payload khác409; replay chốt cũ có thể trả state REOPENED nên luôn đọc state. Giữ cùng UUID/body khi retry, không tự tạo intent mới sau mất phản hồi. Phục hồi FE dùng requests/{requestId}; đồng bộ Academic là bước riêng, không transaction phân tán. [G11](thesis-progress/G11.md), [G12](thesis-progress/G12.md), [hướng dẫn](../deployment/learning-results-user-guide.md).
+
+
+## Student App G3 — 11/11/2026
+
+Đã triển khai6endpoint:5Auth quản lý tài khoản và1Academic hồ sơ cá nhân; tổng179API chính. STUDENT dùng app riêng, không cấp quyền vào API danh sách quản trị. Quyền SA/A/S/T của web giữ nguyên.
+
+[Hợp đồng API thực tế và thay đổi](student-app/phase-3-completion.md#api-triển-khai-mới--6-endpoint) · [Migration/cách cấp tài khoản](student-app/account-user-guide.md). Dùng lại login,me,me/password,me/logout-all cho STUDENT. Student chỉ đọc academic/student/me/profile sau khi đổi mật khẩu tạm; không dùng studentId trong query để đổi chủ hồ sơ. Các API lịch/điểm/học phí/thông báo của Student trong draft G1 chưa triển khai.
+
+
+## Student App G4 — 11/11/2026
+
+Thêm5GET trong Academic: `/student/me/enrollments`, `/student/me/enrollments/{id}`, `/student/me/schedule`, `/student/me/sessions/{id}`, `/student/me/next-session` (đều dưới `/api/v1/academic`). Chỉ STUDENT đã đổi mật khẩu, chỉ dữ liệu chính mình. Tổng184API chính. [Hợp đồng và quy tắc thời kỳ/legacy](student-app/phase-4-completion.md). Nhóm API Student trước đó được giữ nguyên.
+
+
+
+## Student App G5 — điểm và chuyên cần
+
+Thêm8endpoint theo [hợp đồng, quyền, DTO và hướng dẫn V015](student-app/phase-5-completion.md#api-thực-hiện). `PUT /teaching/grades` nhận thêm `studentComment` độc lập với `comment` nội bộ. Chỉ snapshot đã công bố được trả cho học viên.
+
+
+## Student App G6 — tài liệu và hỗ trợ
+
+15API mới theo [bảng endpoint, DTO và quyền](student-app/phase-6-completion.md#api-đã-triển-khai). `DocumentDto` quản trị có thêm sharedToStudents/sharedAt. Không bật chia sẻ tài liệu cũ; student projection riêng, không trả entity/note nội bộ.
+
+
+## Student App G7 — tài chính cá nhân
+
+6API đọc mới theo [hợp đồng, ownership và phép tính](student-app/phase-7-completion.md#api-g7-đã-thực-hiện). Support G6 nhận thêm TUITION/RECEIPT với Finance proof. Không có API student ghi tiền, sửa học phí hoặc xác nhận đã thanh toán.
+
+
+## Student App G8 — VNPAY sandbox
+
+12 API mới hiện thực: [bảng method/path/quyền và DTO G8](student-app/phase-8-completion.md#api-đã-hiện-thực). Giao thức cục bộ đã kiểm chứng; VNPAY sandbox thật chưa nghiệm thu do chưa có merchant/HTTPS. Các endpoint đều có prefix `/api/v1/finance`.
+
+| Method | Path | Quyền |
+|---|---|---|
+| GET | `/student/me/payment-config` | STUDENT |
+| POST | `/student/me/payment-orders` | STUDENT |
+| GET | `/student/me/payment-orders` | STUDENT |
+| GET | `/student/me/payment-orders/{id}` | STUDENT, đúng chủ |
+| GET | `/student/me/payment-orders/requests/{requestId}` | STUDENT, đúng chủ |
+| GET | `/payment-orders` | SA/A/S, chi nhánh |
+| GET | `/payment-orders/{id}` | SA/A/S, chi nhánh |
+| POST | `/payment-orders/{id}/reconcile` | SA/A, lý do/UUID/version |
+| GET | `/payment-orders/reconciliations/{requestId}` | SA/A |
+| GET | `/provider-events` | SA/A/S, chi nhánh; unknown chỉ SA |
+| GET | `/payment-providers/vnpay/ipn` | Public, HMAC-SHA512 |
+| GET | `/payment-providers/vnpay/return` | Public, không ghi phiếu |
+
+
+## Student App G9 — thông báo, tùy chọn và thiết bị
+
+8API mới; [DTO, quyền và cấu hình](student-app/phase-9-completion.md#api-g9-thực-tế). Chỉ STUDENT đã kích hoạt và đúng chủ; push thật chưa nghiệm thu.
+
+| Method | Path đầy đủ | Kết quả |
+|---|---|---|
+| GET | `/api/v1/academic/student/me/notifications` | page,size,unread?,category? |
+| GET | `/api/v1/academic/student/me/notifications/unread-count` | count toàn tài khoản |
+| GET | `/api/v1/academic/student/me/notifications/{id}` | Chi tiết đúng chủ |
+| PUT | `/api/v1/academic/student/me/notifications/{id}/read` | 204 idempotent |
+| GET | `/api/v1/academic/student/me/notification-preferences` | Tùy chọn,version,pushAvailable |
+| PUT | `/api/v1/academic/student/me/notification-preferences` | Tùy chọn +version,409 khi stale |
+| PUT | `/api/v1/auth/student/me/devices/{installationId}` | Token/platform/projectId, trả binding không chứa token |
+| DELETE | `/api/v1/auth/student/me/devices/{installationId}` | 204, binding hiện thuộc account |
+
+
+## Tối ưu Học phí và Thanh toán — giai đoạn 1–4
+
+[Hợp đồng và kết quả kiểm thử](student-app/payment-flow-phases-1-4-completion.md). Chỉ STUDENT đúng chủ; các API cũ vẫn được giữ.
+
+| Method | Path đầy đủ | Kết quả |
+|---|---|---|
+| GET | `/api/v1/finance/student/me/tuitions/{id}/payment-context` | Hành động PAY/RESUME/SUPPORT/NONE/UNAVAILABLE, số dư, đơn tóm tắt |
+| GET | `/api/v1/finance/student/me/payment-contexts?tuitionIds=13,14` | Batch tối đa 20 id đã kiểm ownership |
+
+Mở rộng GET tuitions bằng `status=DUE`; GET payment-orders bằng `summary=true` để bỏ URL ký khỏi danh sách. Lỗi POST tạo đơn có thêm code/requestRejected/orderId thuộc chủ khi phù hợp; giữ message cho client cũ.

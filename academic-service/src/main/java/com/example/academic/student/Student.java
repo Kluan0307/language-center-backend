@@ -13,6 +13,8 @@ import lombok.*;
 @Setter
 public class Student extends BaseEntity {
   @Version private long version;
+  @Column(name="account_id", unique=true)
+  private Long accountId;
 
   @Column(unique = true, length = 40, updatable = false)
   private String studentCode = "HV-" + java.util.UUID.randomUUID();

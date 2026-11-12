@@ -89,6 +89,12 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
                     .permitAll()
+                    .requestMatchers("/api/v1/auth/student-accounts", "/api/v1/auth/student-accounts/**", "/api/v1/auth/student-account-provisionings/**")
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN")
+                    .requestMatchers(org.springframework.http.HttpMethod.PUT,"/api/v1/auth/student/me/devices/*").hasRole("STUDENT")
+                    .requestMatchers(org.springframework.http.HttpMethod.DELETE,"/api/v1/auth/student/me/devices/*").hasRole("STUDENT")
+                    .requestMatchers("/api/v1/auth/me", "/api/v1/auth/me/password", "/api/v1/auth/me/logout-all")
+                    .authenticated()
                     .requestMatchers("/api/v1/auth/accounts", "/api/v1/auth/accounts/**")
                     .hasAnyRole("SUPER_ADMIN", "ADMIN")
                     .requestMatchers("/api/v1/auth/teacher-profiles/**")
@@ -96,7 +102,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/v1/auth/teachers", "/api/v1/auth/teachers/**")
                     .hasAnyRole("SUPER_ADMIN", "ADMIN", "STAFF")
                     .anyRequest()
-                    .authenticated())
+                    .hasAnyRole("SUPER_ADMIN", "ADMIN", "STAFF", "TEACHER"))
         .exceptionHandling(
             e ->
                 e.authenticationEntryPoint(

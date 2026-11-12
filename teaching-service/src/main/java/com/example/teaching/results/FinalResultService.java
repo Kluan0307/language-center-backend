@@ -27,6 +27,7 @@ public class FinalResultService {
   private final AcademicDirectory academic;
   private final RemoteApi remote;
   private final JsonMapper json;
+  @org.springframework.beans.factory.annotation.Autowired private jakarta.persistence.EntityManager em;
 
   @Value("${services.academic.url}")
   private String academicUrl;
@@ -177,6 +178,7 @@ public class FinalResultService {
     result.setConfirmedAt(LocalDateTime.now(BusinessTime.ZONE));
     result.setSnapshot(json.writeValueAsString(p));
     results.saveAndFlush(result);
+    com.example.teaching.notification.StudentEvents.add(em,"teaching:result:"+result.getId(),"GRADES","RESULT_CONFIRMED","Kết quả cuối khóa đã xác nhận","Mở hồ sơ học tập để xem kết quả hiện hành.",result.getStudentId(),enrollmentId,classId,null,c.branchId(),"GRADES",enrollmentId.toString(),null,null);
     b.setConfirmedCount(b.getConfirmedCount() + 1);
     b.setResultRevision(b.getResultRevision() + 1);
     return summary(result, b);
@@ -202,6 +204,7 @@ public class FinalResultService {
     for (var item : all)
       if ("CONFIRMED".equals(item.getState())) {
         item.setState("REOPENED");
+        com.example.teaching.notification.StudentEvents.add(em,"teaching:reopen:"+id+":"+item.getEnrollmentId(),"GRADES","RESULT_REOPENED","Kết quả cuối khóa đang cập nhật","Trung tâm đã mở lại kết quả để kiểm tra. Mở hồ sơ học tập để xem trạng thái hiện hành.",item.getStudentId(),item.getEnrollmentId(),classId,null,c.branchId(),"GRADES",item.getEnrollmentId().toString(),null,null);
         item.setReopenedBy(Users.current().accountId());
         item.setReopenedByName(Users.current().username());
         item.setReopenedAt(LocalDateTime.now(BusinessTime.ZONE));

@@ -5,5 +5,5 @@ public enum Role {
   ADMIN,
   STAFF,
 
-  TEACHER
+  TEACHER, STUDENT
 }

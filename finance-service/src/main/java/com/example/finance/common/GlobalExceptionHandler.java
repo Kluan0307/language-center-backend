@@ -15,6 +15,15 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+  @ExceptionHandler(com.example.finance.online.PaymentFlowException.class)
+  ResponseEntity<Map<String, Object>> payment(com.example.finance.online.PaymentFlowException e) {
+    Map<String, Object> body = new LinkedHashMap<>();
+    body.put("code", e.getCode());
+    body.put("message", e.getMessage());
+    body.put("requestRejected", true);
+    if (e.getOrderId() != null) body.put("orderId", e.getOrderId());
+    return ResponseEntity.status(e.getStatus()).body(body);
+  }
   @ExceptionHandler(NoResourceFoundException.class)
   ResponseEntity<Map<String, String>> missing() {
     return ResponseEntity.status(404).body(Map.of("message", "Không tìm thấy API"));

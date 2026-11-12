@@ -61,13 +61,13 @@ Frontend gọi `http://localhost:8080/api/v1/...`. Khi kiểm tra riêng service
 
 | Service | Cổng | Prefix | Trách nhiệm | API chính |
 |---|---:|---|---|---:|
-| auth-service | 8081 | `/api/v1/auth` | Đăng nhập, tài khoản, phân công chi nhánh, hồ sơ nhân sự, danh sách giáo viên | 19 |
-| academic-service | 8082 | `/api/v1/academic` | Chi nhánh, Lead, học viên, khóa, phòng, lớp, lịch, đăng ký, điểm danh, thống kê vận hành | 114 |
-| teaching-service | 8083 | `/api/v1/teaching` | Bài kiểm tra, điểm, lịch sử sửa điểm, tài liệu và đánh giá | 28 |
-| finance-service | 8084 | `/api/v1/finance` | Học phí, phiếu thu, công nợ và báo cáo doanh thu | 12 |
+| auth-service | 8081 | `/api/v1/auth` | Đăng nhập, tài khoản, phân công chi nhánh, hồ sơ nhân sự, danh sách giáo viên | 24 |
+| academic-service | 8082 | `/api/v1/academic` | Chi nhánh, Lead, học viên, khóa, phòng, lớp, lịch, đăng ký, điểm danh, thống kê vận hành | 135 |
+| teaching-service | 8083 | `/api/v1/teaching` | Bài kiểm tra, điểm, lịch sử sửa điểm, tài liệu và đánh giá | 37 |
+| finance-service | 8084 | `/api/v1/finance` | Học phí, phiếu thu, công nợ và báo cáo doanh thu | 17 |
 | api-gateway | 8080 | Cả 4 prefix trên | Định tuyến, CORS, chuyển tiếp JWT | Không có controller nghiệp vụ |
 
-Tổng: **173 API chính**, thêm 3 alias học phí cũ và 2 endpoint chẩn đoán trực tiếp service.
+Tổng hiện tại: **213 API chính**, thêm 3 alias học phí cũ và 2 endpoint chẩn đoán trực tiếp service.
 Gateway giữ nguyên đường dẫn, không bỏ `/api/v1`.
 
 ```mermaid
@@ -357,3 +357,32 @@ Trước chạy bản mới: backup/apply migration còn thiếu đến [V013](d
 
 [Bàn giao G13](docs/thesis-progress/G13.md) · [G14](docs/thesis-progress/G14.md). Chỉ đọc metadata: database hiện tại33bảng còn khác target V013; chưa chạy migration/DDL hoặc sửa code nghiệp vụ. Khảo sát thực tế **CẦN BỔ SUNG**. Tiếp **G15 — Activity/Sequence**; các mục G11/G12 trước đó là lịch sử, chưa nghiệm thu toàn đồ án/production.
 
+
+**Student App — giai đoạn 1 (11/11/2026):** [Thiết kế nghiệp vụ, quyền, API dự kiến và lộ trình](docs/student-app/README.md). Đã chốt phạm vi bản cơ bản; chưa thêm endpoint/migration hoặc thay release web.
+
+**Student App — giai đoạn 2:** [Điều hướng, UI native, API client và phiên](docs/student-app/phase-2-completion.md). 13 tests/9 browser UI checks đạt, bundle Android xuất được; còn kiểm chứng thiết bị thật. Backend và dữ liệu không thay đổi.
+
+
+**Student App G3:** [Tài khoản STUDENT và hồ sơ cá nhân](docs/student-app/phase-3-completion.md) · [Hướng dẫn V014/cấp tài khoản/chạy app](docs/student-app/account-user-guide.md). 356 tests BE,96 web,22 app và API/UI thật trên schema riêng đạt. Chưa áp dụng V014 vào database gốc; giữ nguyên bản ZIP trước đây.
+
+**Student App G4:** [Lớp và lịch cá nhân](docs/student-app/phase-4-completion.md). 369tests BE,34mobile,63checks API và15luồng UI thật đạt; chưa kiểm chứng thiết bị Android thật. Không thay schema/dữ liệu gốc hoặc ZIP release cũ.
+
+
+
+**Student App G5 (12/11/2026):** [Điểm công bố, kết quả cuối khóa, chuyên cần cá nhân và V015](docs/student-app/phase-5-completion.md). Web có công bố/thu hồi và nhận xét học viên riêng. Chưa áp dụng migration vào database nguồn; bản release ZIP cũ giữ nguyên.
+
+
+**Student App G6 (12/11/2026):** [Tài liệu chia sẻ và hỗ trợ học viên — V016, API và nghiệm thu](docs/student-app/phase-6-completion.md). 407tests BE,43app,96web;56checks API G6 và12luồng UI thật đạt. Database nguồn chưa áp dụng V016; tiếp theo G7 học phí/phiếu thu.
+
+
+**Student App G7 (12/11/2026):** [Học phí, công nợ, phiếu thu và đối soát](docs/student-app/phase-7-completion.md). 428tests BE,48app,96web;52checks API G7 và11luồng UI thật đạt. Không migration mới (cần schema đến V016), database nguồn giữ nguyên. Tiếp theo G8 thanh toán online có xác thực/đối soát.
+
+
+## Student App G8
+
+[Thanh toán VNPAY sandbox: sử dụng và cấu hình](docs/student-app/phase-8-completion.md). Code/local protocol đã kiểm chứng; VNPAY thật chưa nghiệm thu vì thiếu merchant/HTTPS. Mặc định không tạo đơn online; không cần cấu hình ngân hàng để chạy phần còn lại.
+
+
+## Student App G9
+
+[Thông báo, trang chủ và cấu hình Expo/FCM](docs/student-app/phase-9-completion.md). Inbox/local đã kiểm chứng, push thật chờ project/credentials/thiết bị; mặc định tắt. V018 chưa áp dụng database nguồn.

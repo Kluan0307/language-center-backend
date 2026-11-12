@@ -259,6 +259,7 @@ public class DocumentService {
       d.setRevision(d.getRevision() + 1);
       d.setLastSubmittedAt(LocalDateTime.now(com.example.teaching.common.BusinessTime.ZONE));
       d.setStatus(Document.Status.PENDING);
+      d.setSharedToStudents(false);d.setSharedAt(null);
       d.setReviewedBy(null);
       d.setReviewedByName(null);
       d.setReviewedAt(null);

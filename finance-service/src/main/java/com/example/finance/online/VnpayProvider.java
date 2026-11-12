@@ -1,0 +1,35 @@
+package com.example.finance.online;
+import com.example.finance.common.*;
+import java.math.*;
+import java.net.*;
+import java.net.http.HttpClient;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.time.*;
+import java.time.format.*;
+import java.util.*;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.*;
+@Component @RequiredArgsConstructor
+public class VnpayProvider {
+ private final PaymentProviderConfig config;
+ private static final DateTimeFormatter DATE=DateTimeFormatter.ofPattern("uuuuMMddHHmmss").withResolverStyle(ResolverStyle.STRICT);
+ public record Verified(String merchantRef,String merchantCode,String transactionNo,BigDecimal amount,String outcome,LocalDateTime paidAt,String proofHash) {}
+ public static String sha(String text){try{return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(text.getBytes(StandardCharsets.UTF_8)));}catch(Exception e){throw new IllegalStateException(e);}}
+ public static String hmac(String secret,String value){try{var mac=Mac.getInstance("HmacSHA512");mac.init(new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8),"HmacSHA512"));return HexFormat.of().formatHex(mac.doFinal(value.getBytes(StandardCharsets.UTF_8)));}catch(Exception e){throw new IllegalStateException(e);}}
+ private static String encode(String value){return URLEncoder.encode(value,StandardCharsets.UTF_8).replace("*","%2A");}
+ public static String canonical(Map<String,String> values){var join=new StringJoiner("&");new TreeMap<>(values).forEach((k,v)->{if(v!=null&&!v.isEmpty()&&!Set.of("vnp_SecureHash","vnp_SecureHashType").contains(k))join.add(encode(k)+"="+encode(v));});return join.toString();}
+ private void signature(String hash,String value){if(hash==null||!hash.matches("(?i)[a-f0-9]{128}")||!MessageDigest.isEqual(hmac(config.getSecret(),value).getBytes(StandardCharsets.US_ASCII),hash.toLowerCase(Locale.ROOT).getBytes(StandardCharsets.US_ASCII)))throw ApiException.bad("Invalid provider signature");}
+ public String checkout(OnlineOrder order){config.requireEnabled();if(!order.getMerchantCode().equals(config.getMerchantCode()))throw ApiException.conflict("Merchant configuration changed; reconcile existing orders");Map<String,String> v=new TreeMap<>();v.put("vnp_Version","2.1.0");v.put("vnp_Command","pay");v.put("vnp_TmnCode",order.getMerchantCode());v.put("vnp_Amount",order.getAmount().movePointRight(2).toBigIntegerExact().toString());v.put("vnp_CurrCode","VND");v.put("vnp_TxnRef",order.getMerchantRef());v.put("vnp_OrderInfo","Hoc phi "+order.getMerchantRef());v.put("vnp_OrderType","other");v.put("vnp_Locale","vn");v.put("vnp_ReturnUrl",config.getReturnUrl());v.put("vnp_IpAddr",order.getClientIp());v.put("vnp_CreateDate",DATE.format(order.getCreatedAt()));v.put("vnp_ExpireDate",DATE.format(order.getExpiresAt()));String data=canonical(v);return config.getCheckoutUrl()+"?"+data+"&vnp_SecureHash="+hmac(config.getSecret(),data);}
+ public Verified ipn(MultiValueMap<String,String> values){config.requireVerification();Map<String,String> v=new TreeMap<>();values.forEach((k,list)->{if(k.startsWith("vnp_")){if(list.size()!=1||k.length()>60||list.getFirst().length()>512)throw ApiException.bad("Invalid callback fields");v.put(k,list.getFirst());}});signature(v.get("vnp_SecureHash"),canonical(v));if(v.containsKey("vnp_CurrCode")&&!"VND".equals(v.get("vnp_CurrCode")))throw ApiException.bad("Invalid callback currency");return normalized(v,false);}
+ private Verified normalized(Map<String,String> v,boolean query){String merchant=v.getOrDefault("vnp_TmnCode","");String ref=v.getOrDefault("vnp_TxnRef","");String raw=v.getOrDefault("vnp_Amount","");String status=v.getOrDefault("vnp_TransactionStatus","");String response=v.getOrDefault("vnp_ResponseCode","");String txn=v.getOrDefault("vnp_TransactionNo","");if(!merchant.equals(config.getMerchantCode())||!ref.matches("[a-zA-Z0-9]{1,40}")||!raw.matches("[0-9]{1,12}")||!status.matches("[0-9]{2}")||!response.matches("[0-9]{2}"))throw ApiException.bad("Invalid provider evidence");var amount=new BigDecimal(raw).movePointLeft(2);if(amount.signum()<=0)throw ApiException.bad("Invalid provider amount");String outcome="00".equals(response)&&"00".equals(status)?"PAID":"01".equals(status)?"PENDING":Set.of("04","05","06","07","09").contains(status)||"07".equals(response)?"REVIEW":"02".equals(status)?"FAILED":"REVIEW";if(query&&!"00".equals(response))throw unavailable();LocalDateTime paidAt=null;if(outcome.equals("PAID")){if(!txn.matches("[1-9][0-9]{0,14}"))throw ApiException.bad("Missing verified transaction");try{paidAt=LocalDateTime.parse(v.getOrDefault("vnp_PayDate",""),DATE);}catch(DateTimeException e){throw ApiException.bad("Invalid payment timestamp");}}return new Verified(ref,merchant,txn,amount,outcome,paidAt,sha(canonical(v)));}
+ public Verified query(OnlineOrder order){config.requireVerification();var v=new LinkedHashMap<String,String>();v.put("vnp_RequestId",UUID.randomUUID().toString().replace("-",""));v.put("vnp_Version","2.1.0");v.put("vnp_Command","querydr");v.put("vnp_TmnCode",order.getMerchantCode());v.put("vnp_TxnRef",order.getMerchantRef());v.put("vnp_TransactionDate",DATE.format(order.getCreatedAt()));v.put("vnp_CreateDate",DATE.format(LocalDateTime.now(BusinessTime.ZONE)));v.put("vnp_IpAddr",config.getServerIp());v.put("vnp_OrderInfo","Query "+order.getMerchantRef());v.put("vnp_SecureHash",hmac(config.getSecret(),String.join("|",v.values())));try{var factory=new JdkClientHttpRequestFactory(HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(3)).build());factory.setReadTimeout(Duration.ofSeconds(5));var response=RestClient.builder().requestFactory(factory).build().post().uri(config.getQueryUrl()).body(v).retrieve().body(new ParameterizedTypeReference<Map<String,String>>(){});if(response==null)throw unavailable();var fields=List.of("vnp_ResponseId","vnp_Command","vnp_ResponseCode","vnp_Message","vnp_TmnCode","vnp_TxnRef","vnp_Amount","vnp_BankCode","vnp_PayDate","vnp_TransactionNo","vnp_TransactionType","vnp_TransactionStatus","vnp_OrderInfo","vnp_PromotionCode","vnp_PromotionAmount");String data=String.join("|",fields.stream().map(k->response.getOrDefault(k,"")).toList());signature(response.get("vnp_SecureHash"),data);if(!order.getMerchantRef().equals(response.get("vnp_TxnRef"))||!"querydr".equals(response.get("vnp_Command"))||!"01".equals(response.get("vnp_TransactionType")))throw unavailable();return normalized(response,true);}catch(RestClientException | ApiException e){throw unavailable();}}
+ private ApiException unavailable(){return new ApiException(HttpStatus.SERVICE_UNAVAILABLE,"Provider verification unavailable; no financial result was assumed");}
+}
