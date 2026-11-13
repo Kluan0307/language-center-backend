@@ -12,6 +12,7 @@ public class SupportRequest {
  @Enumerated(EnumType.STRING) @Column(nullable=false,length=20) private Status status=Status.OPEN;
  @Column(length=20) private String resourceType;
  private Long resourceId;
+ @Column(length=36) private String resourceKey;
  @Column(nullable=false) private LocalDateTime createdAt;
  @Column(nullable=false) private LocalDateTime updatedAt;
  @Version private long version;

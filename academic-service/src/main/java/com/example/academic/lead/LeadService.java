@@ -84,7 +84,10 @@ public class LeadService {
       Long assignedTo,
       Long branchId,
       Lead.FollowUp followUp,
-      Boolean active) {
+      Boolean active) {return list(page,size,keyword,status,assignedTo,branchId,followUp,active,false);}
+  @Transactional(readOnly=true)
+  public PageResponse<LeadDto> list(int page,int size,String keyword,Lead.Status status,Long assignedTo,Long branchId,Lead.FollowUp followUp,Boolean active,boolean allAssigned){
+    var selected=scope.selection(branchId,allAssigned);
     org.springframework.data.jpa.domain.Specification<Lead> follow =
         (r, q, b) -> {
           var open =
@@ -107,7 +110,7 @@ public class LeadService {
     return PageResponse.of(
         repository
             .findAll(
-                Query.<Lead>branch(scope.filter(branchId))
+                Query.<Lead>all().and((r,q,b)->selected==null?b.conjunction():selected.isEmpty()?b.disjunction():r.get("branchId").in(selected))
                     .and(Query.keyword(keyword, "fullName", "phone", "email", "assignedToName"))
                     .and(Query.eq("status", status))
                     .and(Query.eq("assignedTo", assignedTo))

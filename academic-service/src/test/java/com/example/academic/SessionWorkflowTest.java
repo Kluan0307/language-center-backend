@@ -431,4 +431,12 @@ class SessionWorkflowTest {
     planner.edit(s.getId(), request);
     assertThrows(ApiException.class, () -> planner.edit(s.getId(), request));
   }
+
+  @Test void aggregateSessionListKeepsAssignedBranchesAndDoesNotBroadenTeacherPrivileges(){
+    school();school(b,2L,roomB,today.minusDays(7),today.plusDays(21),"10:00","11:00");
+    actor(Role.ADMIN,999L,a,List.of(a,b));
+    var rows=planner.list(0,1,null,null,null,null,today,today,true);assertEquals(2,rows.totalElements());assertEquals(1,rows.content().size());assertEquals(1,planner.list(1,1,null,null,null,null,today,today,true).content().size());
+    actor(Role.STAFF,999L,a,List.of(a));assertThrows(ApiException.class,()->planner.list(0,10,null,null,null,null,today,today,true));
+    actor(Role.TEACHER,1L,a,List.of(a,b));assertThrows(ApiException.class,()->planner.list(0,10,null,null,null,null,today,today,true));assertEquals(1,planner.list(0,10,a,null,null,null,today,today).totalElements());
+  }
 }

@@ -45,8 +45,8 @@ public class LeadController {
       @RequestParam(required = false) Long assignedTo,
       @RequestParam(required = false) Long branchId,
       @RequestParam(required = false) Lead.FollowUp followUp,
-      @RequestParam(required = false) Boolean active) {
-    return service.list(page, size, keyword, status, assignedTo, branchId, followUp, active);
+      @RequestParam(required = false) Boolean active,@RequestParam(defaultValue="false") boolean allAssigned) {
+    return service.list(page, size, keyword, status, assignedTo, branchId, followUp, active, allAssigned);
   }
 
   @GetMapping("/{id}")

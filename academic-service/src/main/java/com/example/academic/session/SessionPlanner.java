@@ -105,6 +105,12 @@ public class SessionPlanner {
       ClassSession.Status status,
       LocalDate from,
       LocalDate to) {
+    return list(page,size,branch,classId,teacher,status,from,to,false);
+  }
+
+  @Transactional(readOnly = true)
+  public PageResponse<SessionDto> list(int page,int size,Long branch,Long classId,Long teacher,ClassSession.Status status,LocalDate from,LocalDate to,boolean allAssigned) {
+    var selected=scope.selection(branch,allAssigned);
     if (from != null && to != null && from.isAfter(to))
       throw ApiException.bad("Từ ngày không được sau đến ngày");
     if (classId != null) {
@@ -116,7 +122,7 @@ public class SessionPlanner {
       if (teacher == null) throw ApiException.forbidden();
     }
     Specification<ClassSession> spec =
-        Query.<ClassSession>eq("schoolClass.branchId", scope.filter(branch))
+        Query.<ClassSession>all().and((r,q,b)->selected==null?b.conjunction():selected.isEmpty()?b.disjunction():r.get("schoolClass").get("branchId").in(selected))
             .and(Query.eq("schoolClass.id", classId))
             .and(Query.eq("teacherId", teacher))
             .and(Query.eq("status", status));

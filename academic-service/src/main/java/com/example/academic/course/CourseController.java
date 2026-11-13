@@ -20,8 +20,12 @@ public class CourseController {
       @RequestParam(required = false) Course.Status status,
       @RequestParam(required = false) String level,
       @RequestParam(required = false) String type,
-      @RequestParam(required = false) Long branchId) {
-    return service.list(page, size, keyword, status, level, type, branchId);
+      @RequestParam(required = false) Long branchId,
+      @RequestParam(required = false) java.math.BigDecimal minTuition,
+      @RequestParam(required = false) java.math.BigDecimal maxTuition,
+      @RequestParam(defaultValue = "true") boolean maxInclusive,
+      @RequestParam(defaultValue = "false") boolean allAssigned) {
+    return service.list(page, size, keyword, status, level, type, branchId,minTuition,maxTuition,maxInclusive,allAssigned);
   }
 
   @GetMapping("/{id}")

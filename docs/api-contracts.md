@@ -1,5 +1,18 @@
 # Hợp đồng API và body mẫu
 
+## Cập nhật W7 — Hàng đợi và phạm vi đa chi nhánh (13/11/2026)
+
+GET `/api/v1/academic/stats/work-queue` trả `{supportActive, leadsNew, businessDate, observedAt}`; GET `/api/v1/finance/stats/work-queue` trả `{tuitionOverdue, ordersReview, businessDate, observedAt}`. Cả hai yêu cầu SUPER_ADMIN/ADMIN/STAFF; query `branchId` tùy chọn và `allAssigned=false` mặc định. Đây là số đếm server theo toàn bộ tập hợp đủ quyền, trước phân trang.
+
+`allAssigned=true`: ADMIN xem tập chi nhánh được phân công hiện hành (tập rỗng trả số 0/danh sách rỗng); SUPER_ADMIN xem toàn hệ thống. STAFF/TEACHER/STUDENT không được dùng chế độ này. Không kết hợp `branchId` và `allAssigned=true`; chi nhánh ngoài phân công bị từ chối. Không bật tổng hợp thì giữ cách chọn chi nhánh làm việc hiện tại.
+
+Tham số tùy chọn tương thích ngược này cũng áp dụng GET quản lý `/api/v1/academic/sessions`, `/api/v1/academic/leads`, `/api/v1/academic/support-requests`, `/api/v1/finance/tuitions`, `/api/v1/finance/payment-orders`. Các kiểm tra quyền endpoint và quyền nghiệp vụ cũ vẫn áp dụng; không thay đổi endpoint student.
+
+Hỗ trợ đang xử lý = OPEN/IN_PROGRESS; tư vấn mới = NEW; học phí quá hạn phải chưa hủy, hạn trước ngày nghiệp vụ và còn nợ; đơn cần rà soát = REVIEW_REQUIRED hoặc có reviewCode. UI dùng cùng điều kiện cho link đích và số đếm. `observedAt` là thời điểm server quan sát dữ liệu, không phải giờ render trên trình duyệt. Lỗi tải không tương đương số 0.
+
+
+
+
 Đối chiếu và chuẩn hóa theo mã nguồn thực tế ngày **11/11/2026** (kiểm kê lại controller). Toàn bộ method/path/query/quyền nằm ở [danh sách API](api-list.md).
 Các path rút gọn dưới đây phải ghép với prefix của service tương ứng.
 
@@ -831,3 +844,40 @@ reason 3–500 ký tự. expectedRevision/version nguyên >=0. requestId cùng i
 Ví dụ chốt: POST /teaching/classes/42/final-results/99/confirm với {"requestId":"d35fba8e-7393-4c65-9b59-a1570dff6d32","fingerprint":"<SHA256 từ preview mới nhất>","reason":"Đã đối soát điểm, chuyên cần và thời lượng"}. Không tự tính fingerprint ở FE.
 
 Snapshot lưu policy đầy đủ tại thời điểm chốt, row điểm/chuyên cần/bài áp dụng và duration; revision quy tắc và revision nguồn lưu cạnh kết quả. Phiên bản trước khi bổ sung full policy trong rehearsal vẫn hiển thị thiếu snapshot quy tắc, không suy diễn từ policy hôm nay.
+
+
+## Web W3–W5 — 13/11/2026
+
+Thay đổi tương thích: payment-orders thêm tìm kiếm/metadata và bộ lọc studentId/classId/receiptId; payments thêm studentId/classId, nguồn thu và liên kết đơn; support-requests thêm resourceKey UUID, hàng đợi/tìm kiếm và lịch sử trạng thái chỉ cho nhân viên. Xem [hợp đồng chi tiết và hướng dẫn cập nhật](improvements/web-w3-w4-w5-completion.md). Các route cũ giữ nguyên; không đổi xác thực VNPAY hoặc quyền STUDENT/STAFF.
+
+W5 bổ sung `GET /api/v1/teaching/students/{studentId}/enrollments/{enrollmentId}/published-grades` cho SUPER_ADMIN/ADMIN/STAFF. Academic xác minh học viên và đăng ký; teaching giới hạn chi nhánh và chỉ trả snapshot publication hiện hành. `score:null` là chưa có điểm; `score:0` là điểm 0 thực. Công bố đã thu hồi, điểm nháp và nhận xét nội bộ không được trả về.
+
+## Truy vấn trợ lý C2 — 13/11/2026
+
+Xem [hợp đồng C2](assistant/c2-completion.md) cho 13 GET mới, query riêng, envelope, quyền và dữ liệu tối thiểu. Scope phải được server xác thực; CURRENT/PUBLISHED điểm tách quyền. `recorded=false` được chiếu thành NOT_RECORDED; count distinct học viên có lớp khác trạng thái hồ sơ. API cũ giữ response; courses thêm bộ lọc tiền/allAssigned và payments thêm allAssigned tùy chọn, mặc định false. Chưa có endpoint chat hoặc MCP runtime.
+
+## MCP C3 — 13/11/2026
+
+[Hợp đồng và schema công cụ C3](assistant/c3-completion.md): 12 công cụ chỉ đọc, T được discovery 8; SDK initialize/list/call qua transport nội bộ, không có URL MCP/chat public. Không thêm REST API nghiệp vụ; số API C2 giữ 251. Credential và scope nằm trong ngữ cảnh host đã xác thực, không nhận qua tool arguments. Chưa gọi Gemini.
+
+## Assistant C4 — 13/11/2026
+
+Đã thêm GET `/api/v1/assistant/config`, POST `/api/v1/assistant/chat`, DELETE `/api/v1/assistant/conversations/{id}`; tổng kiểm kê hiện tại 254 API chính. Mọi route cần `Authorization: Bearer <token>` của SA/A/S/T, Auth xác minh phiên hiện hành. Chat không nhận role, accountId, transcript hoặc system prompt từ client.
+
+```json
+{
+  "message": "Thông tin khóa học giao tiếp dưới 5 triệu",
+  "requestId": "849b9d40-4ecf-438a-ad7a-016e233b8388",
+  "scopeMode": "ACTIVE_BRANCH"
+}
+```
+
+`message` bắt buộc 1–2.000 ký tự sau điều kiện không trắng; requestId UUID dùng chống lặp. Lượt sau gửi thêm `conversationId` nhận từ server. `selection` tùy chọn `{type: "STUDENT"|"CLASS"|"SESSION", id: integer}` phải khớp `choices` của server. `X-Branch-Id` chọn chi nhánh; `ALL_ASSIGNED` chỉ ADMIN, `WHOLE_SYSTEM` chỉ SUPER_ADMIN. Đổi scope mở hội thoại mới.
+
+Response chứa `requestId/conversationId/status/message/scope/observedAt/cards/choices/sources/warnings/hasMore/nextPage`. Số lượng và dữ liệu card được tạo từ công cụ; không render câu trả lời tự do của model. RequestId lặp có cùng nội dung trả snapshot cũ, không phải truy vấn mới. DELETE thành công trả 204, không có body.
+
+Lỗi trả HTTP tương ứng với `{code,message}`: 400 tham số, 401 phiên, 403 quyền, 404 hội thoại, 409 context/xung đột, 413 body quá lớn có Content-Length, 429 giới hạn, 503 model/phụ thuộc/cấu hình, 504 timeout. Không đổi lỗi thành 200 hoặc dữ liệu 0. Chat/MCP tắt mặc định; key chỉ backend. [Hợp đồng, cách bật thử và giới hạn nghiệm thu C4](assistant/c4-completion.md).
+
+### Cập nhật C5
+
+Giữ 3 route và shape JSON C4. Body thực tối đa 16 KiB kể cả chunked/không có Content-Length; 413 nếu quá giới hạn, 415 với Content-Encoding khác identity, 400 với JSON trùng trường/trailing object hoặc ID phân số. Response assistant có Cache-Control: no-store và trace UUID; 429 có Retry-After: 60. Thêm quota theo account (không theo bearer), kiểm lại quyền trước trả kết quả và lọc liên kết/chuỗi công cụ. [Cấu hình, kiểm thử, giới hạn C5](assistant/c5-completion.md). Tổng endpoint vẫn 254 API chính; không thêm API hoặc migration C5.

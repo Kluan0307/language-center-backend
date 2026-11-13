@@ -1,6 +1,6 @@
 param(
   [Parameter(Mandatory=$true)]
-  [ValidateSet('auth-service','academic-service','finance-service','teaching-service','api-gateway')]
+  [ValidateSet('auth-service','academic-service','finance-service','teaching-service','api-gateway','assistant-service')]
   [string]$Service,
   [string]$EnvFile=(Join-Path $PSScriptRoot '../.env.local')
 )
@@ -13,7 +13,7 @@ if(Test-Path -LiteralPath $EnvFile) {
     }
   }
 }
-if($Service -ne 'api-gateway' -and (-not $env:DB_PASSWORD -or -not $env:JWT_SECRET)) {
+if($Service -notin @('api-gateway','assistant-service') -and (-not $env:DB_PASSWORD -or -not $env:JWT_SECRET)) {
   throw 'Set DB_PASSWORD and JWT_SECRET in the environment or .env.local.'
 }
 Push-Location (Join-Path $taskRoot $Service)

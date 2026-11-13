@@ -43,7 +43,7 @@ public class SecurityConfig {
             .toList());
     c.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
     c.setAllowedHeaders(List.of("Authorization", "Content-Type", "X-Branch-Id", "X-Request-Id"));
-    c.setExposedHeaders(List.of("Content-Disposition", "X-Request-Id"));
+    c.setExposedHeaders(List.of("Content-Disposition", "X-Request-Id", "Retry-After"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", c);
     return source;

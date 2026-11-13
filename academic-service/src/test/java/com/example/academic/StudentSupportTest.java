@@ -31,4 +31,39 @@ class StudentSupportTest {
  @Test void staleVersionAndChangedUuidIntentFail(){var r=create();UUID uuid=UUID.randomUUID();service.reply(r.request().id(),uuid,r.request().version(),"My reply",false,true);assertThrows(ApiException.class,()->service.reply(r.request().id(),UUID.randomUUID(),r.request().version(),"Stale reply",false,true));assertThrows(ApiException.class,()->service.reply(r.request().id(),uuid,r.request().version(),"Changed text",false,true));}
  @Test void teachersStudentsAndWrongBranchCannotHandleTickets(){var r=create();assertThrows(ApiException.class,()->service.staffDetail(r.request().id()));actor(Role.TEACHER,22L,3L);assertThrows(ApiException.class,()->service.staffDetail(r.request().id()));actor(Role.STAFF,22L,4L);assertThrows(ApiException.class,()->service.staffDetail(r.request().id()));assertEquals(0,service.list(false,0,20,null,null,null).totalElements());actor(Role.SUPER_ADMIN,22L,null);assertEquals(r.request().id(),service.staffDetail(r.request().id()).request().id());}
  @Test void invalidTransitionsDoNotChangeBusinessData(){var r=create();actor(Role.STAFF,22L,3L);assertThrows(ApiException.class,()->service.change(r.request().id(),UUID.randomUUID(),r.request().version(),SupportRequest.Status.CLOSED,"No skipping",false));assertThrows(ApiException.class,()->service.list(false,0,101,null,null,null));}
+
+ @Test void uuidOrderLinkUsesFinanceOwnershipAndOrderBranchAndKeepsLegacyReplay(){
+   String key=UUID.randomUUID().toString();
+   org.mockito.Mockito.when(remote.get(org.mockito.ArgumentMatchers.endsWith("/payment-orders/"+key),org.mockito.ArgumentMatchers.eq(SupportService.OrderProof.class))).thenReturn(new SupportService.OrderProof(key,5L,own.getId()));
+   var c=new SupportService.Create(UUID.randomUUID(),SupportRequest.Category.PAYMENT,"Payment question","Please review my online payment","PAYMENT_ORDER",null,key);
+   var d=service.create(c);assertEquals(key,d.request().resourceKey());assertNull(d.request().resourceId());assertEquals(5L,d.request().branchId());assertEquals(d.request().id(),service.create(c).request().id());
+   actor(Role.STAFF,22L,3L);assertThrows(ApiException.class,()->service.staffDetail(d.request().id()));
+   actor(Role.STAFF,22L,5L);assertEquals(key,service.staffDetail(d.request().id()).request().resourceKey());
+   assertEquals(1,service.search(false,0,20,null,null,null,null,"GD-"+key.substring(0,8),null).totalElements());
+   actor(Role.STUDENT,own.getId(),null);assertThrows(ApiException.class,()->service.create(new SupportService.Create(c.requestId(),c.category(),c.subject(),c.description(),"PAYMENT_ORDER",null,UUID.randomUUID().toString())));
+ }
+ @Test void foreignMalformedOrMixedOrderReferencesAreRejected(){
+   String key=UUID.randomUUID().toString();
+   org.mockito.Mockito.when(remote.get(org.mockito.ArgumentMatchers.endsWith("/payment-orders/"+key),org.mockito.ArgumentMatchers.eq(SupportService.OrderProof.class))).thenReturn(new SupportService.OrderProof(key,3L,other.getId()));
+   assertThrows(ApiException.class,()->service.create(new SupportService.Create(UUID.randomUUID(),SupportRequest.Category.PAYMENT,"Payment issue","Please check this payment order","PAYMENT_ORDER",null,key)));
+   assertThrows(ApiException.class,()->service.create(new SupportService.Create(UUID.randomUUID(),SupportRequest.Category.PAYMENT,"Payment issue","Please check this payment order","PAYMENT_ORDER",2L,key)));
+   assertThrows(ApiException.class,()->service.create(new SupportService.Create(UUID.randomUUID(),SupportRequest.Category.PAYMENT,"Payment issue","Please check this payment order","PAYMENT_ORDER",null,"../another-order")));
+   assertThrows(ApiException.class,()->service.create(new SupportService.Create(UUID.randomUUID(),SupportRequest.Category.PAYMENT,"Payment issue","Please check this payment order","TUITION",null,key)));
+   assertEquals(0,service.list(true,0,20,null,null,null).totalElements());
+ }
+ @Test void queueFiltersBeforePagingAndDoesNotCrossStudentOrBranch(){
+   own.setFullName("An% Nguyen");em.flush();var first=create();var second=create();
+   actor(Role.STAFF,22L,3L);
+   var filtered=service.search(false,0,1,null,SupportRequest.Category.PROFILE,null,own.getId(),"An%","ACTIVE");assertEquals(2,filtered.totalElements());assertEquals(2,filtered.totalPages());assertEquals(1,filtered.content().size());
+   assertEquals(0,service.search(false,0,20,null,null,null,other.getId(),null,null).totalElements());
+   assertEquals(0,service.search(false,0,20,null,null,null,null,"An_",null).totalElements());
+   actor(Role.STAFF,22L,4L);assertEquals(0,service.search(false,0,20,null,null,null,own.getId(),"An",null).totalElements());
+ }
+ @Test void statusAuditIsStaffOnlyAndRetryDoesNotDuplicateHistory(){
+   var r=create();actor(Role.STAFF,22L,3L);var d=service.staffDetail(r.request().id());assertEquals(1,d.statusHistory().size());
+   UUID id=UUID.randomUUID();d=(SupportService.StaffDetail)service.change(r.request().id(),id,r.request().version(),SupportRequest.Status.IN_PROGRESS,"PRIVATE STATUS REASON",false);
+   assertEquals(2,d.statusHistory().size());var replay=(SupportService.StaffDetail)service.change(r.request().id(),id,r.request().version(),SupportRequest.Status.IN_PROGRESS,"PRIVATE STATUS REASON",false);assertEquals(2,replay.statusHistory().size());
+   actor(Role.STUDENT,own.getId(),null);assertFalse(service.studentDetail(r.request().id()).toString().contains("PRIVATE STATUS REASON"));
+ }
+
 }

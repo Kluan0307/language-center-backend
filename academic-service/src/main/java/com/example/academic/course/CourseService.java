@@ -60,14 +60,27 @@ public class CourseService {
       String level,
       String type,
       Long branchId) {
+    return list(page,size,keyword,status,level,type,branchId,null,null,true,false);
+  }
+
+  @Transactional(readOnly = true)
+  public PageResponse<CourseDto> list(int page,int size,String keyword,Course.Status status,String level,String type,Long branchId,
+      java.math.BigDecimal minTuition,java.math.BigDecimal maxTuition,boolean maxInclusive,boolean allAssigned) {
+    for(var money:java.util.Arrays.asList(minTuition,maxTuition))
+      if(money!=null&&(money.signum()<0||money.scale()>2||money.precision()-money.scale()>13))throw ApiException.bad("Học phí phải không âm, tối đa 13 chữ số và 2 số lẻ");
+    if(minTuition!=null&&maxTuition!=null&&minTuition.compareTo(maxTuition)>0)throw ApiException.bad("minTuition không được lớn hơn maxTuition");
+    var selected=scope.selection(branchId,allAssigned);
+    org.springframework.data.jpa.domain.Specification<Course> visible=(r,q,b)->selected==null?b.conjunction():selected.isEmpty()?b.disjunction():b.or(b.isNull(r.get("branchId")),r.get("branchId").in(selected));
     return PageResponse.of(
         repository
             .findAll(
-                visible(branchId)
+                visible
                     .and(Query.keyword(keyword, "code", "name"))
                     .and(Query.eq("status", status))
                     .and(Query.eq("level", level))
-                    .and(Query.eq("type", type)),
+                    .and(Query.eq("type", type))
+                    .and((r,q,b)->minTuition==null?b.conjunction():b.greaterThanOrEqualTo(r.get("tuitionFee"),minTuition))
+                    .and((r,q,b)->maxTuition==null?b.conjunction():maxInclusive?b.lessThanOrEqualTo(r.get("tuitionFee"),maxTuition):b.lessThan(r.get("tuitionFee"),maxTuition)),
                 Query.page(page, size))
             .map(CourseDto::of));
   }

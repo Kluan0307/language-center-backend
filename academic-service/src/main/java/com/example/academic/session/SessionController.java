@@ -31,8 +31,8 @@ public class SessionController {
       @RequestParam(required = false) Long teacherId,
       @RequestParam(required = false) ClassSession.Status status,
       @RequestParam(required = false) LocalDate from,
-      @RequestParam(required = false) LocalDate to) {
-    return service.list(page, size, branchId, classId, teacherId, status, from, to);
+      @RequestParam(required = false) LocalDate to,@RequestParam(defaultValue="false") boolean allAssigned) {
+    return service.list(page, size, branchId, classId, teacherId, status, from, to, allAssigned);
   }
 
   @GetMapping("/{id}")

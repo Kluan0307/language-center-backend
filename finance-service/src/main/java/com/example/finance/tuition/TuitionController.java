@@ -22,8 +22,8 @@ public class TuitionController {
       @RequestParam(required = false) Long branchId,
       @RequestParam(required = false) Long classId,
       @RequestParam(required = false) Long studentId,
-      @RequestParam(required = false) Boolean overdue) {
-    return service.list(page, size, keyword, status, branchId, classId, studentId, overdue);
+      @RequestParam(required = false) Boolean overdue,@RequestParam(defaultValue="false") boolean allAssigned) {
+    return service.list(page, size, keyword, status, branchId, classId, studentId, overdue, allAssigned);
   }
 
   @GetMapping({"/tuitions/{id}", "/tuition/{id}"})

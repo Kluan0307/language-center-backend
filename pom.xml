@@ -12,5 +12,6 @@
     <module>finance-service</module>
     <module>teaching-service</module>
     <module>api-gateway</module>
+    <module>assistant-service</module>
   </modules>
 </project>

@@ -6,7 +6,8 @@ const services = [
   { name: 'auth', dir: 'auth-service' },
   { name: 'academic', dir: 'academic-service' },
   { name: 'teaching', dir: 'teaching-service' },
-  { name: 'finance', dir: 'finance-service' }
+  { name: 'finance', dir: 'finance-service' },
+  { name: 'assistant', dir: 'assistant-service' }
 ];
 
 function walk(dir) {

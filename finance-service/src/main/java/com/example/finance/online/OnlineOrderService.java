@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.*;
 public class OnlineOrderService {
  private final OnlineOrderRepository orders; private final TuitionRepository tuition; private final StudentFinanceService finance; private final FinanceLedger ledger; private final PaymentProviderConfig config; private final VnpayProvider provider; private final BranchScope scope; private final EntityManager em;
  public record Create(@NotNull UUID requestId,@NotNull @Positive Long tuitionId,@NotBlank @Pattern(regexp="[0-9]{1,10}(\\.[0-9]{1,2})?") String amount,@NotBlank @Pattern(regexp="VND") String currency) {}
- public record View(String id,Long tuitionId,String state,String amount,String currency,String provider,String environment,OffsetDateTime createdAt,OffsetDateTime expiresAt,Long receiptId,String message,boolean reviewRequired,long version,String checkoutUrl,String displayCode,String className,String courseName) {}
+ public record View(String id,Long tuitionId,String state,String amount,String currency,String provider,String environment,OffsetDateTime createdAt,OffsetDateTime expiresAt,Long receiptId,String message,boolean reviewRequired,long version,String checkoutUrl,String displayCode,String className,String courseName,Long studentId,String studentName,Long classId,Long branchId) {}
  public record Settings(boolean enabled,String provider,String environment,String message,String checkoutOrigin) {}
  private LocalDateTime now(){return LocalDateTime.now(BusinessTime.ZONE);}
  private void student(){var u=Users.current();if(u.role()!=Role.STUDENT||u.profileId()==null)throw ApiException.forbidden();}
@@ -42,7 +42,9 @@ public class OnlineOrderService {
      default->"Phiên thanh toán chưa có kết quả xác nhận. Bạn có thể tiếp tục nếu chưa thanh toán.";
    };
    String url=checkout&&student&&state.equals("PENDING")&&o.getReviewCode()==null&&config.isEnabled()&&o.getMerchantCode().equals(config.getMerchantCode())?provider.checkout(o):null;
-   return new View(o.getId(),o.getTuitionId(),state,StudentFinanceService.money(o.getAmount()),o.getCurrency(),o.getProvider(),o.getEnvironment(),o.getCreatedAt().atZone(BusinessTime.ZONE).toOffsetDateTime(),o.getExpiresAt().atZone(BusinessTime.ZONE).toOffsetDateTime(),o.getReceiptId(),message,o.getReviewCode()!=null,o.getVersion(),url,"GD-"+o.getId().substring(0,8).toUpperCase(Locale.ROOT),label==null?null:label.enrollmentLabel(),label==null?null:label.courseName());
+   var snapshot=student?null:em.find(Tuition.class,o.getTuitionId());
+   if(snapshot!=null&&(!Objects.equals(snapshot.getBranchId(),o.getBranchId())||!Objects.equals(snapshot.getStudentId(),o.getStudentId())))snapshot=null;
+   return new View(o.getId(),o.getTuitionId(),state,StudentFinanceService.money(o.getAmount()),o.getCurrency(),o.getProvider(),o.getEnvironment(),o.getCreatedAt().atZone(BusinessTime.ZONE).toOffsetDateTime(),o.getExpiresAt().atZone(BusinessTime.ZONE).toOffsetDateTime(),o.getReceiptId(),message,o.getReviewCode()!=null,o.getVersion(),url,"GD-"+o.getId().substring(0,8).toUpperCase(Locale.ROOT),student?(label==null?null:label.enrollmentLabel()):snapshot==null?null:snapshot.getClassName(),student?(label==null?null:label.courseName()):snapshot==null?null:snapshot.getCourseName(),o.getStudentId(),snapshot==null?null:snapshot.getStudentName(),snapshot==null?null:snapshot.getClassId(),o.getBranchId());
  }
  public record PaymentContext(Long tuitionId,String action,String reason,String message,String outstanding,String currency,View order,boolean sandbox) {}
  private boolean owned(OnlineOrder o){return Objects.equals(o.getAccountId(),Users.current().accountId())&&Objects.equals(o.getStudentId(),Users.current().profileId());}
@@ -88,15 +90,31 @@ public class OnlineOrderService {
  @Transactional(readOnly=true) public OnlineOrder operatorOrder(String id){operator();var o=orders.findById(id).orElseThrow(ApiException::missing);scope.check(o.getBranchId());return o;}
  @Transactional(readOnly=true) public View operatorDetail(String id){return view(operatorOrder(id),false);}
  @Transactional(readOnly=true) public PageResponse<View> list(boolean student,int page,int size,String state,Long tuitionId,Long branch){return list(student,page,size,state,tuitionId,branch,false);}
- @Transactional(readOnly=true) public PageResponse<View> list(boolean student,int page,int size,String state,Long tuitionId,Long branch,boolean summary){
+ @Transactional(readOnly=true) public PageResponse<View> list(boolean student,int page,int size,String state,Long tuitionId,Long branch,boolean summary){return search(student,page,size,state,tuitionId,branch,summary,null,null,null,null);}
+ @Transactional(readOnly=true) public PageResponse<View> search(boolean student,int page,int size,String state,Long tuitionId,Long branch,boolean summary,String keyword,Long studentId,Long classId,Long receiptId){return search(student,page,size,state,tuitionId,branch,summary,keyword,studentId,classId,receiptId,false);}
+ @Transactional(readOnly=true) public PageResponse<View> search(boolean student,int page,int size,String state,Long tuitionId,Long branch,boolean summary,String keyword,Long studentId,Long classId,Long receiptId,boolean allAssigned){
    if(page<0||size<1||size>100||(long)page*size>Integer.MAX_VALUE)throw ApiException.bad("Invalid page");
    if(state!=null&&!Set.of("CREATED","PENDING","SUCCEEDED","FAILED","EXPIRED","REVIEW_REQUIRED").contains(state))throw ApiException.bad("Invalid state");
-   if(student){student();if(tuitionId!=null)finance.detail(tuitionId);}else{operator();branch=scope.filter(branch);}
+   java.util.Set<Long> branches=null;
+   if(student){student();if(allAssigned)throw ApiException.forbidden();if(tuitionId!=null)finance.detail(tuitionId);}else{operator();branches=scope.selection(branch,allAssigned);}
+   if(keyword!=null&&keyword.length()>120)throw ApiException.bad("Keyword too long");
+   for(var id:Arrays.asList(studentId,classId,receiptId,tuitionId))if(id!=null&&id<=0)throw ApiException.bad("Invalid filter id");
    String where=student?"o.accountId=:account and o.studentId=:student":"1=1";
    var params=new HashMap<String,Object>();
    if(student){params.put("account",Users.current().accountId());params.put("student",Users.current().profileId());}
-   if(!student&&branch!=null){where+=" and o.branchId=:branch";params.put("branch",branch);}
+   if(!student&&branches!=null){if(branches.isEmpty())where+=" and 1=0";else{where+=" and o.branchId in :branches";params.put("branches",branches);}}
    if(tuitionId!=null){where+=" and o.tuitionId=:tuition";params.put("tuition",tuitionId);}
+   if(!student){
+     if(studentId!=null){where+=" and o.studentId=:studentFilter";params.put("studentFilter",studentId);}
+     if(receiptId!=null){where+=" and o.receiptId=:receiptFilter";params.put("receiptFilter",receiptId);}
+     if(classId!=null){where+=" and exists(select t.id from Tuition t where t.id=o.tuitionId and t.branchId=o.branchId and t.studentId=o.studentId and t.classId=:classFilter)";params.put("classFilter",classId);}
+     if(keyword!=null&&!keyword.isBlank()){
+       String pattern="%"+keyword.trim().toLowerCase(Locale.ROOT).replace("!","!!").replace("%","!%").replace("_","!_")+"%";
+       String code=keyword.trim().toLowerCase(Locale.ROOT);if(code.startsWith("gd-"))code=code.substring(3);
+       params.put("orderKeyword","%"+code.replace("!","!!").replace("%","!%").replace("_","!_")+"%");
+       where+=" and (lower(o.id) like :orderKeyword escape '!' or lower(o.merchantRef) like :keyword escape '!' or exists(select p.id from ProviderTransaction p where p.orderId=o.id and lower(p.transactionNo) like :keyword escape '!') or exists(select t.id from Tuition t where t.id=o.tuitionId and t.branchId=o.branchId and t.studentId=o.studentId and (lower(t.studentName) like :keyword escape '!' or lower(t.className) like :keyword escape '!' or lower(t.courseName) like :keyword escape '!')))";params.put("keyword",pattern);
+     }
+   }
    if(state!=null){
      params.put("now",now());
      String effective="(case when o.state in ('CREATED','PENDING') and o.expiresAt<:now then 'EXPIRED' else o.state end)";
@@ -107,6 +125,7 @@ public class OnlineOrderService {
    params.forEach((k,v)->{q.setParameter(k,v);count.setParameter(k,v);});
    var rows=q.setFirstResult(page*size).setMaxResults(size).getResultList();long total=count.getSingleResult();
    var labels=student?optionalLabels(rows.stream().map(OnlineOrder::getTuitionId).distinct().toList()):Map.<Long,StudentFinanceService.TuitionView>of();
+   if(!student&&!rows.isEmpty())em.createQuery("select t from Tuition t where t.id in :ids",Tuition.class).setParameter("ids",rows.stream().map(OnlineOrder::getTuitionId).distinct().toList()).getResultList();
    return new PageResponse<>(rows.stream().map(o->view(o,student,labels.get(o.getTuitionId()),!summary)).toList(),page,size,total,(int)Math.ceil((double)total/size));
  }
  public record EventView(Long id,String source,String merchantRef,String transactionNo,String amount,String outcome,String status,String resultCode,String orderId,LocalDateTime receivedAt,LocalDateTime processedAt) {}

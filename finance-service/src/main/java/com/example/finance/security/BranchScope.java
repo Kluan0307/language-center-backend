@@ -5,6 +5,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BranchScope {
+  /** Null means whole system; empty means no assigned branches. */
+  public java.util.Set<Long> selection(Long requested,boolean allAssigned) {
+    if(allAssigned&&requested!=null)throw ApiException.bad("Không kết hợp branchId và allAssigned");
+    if(allAssigned){var u=Users.current();if(u.role()==Role.ADMIN)return java.util.Set.copyOf(u.branchIds());if(u.role()!=Role.SUPER_ADMIN)throw ApiException.forbidden();}
+    Long branch=filter(requested);return branch==null?null:java.util.Set.of(branch);
+  }
   public Long filter(Long requested) {
     var u = Users.current();
     if (u.role() == Role.STUDENT) throw ApiException.forbidden();

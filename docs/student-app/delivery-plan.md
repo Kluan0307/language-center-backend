@@ -95,4 +95,4 @@ G2: nhận diện lấy từ FE hiện có; không cần user gửi lại. G3: d
 
 ## G10 — bản nguồn bàn giao và kiểm thử tự động
 
-[Kết quả, build và các gate còn chờ](phase-10-completion.md). Đã dọn preview, nội dung thẻ test và icon template khỏi runtime; có kiểm tra cấu hình release, profile EAS và script APK local. Người dùng chọn hoàn thiện build/hướng dẫn trước khi có Android kết nối. Nghiệm thu thiết bị, ký phát hành store và push thật chưa được đánh dấu hoàn thành.
+[Kết quả, APK đã tạo và các gate còn chờ](phase-10-completion.md). Đã dọn preview, nội dung thẻ test và icon template khỏi runtime; có kiểm tra cấu hình release, profile EAS, script APK local và APK nội bộ arm64 đã kiểm chữ ký/hash/URL/secret scan. Người dùng chọn hoàn thiện build/hướng dẫn trước khi có Android kết nối. Nghiệm thu thiết bị, ký phát hành store và push thật chưa được đánh dấu hoàn thành.

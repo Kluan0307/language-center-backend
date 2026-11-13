@@ -1,6 +1,6 @@
 # Student App — G10: dọn bản bàn giao và nghiệm thu
 
-Ngày: 12/11/2026. Phần code bàn giao, dọn runtime, kiểm thử tự động và export Android release đã thực hiện. Người dùng chọn **chưa có thiết bị, hoàn thiện build và hướng dẫn trước**. Nghiệm thu cài đặt/chạy trên Android thật và push thật vẫn chờ, không được tính PASS từ kiểm thử trình duyệt.
+Ngày: 12/11/2026. Đã dọn runtime, kiểm thử tự động, export Android release và **build thành công APK cài nội bộ**. Người dùng chọn **chưa có thiết bị, hoàn thiện build và hướng dẫn trước**. Nghiệm thu cài đặt/chạy trên Android thật và push thật vẫn chờ, không được tính PASS từ kiểm thử trình duyệt.
 
 ## Phần đã dọn
 
@@ -39,6 +39,7 @@ Không đổi secret/merchant VNPAY, không reset dữ liệu, không sửa khó
 | Web quản trị | **96 test đạt**, build production đạt; vẫn có cảnh báo chunk lớn |
 | Android JS/Hermes release export | Đạt; dùng HTTPS Gateway, không phải APK cài đặt |
 | Scan bundle release | Không tìm thấy các secret backend được kiểm hoặc nội dung UI thử nghiệm đã loại |
+| APK arm64 release | Build thành công; chữ ký hợp lệ, `debuggable=false`, hash khớp manifest; scan APK không tìm thấy secret backend được kiểm hoặc nội dung UI thử nghiệm đã loại, có đúng HTTPS API đã cấu hình |
 | UI với backend thật | 5 kiểm tra đạt: login, học phí/lịch sử, deep link giao dịch sau login, cài đặt khi push chưa có, trang chủ |
 | Android thật / SecureStore / back / keyboard / native sharing | Chờ thiết bị |
 | Push FCM/APNs và app-killed delivery | Chờ cấu hình EAS/Firebase và thiết bị |
@@ -49,9 +50,31 @@ Không đổi secret/merchant VNPAY, không reset dữ liệu, không sửa khó
 
 Evidence cục bộ: `storage/student-phase10/summary.json`, các log kiểm thử, `live-ui-report.json`, `payment-evidence.json`, `android-export-result.json`, `artifact-scan.json`, `build-result.json`. Các log PowerShell cũ có thể là UTF-16; trình tổng hợp đọc đúng BOM, không coi cảnh báo stderr là kiểm thử thất bại.
 
+Khi tiếp tục hoàn thiện bàn giao sau lần hết hạn mức công cụ, kiểm tra lại không thấy các cổng 8080–8084 và ngrok 4040 lắng nghe; API hiện chưa kết nối được. Đây là trạng thái môi trường tại lần kiểm tra cuối, không phải kết quả chạy lại các test H2 hoặc phủ nhận bằng chứng UI/API đã đạt trước đó. Bật lại backend và ngrok trước khi dùng APK; không tự khởi động lại toàn bộ các tiến trình mà người dùng có thể đã chủ động đóng.
+
 ## APK và cách chạy
 
-Tình trạng APK phải đối chiếu với `build-result.json` và `language-center-student-app/artifacts/latest-android.json`. Chỉ có bundle export hoặc native prebuild không đồng nghĩa đã có APK. Bản local nếu dùng signing mặc định template là bản cài **nội bộ**, không phải bản phát hành store đã có keystore riêng.
+APK đã tạo: [LanguageCenter-1.0.0-sandbox-arm64-20261112103722.apk](../../../../language-center-student-app/artifacts/LanguageCenter-1.0.0-sandbox-arm64-20261112103722.apk).
+
+| Thuộc tính | Giá trị đã kiểm |
+|---|---|
+| Dung lượng | 28.747.961 bytes, khoảng 28,7 MB |
+| Package / phiên bản | `com.languagecenter.student` / `1.0.0` |
+| Android tối thiểu / target | API 24 / API 36 |
+| ABI | `arm64-v8a` |
+| Gateway nhúng trong APK | `https://subsystem-handwork-subscript.ngrok-free.dev/api/v1` |
+| Chữ ký | Hợp lệ, debug keystore dùng nội bộ; manifest ứng dụng `debuggable=false` |
+| SHA-256 | `5484783e87435639ec4af930ef8cda656bdac6f3dae3ab255dbb7e4accc8b2d8` |
+
+`build-result.json`, `apk-verification.json`, `artifact-scan.json` và `language-center-student-app/artifacts/latest-android.json` ghi bằng chứng. Bản này là APK **nội bộ**, không phải bản phát hành store đã có keystore riêng. Chữ ký debug không đồng nghĩa variant app đang bật debug; badging đã kiểm `debuggable=false`.
+
+Cài trên điện thoại Android 64-bit bằng cách chép APK vào máy, mở file và cho phép cài từ nguồn tương ứng. Hoặc khi bật USB debugging, từ thư mục app:
+
+```powershell
+adb install -r .\artifacts\LanguageCenter-1.0.0-sandbox-arm64-20261112103722.apk
+```
+
+Sau cài, mở **Language Center** và đăng nhập bằng tài khoản STUDENT được cấp. Không cần Metro hoặc Expo Go cho APK này; backend và ngrok vẫn phải chạy.
 
 Build local trên Windows từ thư mục app:
 
@@ -63,6 +86,8 @@ npm run build:android:local
 ```
 
 Đầu ra khi thành công là `artifacts/LanguageCenter-<version>-sandbox-arm64-<timestamp>.apk`, có SHA-256 trong manifest. Bản này dùng `arm64-v8a`; thiết bị giả lập x86 không phải mục tiêu bản build này. Backend và tunnel HTTPS phải tiếp tục hoạt động khi sử dụng. Đổi hostname Gateway đã đóng gói cần build lại.
+
+Script khai báo các biến EXPO_PUBLIC là input của tác vụ bundle để lần build sau đổi API không giữ nhầm bundle cũ. Có thể kiểm tra cấu hình/task graph mà không tạo APK mới bằng `npm run build:android:local -- --check-config`.
 
 SDK/NDK/CMake đang yêu cầu: Android platform 37, Build Tools 37.0.0, NDK 27.1.12297006, CMake 3.22.1. Quá trình build đã gặp thiếu bộ nhớ khi chạy song song, thư mục NDK cài dở và lỗi Ninja vượt 260 ký tự. Script giới hạn Gradle một worker và dùng CMake job pool để giới hạn compiler C++ một tác vụ; chỉ giới hạn Gradle worker chưa đủ để hạn chế Ninja. Drive alias tạm rút ngắn đường dẫn, object path dùng ngưỡng 240 để CMake còn đủ chỗ tạo tên/hash. Thư mục NDK cài dở đã được chuyển vào storage, không xóa SDK hoàn chỉnh khác. Xem [CMAKE_OBJECT_PATH_MAX](https://cmake.org/cmake/help/latest/variable/CMAKE_OBJECT_PATH_MAX.html), [CMake compile job pool](https://cmake.org/cmake/help/latest/variable/CMAKE_JOB_POOL_COMPILE.html).
 

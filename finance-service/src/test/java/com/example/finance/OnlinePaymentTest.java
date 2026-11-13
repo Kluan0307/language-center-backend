@@ -130,5 +130,35 @@ class OnlinePaymentTest {
  @Test void invalidQuerySignatureIsDependencyFailureAndLeavesAuditPending() throws Exception {var order=create("1000");var server=com.sun.net.httpserver.HttpServer.create(new InetSocketAddress("127.0.0.1",0),0);server.createContext("/query",e->{byte[] bytes="{\"vnp_SecureHash\":\"invalid\"}".getBytes(StandardCharsets.UTF_8);e.getResponseHeaders().set("Content-Type","application/json");e.sendResponseHeaders(200,bytes.length);e.getResponseBody().write(bytes);e.close();});server.start();try{ReflectionTestUtils.setField(config,"queryUrl","http://127.0.0.1:"+server.getAddress().getPort()+"/query");actor(Role.SUPER_ADMIN,201,21,0);var request=new ReconcileService.Request(UUID.randomUUID(),orders.findById(order.id()).orElseThrow().getVersion(),"Check unverifiable provider response");ApiException error=assertThrows(ApiException.class,()->reconcile.reconcile(order.id(),request));assertEquals(org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE,error.getStatus());assertEquals("PENDING",journal.recover(request.requestId()).operationStatus());assertEquals(0,events.count());assertEquals(0,receipts());}finally{server.stop(0);}}
 
  @Test void queryingAllocatedReceiptDoesNotHideAnotherUnallocatedBankTransaction(){var order=create("1000");pay(order.id(),"1020","1000");pay(order.id(),"1021","1000");assertTrue(service.own(order.id()).reviewRequired());Long query=inbox.store(provider.ipn(evidence(order.id(),"1020","1000","00","00")),"QUERY");settlement.process(query,true);assertTrue(service.own(order.id()).reviewRequired());assertEquals(1,receipts());assertEquals(2,transactions.count());assertThrows(ApiException.class,()->create("500"));}
+
+ @Test void managementSearchFiltersBeforePagingAndReturnsScopedTuitionContext(){
+   tx.executeWithoutResult(s->{var bill=em.find(Tuition.class,t.getId());bill.setStudentName("Lan% Anh");bill.setClassName("A1 Night");bill.setCourseName("English");});
+   var old=create("500");expiry(old.id());var current=create("600");
+   actor(Role.STAFF,201,21,3);
+   var page=service.search(false,0,1,null,null,null,false,"Lan%",11L,9L,null);
+   assertEquals(2,page.totalElements());assertEquals(2,page.totalPages());assertEquals(1,page.content().size());
+   var row=page.content().getFirst();assertEquals("Lan% Anh",row.studentName());assertEquals("A1 Night",row.className());assertEquals("English",row.courseName());assertEquals(3L,row.branchId());assertNull(row.checkoutUrl());
+   assertEquals(1,service.search(false,1,1,null,null,null,false,"Lan%",11L,9L,null).content().size());
+   assertEquals(0,service.search(false,0,20,null,null,null,false,"Lan_",null,null,null).totalElements());
+   assertEquals(0,service.search(false,0,20,null,null,null,false,null,999L,null,null).totalElements());
+   assertEquals(0,service.search(false,0,20,null,null,null,false,null,null,999L,null).totalElements());
+   assertEquals(current.id(),service.search(false,0,20,null,null,null,false,current.id(),null,null,null).content().getFirst().id());
+   assertEquals(current.id(),service.search(false,0,20,null,null,null,false,"GD-"+current.id().substring(0,8).toUpperCase(Locale.ROOT),null,null,null).content().getFirst().id());
+   actor(Role.STAFF,201,21,4);assertEquals(0,service.search(false,0,20,null,null,null,false,"Lan",11L,9L,null).totalElements());assertThrows(ApiException.class,()->service.operatorDetail(current.id()));
+ }
+ @Test void receiptAndStudentSearchFollowTheSameTuitionWithoutCreatingMoney(){
+   tx.executeWithoutResult(s->{var bill=em.find(Tuition.class,t.getId());bill.setStudentName("Minh");bill.setClassName("B1 Evening");});
+   var order=create("700");pay(order.id(),"7654321","700");Long receipt=service.own(order.id()).receiptId();
+   actor(Role.STAFF,201,21,3);
+   assertEquals(order.id(),service.search(false,0,20,null,null,null,false,"7654321",11L,9L,receipt).content().getFirst().id());
+   assertEquals(1,manual.search(0,20,"Minh",null,null,11L,9L).totalElements());
+   var receiptView=manual.get(receipt);assertEquals("ONLINE",receiptView.source());assertEquals(order.id(),receiptView.onlineOrderId());assertEquals("Minh",receiptView.studentName());
+   assertEquals(0,manual.search(0,20,"Minh",null,null,12L,9L).totalElements());
+   assertEquals(0,manual.search(0,20,"B_",null,null,11L,9L).totalElements());
+   assertEquals(receipt,manual.search(0,1,null,null,null,11L,9L).content().getFirst().id());
+   actor(Role.STAFF,201,21,4);assertEquals(0,manual.search(0,20,"Minh",null,null,11L,9L).totalElements());
+   assertEquals(1,receipts());
+ }
+
 }
 

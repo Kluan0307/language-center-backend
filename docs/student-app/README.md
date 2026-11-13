@@ -85,4 +85,4 @@ Ngoài bản cơ bản: QR tự điểm danh, phụ huynh nhiều con, thi onlin
 
 ## Tiến độ giai đoạn 10
 
-[Dọn runtime, cấu hình bàn giao và kết quả kiểm thử](phase-10-completion.md). Đã gỡ preview/UI thử nghiệm, bổ sung profile APK/AAB và kiểm tra release; 503 test backend, 80 test app, 96 test web đạt. Android release bundle đã export và scan. APK đối chiếu manifest build; nghiệm thu Android/push thật vẫn chờ thiết bị theo lựa chọn của người dùng.
+[Dọn runtime, cấu hình bàn giao và kết quả kiểm thử](phase-10-completion.md). Đã gỡ preview/UI thử nghiệm, bổ sung profile APK/AAB và kiểm tra release; 503 test backend, 80 test app, 96 test web đạt. Đã có APK nội bộ Android arm64 khoảng 28,7 MB, chữ ký và scan nội dung đạt. Nghiệm thu Android/push thật vẫn chờ thiết bị theo lựa chọn của người dùng.

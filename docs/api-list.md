@@ -1,15 +1,27 @@
 ﻿# Danh sách API hiện có
 
-Cập nhật và kiểm kê theo controller, cấu hình security và kiểm tra quyền trong service thực tế ngày **12/11/2026** (kiểm kê lại controller).
+Cập nhật và kiểm kê theo controller, cấu hình security và kiểm tra quyền trong service thực tế ngày **13/11/2026** (kiểm kê lại controller sau C4).
 
-Có **233 cặp HTTP method + đường dẫn nghiệp vụ chính**: Auth 26, Academic 141, Finance 29, Teaching 37. Student App G3–G9 bổ sung60API; các số173/179/184/192/207 trong phần lịch sử giữ đúng mốc tương ứng.
+Có **254 cặp HTTP method + đường dẫn nghiệp vụ chính**: Auth 26, Academic 151, Finance 34, Teaching 40, Assistant 3. Đã tính 13 API trợ lý C2 và 3 API hội thoại C4, hai API work-queue W7, hai API payment-context trong phần cập nhật thanh toán và API điểm công bố W5. Student App G3–G9 bổ sung60API; các số173/179/184/192/207 trong phần lịch sử giữ đúng mốc tương ứng.
 Ngoài ra có 3 alias học phí cũ và 2 endpoint chẩn đoán chỉ gọi trực tiếp service.
 Gateway định tuyến, không bổ sung controller nghiệp vụ.
+
+## Assistant C4 — 3 API hội thoại
+
+| Method | Đường dẫn | Quyền | Input / kết quả |
+|---|---|---|---|
+| GET | `/api/v1/assistant/config` | SA/A/S/T | Trạng thái enabled, readOnly, role và hạn mức; không trả key |
+| POST | `/api/v1/assistant/chat` | SA/A/S/T | Body message, conversationId?, requestId?, scopeMode?, selection?; header X-Branch-Id?; trả message/cards/choices/sources/scope |
+| DELETE | `/api/v1/assistant/conversations/{id}` | SA/A/S/T | UUID hội thoại của phiên hiện tại; 204 |
+
+[Body mẫu, lỗi, cấu hình và hạn mức C4](assistant/c4-completion.md). Chat/MCP tắt mặc định; không có endpoint MCP công khai. Chưa có UI C6, Gemini thật chưa nghiệm thu do timeout/503. Snapshot kiểm kê: `storage/api-inventory.json` sinh bằng `node scripts/inventory-api.cjs`.
+
+C5 giữ nguyên 3 route, bổ sung rate limit theo account, giới hạn body thực, policy và audit; [hành vi hiện tại và kiểm thử C5](assistant/c5-completion.md).
 
 ## Cách đọc
 
 - Gọi qua gateway: `http://localhost:8080` + đường dẫn đầy đủ trong bảng.
-- Gọi trực tiếp: Auth 8081, Academic 8082, Teaching 8083, Finance 8084; giữ nguyên đường dẫn.
+- Gọi trực tiếp: Auth 8081, Academic 8082, Teaching 8083, Finance 8084, Assistant 8086; giữ nguyên đường dẫn.
 - **SA** = SUPER_ADMIN; **A** = ADMIN; **S** = STAFF; **T** = TEACHER.
 - Mọi API nghiệp vụ trừ login và đúng hai GET callback VNPAY đều cần `Authorization: Bearer <token>`; callback kiểm chữ ký ngân hàng.
 - A/S/T dùng phân công hiện tại từ Auth; `X-Branch-Id` chọn chi nhánh làm việc, thiếu header dùng chi nhánh chính. Query/body ngoài phân công bị từ chối. T chỉ thao tác lớp được giao.
@@ -486,3 +498,44 @@ Thêm8endpoint theo [hợp đồng, quyền, DTO và hướng dẫn V015](studen
 | GET | `/api/v1/finance/student/me/payment-contexts?tuitionIds=13,14` | Batch tối đa 20 id đã kiểm ownership |
 
 Mở rộng GET tuitions bằng `status=DUE`; GET payment-orders bằng `summary=true` để bỏ URL ký khỏi danh sách. Lỗi POST tạo đơn có thêm code/requestRejected/orderId thuộc chủ khi phù hợp; giữ message cho client cũ.
+
+
+## Bổ sung W5 — 13/11/2026
+
+| Method | API | Quyền | Mục đích |
+|---|---|---|---|
+| GET | `/api/v1/teaching/students/{studentId}/enrollments/{enrollmentId}/published-grades?page=0&size=20` | SUPER_ADMIN, ADMIN, STAFF; kiểm học viên/đăng ký/chi nhánh | Chỉ xem điểm snapshot đã công bố hiện hành của đăng ký, không điểm nháp/nhận xét nội bộ |
+
+Các filter/metadata mới của tài chính và hỗ trợ: [Bàn giao W3–W5](improvements/web-w3-w4-w5-completion.md). Không thay đường dẫn endpoint cũ.
+
+## Cập nhật W7 — Hàng đợi và phạm vi đa chi nhánh (13/11/2026)
+
+GET `/api/v1/academic/stats/work-queue` trả `{supportActive, leadsNew, businessDate, observedAt}`; GET `/api/v1/finance/stats/work-queue` trả `{tuitionOverdue, ordersReview, businessDate, observedAt}`. Cả hai yêu cầu SUPER_ADMIN/ADMIN/STAFF; query `branchId` tùy chọn và `allAssigned=false` mặc định. Đây là số đếm server theo toàn bộ tập hợp đủ quyền, trước phân trang.
+
+`allAssigned=true`: ADMIN xem tập chi nhánh được phân công hiện hành (tập rỗng trả số 0/danh sách rỗng); SUPER_ADMIN xem toàn hệ thống. STAFF/TEACHER/STUDENT không được dùng chế độ này. Không kết hợp `branchId` và `allAssigned=true`; chi nhánh ngoài phân công bị từ chối. Không bật tổng hợp thì giữ cách chọn chi nhánh làm việc hiện tại.
+
+Tham số tùy chọn tương thích ngược này cũng áp dụng GET quản lý `/api/v1/academic/sessions`, `/api/v1/academic/leads`, `/api/v1/academic/support-requests`, `/api/v1/finance/tuitions`, `/api/v1/finance/payment-orders`. Các kiểm tra quyền endpoint và quyền nghiệp vụ cũ vẫn áp dụng; không thay đổi endpoint student.
+
+Hỗ trợ đang xử lý = OPEN/IN_PROGRESS; tư vấn mới = NEW; học phí quá hạn phải chưa hủy, hạn trước ngày nghiệp vụ và còn nợ; đơn cần rà soát = REVIEW_REQUIRED hoặc có reviewCode. UI dùng cùng điều kiện cho link đích và số đếm. `observedAt` là thời điểm server quan sát dữ liệu, không phải giờ render trên trình duyệt. Lỗi tải không tương đương số 0.
+
+## C2 — Truy vấn trợ lý chỉ đọc (13/11/2026)
+
+13 GET mới; [hợp đồng, projection và giới hạn đầy đủ](assistant/c2-completion.md). Đây là API backend chuẩn bị cho MCP, chưa có chat runtime.
+
+| Method | Đường dẫn | Quyền |
+|---|---|---|
+| GET | /api/v1/academic/assistant-query/courses | SA/A/S/T |
+| GET | /api/v1/academic/assistant-query/classes | SA/A/S/T; T lớp chính mình |
+| GET | /api/v1/academic/assistant-query/students | SA/A/S; T chỉ roster lớp chính mình |
+| GET | /api/v1/academic/assistant-query/student-classes | SA/A/S; T chỉ lớp chính mình |
+| GET | /api/v1/academic/assistant-query/student-statistics | SA/A/S |
+| GET | /api/v1/academic/assistant-query/sessions | SA/A/S/T; T actual teacher |
+| GET | /api/v1/academic/assistant-query/attendance | SA/A/S/T theo quyền buổi |
+| GET | /api/v1/academic/assistant-query/priority-leads | SA/A/S; S chỉ assignedTo chính mình |
+| GET | /api/v1/academic/assistant-query/usage-help | SA/A/S/T; catalog cố định |
+| GET | /api/v1/finance/assistant-query/tuitions | SA/A/S |
+| GET | /api/v1/finance/assistant-query/receipts | SA/A/S |
+| GET | /api/v1/teaching/assistant-query/current-grades | SA/A/T theo lớp chính |
+| GET | /api/v1/teaching/assistant-query/published-grades | SA/A/S theo hồ sơ/đăng ký |
+
+Scope mặc định ACTIVE_BRANCH, ALL_ASSIGNED chỉ A, WHOLE_SYSTEM chỉ SA; aggregate không kết hợp branchId. page=0,size=5, tối đa 20. asOf chỉ hôm nay ở C2; lịch từ 1–31 ngày. Không có mutation hoặc SQL tùy ý. API courses cũ thêm minTuition/maxTuition/maxInclusive=true/allAssigned=false; payments cũ thêm allAssigned=false; mặc định/hợp đồng cũ giữ nguyên.

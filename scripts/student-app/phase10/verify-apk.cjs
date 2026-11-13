@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),{spawnSync}=require('child_process');
+const root=path.resolve(__dirname,'../../..'),app=path.resolve(root,'../../language-center-student-app'),dir=path.join(root,'storage/student-phase10');
+const meta=JSON.parse(fs.readFileSync(path.join(app,'artifacts/latest-android.json'),'utf8'));
+const apk=path.join(app,'artifacts',meta.file),sdk=process.env.ANDROID_HOME||path.join(process.env.LOCALAPPDATA,'Android/Sdk'),tools=path.join(sdk,'build-tools/37.0.0');
+const hash=crypto.createHash('sha256').update(fs.readFileSync(apk)).digest('hex');
+const badging=spawnSync(path.join(tools,'aapt.exe'),['dump','badging',apk],{encoding:'utf8',windowsHide:true});
+const signature=spawnSync('java.exe',['-jar',path.join(tools,'lib/apksigner.jar'),'verify','--print-certs',apk],{encoding:'utf8',windowsHide:true});
+fs.writeFileSync(path.join(dir,'apk-badging.log'),badging.stdout||badging.stderr||'');fs.writeFileSync(path.join(dir,'apk-signature.log'),signature.stdout||signature.stderr||'');
+const text=badging.stdout||'';
+const report={file:meta.file,sha256:hash,hashMatchesManifest:hash===meta.sha256,signatureValid:signature.status===0,package:text.match(/^package: name='([^']+)'/m)?.[1],version:text.match(/versionName='([^']+)'/)?.[1],applicationLabel:text.match(/^application-label:'([^']+)'/m)?.[1],minSdk:text.match(/^sdkVersion:'([^']+)'/m)?.[1],targetSdk:text.match(/^targetSdkVersion:'([^']+)'/m)?.[1],nativeCode:text.match(/^native-code: (.+)$/m)?.[1],debuggable:/^application-debuggable/m.test(text),internalDebugSigning:/CN=Android Debug|CN=AndroidDebug/i.test(signature.stdout||''),bytes:fs.statSync(apk).size};
+report.status=badging.status===0&&report.hashMatchesManifest&&report.signatureValid&&report.package==='com.languagecenter.student'&&!report.debuggable?'PASS':'FAIL';
+fs.writeFileSync(path.join(dir,'apk-verification.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));if(report.status!=='PASS')process.exitCode=1;

@@ -63,9 +63,11 @@ public class TuitionService {
       Long branchId,
       Long classId,
       Long studentId,
-      Boolean overdue) {
+      Boolean overdue) {return list(page,size,keyword,status,branchId,classId,studentId,overdue,false);}
+  public PageResponse<TuitionDto> list(int page,int size,String keyword,Tuition.Status status,Long branchId,Long classId,Long studentId,Boolean overdue,boolean allAssigned){
+    var branches=scope.selection(branchId,allAssigned);
     Specification<Tuition> query =
-        Query.<Tuition>branch(scope.filter(branchId))
+        Query.<Tuition>all().and((r,q,b)->branches==null?b.conjunction():branches.isEmpty()?b.disjunction():r.get("branchId").in(branches))
             .and(Query.keyword(keyword, "studentName", "className", "courseName"))
             .and(Query.eq("classId", classId))
             .and(Query.eq("studentId", studentId));

@@ -1,4 +1,25 @@
-﻿# Language Center Backend
+
+
+**Khắc phục AI chậm (13/11/2026):** Google trả 503 quá tải cho Gemini 3.8; đã đổi sang gemini-3.1-flash-lite theo lựa chọn người dùng. Bốn luồng Gemini + MCP thật trên dữ liệu tổng hợp đạt, khoảng 1,3–4,8 giây/luồng; thêm timeout 10 giây và cooldown sau lỗi. 124 test assistant, 121 frontend đạt; 1 live opt-in skip trong bộ mặc định. [Bằng chứng, cấu hình và cách restart](docs/assistant/troubleshooting.md). C7 với API nghiệp vụ/MySQL thật vẫn chưa hoàn tất.
+
+**Trợ lý — C6 (13/11/2026):** đã có drawer chat Ant Design + styled-components cho bốn role web, card/choice/phân trang, scope, điều hướng chi nhánh và xử lý lỗi/response cũ. 119 test web, 123 assistant và 10 gateway đạt tại mốc C6, 1 live opt-in skip; build web/backend đạt. [Bàn giao, ảnh UI và cách chạy C6](docs/assistant/c6-completion.md). Bản sửa model và kiểm thử bổ sung ở ghi chú phía trên.
+
+**Trợ lý — C5 (13/11/2026):** đã tăng cường kiểm chủ đề/scope, dữ liệu chứa injection, body chunked/JSON, link điều hướng, quota theo account và audit không lộ nội dung. 123 test assistant đạt, 1 live opt-in skip. [Bàn giao C5 và hạn mức](docs/assistant/c5-completion.md). C5 không đổi database/web/mobile; C6 phía trên bổ sung UI.
+
+**Trợ lý — C4 (13/11/2026):** đã có backend Gemini + MCP, 3 API assistant, hội thoại theo phiên/scope, chọn thực thể trùng tên và kết quả từ dữ liệu nguồn. 61 test assistant và 9 gateway đạt tại mốc C4; 1 live smoke skip trong bộ mặc định. Gemini thật chưa nghiệm thu do timeout/503. [Bàn giao C4 và cách cấu hình](docs/assistant/c4-completion.md).
+
+**Trợ lý — C3 (13/11/2026):** thêm assistant-service và MCP nội bộ chỉ đọc bằng SDK Java 2.0.0; 24 test cùng JAR smoke đạt tại mốc C3. [Bàn giao C3, schema và cách chạy](docs/assistant/c3-completion.md). C4 phía trên bổ sung HTTP chat và Gemini.
+
+
+**Trợ lý — C2 (13/11/2026):** đã bổ sung 13 API chỉ đọc, lọc tiền khóa học, truy vấn học viên/lớp/điểm danh/điểm và ưu tiên lead theo quyền. 470 test ba service thay đổi đạt (28 test C2 mới). [Bàn giao, API và cách chạy](docs/assistant/c2-completion.md). Khởi động lại academic/finance/teaching; không có migration mới, chưa gọi Gemini hoặc triển khai MCP/chat UI.
+
+**Trợ lý Gemini + MCP — C1 (13/11/2026):** đã hoàn thành khảo sát, phạm vi nghiệp vụ, ma trận quyền, danh mục công cụ và bộ nghiệm thu dự kiến. [Kế hoạch C1–C7 và tài liệu C1](docs/assistant/README.md). Chưa triển khai runtime chatbot hoặc gọi model; bước tiếp theo là C2.
+
+
+**Web W6–W8 (13/11/2026):** đã triển khai học vụ/giảng dạy, dashboard theo role và chuẩn hóa UI. 518 test backend, 109 web, 81 mobile đạt. [Bàn giao, ảnh, cách chạy và nghiệm thu còn lại](docs/improvements/web-w6-w7-w8-completion.md). Khởi động lại academic/finance; không có migration mới. UI tự động dùng fixtures; chưa nghiệm thu APK trên điện thoại và hệ thống thật cho đợt này.
+
+
+**Web W3–W5 (13/11/2026):** đã cập nhật tìm kiếm/liên kết tài chính, hỗ trợ gắn UUID giao dịch và hồ sơ học viên. [Bàn giao, API, migration và cách chạy bản mới](docs/improvements/web-w3-w4-w5-completion.md). Cần chạy lại academic/finance/teaching; không tạo lại database. [Lộ trình web](docs/improvements/web-management-upgrade-roadmap-2026-11-13.md).
 
 **Giai đoạn 6 hoàn thành (11/11/2026):** [Báo cáo và ZIP bàn giao](docs/reviews/2026-11-11-phase-6-completion.md). Đúng gói release đạt 86 ca tích hợp, UI 4 role và backup/restore; ZIP 990 file đã đối chiếu hash. Còn thông tin khảo sát và hồ sơ nộp cần bổ sung.
 

@@ -19,7 +19,11 @@ public record PaymentDto(
     String note,
     BigDecimal voidedAmount,
     BigDecimal refundedAmount,
-    BigDecimal availableAmount) {
+    BigDecimal availableAmount,
+    String source, String onlineOrderId, Long studentId, String studentName, Long classId, String className) {
+  public PaymentDto withContext(String source,String orderId,com.example.finance.tuition.Tuition t){
+    return new PaymentDto(id,tuitionId,amount,paymentMethod,referenceCode,paidAt,status,branchId,receiptNo,recordedBy,recordedByName,note,voidedAmount,refundedAmount,availableAmount,source,orderId,t==null?null:t.getStudentId(),t==null?null:t.getStudentName(),t==null?null:t.getClassId(),t==null?null:t.getClassName());
+  }
   public static PaymentDto of(Payment p) {
     return of(p, BigDecimal.ZERO, BigDecimal.ZERO);
   }
@@ -42,7 +46,7 @@ public record PaymentDto(
         refunded,
         p.getStatus() == Payment.Status.PAID
             ? p.getAmount().subtract(voided).subtract(refunded)
-            : BigDecimal.ZERO);
+            : BigDecimal.ZERO,"UNKNOWN",null,null,null,null,null);
   }
 
   public record Request(

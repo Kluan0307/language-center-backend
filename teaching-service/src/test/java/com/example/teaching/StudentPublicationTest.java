@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 class StudentPublicationTest {
  @Autowired GradePublicationService publication;
  @Autowired StudentProgressService student;
+ @Autowired ManagementProgressService management;
  @Autowired EntityManager em;
  @MockitoBean AcademicDirectory academic;
  @MockitoBean ExamService exams;
@@ -46,4 +47,21 @@ class StudentPublicationTest {
  @Test void requestUuidCannotChangeIntent(){var c=command();publication.apply(exam.getId(),c,false);assertThrows(ApiException.class,()->publication.apply(exam.getId(),new GradePublicationService.Command(c.requestId(),c.expectedRevision(),c.draftFingerprint(),"Different"),false));}
  @Test void confirmedFinalMustMatchCurrentSourcesAndReopenHidesOutcome(){var b=new ResultBarrier();b.setClassId(9L);b.setBranchId(3L);b.setToken("token");em.persist(b);var t=new EvaluationState();t.setClassId(9L);t.setBranchId(3L);em.persist(t);var r=new FinalResult();r.setClassId(9L);r.setBranchId(3L);r.setEnrollmentId(111L);r.setStudentId(11L);r.setRevision(1);r.setRequestId(UUID.randomUUID().toString());r.setFingerprint("a".repeat(64));r.setOutcome("PASS");r.setState("CONFIRMED");r.setReason("INTERNAL");r.setSnapshot("PRIVATE");em.persist(r);em.flush();actor(Role.STUDENT,11L);assertEquals("PASS",student.outcome(111L).outcome());r.setState("REOPENED");assertEquals("UPDATING",student.outcome(111L).state());assertNull(student.outcome(111L).outcome());r.setState("CONFIRMED");t.setSourceRevision(1);assertEquals("UPDATING",student.outcome(111L).state());}
  @Test void dependencyFailureIsNotPending(){actor(Role.STUDENT,11L);when(remote.get(contains("/111/result-source"),eq(StudentProgressService.Source.class))).thenThrow(new ApiException(org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE,"Unavailable"));assertThrows(ApiException.class,()->student.outcome(111L));}
+
+ @Test void staffProfileReadsPublishedSnapshotOnlyAndRetractionHidesIt(){
+   var proof=new ManagementProgressService.Profile(new ManagementProgressService.Identity(11L),List.of(new ManagementProgressService.Study(new ManagementProgressService.Enrollment(111L,11L,9L,3L))));
+   when(remote.get(contains("/students/11/learning-profile"),eq(ManagementProgressService.Profile.class))).thenReturn(proof);
+   actor(Role.STAFF,2L);assertEquals(0,management.grades(11L,111L,0,5).totalElements());
+   actor(Role.TEACHER,2L);publish();grade.setScore(new BigDecimal("9"));em.flush();
+   actor(Role.STAFF,2L);var visible=management.grades(11L,111L,0,5);assertEquals(1,visible.totalElements());assertEquals(0,new BigDecimal("8").compareTo(visible.content().getFirst().score()));assertNull(visible.content().getFirst().studentComment());assertFalse(visible.toString().contains("PRIVATE"));
+   actor(Role.TEACHER,2L);publication.apply(exam.getId(),command(),true);actor(Role.STAFF,2L);assertEquals(0,management.grades(11L,111L,0,5).totalElements());
+ }
+ @Test void managementProgressRejectsWrongStudentEnrollmentBranchAndRole(){
+   var proof=new ManagementProgressService.Profile(new ManagementProgressService.Identity(11L),List.of(new ManagementProgressService.Study(new ManagementProgressService.Enrollment(111L,11L,9L,3L))));
+   when(remote.get(contains("/students/11/learning-profile"),eq(ManagementProgressService.Profile.class))).thenReturn(proof);
+   actor(Role.STAFF,2L);assertThrows(ApiException.class,()->management.grades(11L,112L,0,5));
+   when(remote.get(contains("/students/11/learning-profile"),eq(ManagementProgressService.Profile.class))).thenReturn(new ManagementProgressService.Profile(new ManagementProgressService.Identity(12L),proof.studies()));assertThrows(ApiException.class,()->management.grades(11L,111L,0,5));
+   when(remote.get(contains("/students/11/learning-profile"),eq(ManagementProgressService.Profile.class))).thenReturn(new ManagementProgressService.Profile(proof.student(),List.of(new ManagementProgressService.Study(new ManagementProgressService.Enrollment(111L,11L,9L,4L)))));assertThrows(ApiException.class,()->management.grades(11L,111L,0,5));
+   actor(Role.STUDENT,11L);assertThrows(ApiException.class,()->management.grades(11L,111L,0,5));actor(Role.TEACHER,2L);assertThrows(ApiException.class,()->management.grades(11L,111L,0,5));
+ }
 }

@@ -19,8 +19,11 @@ public class PaymentController {
       @RequestParam(defaultValue = "20") int size,
       @RequestParam(required = false) String keyword,
       @RequestParam(required = false) Long branchId,
-      @RequestParam(required = false) Long tuitionId) {
-    return service.list(page, size, keyword, branchId, tuitionId);
+      @RequestParam(required = false) Long tuitionId,
+      @RequestParam(required = false) Long studentId,
+      @RequestParam(required = false) Long classId,
+      @RequestParam(defaultValue = "false") boolean allAssigned) {
+    return service.search(page, size, keyword, branchId, tuitionId, studentId, classId,allAssigned);
   }
 
   @GetMapping("/{id}")
