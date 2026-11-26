@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-11-26T02:54:38.769Z",
+  "status": "passed",
+  "scope": [
+    "TN1",
+    "TN2"
+  ],
+  "frontend": "TN3 pending; existing conversion UI unchanged",
+  "academicTests": {
+    "tests": 359,
+    "failures": 0,
+    "errors": 0
+  },
+  "liveChecks": 6,
+  "migration": {
+    "version": "V033",
+    "tableCount": 100,
+    "oldDataUnchanged": true,
+    "verifiedTables": [
+      "leads",
+      "lead_activities",
+      "students",
+      "enrollments",
+      "enrollment_periods",
+      "course_admission_policies",
+      "school_classes",
+      "grades",
+      "published_grades"
+    ],
+    "backupId": "ops-1795660574406-d8c543"
+  },
+  "automaticLeadConversion": false,
+  "mainIntakeReceipts": 0,
+  "runtime": [
+    {
+      "service": "academic-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "api-gateway",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "assistant-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "auth-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "finance-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "mysql",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "teaching-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "web-admin",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "website",
+      "running": true,
+      "health": "healthy"
+    }
+  ]
+}

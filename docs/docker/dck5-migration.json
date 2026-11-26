@@ -1,0 +1,492 @@
+{
+  "checkedAt": "2026-11-24T17:10:41.336Z",
+  "status": "passed",
+  "tableCount": 87,
+  "rowsImported": 8886,
+  "tables": [
+    {
+      "name": "account_branch_events",
+      "rows": 26,
+      "sha256": "c64b1fc74109553413a9194933ae2530f9d49d1b259e8b85b31a3e448e612437"
+    },
+    {
+      "name": "account_branches",
+      "rows": 24,
+      "sha256": "b1a86f24246f63ed424ea12d29bfb07d2676b000e5f38c51e95328e178c32646"
+    },
+    {
+      "name": "account_security_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "accounts",
+      "rows": 419,
+      "sha256": "084bab6c703804ff5b905c189c490fa6a05e969ebb1853991f519cb7382ca9b0"
+    },
+    {
+      "name": "admins",
+      "rows": 2,
+      "sha256": "d6663da3a022ca7235cfad7b725a3915fb4498bf0b40b926824f85aeee120ff8"
+    },
+    {
+      "name": "assessment_events",
+      "rows": 144,
+      "sha256": "2d7d4682c3d14369fd6423e2ea3dc699f9049f0d192c3d7a210ca92292b91ec1"
+    },
+    {
+      "name": "attendance_changes",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "attendances",
+      "rows": 1856,
+      "sha256": "d3401a8f8fabb9336abb50b80cd8c1f0cc2fc1cd82cb175b4bc56ef08621d3a2"
+    },
+    {
+      "name": "audience_groups",
+      "rows": 5,
+      "sha256": "41a049d39f21aa746d7a71599a319dfaec5788b89703784c8a304a898aa9c116"
+    },
+    {
+      "name": "branches",
+      "rows": 4,
+      "sha256": "ecc90ed40803406441b764e39219e7d37934f8bdd8013f33c10d213858fb2501"
+    },
+    {
+      "name": "class_admission_events",
+      "rows": 40,
+      "sha256": "c55fa7bed5c555cb4086df91fd76b2d427977abbeaf686644881280082dcaf4f"
+    },
+    {
+      "name": "class_closure_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "class_closures",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "class_duration_plans",
+      "rows": 40,
+      "sha256": "33845b6e2a4c02d6f6acdeebc7545af7e4767983cb27a22fc3f22767fd47bb8e"
+    },
+    {
+      "name": "class_result_barriers",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "class_sessions",
+      "rows": 320,
+      "sha256": "0cb35ffd30903d2dde5fc6a8351892470c7cbe40e473a9103e3584ec41d03f6c"
+    },
+    {
+      "name": "company_profile",
+      "rows": 1,
+      "sha256": "cf402b6c8ae01f6682764e905d6c5513e82f4aa11ec96c667381326eb35bcbd0"
+    },
+    {
+      "name": "course_admission_levels",
+      "rows": 10,
+      "sha256": "a7643545ce187b50d42ab4aee8e7b85cab45f50895d7242183b11e5e62bc1190"
+    },
+    {
+      "name": "course_admission_policies",
+      "rows": 20,
+      "sha256": "5741ca75abe915c095c53d20b2c49ea69191195f006e262e1f5e3520ef67627c"
+    },
+    {
+      "name": "course_audiences",
+      "rows": 33,
+      "sha256": "debae5e12362eecc5366cbd15ec6ded948a7df8aa6ea18dbfc692c4fc320692b"
+    },
+    {
+      "name": "course_duration_plans",
+      "rows": 20,
+      "sha256": "b7ea48d6b457104b14c96a862d6600baa85bd666d247b53f70fe353c788b5735"
+    },
+    {
+      "name": "courses",
+      "rows": 20,
+      "sha256": "954a12350abc8b52b53678744e397bc8b54ce65f589bb03caf8722b895a62f3f"
+    },
+    {
+      "name": "document_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "document_sharing_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "documents",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "employment_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "enrollment_admissions",
+      "rows": 432,
+      "sha256": "bb78a7bdaaeac37d83a419e4713df0b4cd410fb69a6d0dd3f9f412a95a1fa069"
+    },
+    {
+      "name": "enrollment_periods",
+      "rows": 432,
+      "sha256": "7f2d74003c624bbd97c43fe39db6cfb93766e18c2e2c859c6dc792e4d6fd3679"
+    },
+    {
+      "name": "enrollments",
+      "rows": 432,
+      "sha256": "deaf04ebc7c6c0a07413471db9c68355793a550d70b54d97eb05b2b2d9ba33bc"
+    },
+    {
+      "name": "evaluation_policies",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "evaluation_policy_exams",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "evaluation_states",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "exam_candidates",
+      "rows": 432,
+      "sha256": "24efcb2b836fb04517034e65ed4fc280969719bad1bd83539c983b18386374d3"
+    },
+    {
+      "name": "exams",
+      "rows": 36,
+      "sha256": "c5a72f8f189f6949001d17c6a9c3e8d819c7c03010c67926f8b9e064d69bc955"
+    },
+    {
+      "name": "final_results",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "grade_changes",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "grade_publications",
+      "rows": 36,
+      "sha256": "45dad2d4c38c8676511fced1ddbdef59fe1caae7efa8a5003250a2ec630f3b8b"
+    },
+    {
+      "name": "grades",
+      "rows": 432,
+      "sha256": "036712191429dbceb17b94024a341aed9cbdca7fe5b6bd3fe7237e8bb0782059"
+    },
+    {
+      "name": "internal_support_replies",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "internal_support_tickets",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "job_titles",
+      "rows": 9,
+      "sha256": "05acf3a373e85da126387778adafd1c1bf14318efd66eeb52d12a4ab1fb04beb"
+    },
+    {
+      "name": "lead_activities",
+      "rows": 80,
+      "sha256": "ec6d650b9df2e60d856a72b79fe8910ab10e0ddfbe01fd9642eb12a428e6cdf5"
+    },
+    {
+      "name": "leads",
+      "rows": 80,
+      "sha256": "1c1317eb5c4784b401fc1f1655216d57434fd9db4e309cb9ccac9d4d9c14f890"
+    },
+    {
+      "name": "learning_events",
+      "rows": 432,
+      "sha256": "ce4552414b01402966d45573a24fd0cb37d4b65c7b16d298089ff2f396337dd7"
+    },
+    {
+      "name": "organization_assignments",
+      "rows": 22,
+      "sha256": "ef5bc209f2fe518f230aa1fbb4abd5bd3c8f75a101f050ddc7ba760de6943f5d"
+    },
+    {
+      "name": "organization_units",
+      "rows": 9,
+      "sha256": "3fb66ba558b9c2016213b41fe4a5d6e8c0f933d56fd4cddc4f30c7281fc1d5f6"
+    },
+    {
+      "name": "payment_corrections",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payment_orders",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payment_outbox",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payment_provider_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payment_provider_transactions",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payment_reconcile_operations",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "payments",
+      "rows": 298,
+      "sha256": "ed871dc1828860f865b166f41a5760822ef3ecd14795771b65734606cd62a4b4"
+    },
+    {
+      "name": "personnel_code_numbers",
+      "rows": 2,
+      "sha256": "ec98b7458afb7355366e34ee11eaa8c882a201b1e4118249bacd0ab17f26c3ea"
+    },
+    {
+      "name": "placement_assessments",
+      "rows": 144,
+      "sha256": "954ac0345c82b0bdb74639fa6306c7fbe9ad176d31ec9191e1d19b59d5afc025"
+    },
+    {
+      "name": "placement_exceptions",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "program_levels",
+      "rows": 15,
+      "sha256": "abc06317f2f25cabd1b40c199649f625faefaa805131f72e1d8676fe00f3af97"
+    },
+    {
+      "name": "programs",
+      "rows": 4,
+      "sha256": "94737ab4cca02a7323edf6277cb1f81dd297b5de9270a6852ffb78c6f0b1b26f"
+    },
+    {
+      "name": "published_grades",
+      "rows": 432,
+      "sha256": "48fec4ce12846947a4ed1f4f12eb8e9adef1ea5222d01c6136405a118f048a47"
+    },
+    {
+      "name": "result_reopens",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rooms",
+      "rows": 12,
+      "sha256": "6d1ce40120d5f8a9b614ad292a3d85892c72672c2492234724c622076b53edf6"
+    },
+    {
+      "name": "schedules",
+      "rows": 80,
+      "sha256": "3304de0900a1610c1f40aacf9d74591a312fcea7053e70395bb758386f753462"
+    },
+    {
+      "name": "school_classes",
+      "rows": 40,
+      "sha256": "e9abd8195399d5629020a0090f6ba3ec75cbfa8366f89cfc9f6f1022b9670b94"
+    },
+    {
+      "name": "session_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "staffs",
+      "rows": 8,
+      "sha256": "364cadd789ed337281dc43cd70774c72e6d12fe73bbb09f7a82f080a6b93a183"
+    },
+    {
+      "name": "student_account_provisionings",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "student_code_numbers",
+      "rows": 3,
+      "sha256": "a4884d7368643865c0c8103accf296925a4a28adf8dd8424c24d0761f8167ea5"
+    },
+    {
+      "name": "student_notification_outbox",
+      "rows": 531,
+      "sha256": "22f1c2c4e919f6633ea00384711b402bdf3387c6d94fc4d552156815af008826"
+    },
+    {
+      "name": "student_notification_preferences",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "student_notifications",
+      "rows": 531,
+      "sha256": "eea6c73384bdeeba77d96282cfeb6a914c8f77f786df5f9abfce02bd21c1bc5b"
+    },
+    {
+      "name": "student_push_deliveries",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "student_push_devices",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "student_support_messages",
+      "rows": 8,
+      "sha256": "149f06a2038fc54b39eb5e524b529fd666a5755f7b22b821a5ba3c9f45a39c6f"
+    },
+    {
+      "name": "student_support_operations",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "student_support_requests",
+      "rows": 8,
+      "sha256": "2a341bf1406b34697a6443570bcac01f3cbe32b7289821e0a6306382e1a81064"
+    },
+    {
+      "name": "student_support_status_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "students",
+      "rows": 400,
+      "sha256": "aec33ae00a2a492a7d45ce89736aab90dfbf0a5db9890dde2c6e3ada1149c4da"
+    },
+    {
+      "name": "super_admins",
+      "rows": 1,
+      "sha256": "8a9d3fec7737e0167bcf16784770cfe00336c65c977674cf3337b3301019b806"
+    },
+    {
+      "name": "teacher_profile_events",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "teachers",
+      "rows": 8,
+      "sha256": "b57b9b08a833f6211de60c3346f99d6d0688d7aca056ac12bac93519de07892a"
+    },
+    {
+      "name": "tuition",
+      "rows": 432,
+      "sha256": "0f846125ccf733ad411925c113958d7453a51ee7fed6be67a731a876178e21eb"
+    },
+    {
+      "name": "tuition_adjustments",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "user_preferences",
+      "rows": 1,
+      "sha256": "e98d91cd330eea931b133c0191c5e7f7448004dd9b31c0b93858752e15764a95"
+    },
+    {
+      "name": "website_edit_events",
+      "rows": 40,
+      "sha256": "0534032afe1f0ae9ac91cce198a93fafb823f0d3d26e8e93c289f62e742bb706"
+    },
+    {
+      "name": "website_inquiries",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "website_publications",
+      "rows": 32,
+      "sha256": "8d9eaa7e00ff17875044bcee9156dfa4083a2679c1bb78a278a8035811527320"
+    },
+    {
+      "name": "website_teacher_profiles",
+      "rows": 8,
+      "sha256": "88d8bf901045b3c4b0c3343da96e67d6a7da42bfb61570b9a322183f9cc1ded1"
+    }
+  ],
+  "sourceSha256": "090015f77ce6a0ae774268a6b2eb10a2dae5f847ace6216b64d2a69773b8db54",
+  "restoredSha256": "090015f77ce6a0ae774268a6b2eb10a2dae5f847ace6216b64d2a69773b8db54",
+  "rehearsalVerified": true,
+  "targetVerified": true,
+  "sourceUnchanged": true,
+  "sourceDocumentsUnchanged": true,
+  "documentFiles": 0,
+  "documentReferences": 0,
+  "backupFolder": "Private ignored storage/docker-backups; see local completed.json",
+  "backupSha256": "687cd21f4e6c79605792bdd97c74eb69c4960c4498e70837b6355780826500c0",
+  "services": [
+    {
+      "service": "academic-service",
+      "health": "healthy"
+    },
+    {
+      "service": "api-gateway",
+      "health": "healthy"
+    },
+    {
+      "service": "assistant-service",
+      "health": "healthy"
+    },
+    {
+      "service": "auth-service",
+      "health": "healthy"
+    },
+    {
+      "service": "finance-service",
+      "health": "healthy"
+    },
+    {
+      "service": "mysql",
+      "health": "healthy"
+    },
+    {
+      "service": "teaching-service",
+      "health": "healthy"
+    },
+    {
+      "service": "web-admin",
+      "health": "healthy"
+    },
+    {
+      "service": "website",
+      "health": "healthy"
+    }
+  ],
+  "externalProvidersEnabled": false
+}

@@ -36,7 +36,7 @@ class AccountManagementUnitTest {
             mock(PasswordEncoder.class),
             mock(JwtUtil.class),
             mock(AuthenticationManager.class),
-            branches, mock(com.example.auth.student.StudentAccountService.class));
+            branches, mock(com.example.auth.student.StudentAccountService.class), mock(jakarta.persistence.EntityManager.class));
     when(accounts.findByUsername("superadmin"))
         .thenReturn(
             Optional.of(

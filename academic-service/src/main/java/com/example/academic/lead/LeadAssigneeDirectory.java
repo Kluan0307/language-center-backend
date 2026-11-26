@@ -23,7 +23,11 @@ public class LeadAssigneeDirectory {
       String fullName,
       String role,
       Boolean status,
-      List<Long> branchIds) {}
+      List<Long> branchIds,
+      String workStatus,
+      String personnelCode) {
+    public Account(Long accountId,String username,String fullName,String role,Boolean status,List<Long> branchIds){this(accountId,username,fullName,role,status,branchIds,"ACTIVE",null);}
+  }
 
   public record Page(List<Account> content, int totalPages) {}
 
@@ -43,6 +47,7 @@ public class LeadAssigneeDirectory {
       if (r.content() == null) throw ApiException.bad("Danh sách phân công không hợp lệ");
       for (var x : r.content())
         if (Boolean.TRUE.equals(x.status())
+            && "ACTIVE".equals(x.workStatus())
             && List.of("ADMIN", "STAFF").contains(x.role())
             && x.branchIds() != null
             && x.branchIds().contains(branch))

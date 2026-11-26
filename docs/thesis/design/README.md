@@ -1,5 +1,7 @@
 # Mô hình thiết kế hệ thống — G14/G15
 
+**Đối chiếu 25/11/2026, sau CL3:** schema Docker hiện có 88 bảng, 957 cột, 32 FK; snapshot lịch sử bên dưới chưa thể hiện 55 bảng bổ sung sau đó, gồm `media_assets`. Dùng [metadata hiện tại](../../docker/opt6-schema-metadata.json) và [sơ đồ quan hệ vật lý](../../docker/opt6-physical-erd.mmd) để cập nhật báo cáo. Sơ đồ FK không thay thế Class Diagram hoặc mô hình quan hệ logic giữa service.
+
 Ngày 09/11/2026; **as-built target V013**, không phải khảo sát thực tế và không khẳng định database đang dùng đã nâng xong.
 
 | Tài liệu | Nội dung |

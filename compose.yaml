@@ -1,0 +1,178 @@
+# Canonical backend stack. The language-center/compose.yaml wrapper includes this file.
+x-log: &log
+  driver: json-file
+  options: {max-size: "10m", max-file: "3"}
+x-build: &build
+  context: .
+  dockerfile: Dockerfile
+x-app: &app
+  restart: unless-stopped
+  init: false
+  read_only: true
+  tmpfs: ["/tmp:rw,nosuid,size=67108864,mode=1777"]
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  mem_limit: 640m
+  cpus: 1.0
+  stop_grace_period: 40s
+  logging: *log
+x-common-env: &common-env
+  SPRING_PROFILES_ACTIVE: prod,docker
+  SERVER_ADDRESS: 0.0.0.0
+  TZ: Asia/Ho_Chi_Minh
+  CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173,http://localhost:3000}
+  AUTH_URL: http://auth-service:8081
+  ACADEMIC_URL: http://academic-service:8082
+  TEACHING_URL: http://teaching-service:8083
+  FINANCE_URL: http://finance-service:8084
+  AUTH_BOOTSTRAP_ENABLED: "false"
+  ACADEMIC_SEED_BRANCHES_ENABLED: "false"
+x-db-env: &db-env
+  <<: *common-env
+  DB_URL: jdbc:mysql://mysql:3306/language_center_db?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh
+  DB_USERNAME: ${DB_USERNAME:-language_center_app}
+  DB_PASSWORD: ${DB_PASSWORD:?Initialize .env.docker.local first}
+  DB_POOL_SIZE: ${DB_POOL_SIZE:-5}
+  JWT_SECRET: ${JWT_SECRET:?Initialize .env.docker.local first}
+  JWT_EXPIRATION: ${JWT_EXPIRATION:-28800000}
+x-db-app: &db-app
+  <<: *app
+  networks: [backend, database]
+  depends_on:
+    mysql: {condition: service_healthy}
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: language_center_db
+      MYSQL_USER: ${DB_USERNAME:-language_center_app}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Initialize .env.docker.local first}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Initialize .env.docker.local first}
+      TZ: Asia/Ho_Chi_Minh
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci", "--default-time-zone=+07:00", "--max-connections=100"]
+    networks: [database]
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./deployment/docker/mysql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql --protocol=TCP --host=127.0.0.1 --user=\"$$MYSQL_USER\" --database=\"$$MYSQL_DATABASE\" --batch --skip-column-names --execute='SELECT 1'"]
+      interval: 5s
+      timeout: 4s
+      start_period: 90s
+      retries: 12
+    mem_limit: 768m
+    cpus: 1.0
+    stop_grace_period: 60s
+    logging: *log
+
+  auth-service:
+    <<: *db-app
+    image: language-center/auth-service:${IMAGE_TAG:-local}
+    build:
+      <<: *build
+      args: {SERVICE: auth-service, SERVICE_PORT: "8081"}
+    environment:
+      <<: *db-env
+      NOTIFICATIONS_PUSH_ENABLED: ${NOTIFICATIONS_PUSH_ENABLED:-false}
+      EXPO_PROJECT_ID: ${EXPO_PROJECT_ID:-}
+      EXPO_PUSH_ACCESS_TOKEN: ${EXPO_PUSH_ACCESS_TOKEN:-}
+
+  academic-service:
+    <<: *db-app
+    image: language-center/academic-service:${IMAGE_TAG:-local}
+    build:
+      <<: *build
+      args: {SERVICE: academic-service, SERVICE_PORT: "8082"}
+    environment:
+      <<: *db-env
+      WEBSITE_FORM_SECRET: ${WEBSITE_FORM_SECRET:?Initialize .env.docker.local first}
+      CLOUDINARY_ENABLED: ${CLOUDINARY_ENABLED:-true}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME:-}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY:-}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET:-}
+      CLOUDINARY_FOLDER: ${CLOUDINARY_FOLDER:-language-center/dev}
+      NOTIFICATION_JOBS_ENABLED: ${NOTIFICATION_JOBS_ENABLED:-false}
+      NOTIFICATIONS_PUSH_ENABLED: ${NOTIFICATIONS_PUSH_ENABLED:-false}
+      EXPO_PROJECT_ID: ${EXPO_PROJECT_ID:-}
+      EXPO_PUSH_ACCESS_TOKEN: ${EXPO_PUSH_ACCESS_TOKEN:-}
+
+  teaching-service:
+    <<: *db-app
+    image: language-center/teaching-service:${IMAGE_TAG:-local}
+    build:
+      <<: *build
+      args: {SERVICE: teaching-service, SERVICE_PORT: "8083"}
+    environment:
+      <<: *db-env
+      DOCUMENT_STORAGE: /app/data/documents
+    volumes: ["documents:/app/data/documents"]
+
+  finance-service:
+    <<: *db-app
+    image: language-center/finance-service:${IMAGE_TAG:-local}
+    build:
+      <<: *build
+      args: {SERVICE: finance-service, SERVICE_PORT: "8084"}
+    environment:
+      <<: *db-env
+      PAYMENT_JOBS_ENABLED: ${PAYMENT_JOBS_ENABLED:-false}
+      NOTIFICATION_JOBS_ENABLED: ${NOTIFICATION_JOBS_ENABLED:-false}
+      VNPAY_ENABLED: ${VNPAY_ENABLED:-false}
+      VNPAY_TMN_CODE: ${VNPAY_TMN_CODE:-}
+      VNPAY_HASH_SECRET: ${VNPAY_HASH_SECRET:-}
+      VNPAY_RETURN_URL: ${VNPAY_RETURN_URL:-}
+      VNPAY_CHECKOUT_URL: ${VNPAY_CHECKOUT_URL:-https://sandbox.vnpayment.vn/paymentv2/vpcpay.html}
+      VNPAY_QUERY_URL: ${VNPAY_QUERY_URL:-https://sandbox.vnpayment.vn/merchant_webapi/api/transaction}
+      VNPAY_SERVER_IP: ${VNPAY_SERVER_IP:-127.0.0.1}
+      VNPAY_TTL_MINUTES: ${VNPAY_TTL_MINUTES:-15}
+
+  api-gateway:
+    <<: *app
+    image: language-center/api-gateway:${IMAGE_TAG:-local}
+    build:
+      <<: *build
+      args: {SERVICE: api-gateway, SERVICE_PORT: "8080"}
+    environment:
+      <<: *common-env
+      ASSISTANT_URL: http://assistant-service:8086
+    networks: [backend]
+    ports: ["${GATEWAY_BIND_ADDRESS:-127.0.0.1}:${GATEWAY_HOST_PORT:-18080}:8080"]
+    depends_on:
+      auth-service: {condition: service_healthy}
+      academic-service: {condition: service_healthy}
+      teaching-service: {condition: service_healthy}
+      finance-service: {condition: service_healthy}
+
+  assistant-service:
+    <<: *app
+    profiles: [assistant]
+    image: language-center/assistant-service:${IMAGE_TAG:-local}
+    build:
+      <<: *build
+      args: {SERVICE: assistant-service, SERVICE_PORT: "8086"}
+    environment:
+      <<: *common-env
+      ASSISTANT_CHAT_ENABLED: ${ASSISTANT_CHAT_ENABLED:-false}
+      ASSISTANT_MCP_ENABLED: ${ASSISTANT_MCP_ENABLED:-false}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.1-flash-lite}
+      GEMINI_TIMEOUT_SECONDS: ${GEMINI_TIMEOUT_SECONDS:-10}
+      ASSISTANT_REQUESTS_PER_MINUTE: ${ASSISTANT_REQUESTS_PER_MINUTE:-30}
+      ASSISTANT_MODEL_CALLS_PER_MINUTE: ${ASSISTANT_MODEL_CALLS_PER_MINUTE:-12}
+      ASSISTANT_GLOBAL_MODEL_CALLS_PER_MINUTE: ${ASSISTANT_GLOBAL_MODEL_CALLS_PER_MINUTE:-120}
+      ASSISTANT_CONCURRENT_PER_ACCOUNT: ${ASSISTANT_CONCURRENT_PER_ACCOUNT:-2}
+    networks: [backend]
+    depends_on:
+      auth-service: {condition: service_healthy}
+      academic-service: {condition: service_healthy}
+      teaching-service: {condition: service_healthy}
+      finance-service: {condition: service_healthy}
+
+networks:
+  backend: {driver: bridge}
+  database: {driver: bridge, internal: true}
+volumes:
+  mysql_data:
+  documents:

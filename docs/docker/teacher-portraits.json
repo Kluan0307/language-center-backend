@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-11-25T09:49:46.339Z",
+  "status": "passed",
+  "target": "Docker database",
+  "backupId": "ops-1795599740594-79ee35",
+  "updatedTeachers": 8,
+  "sources": [
+    {
+      "teacherId": 1,
+      "id": 3779508,
+      "author": "Andrea Piacquadio",
+      "page": "https://www.pexels.com/photo/man-in-red-polo-shirt-holding-a-book-3779508/",
+      "download": "https://images.pexels.com/photos/3779508/pexels-photo-3779508.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 2,
+      "id": 8101969,
+      "author": "Mikhail Nilov",
+      "page": "https://www.pexels.com/photo/a-cute-woman-in-black-blazer-smiling-8101969/",
+      "download": "https://images.pexels.com/photos/8101969/pexels-photo-8101969.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 3,
+      "id": 31268615,
+      "author": "Duy's House of Photo",
+      "page": "https://www.pexels.com/photo/confident-asian-man-posing-in-studio-portrait-31268615/",
+      "download": "https://images.pexels.com/photos/31268615/pexels-photo-31268615.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 4,
+      "id": 20603308,
+      "author": "BYB BYB",
+      "page": "https://www.pexels.com/photo/portrait-of-woman-in-black-suit-20603308/",
+      "download": "https://images.pexels.com/photos/20603308/pexels-photo-20603308.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 5,
+      "id": 7652508,
+      "author": "Thirdman",
+      "page": "https://www.pexels.com/photo/a-man-wearing-a-black-corporate-attire-7652508/",
+      "download": "https://images.pexels.com/photos/7652508/pexels-photo-7652508.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 6,
+      "id": 15262831,
+      "author": "Pamungkas Leader",
+      "page": "https://www.pexels.com/photo/portrait-of-an-asian-woman-with-a-bun-15262831/",
+      "download": "https://images.pexels.com/photos/15262831/pexels-photo-15262831.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 7,
+      "id": 6723385,
+      "author": "Deepak Maurya",
+      "page": "https://www.pexels.com/photo/a-man-in-polo-shirt-smiling-6723385/",
+      "download": "https://images.pexels.com/photos/6723385/pexels-photo-6723385.jpeg?auto=compress&cs=tinysrgb&w=900&h=675&fit=crop&crop=faces",
+      "license": "https://www.pexels.com/license/"
+    },
+    {
+      "teacherId": 8,
+      "id": 8423883,
+      "author": "Pavel Danilyuk",
+      "page": "https://www.pexels.com/photo/a-woman-smiling-at-the-camera-8423883/",
+      "download": "https://images.pexels.com/photos/8423883/pexels-photo-8423883.jpeg?auto=compress&cs=tinysrgb&w=900",
+      "license": "https://www.pexels.com/license/"
+    }
+  ],
+  "checks": [
+    "Eight teacher list/detail image references verified",
+    "Eight Cloudinary image downloads match original SHA-256",
+    "Illustration disclosure in every updated biography",
+    "Existing teaching and qualification fields preserved",
+    "No unrelated business tables changed",
+    "Chrome desktop 1440px and mobile 390px: eight images loaded, illustration labels present, top portrait framing applied"
+  ],
+  "changedTables": [
+    "accounts",
+    "media_assets",
+    "website_edit_events",
+    "website_teacher_profiles"
+  ]
+}

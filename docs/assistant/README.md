@@ -1,8 +1,18 @@
 # Trợ lý nghiệp vụ Language Center — Gemini + MCP
 
+**R7–R8 (13/11/2026):** R7 đã triển khai alias và hội thoại tiếp nối. R8: 120/120 ca host/MCP đạt; Gemini thật đạt 4 ca, timeout 1 ca, 115 ca chưa chạy nên **chưa đóng nghiệm thu R8**. Assistant 340 ca đạt (2 live opt-in bỏ qua), web 125 ca đạt; build/lint đạt. [Bàn giao, giới hạn và cách chạy lại](r7-r8-completion.md).
+
 Ngày cập nhật: 13/11/2026. Phạm vi: web SUPER_ADMIN, ADMIN, STAFF, TEACHER; chỉ đọc và chỉ nghiệp vụ trung tâm. Giữ Ant Design + styled-components và quyền hiện hành. Đây là kế hoạch mới C1–C7, không thay thế các mốc G/mobile hoặc W/web trước đó.
 
+**Hướng nâng cấp hiện hành:** [R1–R8 chỉ tra cứu, đếm và thống kê](readonly-roadmap.md) · [120 kịch bản theo role](readonly-scenarios.md) · [JSON](readonly-scenarios.json). Thay đề xuất mục 4–5 về thao tác ghi theo yêu cầu làm rõ của người dùng. Bắt đầu R1 → R2 với đếm giáo viên, bằng cấp và phân công giảng dạy.
+
 ## Tiến độ
+
+**R5–R6 đã triển khai:** [công nợ, dòng tiền, chăm sóc/support và thống kê tổ chức](r5-r6-completion.md). Có 36 tool khác nhau; SA/A 35, STAFF 27, TEACHER 16. Thực thu dùng ngày bút toán; công nợ là hiện trạng; không có doanh thu dồn tích/snapshot quá khứ. R7–R8 và nghiệm thu model thật còn tiếp tục.
+
+**R3–R4 đã triển khai:** [khóa/lớp/lịch, tài nguyên, sĩ số, chuyên cần và điểm thiếu](r3-r4-completion.md). Có 26 tool khác nhau; SA/A 25, STAFF 22, TEACHER 16. R5–R8 còn tiếp tục; deadline chấm và bằng cấp công khai cho STAFF chưa có dữ liệu/quyền tương ứng. Nghiệm thu toàn bộ prompt bằng Gemini thật vẫn ghi riêng.
+
+**R1–R2 đã triển khai:** [audit 120 câu](readonly-audit.md), [API nhân sự, ma trận quyền và cách dùng](r1-r2-completion.md). Có 17 tool chỉ đọc; SA/A: 16, STAFF: 15, TEACHER: 10. Source và kiểm thử tổng hợp đã có; nghiệm thu Gemini thật vẫn ghi riêng, không đồng nhất với 120 câu đã PASS.
 
 | Mốc | Công việc | Trạng thái |
 |---|---|---|
@@ -31,6 +41,8 @@ Không thêm module/API/dependency/schema; không thay đổi quyền hoặc d�
 Ở mốc C1 chưa có code tiêu thụ `GEMINI_API_KEY` và `GEMINI_MODEL`. C4 đã thêm adapter; thử nghiệm chỉ dùng dữ liệu tổng hợp, chưa bật gửi dữ liệu vận hành thật. Hai cờ chat/MCP vẫn tắt mặc định.
 
 ## Thực hiện tiếp
+
+[108 kịch bản mở rộng toàn dự án và thứ tự triển khai sau mục 4–5](project-scenarios.md) · [JSON kịch bản](project-scenarios.json). Đây là backlog/eval chưa chạy, không phải danh sách chức năng đã hoàn tất.
 
 [Khắc phục UI báo hết hạn hội thoại khi mới mở, cờ bật và cách restart](troubleshooting.md).
 

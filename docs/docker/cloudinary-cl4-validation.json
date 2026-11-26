@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-25T08:54:46.548Z",
+  "status": "passed",
+  "checks": [
+    "Disposable Academic/Next use a cloned database and restricted DB user",
+    "Real CMS file input uploads synthetic PNG and saves course image",
+    "Next course page renders the image from the same CMS record",
+    "Replacing a course image uses a new asset without overwriting the old one",
+    "Physical deletion is blocked while an old image remains in editorial history",
+    "Removing an image clears the published reference",
+    "Library protects images referenced by editorial history",
+    "A stored image can be selected without another upload",
+    "Canceling a library selection does not change published content",
+    "Closing an unsaved editor cleans the orphan upload through the backend",
+    "Library permanently deletes an unused image after confirmation",
+    "BRANCH image metadata saves and public API returns the uploaded image",
+    "Next BRANCH detail renders its Cloudinary image",
+    "TEACHER image metadata saves and public API returns the uploaded image",
+    "Next TEACHER detail renders its Cloudinary image",
+    "Public image layout fits a 390px viewport",
+    "No uncaught browser exceptions",
+    "Only synthetic assets created in the isolated database were removed",
+    "Temporary containers, database and restricted user cleaned"
+  ],
+  "mainCmsWritten": false,
+  "source": "isolated clone of Docker application DB",
+  "screenshots": "screenshots/cl4-*.png",
+  "physicalMobileTested": false,
+  "mainCmsFingerprintVerified": true,
+  "mainCmsBaselineBackupId": "ops-1795596177991-a206db"
+}

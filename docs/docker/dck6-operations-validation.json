@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-25T02:31:32.239Z",
+  "status": "passed",
+  "checks": [
+    "Linux engine, Compose wrapper, repo layout and archive tools valid",
+    "Consistent SQL/document backup preserves all tables and rows",
+    "Backup checksums and archive manifest validate",
+    "Main restore refuses missing explicit replace flag",
+    "Backup path traversal refused",
+    "Modified SQL detected before restore",
+    "Real restore to scratch DB and separate volume matches all row/file fingerprints",
+    "Main database unchanged by backup and rehearsal",
+    "UID 10001 restores nonempty document archive with exact byte hashes",
+    "Document restore removes stale files instead of merging inconsistent content",
+    "Archive traversal rejected before extraction",
+    "All main containers healthy and application data preserved",
+    "Scratch databases cleaned after restore test"
+  ],
+  "backupId": "ops-1795573748674-2a3241",
+  "tables": 87,
+  "rows": 8886,
+  "backupVerifiedByRealRestore": true,
+  "mainDatabaseUnchanged": true,
+  "sourceDatabaseUsed": false,
+  "temporaryVolumeRemoved": true
+}

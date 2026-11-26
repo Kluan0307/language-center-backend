@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-26T02:54:11.792Z",
+  "status": "passed",
+  "checks": [
+    "Real MySQL stores linked preferred class and time",
+    "Preview performs placement checks without creating student or enrollment",
+    "One confirmation creates student and enrollment; same request returns same result",
+    "Request identifier cannot be reused with different intent",
+    "Multiple leads can link one existing learner without duplicate profiles",
+    "Main lead/student/enrollment data unchanged"
+  ],
+  "isolatedMySQL": true,
+  "externalFinanceAndTeachingDisabled": true,
+  "mainDataUnchanged": true,
+  "temporaryResourcesCleaned": true
+}

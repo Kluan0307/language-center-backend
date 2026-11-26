@@ -10,7 +10,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Staff {
+public class Staff implements EmploymentProfile {
+    @Version private long version;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +31,7 @@ public class Staff {
     private String phone;
 
     private LocalDate hireDate;
+    private LocalDate endDate;
 
     @Builder.Default
     @Column(length = 50)

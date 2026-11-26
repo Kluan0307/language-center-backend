@@ -14,6 +14,7 @@ public class LoginResponse {
   @lombok.ToString.Exclude private String token;
   private Long accountId;
   private Long profileId;
+  private String personnelCode;
   private String username;
   private String role;
   private String fullName;

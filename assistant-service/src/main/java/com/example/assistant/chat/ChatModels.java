@@ -11,7 +11,10 @@ public final class ChatModels {
   public enum EntityType {
     STUDENT,
     CLASS,
-    SESSION
+    SESSION,
+    PERSONNEL,
+    EXAM,
+    ACCOUNT
   }
 
   public record Selection(@NotNull EntityType type, @NotNull @Positive Long id) {}

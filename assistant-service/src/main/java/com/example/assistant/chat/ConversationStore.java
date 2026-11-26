@@ -22,6 +22,7 @@ public class ConversationStore {
     List<ChatModels.Choice> choices = List.of();
     ChatModels.Evidence pendingEvidence;
     String originalQuestion;
+    String personnelKind;
     boolean leadConfirmation;
     ChatModels.Evidence lastEvidence;
 

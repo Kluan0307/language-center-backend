@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Teacher {
+public class Teacher implements EmploymentProfile {
 
   @Version private long version;
 
@@ -44,6 +44,7 @@ public class Teacher {
   private String certificate;
 
   private LocalDate hireDate;
+  private LocalDate endDate;
 
   @Builder.Default
   @Column(length = 50)

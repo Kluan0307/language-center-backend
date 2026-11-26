@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "observedAt": "2026-11-17T06:43:51.586Z",
+  "readOnly": true,
+  "relationalChecks": 63,
+  "gradeFingerprintsVerified": 36,
+  "publications": {
+    "BRANCH": 4,
+    "CLASS": 4,
+    "COURSE": 20,
+    "PROGRAM": 4
+  },
+  "teacherProfiles": 8,
+  "unreviewedQualificationsPublic": false,
+  "acceptanceLeadsInLiveDatabase": 0,
+  "externalTransactionsSeeded": false,
+  "temporaryAcceptanceDatabases": 0
+}

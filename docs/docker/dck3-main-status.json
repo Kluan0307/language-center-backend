@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-24T16:30:18.987Z",
+  "status": "passed",
+  "project": "language-center",
+  "wrapperMatches": true,
+  "gateway": "http://127.0.0.1:18080",
+  "tableCount": 87,
+  "accounts": 0,
+  "students": 0,
+  "courses": 0,
+  "services": [
+    {
+      "service": "academic-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "api-gateway",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "assistant-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "auth-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "finance-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "mysql",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "teaching-service",
+      "state": "running",
+      "health": "healthy"
+    }
+  ],
+  "sourceDatabaseWritten": false
+}

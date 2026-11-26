@@ -67,7 +67,7 @@ public class ScheduleService {
     c = classes.lock(c.getId());
     if(c.getStatus()==SchoolClass.Status.FINISHED)throw ApiException.conflict("Lớp đã đóng; mở lại trước khi sửa lịch mẫu");
     sessionPlanner.lockClassTeachers(c,c.getTeacherId());
-    teachers.require(c.getTeacherId(), c.getBranchId());
+    teachers.require(c.getTeacherId(), c.getBranchId()).requireDuring(c.getStartDate(),c.getEndDate());
     for (Schedule existing : repository.findBySchoolClassId(c.getId()))
       if (!Objects.equals(existing.getId(), id) && existing.getDayOfWeek() == r.dayOfWeek())
         throw ApiException.conflict("Only one session per class/day is supported");
@@ -103,7 +103,7 @@ public class ScheduleService {
       c = new SchoolClass();
       c.setBranchId(scope.create(r.branchId()));
       branches.require(c.getBranchId());
-      teachers.require(r.teacherId(), c.getBranchId());
+      teachers.require(r.teacherId(), c.getBranchId()).requireDuring(r.startDate(),r.endDate());
       c.setTeacherId(r.teacherId());
       c.setRoom(rooms.require(r.roomId()));
       c.setStartDate(r.startDate());

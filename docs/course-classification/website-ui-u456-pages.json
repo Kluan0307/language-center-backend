@@ -1,0 +1,418 @@
+{
+  "pages": [
+    {
+      "route": "/khoa-hoc",
+      "width": 320,
+      "h1": "30px",
+      "firstCardTop": 800.96875
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 320,
+      "h1": "30px",
+      "firstCardTop": 533.453125
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 320,
+      "h1": "30px",
+      "firstCardTop": 1313.140625
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 320,
+      "h1": "30px",
+      "formTop": 405.46875
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 320,
+      "h1": "30px"
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 390,
+      "h1": "30px",
+      "firstCardTop": 772.171875
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 390,
+      "h1": "30px",
+      "firstCardTop": 503.0625
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 390,
+      "h1": "30px",
+      "firstCardTop": 1286.890625
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 390,
+      "h1": "30px",
+      "formTop": 367.96875
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 390,
+      "h1": "30px"
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 768,
+      "h1": "30px",
+      "firstCardTop": 576.875
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 768,
+      "h1": "30px",
+      "firstCardTop": 479.859375
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 768,
+      "h1": "30px",
+      "firstCardTop": 1217.4375
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 768,
+      "h1": "30px",
+      "formTop": 301.671875
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 768,
+      "h1": "30px"
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1024,
+      "h1": "31.744px",
+      "firstCardTop": 579.0625
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 1024,
+      "h1": "31.744px",
+      "firstCardTop": 434.046875
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 1024,
+      "h1": "31.744px",
+      "firstCardTop": 863.984375
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 1024,
+      "h1": "31.744px",
+      "formTop": 303.859375
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1024,
+      "h1": "31.744px"
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1280,
+      "h1": "39.68px",
+      "firstCardTop": 642.078125
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 1280,
+      "h1": "39.68px",
+      "firstCardTop": 497.0625
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 1280,
+      "h1": "39.68px",
+      "firstCardTop": 927
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 1280,
+      "h1": "39.68px",
+      "formTop": 366.875
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1280,
+      "h1": "39.68px"
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1366,
+      "h1": "42.346px",
+      "firstCardTop": 645.390625
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 1366,
+      "h1": "42.346px",
+      "firstCardTop": 500.375
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 1366,
+      "h1": "42.346px",
+      "firstCardTop": 930.3125
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 1366,
+      "h1": "42.346px",
+      "formTop": 370.1875
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1366,
+      "h1": "42.346px"
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1440,
+      "h1": "44px",
+      "firstCardTop": 647.46875
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1440,
+      "h1": "44px"
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1440,
+      "h1": "44px"
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1440,
+      "h1": "44px"
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 1440,
+      "h1": "44px"
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh",
+      "width": 1440,
+      "h1": "44px",
+      "firstCardTop": 502.453125
+    },
+    {
+      "route": "/chi-nhanh/chi-nhanh-1",
+      "width": 1440,
+      "h1": "44px",
+      "firstCardTop": 932.390625
+    },
+    {
+      "route": "/giao-vien/giao-vien-an",
+      "width": 1440,
+      "h1": "44px"
+    },
+    {
+      "route": "/tu-van",
+      "width": 1440,
+      "h1": "44px",
+      "formTop": 372.265625
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1440,
+      "h1": "44px"
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1440,
+      "h1": "44px"
+    }
+  ],
+  "scope": "Chrome fixture UI; no writes to application MySQL."
+}

@@ -23,23 +23,24 @@ public class AcademicReadService {
   private final NamedParameterJdbcTemplate jdbc;
   private final ReadQuery query;
   private final CourseService courses;
+  private final ClassificationFilters classification;
   private final SessionPlanner sessions;
-  private static final String END =
+  static final String END =
       "(case when c.session_end_date>c.end_date then c.session_end_date else c.end_date end)";
   // Period end is exclusive. Legacy fallback is only used when no periods exist.
-  private static final String EFFECTIVE =
+  static final String EFFECTIVE =
       "(exists(select 1 from enrollment_periods ep where ep.enrollment_id=e.id and"
           + " ep.active_from<=:asOf and (ep.active_until is null or ep.active_until>:asOf)) or (not"
           + " exists(select 1 from enrollment_periods ep where ep.enrollment_id=e.id) and"
           + " e.study_status='STUDYING' and e.enrolled_at<:nextDay))";
-  private static final String ACTIVE =
+  static final String ACTIVE =
       "e.study_status='STUDYING' and "
           + EFFECTIVE
           + " and c.status<>'FINISHED' and c.start_date<=:asOf and "
           + END
           + ">=:asOf";
 
-  private Map<String, Object> params(ReadQuery.Scope scope) {
+  Map<String, Object> params(ReadQuery.Scope scope) {
     var p = new HashMap<String, Object>();
     p.put("branches", scope.branchIds());
     p.put("asOf", LocalDate.now(BusinessTime.ZONE));
@@ -47,13 +48,13 @@ public class AcademicReadService {
     return p;
   }
 
-  private String scope(ReadQuery.Scope scope, String column) {
+  String scope(ReadQuery.Scope scope, String column) {
     return scope.mode() == ReadQuery.Mode.WHOLE_SYSTEM
         ? "1=1"
         : scope.branchIds().isEmpty() ? "1=0" : column + " in (:branches)";
   }
 
-  private String teacher(Map<String, Object> p) {
+  String teacher(Map<String, Object> p) {
     var u = Users.current();
     if (u.role() != Role.TEACHER) return "";
     if (u.profileId() == null) throw ApiException.forbidden();
@@ -66,7 +67,7 @@ public class AcademicReadService {
       throw ApiException.bad("Chưa hỗ trợ ảnh chụp trạng thái lịch sử; asOf phải là hôm nay");
   }
 
-  private String keyword(Map<String, Object> p, String text, String... fields) {
+  String keyword(Map<String, Object> p, String text, String... fields) {
     query.keyword(text);
     if (text == null || text.isBlank()) return "";
     p.put("keyword", query.pattern(text));
@@ -101,7 +102,7 @@ public class AcademicReadService {
     return m;
   }
 
-  private ReadQuery.Result page(
+  ReadQuery.Result page(
       ReadQuery.Scope scope,
       String source,
       String select,
@@ -132,7 +133,8 @@ public class AcademicReadService {
       boolean t = Users.current().role() == Role.TEACHER;
       String path =
           switch (source) {
-            case "search_classes" -> (t ? "/my-classes" : "/classes") + "?classId=" + r.get("id");
+            case "search_classes", "get_teacher_classes" ->
+                (t ? "/my-classes" : "/classes") + "?classId=" + r.get("id");
             case "find_students" -> t ? "/my-classes" : "/students?studentId=" + r.get("id");
             case "get_student_classes" ->
                 (t ? "/my-classes" : "/classes") + "?classId=" + r.get("classId");
@@ -162,6 +164,13 @@ public class AcademicReadService {
       boolean inclusive,
       int page,
       int size) {
+    return courses(mode, branch, text, level, type, status, min, max, inclusive, page, size, null, null);
+  }
+
+  public ReadQuery.Result courses(
+      ReadQuery.Mode mode, Long branch, String text, String level, String type,
+      Course.Status status, BigDecimal min, BigDecimal max, boolean inclusive, int page, int size,
+      String programCode, String audienceCode) {
     var s = query.scope(mode, branch);
     query.page(page, size);
     query.keyword(text);
@@ -178,7 +187,9 @@ public class AcademicReadService {
             min,
             max,
             inclusive,
-            s.mode() == ReadQuery.Mode.ALL_ASSIGNED);
+            s.mode() == ReadQuery.Mode.ALL_ASSIGNED,
+            classification.id(programCode, true), classification.id(audienceCode, false));
+    var programs = classification.programs();
     var safe =
         data.content().stream()
             .map(
@@ -188,6 +199,9 @@ public class AcademicReadService {
                   r.put("code", c.code());
                   r.put("name", c.name());
                   r.put("type", c.type());
+                  r.put("programCode", programs.get(c.programId()));
+                  r.put("audiences", c.audiences());
+                  r.put("classificationComplete", c.classificationComplete());
                   r.put("level", c.level());
                   r.put("tuitionFee", c.tuitionFee());
                   r.put("currency", "VND");
@@ -208,6 +222,31 @@ public class AcademicReadService {
         s,
         "search_courses",
         new PageResponse<>(safe, page, size, data.totalElements(), data.totalPages()));
+  }
+
+  public ReadQuery.Result teacherClasses(
+      ReadQuery.Mode mode, Long branch, Long teacherId, boolean currentOnly, int page, int size) {
+    query.id(teacherId);
+    if (teacherId == null) throw ApiException.bad("teacherId bắt buộc");
+    var s = query.scope(mode, branch);
+    var p = params(s);
+    p.put("targetTeacher", teacherId);
+    String condition = scope(s, "c.branch_id") + teacher(p) + " and c.teacher_id=:targetTeacher";
+    if (currentOnly)
+      condition += " and c.status<>'FINISHED' and c.start_date<=:asOf and " + END + ">=:asOf";
+    return page(
+        s,
+        "get_teacher_classes",
+        "c.id,c.code,c.name,c.branch_id,c.course_id,co.name as"
+            + " course_name,c.teacher_id,c.teacher_name,c.start_date,"
+            + END
+            + " as end_date,c.status",
+        "from school_classes c join courses co on co.id=c.course_id",
+        condition,
+        "c.id",
+        p,
+        page,
+        size);
   }
 
   public ReadQuery.Result classes(
@@ -413,6 +452,17 @@ public class AcademicReadService {
 
   public ReadQuery.Result attendance(
       ReadQuery.Mode mode, Long branch, Long sessionId, int page, int size) {
+    return attendance(mode, branch, sessionId, null, false, page, size);
+  }
+
+  public ReadQuery.Result attendance(
+      ReadQuery.Mode mode,
+      Long branch,
+      Long sessionId,
+      Long studentId,
+      boolean missingOnly,
+      int page,
+      int size) {
     var s = query.scope(mode, branch);
     query.id(sessionId);
     if (sessionId == null) throw ApiException.bad("sessionId bắt buộc");
@@ -420,6 +470,9 @@ public class AcademicReadService {
     var session = sessions.require(sessionId, false);
     if (!s.contains(session.getSchoolClass().getBranchId())) throw ApiException.missing();
     if (session.getSessionDate().isAfter(LocalDate.now(BusinessTime.ZONE))
+        || session.getSessionDate().equals(LocalDate.now(BusinessTime.ZONE))
+            && session.getStartTime() != null
+            && session.getStartTime().isAfter(LocalTime.now(BusinessTime.ZONE))
         || session.getStatus() == ClassSession.Status.CANCELLED)
       return query.result(
           s,
@@ -439,6 +492,12 @@ public class AcademicReadService {
         "from enrollments e join students st on st.id=e.student_id left join attendances a on"
             + " a.enrollment_id=e.id and a.session_date=:asOf";
     String where = "e.class_id=:class and (" + EFFECTIVE + " or a.id is not null)";
+    query.id(studentId);
+    if (studentId != null) {
+      p.put("student", studentId);
+      where += " and e.student_id=:student";
+    }
+    if (missingOnly) where += " and a.id is null";
     var records =
         page(
             s,

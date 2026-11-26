@@ -8,7 +8,10 @@ import lombok.*;
 @Entity
 @Table(
     name = "students",
-    indexes = @Index(name = "idx_student_phone_branch", columnList = "phone,branch_id"))
+    indexes = {
+      @Index(name = "idx_student_phone_branch", columnList = "phone,branch_id"),
+      @Index(name = "idx_student_branch_id", columnList = "branch_id,id")
+    })
 @Getter
 @Setter
 public class Student extends BaseEntity {
@@ -17,7 +20,7 @@ public class Student extends BaseEntity {
   private Long accountId;
 
   @Column(unique = true, length = 40, updatable = false)
-  private String studentCode = "HV-" + java.util.UUID.randomUUID();
+  private String studentCode;
 
   private String guardianName;
   private String guardianPhone;

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-26T04:02:32.628Z",
+  "status": "passed",
+  "checks": [
+    "superadmin: logo in sidebar; identity/scope in header; content clears header",
+    "admin1: logo in sidebar; identity/scope in header; content clears header",
+    "staff1: logo in sidebar; identity/scope in header; content clears header",
+    "teacher1: logo in sidebar; identity/scope in header; content clears header",
+    "Sidebar and header stay fixed while page scrolls",
+    "Branch switch keeps existing confirmation and changes active scope",
+    "Account menu opens profile and exposes password/logout actions",
+    "Responsive header fits 900px without overlapping content",
+    "Responsive header fits 390px without overlapping content",
+    "Responsive header fits 320px without overlapping content",
+    "Mobile menu contains center logo and navigation, without duplicate account/branch controls"
+  ],
+  "readOnlyBusinessData": true
+}

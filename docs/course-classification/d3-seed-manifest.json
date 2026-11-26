@@ -1,0 +1,623 @@
+{
+  "phase": "D3",
+  "status": "generated",
+  "asOf": "2026-11-16",
+  "counts": {
+    "program_levels": 8,
+    "courses": 20,
+    "course_audiences": 33,
+    "course_duration_plans": 20,
+    "course_admission_policies": 20,
+    "course_admission_levels": 10,
+    "rooms": 12,
+    "school_classes": 40,
+    "class_duration_plans": 40,
+    "class_admission_events": 40,
+    "schedules": 80,
+    "class_sessions": 320,
+    "students": 400,
+    "enrollments": 432,
+    "enrollment_periods": 432,
+    "enrollment_admissions": 432,
+    "learning_events": 432,
+    "tuition": 432,
+    "payments": 298,
+    "placement_assessments": 144,
+    "assessment_events": 144,
+    "leads": 80,
+    "lead_activities": 80,
+    "student_support_requests": 8,
+    "student_support_messages": 8,
+    "student_code_numbers": 1,
+    "attendances": 1856,
+    "exams": 36,
+    "exam_candidates": 432,
+    "grades": 432,
+    "grade_publications": 36,
+    "published_grades": 432,
+    "student_notification_outbox": 400,
+    "student_notifications": 400
+  },
+  "studentCodeRange": [
+    "HV0401",
+    "HV0800"
+  ],
+  "courses": [
+    {
+      "code": "MG1",
+      "name": "Mẫu giáo 1",
+      "program": "GE",
+      "audiences": [
+        "PRESCHOOL"
+      ],
+      "branchId": null,
+      "minutes": 480,
+      "tuition": 1800000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "MG2",
+      "name": "Mẫu giáo 2",
+      "program": "GE",
+      "audiences": [
+        "PRESCHOOL"
+      ],
+      "branchId": null,
+      "minutes": 480,
+      "tuition": 2000000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "TH1",
+      "name": "Tiểu học 1",
+      "program": "GE",
+      "audiences": [
+        "PRIMARY"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 2200000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "TH2",
+      "name": "Tiểu học 2",
+      "program": "GE",
+      "audiences": [
+        "PRIMARY"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 2500000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "CS1",
+      "name": "Tiếng Anh A1",
+      "program": "GE",
+      "audiences": [
+        "SECONDARY",
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 2600000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "PT1",
+      "name": "Tiếng Anh B1",
+      "program": "GE",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 3000000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "GT1",
+      "name": "Giao tiếp cơ bản",
+      "program": "COMMUNICATION",
+      "audiences": [
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 2800000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "GT2",
+      "name": "Giao tiếp nâng cao",
+      "program": "COMMUNICATION",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 3500000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "IL1",
+      "name": "IELTS nền tảng",
+      "program": "IELTS",
+      "audiences": [
+        "SECONDARY",
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 4000000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "IL2",
+      "name": "IELTS 5.5",
+      "program": "IELTS",
+      "audiences": [
+        "SECONDARY",
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 4800000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "IL3",
+      "name": "IELTS 6.5",
+      "program": "IELTS",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 5500000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "IL4",
+      "name": "IELTS 7.0",
+      "program": "IELTS",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 6500000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "TC1",
+      "name": "TOEIC nền tảng",
+      "program": "TOEIC",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 2700000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "TC2",
+      "name": "TOEIC 450",
+      "program": "TOEIC",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 3200000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "TC3",
+      "name": "TOEIC 650",
+      "program": "TOEIC",
+      "audiences": [
+        "HIGH_SCHOOL",
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 4000000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "TC4",
+      "name": "TOEIC 800",
+      "program": "TOEIC",
+      "audiences": [
+        "ADULT"
+      ],
+      "branchId": null,
+      "minutes": 720,
+      "tuition": 4800000,
+      "admission": "REQUIRES_ASSESSMENT"
+    },
+    {
+      "code": "GT-CN01",
+      "name": "Giao tiếp CN01",
+      "program": "COMMUNICATION",
+      "audiences": [
+        "ADULT"
+      ],
+      "branchId": 1,
+      "minutes": 720,
+      "tuition": 2900000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "GT-CN02",
+      "name": "Giao tiếp CN02",
+      "program": "COMMUNICATION",
+      "audiences": [
+        "ADULT"
+      ],
+      "branchId": 2,
+      "minutes": 720,
+      "tuition": 2900000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "GT-CN03",
+      "name": "Giao tiếp CN03",
+      "program": "COMMUNICATION",
+      "audiences": [
+        "ADULT"
+      ],
+      "branchId": 3,
+      "minutes": 720,
+      "tuition": 2900000,
+      "admission": "OPEN_ENTRY"
+    },
+    {
+      "code": "GT-CN04",
+      "name": "Giao tiếp CN04",
+      "program": "COMMUNICATION",
+      "audiences": [
+        "ADULT"
+      ],
+      "branchId": 4,
+      "minutes": 720,
+      "tuition": 2900000,
+      "admission": "OPEN_ENTRY"
+    }
+  ],
+  "classes": [
+    {
+      "id": 17,
+      "code": "CN01-L01",
+      "branchId": 1,
+      "courseCode": "MG1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 18,
+      "code": "CN01-L02",
+      "branchId": 1,
+      "courseCode": "TH1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 19,
+      "code": "CN01-L03",
+      "branchId": 1,
+      "courseCode": "CS1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 20,
+      "code": "CN01-L04",
+      "branchId": 1,
+      "courseCode": "GT1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 21,
+      "code": "CN01-L05",
+      "branchId": 1,
+      "courseCode": "IL2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 22,
+      "code": "CN01-L06",
+      "branchId": 1,
+      "courseCode": "TC2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 23,
+      "code": "CN01-L07",
+      "branchId": 1,
+      "courseCode": "PT1",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 24,
+      "code": "CN01-L08",
+      "branchId": 1,
+      "courseCode": "GT-CN01",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 25,
+      "code": "CN01-L09",
+      "branchId": 1,
+      "courseCode": "IL1",
+      "status": "FINISHED",
+      "students": 8
+    },
+    {
+      "id": 26,
+      "code": "CN01-L10",
+      "branchId": 1,
+      "courseCode": "MG2",
+      "status": "UPCOMING",
+      "students": 0
+    },
+    {
+      "id": 27,
+      "code": "CN02-L01",
+      "branchId": 2,
+      "courseCode": "MG1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 28,
+      "code": "CN02-L02",
+      "branchId": 2,
+      "courseCode": "TH1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 29,
+      "code": "CN02-L03",
+      "branchId": 2,
+      "courseCode": "CS1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 30,
+      "code": "CN02-L04",
+      "branchId": 2,
+      "courseCode": "GT1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 31,
+      "code": "CN02-L05",
+      "branchId": 2,
+      "courseCode": "IL2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 32,
+      "code": "CN02-L06",
+      "branchId": 2,
+      "courseCode": "TC2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 33,
+      "code": "CN02-L07",
+      "branchId": 2,
+      "courseCode": "PT1",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 34,
+      "code": "CN02-L08",
+      "branchId": 2,
+      "courseCode": "GT-CN02",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 35,
+      "code": "CN02-L09",
+      "branchId": 2,
+      "courseCode": "IL1",
+      "status": "FINISHED",
+      "students": 8
+    },
+    {
+      "id": 36,
+      "code": "CN02-L10",
+      "branchId": 2,
+      "courseCode": "MG2",
+      "status": "UPCOMING",
+      "students": 0
+    },
+    {
+      "id": 37,
+      "code": "CN03-L01",
+      "branchId": 3,
+      "courseCode": "MG1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 38,
+      "code": "CN03-L02",
+      "branchId": 3,
+      "courseCode": "TH1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 39,
+      "code": "CN03-L03",
+      "branchId": 3,
+      "courseCode": "CS1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 40,
+      "code": "CN03-L04",
+      "branchId": 3,
+      "courseCode": "GT1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 41,
+      "code": "CN03-L05",
+      "branchId": 3,
+      "courseCode": "IL2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 42,
+      "code": "CN03-L06",
+      "branchId": 3,
+      "courseCode": "TC2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 43,
+      "code": "CN03-L07",
+      "branchId": 3,
+      "courseCode": "PT1",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 44,
+      "code": "CN03-L08",
+      "branchId": 3,
+      "courseCode": "GT-CN03",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 45,
+      "code": "CN03-L09",
+      "branchId": 3,
+      "courseCode": "IL1",
+      "status": "FINISHED",
+      "students": 8
+    },
+    {
+      "id": 46,
+      "code": "CN03-L10",
+      "branchId": 3,
+      "courseCode": "MG2",
+      "status": "UPCOMING",
+      "students": 0
+    },
+    {
+      "id": 47,
+      "code": "CN04-L01",
+      "branchId": 4,
+      "courseCode": "MG1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 48,
+      "code": "CN04-L02",
+      "branchId": 4,
+      "courseCode": "TH1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 49,
+      "code": "CN04-L03",
+      "branchId": 4,
+      "courseCode": "CS1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 50,
+      "code": "CN04-L04",
+      "branchId": 4,
+      "courseCode": "GT1",
+      "status": "ONGOING",
+      "students": 13
+    },
+    {
+      "id": 51,
+      "code": "CN04-L05",
+      "branchId": 4,
+      "courseCode": "IL2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 52,
+      "code": "CN04-L06",
+      "branchId": 4,
+      "courseCode": "TC2",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 53,
+      "code": "CN04-L07",
+      "branchId": 4,
+      "courseCode": "PT1",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 54,
+      "code": "CN04-L08",
+      "branchId": 4,
+      "courseCode": "GT-CN04",
+      "status": "ONGOING",
+      "students": 12
+    },
+    {
+      "id": 55,
+      "code": "CN04-L09",
+      "branchId": 4,
+      "courseCode": "IL1",
+      "status": "FINISHED",
+      "students": 8
+    },
+    {
+      "id": 56,
+      "code": "CN04-L10",
+      "branchId": 4,
+      "courseCode": "MG2",
+      "status": "UPCOMING",
+      "students": 0
+    }
+  ],
+  "pendingFinalResults": "Past classes contain learners awaiting real result confirmation; no fake graduation/final-result snapshots."
+}

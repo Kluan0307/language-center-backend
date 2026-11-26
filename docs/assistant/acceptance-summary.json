@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-11-13T14:26:44.791Z",
+  "sourceSnapshotSha256": "f7240941bf60d4c0c5e0e978dddf6aaf461929c0fc1f9ced2631597a973bbf2e",
+  "scope": "Read-only web assistant; four roles",
+  "host": {
+    "layer": "HOST_SCRIPTED_MCP",
+    "counts": {
+      "PASS": 120
+    },
+    "realModel": false
+  },
+  "live": {
+    "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+    "model": "gemini-3.1-flash-lite",
+    "status": "BLOCKED",
+    "counts": {
+      "PASS": 4,
+      "BLOCKED": 1,
+      "NOT_RUN": 115
+    },
+    "realMySql": false,
+    "sourceSnapshotVerified": false
+  },
+  "overall": "R8_INCOMPLETE",
+  "limits": [
+    "Host scripted planning is not model understanding",
+    "Live test uses synthetic Auth/business fixtures, not real MySQL",
+    "Missing grading deadline and actual class closure timestamp remain unsupported/partial",
+    "Live run preceded final refinement/assertion changes; current source hash is a packaging snapshot, not proof of live testing that snapshot"
+  ]
+}

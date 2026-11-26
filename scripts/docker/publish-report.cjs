@@ -1,0 +1,13 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..'),docs=path.join(root,'docs/docker');
+const contract=JSON.parse(fs.readFileSync(path.join(docs,'contract-validation.json'),'utf8'));
+const images=JSON.parse(fs.readFileSync(path.join(docs,'image-validation.json'),'utf8'));
+const routes=fs.readFileSync(path.join(root,'api-gateway/target/surefire-reports/TEST-com.example.gateway.operations.DockerRouteConfigurationTest.xml'),'utf8');
+assert.equal(contract.status,'passed');assert.equal(images.status,'passed');assert.equal(images.images.length,6);assert.equal(images.smoke.length,2);
+assert.match(routes,/<testsuite\b[^>]*\btests="3"/);assert.match(routes,/<testsuite\b[^>]*\berrors="0"/);assert.match(routes,/<testsuite\b[^>]*\bfailures="0"/);
+const leftovers=execFileSync('docker',['ps','-a','--filter','name=lc-dck2-','--format','{{.Names}}'],{encoding:'utf8',windowsHide:true}).trim();assert.equal(leftovers,'','Temporary packaging containers still exist');
+const result={checkedAt:new Date().toISOString(),phases:{DCK1:'complete',DCK2:'complete',DCK3:'not_started'},configurationChecks:contract.checks.length,imageChecks:images.checks.length,routeBindingTests:3,images:images.images.map(x=>({service:x.service,image:x.image,id:x.id})),runtimeSmoke:images.smoke.map(x=>x.service),temporaryContainersRemoved:true,sourceDatabaseTouched:false,composeCreated:false,limitations:images.limitations};
+fs.writeFileSync(path.join(docs,'dck1-dck2-validation.json'),JSON.stringify(result,null,2));
+const readme=path.join(root,'README.md'),summary='**Docker DCK1–DCK2 (24/11/2026):** chuẩn hóa cấu hình/container DNS, thêm profile Docker và Dockerfile chung; sáu image backend đã build. 18 kiểm tra cấu hình/probe, 26 kiểm tra image/runtime và 3 test route đạt. Gateway/Assistant chạy thử thành công; MySQL/Compose và nghiệm thu bốn service DB thuộc DCK3/DCK5. [Hướng dẫn Docker](docs/docker/README.md) · [Lộ trình](docs/docker/roadmap.md).\n\n';
+const old=fs.readFileSync(readme,'utf8');if(!old.startsWith('**Docker DCK1–DCK2'))fs.writeFileSync(readme,summary+old);
+console.log(JSON.stringify({status:'passed',configurationChecks:result.configurationChecks,imageChecks:result.imageChecks,routeBindingTests:3,images:6,temporaryContainersRemoved:true}));

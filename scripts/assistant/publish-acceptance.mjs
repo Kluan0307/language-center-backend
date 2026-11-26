@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'../..');process.chdir(root);
+const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const host=read('assistant-service/target/r8-host-acceptance.json');
+const live=read('storage/r8-live-acceptance.json');
+const base=read('docs/assistant/acceptance-oracles.json');
+if(host.cases.length!==base.cases.length||new Set(host.cases.map(c=>c.id)).size!==base.cases.length||host.cases.some(c=>!base.cases.some(b=>b.id===c.id)))throw Error('Incomplete host matrix');
+const counts=rows=>rows.reduce((out,c)=>(out[c.status]=(out[c.status]??0)+1,out),{});
+const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]);
+const sources=[...walk('assistant-service/src/main/java'), 'docs/assistant/acceptance-oracles.json'].sort();
+const hash=crypto.createHash('sha256');for(const file of sources){hash.update(file);hash.update(fs.readFileSync(file));}
+const summary={generatedAt:new Date().toISOString(),sourceSnapshotSha256:hash.digest('hex'),scope:'Read-only web assistant; four roles',host:{layer:host.layer,counts:counts(host.cases),realModel:false},live:{layer:'REAL_GEMINI_SYNTHETIC_MCP',model:live.model,status:live.status,counts:counts(live.cases),realMySql:false},overall:host.cases.every(c=>c.status==='PASS')&&live.cases.length===120&&live.cases.every(c=>c.status==='PASS')?'MODEL_MATRIX_PASS_MYSQL_PENDING':'R8_INCOMPLETE',limits:['Host scripted planning is not model understanding','Live test uses synthetic Auth/business fixtures, not real MySQL','Missing grading deadline and actual class closure timestamp remain unsupported/partial']};
+summary.live.sourceSnapshotVerified=false;
+summary.limits.push('Live run preceded final refinement/assertion changes; current source hash is a packaging snapshot, not proof of live testing that snapshot');
+fs.writeFileSync('docs/assistant/acceptance-host-results.json',JSON.stringify(host,null,2)+'\n');
+fs.writeFileSync('docs/assistant/acceptance-live-results.json',JSON.stringify(live,null,2)+'\n');
+fs.writeFileSync('docs/assistant/acceptance-summary.json',JSON.stringify(summary,null,2)+'\n');
+console.log(JSON.stringify(summary));

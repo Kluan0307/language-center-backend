@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-11-25T04:44:31.030Z",
+  "status": "passed",
+  "measurements": [
+    {
+      "name": "catalog",
+      "requests": 40,
+      "concurrency": 4,
+      "errors": 0,
+      "p50Ms": 214,
+      "p95Ms": 376,
+      "maxMs": 383
+    },
+    {
+      "name": "website",
+      "requests": 40,
+      "concurrency": 4,
+      "errors": 0,
+      "p50Ms": 208,
+      "p95Ms": 284,
+      "maxMs": 296
+    }
+  ],
+  "containers": [
+    {
+      "service": "language-center-academic-service-1",
+      "cpu": "0.29%",
+      "memory": "377.5MiB / 640MiB"
+    },
+    {
+      "service": "language-center-api-gateway-1",
+      "cpu": "0.12%",
+      "memory": "208.8MiB / 640MiB"
+    },
+    {
+      "service": "language-center-assistant-service-1",
+      "cpu": "0.14%",
+      "memory": "172.2MiB / 640MiB"
+    },
+    {
+      "service": "language-center-auth-service-1",
+      "cpu": "0.16%",
+      "memory": "343.4MiB / 640MiB"
+    },
+    {
+      "service": "language-center-finance-service-1",
+      "cpu": "0.21%",
+      "memory": "317.4MiB / 640MiB"
+    },
+    {
+      "service": "language-center-mysql-1",
+      "cpu": "0.62%",
+      "memory": "427.2MiB / 768MiB"
+    },
+    {
+      "service": "language-center-teaching-service-1",
+      "cpu": "0.11%",
+      "memory": "293.8MiB / 640MiB"
+    },
+    {
+      "service": "language-center-web-admin-1",
+      "cpu": "0.00%",
+      "memory": "3.613MiB / 128MiB"
+    },
+    {
+      "service": "language-center-website-1",
+      "cpu": "0.02%",
+      "memory": "67.45MiB / 512MiB"
+    }
+  ],
+  "scope": "Small local baseline; not capacity certification",
+  "cacheDecision": "Keep uncached public catalog until repeatable latency/DB-load evidence justifies staleness and invalidation complexity."
+}

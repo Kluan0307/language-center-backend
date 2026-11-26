@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-24T15:20:42.548Z",
+  "status": "passed",
+  "checks": [
+    "Secret values are blank in Docker template",
+    "Non-root runtime and Java PID 1 entrypoint",
+    "Separate JDK build and JRE runtime stages",
+    "Container JVM uses center timezone",
+    "Build context allowlist excludes host environment",
+    "auth-service Docker profile, Java version and port match",
+    "academic-service Docker profile, Java version and port match",
+    "teaching-service Docker profile, Java version and port match",
+    "finance-service Docker profile, Java version and port match",
+    "api-gateway Docker profile, Java version and port match",
+    "assistant-service Docker profile, Java version and port match",
+    "Readiness probe compiles on Java 21 without dependencies",
+    "Probe returns 0 for HTTP 200 {\"status\":\"UP\"}",
+    "Probe returns 1 for HTTP 200 {\"status\":\"DOWN\"}",
+    "Probe returns 1 for HTTP 503 {\"status\":\"UP\"}",
+    "Probe returns 1 for HTTP 503 {\"status\":\"DOWN\"}",
+    "Probe returns 1 for HTTP 302 {\"status\":\"UP\"}",
+    "Probe rejects invalid runtime port"
+  ],
+  "sourceDatabaseTouched": false
+}

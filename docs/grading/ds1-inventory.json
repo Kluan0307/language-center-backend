@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-25T12:56:41.991Z",
+  "target": "Docker",
+  "schemaTables": 95,
+  "counts": {
+    "exams": 36,
+    "grades": 432,
+    "grade_publications": 36,
+    "published_grades": 432,
+    "evaluation_policies": 0,
+    "grading_activities": 0,
+    "grading_candidates": 0,
+    "grading_class_bindings": 0,
+    "grading_course_defaults": 0,
+    "grading_events": 0,
+    "grading_marks": 0,
+    "grading_templates": 4
+  },
+  "legacyScoreRanges": [
+    {
+      "exams": 8,
+      "grades": 80,
+      "examType": "IELTS",
+      "maxScore": 9
+    },
+    {
+      "exams": 24,
+      "grades": 304,
+      "examType": "TEST",
+      "maxScore": 10
+    },
+    {
+      "exams": 4,
+      "grades": 48,
+      "examType": "TOEIC",
+      "maxScore": 990
+    }
+  ],
+  "existingDataAutomaticallyConverted": false,
+  "templatesSeededOnly": true
+}

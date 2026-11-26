@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-15",
+  "status": "passed",
+  "backend": {
+    "tests": 63,
+    "failures": 0,
+    "errors": 0,
+    "suites": ["WebsiteIntakeWorkflowTest", "WebsiteIntakeLimiterTest", "WebsiteCatalogTest", "WebsiteSecurityTest", "LeadCareWorkflowTest", "LeadEmploymentTest", "MultiBranchSecurityTest", "StudentRouteSecurityTest", "CourseWriteRulesTest", "AcademicServiceApplicationTests"],
+    "database": "isolated H2, no application MySQL writes"
+  },
+  "website": {
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "browserIntegration": "passed",
+    "browserChecks": 35,
+    "viewports": [1440, 390, 320],
+    "upstream": "isolated HTTP fixture",
+    "retryScenario": "upstream accepted request, first response failed, retry reused request ID; 2 attempts, 1 receipt",
+    "privateKeyInClientBundles": false
+  },
+  "managementWeb": {
+    "productionBuild": "passed",
+    "changes": "Website inquiry action label and history channel type",
+    "existingBuildWarning": "shared button bundle exceeds 500 kB; build succeeded"
+  },
+  "privateFormKey": "configured consistently in backend and website local env; values not printed",
+  "operationalSteps": ["Restart academic-service, gateway and website", "DDL_AUTO=update creates the additive tables, otherwise apply V024 after V023", "Review/publish actual content and ensure eligible branch Staff/Admin exists", "No live inquiry was automatically inserted for acceptance"]
+}

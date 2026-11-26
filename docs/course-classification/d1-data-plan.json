@@ -1,0 +1,469 @@
+{
+  "phase": "D1",
+  "status": "complete",
+  "database": "language_center_db",
+  "tables": [
+    {
+      "name": "account_branch_events",
+      "count": 26,
+      "action": "KEEP"
+    },
+    {
+      "name": "account_branches",
+      "count": 24,
+      "action": "KEEP"
+    },
+    {
+      "name": "account_security_events",
+      "count": 420,
+      "action": "RESET"
+    },
+    {
+      "name": "accounts",
+      "count": 419,
+      "action": "KEEP"
+    },
+    {
+      "name": "admins",
+      "count": 2,
+      "action": "KEEP"
+    },
+    {
+      "name": "assessment_events",
+      "count": 13,
+      "action": "RESET"
+    },
+    {
+      "name": "attendance_changes",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "attendances",
+      "count": 888,
+      "action": "RESET"
+    },
+    {
+      "name": "audience_groups",
+      "count": 5,
+      "action": "KEEP"
+    },
+    {
+      "name": "branches",
+      "count": 4,
+      "action": "KEEP"
+    },
+    {
+      "name": "class_admission_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "class_closure_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "class_closures",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "class_duration_plans",
+      "count": 16,
+      "action": "RESET"
+    },
+    {
+      "name": "class_result_barriers",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "class_sessions",
+      "count": 128,
+      "action": "RESET"
+    },
+    {
+      "name": "company_profile",
+      "count": 1,
+      "action": "KEEP"
+    },
+    {
+      "name": "course_admission_levels",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "course_admission_policies",
+      "count": 16,
+      "action": "RESET"
+    },
+    {
+      "name": "course_audiences",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "course_duration_plans",
+      "count": 16,
+      "action": "RESET"
+    },
+    {
+      "name": "courses",
+      "count": 16,
+      "action": "RESET"
+    },
+    {
+      "name": "document_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "document_sharing_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "documents",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "employment_events",
+      "count": 0,
+      "action": "KEEP"
+    },
+    {
+      "name": "enrollment_admissions",
+      "count": 400,
+      "action": "RESET"
+    },
+    {
+      "name": "enrollment_periods",
+      "count": 400,
+      "action": "RESET"
+    },
+    {
+      "name": "enrollments",
+      "count": 400,
+      "action": "RESET"
+    },
+    {
+      "name": "evaluation_policies",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "evaluation_policy_exams",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "evaluation_states",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "exam_candidates",
+      "count": 56,
+      "action": "RESET"
+    },
+    {
+      "name": "exams",
+      "count": 4,
+      "action": "RESET"
+    },
+    {
+      "name": "final_results",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "grade_changes",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "grade_publications",
+      "count": 4,
+      "action": "RESET"
+    },
+    {
+      "name": "grades",
+      "count": 56,
+      "action": "RESET"
+    },
+    {
+      "name": "internal_support_replies",
+      "count": 0,
+      "action": "KEEP"
+    },
+    {
+      "name": "internal_support_tickets",
+      "count": 0,
+      "action": "KEEP"
+    },
+    {
+      "name": "job_titles",
+      "count": 9,
+      "action": "KEEP"
+    },
+    {
+      "name": "lead_activities",
+      "count": 74,
+      "action": "RESET"
+    },
+    {
+      "name": "leads",
+      "count": 80,
+      "action": "RESET"
+    },
+    {
+      "name": "learning_events",
+      "count": 1,
+      "action": "RESET"
+    },
+    {
+      "name": "organization_assignments",
+      "count": 22,
+      "action": "KEEP"
+    },
+    {
+      "name": "organization_units",
+      "count": 9,
+      "action": "KEEP"
+    },
+    {
+      "name": "payment_corrections",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "payment_orders",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "payment_outbox",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "payment_provider_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "payment_provider_transactions",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "payment_reconcile_operations",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "payments",
+      "count": 269,
+      "action": "RESET"
+    },
+    {
+      "name": "personnel_code_numbers",
+      "count": 2,
+      "action": "KEEP"
+    },
+    {
+      "name": "placement_assessments",
+      "count": 16,
+      "action": "RESET"
+    },
+    {
+      "name": "placement_exceptions",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "program_levels",
+      "count": 7,
+      "action": "EXTEND"
+    },
+    {
+      "name": "programs",
+      "count": 4,
+      "action": "KEEP"
+    },
+    {
+      "name": "published_grades",
+      "count": 56,
+      "action": "RESET"
+    },
+    {
+      "name": "result_reopens",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "rooms",
+      "count": 12,
+      "action": "RESET"
+    },
+    {
+      "name": "schedules",
+      "count": 32,
+      "action": "RESET"
+    },
+    {
+      "name": "school_classes",
+      "count": 16,
+      "action": "RESET"
+    },
+    {
+      "name": "session_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "staffs",
+      "count": 8,
+      "action": "KEEP"
+    },
+    {
+      "name": "student_account_provisionings",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "student_code_numbers",
+      "count": 2,
+      "action": "EXTEND"
+    },
+    {
+      "name": "student_notification_outbox",
+      "count": 73,
+      "action": "RESET"
+    },
+    {
+      "name": "student_notification_preferences",
+      "count": 0,
+      "action": "KEEP"
+    },
+    {
+      "name": "student_notifications",
+      "count": 73,
+      "action": "RESET"
+    },
+    {
+      "name": "student_push_deliveries",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "student_push_devices",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "student_support_messages",
+      "count": 6,
+      "action": "RESET"
+    },
+    {
+      "name": "student_support_operations",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "student_support_requests",
+      "count": 8,
+      "action": "RESET"
+    },
+    {
+      "name": "student_support_status_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "students",
+      "count": 400,
+      "action": "RESET"
+    },
+    {
+      "name": "super_admins",
+      "count": 1,
+      "action": "KEEP"
+    },
+    {
+      "name": "teacher_profile_events",
+      "count": 0,
+      "action": "KEEP"
+    },
+    {
+      "name": "teachers",
+      "count": 8,
+      "action": "KEEP"
+    },
+    {
+      "name": "tuition",
+      "count": 400,
+      "action": "RESET"
+    },
+    {
+      "name": "tuition_adjustments",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "user_preferences",
+      "count": 1,
+      "action": "KEEP"
+    },
+    {
+      "name": "website_edit_events",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "website_inquiries",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "website_publications",
+      "count": 0,
+      "action": "RESET"
+    },
+    {
+      "name": "website_teacher_profiles",
+      "count": 0,
+      "action": "RESET"
+    }
+  ],
+  "keptAccounts": 419,
+  "studentAccountsToRelink": 400,
+  "branches": [
+    {
+      "code": "CN01",
+      "name": "Cơ sở 1"
+    },
+    {
+      "code": "CN02",
+      "name": "Cơ sở 2"
+    },
+    {
+      "code": "CN03",
+      "name": "Cơ sở 3"
+    },
+    {
+      "code": "CN04",
+      "name": "Cơ sở 4"
+    }
+  ],
+  "target": {
+    "courses": 20,
+    "classes": 40,
+    "students": 400,
+    "leads": 80
+  },
+  "identityPolicy": "Keep credentials, roles, branch memberships and personnel. Invalidate sessions; map each student account by account_id. New resource IDs exceed previous maxima."
+}

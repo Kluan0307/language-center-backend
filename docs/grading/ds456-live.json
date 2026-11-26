@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-25T13:26:06.452Z",
+  "status": "passed",
+  "checks": [
+    "Four standard schemes initialized on MySQL",
+    "Staff, teacher template writes and unassigned branch denied",
+    "New template revision leaves class snapshot unchanged",
+    "Zero and absence stored distinctly; exam-day roster frozen",
+    "Stale result update returns 409",
+    "Invalid batch rolls back all rows and roster on MySQL",
+    "Observation stores level/comment without numeric grade",
+    "Real Ant Design drawer saves a numeric draft through API",
+    "Weighted result calculated from component means with independent attendance",
+    "Retake only changes eligible learner and does not double-weight original",
+    "Unpublished new result is hidden from student",
+    "Real UI submits review; self-approval and editing while submitted blocked",
+    "Real UI publishes approved immutable snapshot; ownership enforced",
+    "Retraction hides result and changed Academic proof requires new review",
+    "IELTS complete mock rounds 5.75 to band 6.0",
+    "TOEIC raw answers use explicit versioned table, retain source and sum scaled skills",
+    "Main exam/grade/publication/final-result and new grading data untouched"
+  ],
+  "isolatedSyntheticAcademic": true,
+  "mainBusinessDataUnchanged": true,
+  "temporaryResourcesCleaned": true
+}

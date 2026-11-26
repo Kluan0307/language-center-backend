@@ -69,6 +69,7 @@ public class StudentService {
   }
 
   public StudentDto save(Long id, StudentDto.Request r) {
+    StudentProfileRules.validate(r);
     Student s = id == null ? new Student() : require(id);
     Long branch = id == null ? scope.create(r.branchId()) : s.getBranchId();
     branches.lock(branch);
@@ -77,17 +78,19 @@ public class StudentService {
     s.setFullName(r.fullName().trim());
     s.setDateOfBirth(r.dateOfBirth());
     s.setGender(r.gender());
-    s.setEmail(r.email());
+    s.setEmail(StudentProfileRules.text(r.email()));
     s.setPhone(r.phone().trim());
-    s.setAddress(r.address());
-    s.setContactPerson(r.contactPerson());
-    s.setGuardianName(r.guardianName());
-    s.setGuardianPhone(r.guardianPhone());
-    s.setCurrentLevel(r.currentLevel());
+    s.setAddress(StudentProfileRules.text(r.address()));
+    s.setContactPerson(StudentProfileRules.text(r.contactPerson()));
+    s.setGuardianName(StudentProfileRules.text(r.guardianName()));
+    s.setGuardianPhone(StudentProfileRules.text(r.guardianPhone()));
+    s.setCurrentLevel(StudentProfileRules.text(r.currentLevel()));
+    if (id == null) issueCode(s);
     return StudentDto.of(repository.saveAndFlush(s));
   }
 
   public Student convert(String fullName, String phone, String email, String level, Long branch) {
+    StudentProfileRules.phone(phone,true);
     branches.lock(branch);
     Student s = new Student();
     s.setFullName(fullName);
@@ -95,7 +98,14 @@ public class StudentService {
     s.setEmail(email);
     s.setCurrentLevel(level);
     s.setBranchId(branch);
+    issueCode(s);
     return repository.saveAndFlush(s);
+  }
+
+  private void issueCode(Student student) {
+    var number = new StudentCodeNumber();
+    entityManager.persist(number);
+    student.setStudentCode(number.code());
   }
 
   public StudentDto status(Long id, StudentDto.StatusRequest request) {
@@ -144,6 +154,10 @@ public class StudentService {
     if (assessments.existsByStudentId(id))
       throw ApiException.conflict("Không thể xóa học viên đã có lịch sử đánh giá đầu vào");
     if(placementExceptions.existsByStudentId(id))throw ApiException.conflict("Học viên có lịch sử đề nghị ngoại lệ; không được xóa");
+    for (String type : java.util.List.of("SupportRequest", "LearningEvent", "StudentNotification")) {
+      long count = entityManager.createQuery("select count(r) from " + type + " r where r.studentId=:id", Long.class).setParameter("id",id).getSingleResult();
+      if(count>0)throw ApiException.conflict("Học viên đã có lịch sử nghiệp vụ; hãy đổi trạng thái thay vì xóa");
+    }
     repository.delete(s);
     repository.flush();
   }

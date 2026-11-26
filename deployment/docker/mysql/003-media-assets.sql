@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS media_assets (
+ id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ public_id VARCHAR(200) NOT NULL UNIQUE,
+ asset_id VARCHAR(200) NOT NULL,
+ url VARCHAR(512) NOT NULL UNIQUE,
+ category VARCHAR(20) NOT NULL,
+ uploaded_by BIGINT NOT NULL,
+ branch_id BIGINT NULL,
+ bytes BIGINT NOT NULL,
+ width INT NOT NULL,
+ height INT NOT NULL,
+ format VARCHAR(20) NOT NULL,
+ created_at DATETIME(6) NOT NULL,
+ deleted BIT NOT NULL DEFAULT b'0',
+ INDEX idx_media_owner(uploaded_by,id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -1,0 +1,1477 @@
+{
+  "browser": "Chrome",
+  "pages": [
+    {
+      "route": "/",
+      "width": 320,
+      "header": 73,
+      "h1": "34px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 320,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 360,
+      "header": 73,
+      "h1": "34px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 360,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "header": 73,
+      "h1": "34px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 390,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "header": 73,
+      "h1": "42px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 53
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 768,
+      "header": 73,
+      "h1": "30px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "header": 73,
+      "h1": "48px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 53
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1024,
+      "header": 73,
+      "h1": "31.744px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "55.68px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 53
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1280,
+      "header": 126.09375,
+      "h1": "39.68px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "59.421px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 53
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1366,
+      "header": 126.09375,
+      "h1": "42.346px",
+      "controls": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "60px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 52.390625
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "audience",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "maxTuition",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chuong-trinh",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": [
+        {
+          "name": "muc-tieu",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/chi-nhanh",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": [
+        {
+          "name": "keyword",
+          "size": "16px",
+          "height": 53
+        }
+      ]
+    },
+    {
+      "route": "/giao-vien",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": [
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        }
+      ]
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": []
+    },
+    {
+      "route": "/chuong-trinh/tieng-anh-tong-quat",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": []
+    },
+    {
+      "route": "/chi-nhanh/cn01",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": []
+    },
+    {
+      "route": "/giao-vien/giao-vien-1",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": []
+    },
+    {
+      "route": "/tu-van",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": [
+        {
+          "name": "fullName",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "phone",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "email",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "branch",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "program",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "course",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "schoolClass",
+          "size": "16px",
+          "height": 50
+        },
+        {
+          "name": "note",
+          "size": "16px",
+          "height": 98
+        }
+      ]
+    },
+    {
+      "route": "/chinh-sach-bao-mat",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": []
+    },
+    {
+      "route": "/gioi-thieu",
+      "width": 1440,
+      "header": 126.09375,
+      "h1": "44px",
+      "controls": []
+    }
+  ],
+  "zoom": [
+    {
+      "route": "/",
+      "layoutWidth": 720,
+      "layoutHeight": 450,
+      "deviceScaleFactor": 2,
+      "method": "200% equivalent metrics; not physical browser zoom"
+    },
+    {
+      "route": "/khoa-hoc",
+      "layoutWidth": 720,
+      "layoutHeight": 450,
+      "deviceScaleFactor": 2,
+      "method": "200% equivalent metrics; not physical browser zoom"
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "layoutWidth": 720,
+      "layoutHeight": 450,
+      "deviceScaleFactor": 2,
+      "method": "200% equivalent metrics; not physical browser zoom"
+    },
+    {
+      "route": "/tu-van",
+      "layoutWidth": 720,
+      "layoutHeight": 450,
+      "deviceScaleFactor": 2,
+      "method": "200% equivalent metrics; not physical browser zoom"
+    }
+  ],
+  "actualZoom": [
+    {
+      "route": "/",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    },
+    {
+      "route": "/khoa-hoc/mg1",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    },
+    {
+      "route": "/tu-van",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    }
+  ],
+  "fonts": [
+    {
+      "familyName": "Be Vietnam Pro SemiBold",
+      "postScriptName": "BeVietnamPro-SemiBold",
+      "isCustomFont": true,
+      "glyphCount": 29
+    }
+  ],
+  "limitations": [
+    "No physical phone connected"
+  ],
+  "source": "Real services on isolated MySQL copy"
+}

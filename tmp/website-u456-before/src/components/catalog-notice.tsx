@@ -1,0 +1,2 @@
+import Link from "@/components/loading-link";
+export function CatalogNotice({unavailable=false}:{unavailable?:boolean}){return <div className="notice" role="status"><h2>{unavailable?"Thông tin tạm thời chưa tải được":"Thông tin đang được cập nhật"}</h2><p>{unavailable?"Vui lòng thử lại sau hoặc liên hệ trung tâm để được hỗ trợ.":"Trung tâm sẽ cập nhật nội dung chính thức tại đây."}</p><Link href="/tu-van" className="textLink">Liên hệ tư vấn →</Link></div>;}

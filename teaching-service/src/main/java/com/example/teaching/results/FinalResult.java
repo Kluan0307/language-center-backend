@@ -22,6 +22,7 @@ public class FinalResult {
   private Long branchId;
   private Long enrollmentId;
   private Long studentId;
+  private Long gradingReleaseId;
   private long revision;
   private long policyRevision;
   private long academicSourceRevision;

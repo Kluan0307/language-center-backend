@@ -1,0 +1,5 @@
+{
+  "scenario": "Class -> grades -> class -> attendance -> class",
+  "classRequests": 1,
+  "mode": "after-M7"
+}

@@ -1,0 +1,607 @@
+{
+  "cases": [
+    {
+      "id": "SUPER_ADMIN-01",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-02",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-03",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-04",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-05",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-06",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-07",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-08",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-09",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-10",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-11",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-12",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-13",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-14",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-15",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-16",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-17",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-18",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-19",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-20",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-21",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-22",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-23",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "SUPER_ADMIN-24",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-01",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-02",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-03",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-04",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-05",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-06",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-07",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-08",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-09",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-10",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-11",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-12",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-13",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-14",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-15",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-16",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-17",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-18",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-19",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-20",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-21",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-22",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-23",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "ADMIN-24",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-01",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-02",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-03",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-04",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-05",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-06",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-07",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-08",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-09",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-10",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-11",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-12",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-13",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-14",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-15",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-16",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-17",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-18",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-19",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-20",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-21",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-22",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-23",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "STAFF-24",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-01",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-02",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-03",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-04",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-05",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-06",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-07",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-08",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-09",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-10",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-11",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-12",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-13",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-14",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-15",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-16",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-17",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-18",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-19",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-20",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-21",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-22",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-23",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "TEACHER-24",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-01",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-02",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-03",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-04",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-05",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-06",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-07",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-08",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-09",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-10",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-11",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "FOLLOWUP-12",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-01",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-02",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-03",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-04",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-05",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-06",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-07",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-08",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-09",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-10",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-11",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    },
+    {
+      "id": "GUARD-12",
+      "layer": "HOST_SCRIPTED_MCP",
+      "status": "PASS"
+    }
+  ],
+  "realModel": false,
+  "layer": "HOST_SCRIPTED_MCP",
+  "runAt": "2026-11-13T14:23:40.888702400Z"
+}

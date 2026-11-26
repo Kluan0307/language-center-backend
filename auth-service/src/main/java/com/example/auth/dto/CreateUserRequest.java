@@ -38,6 +38,7 @@ public class CreateUserRequest {
   private String email;
 
   @jakarta.validation.constraints.Size(max = 15)
+  @jakarta.validation.constraints.Pattern(regexp = "^$|[+0-9() .-]{6,15}")
   private String phone;
 
   // Các trường riêng cho Teacher (role = TEACHER)
@@ -55,6 +56,7 @@ public class CreateUserRequest {
 
   @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDate hireDate;
+  private LocalDate endDate;
 
   @jakarta.validation.constraints.Pattern(regexp = "ACTIVE|INACTIVE")
   private String workStatus;

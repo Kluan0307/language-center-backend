@@ -1,0 +1,22 @@
+// Publish only after real operational, lifecycle and functional checks passed.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'../..'),workspace=path.resolve(root,'../..'),folder=path.join(root,'docs/docker');
+const read=name=>JSON.parse(fs.readFileSync(path.join(folder,name),'utf8'));
+const operations=read('dck6-operations-validation.json'),lifecycle=read('dck6-lifecycle-validation.json'),functional=read('runtime-functional-validation.json'),web=read('runtime-web-validation.json'),state=read('runtime-status.json');
+for(const result of [operations,lifecycle,functional,web,state])assert.equal(result.status,'passed','Cannot close DCK6 with failing checks');
+assert.equal(state.services.length,9);assert.ok(state.services.every(s=>s.health==='healthy'));
+const checks={backupRestore:operations.checks.length,lifecycle:lifecycle.checks.length,functional:functional.passed,webHttp:web.checks.length};
+const completion={completedAt:new Date().toISOString(),status:'complete',stage:'DCK6',scope:'local Docker Compose',checks,services:state.services,data:state.data,urls:state.urls,backupRestoreVerified:true,mainDataPreservedDuringLifecycle:lifecycle.allDataPreserved,imageUpdateTested:lifecycle.imageUpdateTested,imageRollbackTested:true,mainDatabaseRestoreExecuted:false,backupLocation:'Private ignored storage/docker-backups',sourceDatabaseUsed:false,providers:state.providers,limitations:['Main restore replacement guarded and rehearsal verified; main data was not overwritten during DCK6.','Provider integrations and physical student device were not exercised.','Hosting, scheduled/off-machine backups and TLS are outside this local stage.']};
+fs.writeFileSync(path.join(folder,'dck6-completion.json'),JSON.stringify(completion,null,2));
+const summary='**Docker DCK6 (25/11/2026):** hoàn tất bộ lệnh vận hành, backup/restore DB + tài liệu, thử cập nhật/rollback hai image web và restart toàn stack. 9 container healthy; Docker hiện có '+state.data.accounts+' tài khoản, '+state.data.students+' học viên, '+state.data.courses+' khóa, '+state.data.school_classes+' lớp. Kiểm tra đạt: '+checks.backupRestore+' backup/restore, '+checks.lifecycle+' lifecycle, '+checks.functional+' chức năng/phân quyền và '+checks.webHttp+' HTTP/web. ';
+function prepend(file,text){const old=fs.readFileSync(file,'utf8');if(!old.includes('**Docker DCK6 (25/11/2026):**'))fs.writeFileSync(file,text+'\n\n'+old);}
+prepend(path.join(root,'README.md'),summary+'[Hướng dẫn vận hành](docs/docker/dck6-handoff.md).');
+const docFile=path.join(folder,'README.md');let doc=fs.readFileSync(docFile,'utf8').replace('# Docker — DCK1–DCK5','# Docker — DCK1–DCK6');if(!doc.includes('**Docker DCK6 (25/11/2026):**'))doc=doc.replace(/^(# .*)\r?\n/,'$1\n\n'+summary+'[Hướng dẫn và lệnh dùng hằng ngày](dck6-handoff.md).\n');fs.writeFileSync(docFile,doc);
+const roadmapFile=path.join(folder,'roadmap.md');let roadmap=fs.readFileSync(roadmapFile,'utf8');roadmap=roadmap.replace('**DCK1–DCK5 đã hoàn thành và kiểm chứng. DCK6 đang chuẩn bị thực hiện.**','**DCK1–DCK6 đã hoàn thành và kiểm chứng cho môi trường local.**');if(!roadmap.includes('[Bàn giao DCK6]'))roadmap+='\nDCK6 đã kiểm chứng backup/restore, cập nhật/rollback hai web và tạo lại toàn stack; dữ liệu được giữ nguyên. [Bàn giao DCK6](dck6-handoff.md) · [Báo cáo tổng hợp](dck6-completion.json).\n';fs.writeFileSync(roadmapFile,roadmap);
+const handoff=path.join(folder,'dck6-handoff.md');let text=fs.readFileSync(handoff,'utf8');const marker='\n\n## Kết quả nghiệm thu DCK6\n';if(!text.includes(marker))text+=marker+'Đã đạt '+checks.backupRestore+' kiểm tra backup/restore, '+checks.lifecycle+' kiểm tra update/rollback/restart, '+checks.functional+' kiểm tra chức năng/phân quyền và '+checks.webHttp+' kiểm tra HTTP/web. Cả 9 container healthy sau nghiệm thu; dữ liệu ứng dụng vẫn đầy đủ. [Báo cáo tổng hợp](dck6-completion.json).\n';fs.writeFileSync(handoff,text);
+if(process.argv.includes('--workspace')){
+ const link='language-center-backend/language-center-backend/docs/docker/dck6-handoff.md';
+ if(fs.existsSync(path.join(workspace,'README.md')))prepend(path.join(workspace,'README.md'),summary+'[Lệnh vận hành](./'+link+').');
+ for(const repo of ['language-center-web-frontend','language-center-website'])prepend(path.join(workspace,repo,'README.md'),summary+'[Lệnh vận hành](../'+link+').');
+}
+console.log(JSON.stringify({status:'complete',checks,data:state.data,healthyContainers:9}));

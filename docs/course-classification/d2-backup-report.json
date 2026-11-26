@@ -1,0 +1,9 @@
+{
+  "phase": "D2",
+  "status": "complete",
+  "backup": "Private ignored storage/data-refresh; see local backup.json",
+  "sha256": "7d7a500d39b677e1a0d3a494510e4982efd51d72bcce9bd9ca2ce0867e8bca8d",
+  "restoreVerified": true,
+  "tablesVerified": 87,
+  "liveDataChanged": false
+}

@@ -58,6 +58,16 @@ class CompletionBridgeTest {
   }
 
   @Test
+  void assessedRequiresNewGradingReferenceAndCurrentSource() {
+    upstream(result("CONFIRMED", "ASSESSED", 5, "shared"));
+    assertThrows(ApiException.class, () -> bridge.validate(enrollment, 6L, 7L));
+    upstream(new CompletionBridge.Result(6L, 1L, 4L, 3L, 7, "CONFIRMED", "ASSESSED", 5, "shared", 10L));
+    assertDoesNotThrow(() -> bridge.validate(enrollment, 6L, 7L));
+    upstream(new CompletionBridge.Result(6L, 1L, 4L, 3L, 7, "CONFIRMED", "ASSESSED", 4, "shared", 10L));
+    assertThrows(ApiException.class, () -> bridge.validate(enrollment, 6L, 7L));
+  }
+
+  @Test
   void exactReferenceRequired() {
     upstream(result("CONFIRMED", "PASS", 5, "shared"));
     assertThrows(ApiException.class, () -> bridge.validate(enrollment, null, null));

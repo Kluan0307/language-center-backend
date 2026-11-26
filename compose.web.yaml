@@ -1,0 +1,49 @@
+# Merge with compose.yaml; relative paths are based on the backend root.
+x-web-log: &web-log
+  driver: json-file
+  options: {max-size: "10m", max-file: "3"}
+x-web: &web
+  restart: unless-stopped
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  networks: [backend]
+  depends_on:
+    api-gateway: {condition: service_healthy}
+  logging: *web-log
+  stop_grace_period: 30s
+services:
+  web-admin:
+    <<: *web
+    image: language-center/web-admin:${IMAGE_TAG:-local}
+    build:
+      context: ../../language-center-web-frontend
+      args: {VITE_API_BASE_URL: /api/v1}
+    ports: ["${ADMIN_BIND_ADDRESS:-127.0.0.1}:${ADMIN_HOST_PORT:-15173}:8080"]
+    tmpfs: ["/tmp:rw,nosuid,size=67108864,mode=1777"]
+    mem_limit: 128m
+    cpus: 0.5
+  website:
+    <<: *web
+    image: language-center/website:${IMAGE_TAG:-local}
+    build:
+      context: ../../language-center-website
+      args:
+        NEXT_PUBLIC_SITE_URL: ${WEBSITE_PUBLIC_URL:-http://localhost:13000}
+        NEXT_PUBLIC_CENTER_PHONE: ${NEXT_PUBLIC_CENTER_PHONE:-}
+        NEXT_PUBLIC_CENTER_EMAIL: ${NEXT_PUBLIC_CENTER_EMAIL:-}
+        WEBSITE_INDEXABLE: ${WEBSITE_INDEXABLE:-false}
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      NODE_OPTIONS: --max-old-space-size=384
+      NEXT_PUBLIC_SITE_URL: ${WEBSITE_PUBLIC_URL:-http://localhost:13000}
+      WEBSITE_API_URL: http://api-gateway:8080/api/v1/academic/public/catalog/
+      WEBSITE_FORM_SECRET: ${WEBSITE_FORM_SECRET:?Initialize .env.docker.local first}
+      WEBSITE_INDEXABLE: ${WEBSITE_INDEXABLE:-false}
+    ports: ["${WEBSITE_BIND_ADDRESS:-127.0.0.1}:${WEBSITE_HOST_PORT:-13000}:3000"]
+    tmpfs:
+      - /tmp:rw,nosuid,size=67108864,mode=1777
+      - /app/.next/cache:rw,uid=1000,gid=1000,size=67108864,mode=0750
+    mem_limit: 512m
+    cpus: 1.0

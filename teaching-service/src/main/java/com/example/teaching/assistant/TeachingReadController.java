@@ -16,9 +16,25 @@ public class TeachingReadController {
       @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
       @RequestParam(required = false) Long branchId,
       @RequestParam Long examId,
+      @RequestParam(required = false) Long studentId,
+      @RequestParam(defaultValue = "ALL") String scoreFilter,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "5") int size) {
-    return service.current(scopeMode, branchId, examId, page, size);
+    return service.current(scopeMode, branchId, examId, studentId, scoreFilter, page, size);
+  }
+
+  @GetMapping("/exams")
+  @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN','TEACHER')")
+  public ReadQuery.Result exams(
+      @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
+      @RequestParam(required = false) Long branchId,
+      @RequestParam(required = false) Long classId,
+      @RequestParam(required = false) Long examId,
+      @RequestParam(required = false) String keyword,
+      @RequestParam(defaultValue = "false") boolean missingOnly,
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "5") int size) {
+    return service.examList(scopeMode, branchId, classId, examId, keyword, missingOnly, page, size);
   }
 
   @GetMapping("/published-grades")

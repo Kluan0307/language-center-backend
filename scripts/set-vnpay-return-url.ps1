@@ -1,22 +1,23 @@
 param(
   [string]$BaseUrl,
+  [ValidateRange(1,65535)][int]$TargetPort=8080,
   [string]$EnvFile=(Join-Path $PSScriptRoot '../.env.local')
 )
 $ErrorActionPreference='Stop'
 
 if(!$BaseUrl){
   try{$taskTunnels=(Invoke-RestMethod -Uri 'http://127.0.0.1:4040/api/tunnels' -TimeoutSec 5).tunnels}
-  catch{throw 'Start ngrok http 8080 first. Its local inspector must be available on port 4040.'}
+  catch{throw ('Start ngrok http '+$TargetPort+' first. Its local inspector must be available on port 4040.')}
   $taskCandidates=@($taskTunnels|Where-Object {
     if($_.proto -ne 'https'){return $false}
     $taskAddress=[string]$_.config.addr
-    if($taskAddress -eq '8080'){return $true}
+    if($taskAddress -eq [string]$TargetPort){return $true}
     if($taskAddress -notmatch '^https?://'){$taskAddress='http://'+$taskAddress}
     $taskTarget=$null
     [Uri]::TryCreate($taskAddress,[UriKind]::Absolute,[ref]$taskTarget) -and
-      $taskTarget.Host -in @('localhost','127.0.0.1','[::1]','::1') -and $taskTarget.Port -eq 8080
+      $taskTarget.Host -in @('localhost','127.0.0.1','[::1]','::1') -and $taskTarget.Port -eq $TargetPort
   })
-  if($taskCandidates.Count -ne 1){throw 'Expected one HTTPS ngrok tunnel forwarding to local port 8080. Alternatively supply -BaseUrl with the real backend HTTPS origin.'}
+  if($taskCandidates.Count -ne 1){throw ('Expected one HTTPS ngrok tunnel forwarding to local port '+$TargetPort+'. Alternatively supply -BaseUrl with the real backend HTTPS origin.')}
   $BaseUrl=$taskCandidates[0].public_url
 }
 

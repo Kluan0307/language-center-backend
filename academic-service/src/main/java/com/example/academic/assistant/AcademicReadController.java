@@ -1,7 +1,6 @@
 package com.example.academic.assistant;
 
 import com.example.academic.course.Course;
-import com.example.academic.session.ClassSession;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -24,6 +23,8 @@ public class AcademicReadController {
       @RequestParam(required = false) String keyword,
       @RequestParam(required = false) String level,
       @RequestParam(required = false) String type,
+      @RequestParam(required = false) String programCode,
+      @RequestParam(required = false) String audienceCode,
       @RequestParam(required = false) Course.Status status,
       @RequestParam(required = false) BigDecimal minTuition,
       @RequestParam(required = false) BigDecimal maxTuition,
@@ -41,32 +42,18 @@ public class AcademicReadController {
         maxTuition,
         maxInclusive,
         page,
-        size);
+        size, programCode, audienceCode);
   }
 
-  @GetMapping("/classes")
-  public ReadQuery.Result classes(
+  @GetMapping("/teacher-classes")
+  public ReadQuery.Result teacherClasses(
       @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
       @RequestParam(required = false) Long branchId,
-      @RequestParam(required = false) String keyword,
-      @RequestParam(required = false) Long courseId,
-      @RequestParam(required = false) com.example.academic.schoolclass.SchoolClass.Status status,
-      @RequestParam(defaultValue = "false") boolean recruitingOnly,
+      @RequestParam Long teacherId,
+      @RequestParam(defaultValue = "true") boolean currentOnly,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "5") int size) {
-    return service.classes(
-        scopeMode, branchId, keyword, courseId, status, recruitingOnly, page, size);
-  }
-
-  @GetMapping("/students")
-  public ReadQuery.Result students(
-      @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
-      @RequestParam(required = false) Long branchId,
-      @RequestParam(required = false) String keyword,
-      @RequestParam(required = false) Long classId,
-      @RequestParam(defaultValue = "0") int page,
-      @RequestParam(defaultValue = "5") int size) {
-    return service.students(scopeMode, branchId, keyword, classId, page, size);
+    return service.teacherClasses(scopeMode, branchId, teacherId, currentOnly, page, size);
   }
 
   @GetMapping("/student-classes")
@@ -90,28 +77,16 @@ public class AcademicReadController {
     return service.statistics(scopeMode, branchId, metric, asOf);
   }
 
-  @GetMapping("/sessions")
-  public ReadQuery.Result sessions(
-      @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
-      @RequestParam(required = false) Long branchId,
-      @RequestParam(required = false) Long classId,
-      @RequestParam(required = false) Long teacherId,
-      @RequestParam LocalDate from,
-      @RequestParam LocalDate to,
-      @RequestParam(required = false) ClassSession.Status status,
-      @RequestParam(defaultValue = "0") int page,
-      @RequestParam(defaultValue = "5") int size) {
-    return service.sessions(scopeMode, branchId, classId, teacherId, from, to, status, page, size);
-  }
-
   @GetMapping("/attendance")
   public ReadQuery.Result attendance(
       @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
       @RequestParam(required = false) Long branchId,
       @RequestParam Long sessionId,
+      @RequestParam(required = false) Long studentId,
+      @RequestParam(defaultValue = "false") boolean missingOnly,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "5") int size) {
-    return service.attendance(scopeMode, branchId, sessionId, page, size);
+    return service.attendance(scopeMode, branchId, sessionId, studentId, missingOnly, page, size);
   }
 
   @GetMapping("/priority-leads")
@@ -135,6 +110,15 @@ public class AcademicReadController {
             == com.example.academic.security.Role.TEACHER;
     Object help =
         switch (topic) {
+          case "PAYMENT_ACCOUNTING" ->
+              Map.of(
+                  "topic",
+                  topic,
+                  "text",
+                  "Đơn thanh toán trực tuyến PENDING chưa phải đã thu học phí. Chỉ phiếu thu hợp lệ"
+                      + " được ghi nhận sau xác nhận giao dịch mới làm thay đổi số tiền đã đóng."
+                      + " Hủy/hoàn có bút toán riêng; kiểm tra đơn và phiếu thu, không dựa vào việc"
+                      + " đã mở trang thanh toán.");
           case "WEEKLY_CALENDAR" ->
               Map.of(
                   "topic",

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-25T12:59:58.321Z",
+  "status": "passed",
+  "checks": [
+    "Four standard schemes initialized on MySQL",
+    "Staff, teacher template writes and unassigned branch denied",
+    "New template revision leaves class snapshot unchanged",
+    "Zero and absence stored distinctly; exam-day roster frozen",
+    "Stale result update returns 409",
+    "Invalid batch rolls back all rows and roster on MySQL",
+    "Observation stores level/comment without numeric grade",
+    "Real Ant Design drawer saves a numeric draft through API",
+    "Main exam/grade/publication/final-result and new grading data untouched"
+  ],
+  "isolatedSyntheticAcademic": true,
+  "mainBusinessDataUnchanged": true,
+  "temporaryResourcesCleaned": true
+}

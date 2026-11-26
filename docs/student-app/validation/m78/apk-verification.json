@@ -1,0 +1,26 @@
+{
+    "file":  "LanguageCenter-1.1.0-sandbox-arm64-20261115014613.apk",
+    "version":  "1.1.0",
+    "versionCode":  2,
+    "packageName":  "com.languagecenter.student",
+    "bytes":  28783665,
+    "sha256":  "b8f3f20e9544e02d300cf65b854d92f3f35e95be1c6d56319f14900c9e892c80",
+    "sourceSha256":  "d9b5c0f65c5dde1d3ac7f94c992e8daeeedcec8f0bae15ca1e676c55abefa563",
+    "apiBaseUrl":  "https://subsystem-handwork-subscript.ngrok-free.dev/api/v1",
+    "architecture":  [
+                         "arm64-v8a"
+                     ],
+    "signatureVerified":  true,
+    "debuggable":  false,
+    "nativeVersionVerified":  true,
+    "embeddedConfigVerified":  true,
+    "fixtureEndpointAbsent":  true,
+    "certificateSha256":  "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "upgradeSigningMatch":  true,
+    "distribution":  "Internal only; local debug keystore signing",
+    "deviceAcceptance":  "PENDING",
+    "gatewayReachable":  false,
+    "gatewayHttpStatus":  404,
+    "gatewayError":  "ERR_NGROK_3200",
+    "checkedAt":  "2026-11-15T01:47:55.7139915Z"
+}

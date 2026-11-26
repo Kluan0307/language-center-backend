@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checks": [
+    "Canonical classification and both audiences rendered",
+    "Legacy type is never displayed as canonical program",
+    "Multi-audience course occupies one table row",
+    "Audience control submits canonical ID and removes unclassified course",
+    "Course drawer names program explicitly without legacy fallback",
+    "Creation uses program and audience fields, no free text type",
+    "Audience is described as advice, separate from admission level",
+    "ADMIN has correct course-create visibility",
+    "STAFF has correct course-create visibility",
+    "Teacher cannot open the course-management page",
+    "No uncaught browser exceptions"
+  ],
+  "requests": 42,
+  "upstream": "synthetic HTTP fixture",
+  "liveRecordsModified": false
+}

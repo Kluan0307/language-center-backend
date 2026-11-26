@@ -1,0 +1,59 @@
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 48px; padding-block: 48px; }
+.heroCopy { min-width: 0; }
+.heroCopy h1 { font-size: clamp(2.75rem, 4.35vw, 3.75rem); line-height: 1.18; letter-spacing: -.04em; font-weight: 600; margin: 20px 0 24px; text-wrap: balance; }
+.heroCopy h1 em { color: var(--blue); font-style: normal; }
+.heroDescription { max-width: 520px; color: var(--muted); font-size: 1.0625rem; line-height: 1.8; margin: 0; }
+.heroActions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
+.heroNote { font-size: .8125rem; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 0; }
+.heroNote span { color: #94a3b8; }
+.heroVisual { min-width: 0; }
+.imageFrame { position: relative; width: 100%; aspect-ratio: 1.12; border-radius: 80px 20px 20px; overflow: hidden; background: var(--cream); }
+.imageFrame img { object-fit: cover; object-position: 52% center; }
+.photoCredit { position: absolute; bottom: 12px; right: 12px; color: white; background: #0f172ab3; padding: 3px 8px; border-radius: 6px; font-size: .75rem; }
+.finder { padding: 32px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--cream); display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center; }
+.finder h2 { font-size: 1.75rem; line-height: 1.35; margin: 12px 0 0; letter-spacing: -.025em; }
+.finder form { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 8px 12px; align-items: end; }
+.finder label { grid-column: 1/-1; font-size: .875rem; font-weight: 500; }
+.finder select { width: 100%; min-width: 0; min-height: var(--control-height); padding: 12px 38px 12px 14px; background-color: white; border: 1px solid #cbd5e1; border-radius: 10px; color: var(--navy); font-size: 1rem; font-weight: 400; }
+.finder button { white-space: nowrap; }
+.approach { padding-block: var(--section-space); color: white; background: var(--navy); }
+.approachInner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.approach h2 { font-size: var(--text-heading); line-height: 1.4; letter-spacing: -.025em; margin: 16px 0 20px; }
+.approach h2 em { color: #bfdbfe; font-style: normal; }
+.approach p { color: #cbd5e1; line-height: 1.8; }
+.approach .eyebrow { color: #bfdbfe; }
+.approach a { color: #bfdbfe; }
+.steps article { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid #ffffff24; }
+.steps article:first-child { padding-top: 0; }
+.steps article > span { font-size: .8125rem; color: #bfdbfe; padding-top: 4px; }
+.steps h3 { font-size: 1.25rem; font-weight: 600; margin: 0 0 8px; }
+.steps p { margin: 0; font-size: .9375rem; }
+.branchTeaser { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.branchTeaser p:not(.eyebrow) { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+@media (max-width: 1100px) {
+  .hero { gap: 32px; padding-block: 40px; }
+  .heroCopy h1 { font-size: 3rem; }
+  .heroActions { gap: 8px 16px; }
+  .finder { grid-template-columns: 1fr; gap: 24px; }
+  .approachInner, .branchTeaser { gap: 32px; }
+}
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; padding-block: 32px; }
+  .heroCopy h1 { max-width: 620px; font-size: 2.625rem; margin: 16px 0 20px; }
+  .heroDescription { max-width: 620px; font-size: 1rem; }
+  .imageFrame { max-height: 400px; aspect-ratio: 1.65; border-radius: 48px 16px 16px; }
+  .approachInner, .branchTeaser { grid-template-columns: 1fr; gap: 28px; }
+  .finder { padding: 24px; }
+  .finder h2 { font-size: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .heroCopy h1 { font-size: 2.125rem; line-height: 1.22; letter-spacing: -.035em; }
+  .heroActions { align-items: stretch; flex-direction: column; gap: 4px; margin-top: 24px; }
+  .heroActions > a { justify-content: center; }
+  .heroNote { display: block; font-size: .8125rem; line-height: 1.8; margin-top: 12px; }
+  .heroNote span { margin-inline: 4px; }
+  .imageFrame { aspect-ratio: 1.35; }
+  .finder { padding: 20px; }
+  .finder form { grid-template-columns: 1fr; gap: 12px; }
+  .finder button { width: 100%; }
+}

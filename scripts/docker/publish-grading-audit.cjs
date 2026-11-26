@@ -1,0 +1,12 @@
+const c=require('./data-common.cjs'),{fs,path,root,mysql}=c;
+const tables=['grading_activities','grading_candidates','grading_class_bindings','grading_course_defaults','grading_events','grading_marks','grading_templates'];
+const file=path.join(root,'docs/docker/schema-manifest.json'),manifest=JSON.parse(fs.readFileSync(file,'utf8'));
+manifest.tables=[...new Set([...manifest.tables,...tables])].sort();manifest.tableCount=manifest.tables.length;
+manifest.additionalInitScripts=[...new Set([...(manifest.additionalInitScripts||[]),'deployment/docker/mysql/004-grading-schemes.sql'])];
+manifest.gradingMigration='V030__grading_schemes.sql';fs.writeFileSync(file,JSON.stringify(manifest,null,2));
+const count=t=>Number(mysql('SELECT COUNT(*) FROM `'+t+'`'));
+const stats=Object.fromEntries(['exams','grades','grade_publications','published_grades','evaluation_policies',...tables].map(t=>[t,count(t)]));
+const observed={checkedAt:new Date().toISOString(),target:'Docker',schemaTables:manifest.tableCount,counts:stats,legacyScoreRanges:mysql('SELECT JSON_OBJECT(\'examType\',e.exam_type,\'maxScore\',e.max_score,\'exams\',COUNT(DISTINCT e.id),\'grades\',COUNT(g.id)) FROM exams e LEFT JOIN grades g ON g.exam_id=e.id GROUP BY e.exam_type,e.max_score').trim().split(/\r?\n/).filter(Boolean).map(JSON.parse),existingDataAutomaticallyConverted:false,templatesSeededOnly:true};
+fs.mkdirSync(path.join(root,'docs/grading'),{recursive:true});fs.writeFileSync(path.join(root,'docs/grading/ds1-inventory.json'),JSON.stringify(observed,null,2));console.log(JSON.stringify(observed));
+const note='**Điểm số ĐS1–ĐS3 (25/11/2026):** đã thêm quy chế có phiên bản, mặc định khóa học theo chi nhánh, bản chốt cho lớp và nhập kết quả nháp theo thang điểm/nhận xét. Giữ nguyên điểm cũ, chưa tự chuyển đổi hoặc công bố kết quả mới. [Phạm vi, API và hướng dẫn](docs/grading/DS1-DS3.md).';
+let readme=fs.readFileSync(path.join(root,'README.md'),'utf8');if(!readme.includes('**Điểm số ĐS1–ĐS3'))fs.writeFileSync(path.join(root,'README.md'),note+'\n\n'+readme);

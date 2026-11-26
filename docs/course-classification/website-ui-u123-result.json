@@ -1,0 +1,246 @@
+{
+  "checkedAt": "2026-11-20T02:49:12.615Z",
+  "base": "http://127.0.0.1:3000",
+  "readOnly": true,
+  "checks": [
+    "Home 320 has no horizontal overflow",
+    "Home 320 primary action visible before image",
+    "Vietnamese heading uses local font at 320",
+    "Home 390 has no horizontal overflow",
+    "Home 390 primary action visible before image",
+    "Vietnamese heading uses local font at 390",
+    "Home 600 has no horizontal overflow",
+    "Home 600 primary action visible before image",
+    "Vietnamese heading uses local font at 600",
+    "Home 720 has no horizontal overflow",
+    "Home 720 primary action visible before image",
+    "Vietnamese heading uses local font at 720",
+    "Home 768 has no horizontal overflow",
+    "Home 768 primary action visible before image",
+    "Vietnamese heading uses local font at 768",
+    "Home 800 has no horizontal overflow",
+    "Home 800 primary action visible before image",
+    "Vietnamese heading uses local font at 800",
+    "Home 1024 has no horizontal overflow",
+    "Home 1024 primary action visible before image",
+    "Vietnamese heading uses local font at 1024",
+    "Home 1100 has no horizontal overflow",
+    "Home 1100 primary action visible before image",
+    "Vietnamese heading uses local font at 1100",
+    "Home 1101 has no horizontal overflow",
+    "Home 1101 primary action visible before image",
+    "Vietnamese heading uses local font at 1101",
+    "Desktop menu fits at its smallest breakpoint",
+    "Home 1280 has no horizontal overflow",
+    "Home 1280 primary action visible before image",
+    "Vietnamese heading uses local font at 1280",
+    "Home 1366 has no horizontal overflow",
+    "Home 1366 primary action visible before image",
+    "Vietnamese heading uses local font at 1366",
+    "Home 1440 has no horizontal overflow",
+    "Home 1440 primary action visible before image",
+    "Vietnamese heading uses local font at 1440",
+    "Vietnamese and currency use local font at weight 400",
+    "Vietnamese and currency use local font at weight 500",
+    "Vietnamese and currency use local font at weight 600",
+    "Vietnamese and currency use local font at weight 700",
+    "Menu uses SVG chevrons",
+    "Desktop dropdown opens",
+    "Escape closes dropdown and returns focus",
+    "Outside click closes dropdown",
+    "Filtered navigation remains active",
+    "Mobile menu opens with no overflow",
+    "Mobile submenu opens",
+    "Mobile menu closes",
+    "Sticky enrollment clears header by 24px",
+    "Consultation fields use 16px and regular weight at 390",
+    "Consultation Vietnamese heading/label/input use local font at 390",
+    "Consultation fields use 16px and regular weight at 1440",
+    "Consultation Vietnamese heading/label/input use local font at 1440",
+    "No browser runtime exceptions"
+  ],
+  "pages": [
+    {
+      "width": 320,
+      "headerHeight": 73,
+      "headingSize": "34px",
+      "headingHeight": 124.40625,
+      "ctaTop": 394.984375,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 37
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "headerHeight": 73,
+      "headingSize": "34px",
+      "headingHeight": 82.9375,
+      "ctaTop": 353.515625,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 600,
+      "headerHeight": 73,
+      "headingSize": "42px",
+      "headingHeight": 99.09375,
+      "ctaTop": 344.875,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 720,
+      "headerHeight": 73,
+      "headingSize": "42px",
+      "headingHeight": 99.09375,
+      "ctaTop": 344.875,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "headerHeight": 73,
+      "headingSize": "42px",
+      "headingHeight": 99.09375,
+      "ctaTop": 344.875,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "headerHeight": 73,
+      "headingSize": "42px",
+      "headingHeight": 99.09375,
+      "ctaTop": 344.875,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "headerHeight": 73,
+      "headingSize": "48px",
+      "headingHeight": 113.25,
+      "ctaTop": 392.671875,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 1100,
+      "headerHeight": 73,
+      "headingSize": "48px",
+      "headingHeight": 113.25,
+      "ctaTop": 408.828125,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 1101,
+      "headerHeight": 126.09375,
+      "headingSize": "47.8935px",
+      "headingHeight": 113,
+      "ctaTop": 466.609375,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "headerHeight": 126.09375,
+      "headingSize": "55.68px",
+      "headingHeight": 131.40625,
+      "ctaTop": 513.65625,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "headerHeight": 126.09375,
+      "headingSize": "59.421px",
+      "headingHeight": 140.21875,
+      "ctaTop": 518.0625,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "headerHeight": 126.09375,
+      "headingSize": "60px",
+      "headingHeight": 141.59375,
+      "ctaTop": 518.75,
+      "fonts": [
+        {
+          "familyName": "Be Vietnam Pro SemiBold",
+          "postScriptName": "BeVietnamPro-SemiBold",
+          "isCustomFont": true,
+          "glyphCount": 38
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": "Chrome emulation only; no physical phone or form submission."
+}

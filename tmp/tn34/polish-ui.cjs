@@ -1,0 +1,8 @@
+const fs=require('fs'),path=require('path');const p=path.join(__dirname,'ConvertToStudentModal.tsx');let s=fs.readFileSync(p,'utf8');
+s="import {useBranches} from '../../hooks/useBranches';\n"+s;s=s.replace('leadService,studentService','leadService,studentService,enrollmentService').replace('businessDate,dayLabel,money','businessDate,dayLabel,money,branchLabel');s=s.replace(' const {user}=useAuth();',' const branches=useBranches();const delivery=useRemoteResource(enrollmentService.detail,{id:result?.enrollmentId??null});\n const {user}=useAuth();');
+// delivery must be called after the result state declaration, keeping hook order unconditional.
+s=s.replace(' const branches=useBranches();const delivery=useRemoteResource(enrollmentService.detail,{id:result?.enrollmentId??null});\n',' const branches=useBranches();\n');s=s.replace(' const markerKey=', ' const delivery=useRemoteResource(enrollmentService.detail,{id:result?.enrollmentId??null});\n const markerKey=');
+s=s.replace(' <Space wrap><Link to=',` {delivery.data&&delivery.data.tuitionDelivery!=='CREATED'&&<Alert type="info" showIcon title="Đăng ký đã lưu, học phí chưa đồng bộ xong" description="Mở đăng ký để kiểm tra và thử đồng bộ học phí khi cần. Không cần tiếp nhận lại học viên."/>}\n <Space wrap><Link to=`);
+s=s.replace('<Typography.Paragraph>Kiểm tra hồ sơ trước khi tạo mới.', '<Typography.Paragraph>Chi nhánh: {branchLabel(branches.data,lead.branchId)}. Kiểm tra hồ sơ trước khi tạo mới.');
+s=s.replace('async function refresh(){','async function refresh(){').replace('await refresh();}}else setError','await refresh().catch(error=>setError(getErrorMessage(error)));}}else setError');
+fs.writeFileSync(p,s);

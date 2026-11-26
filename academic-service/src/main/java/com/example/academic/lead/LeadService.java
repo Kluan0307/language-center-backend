@@ -30,16 +30,19 @@ public class LeadService {
     return l;
   }
 
-  private Lead lock(Long id) {
+  Lead lock(Long id) {
     Lead initial = require(id);
     branches.lock(initial.getBranchId());
+    // Another intake may have committed while this request waited for the branch lock.
+    // Discard the previously read version before the current locking read.
+    entityManager.detach(initial);
     Lead l = repository.lock(id).orElseThrow(ApiException::missing);
     scope.check(l.getBranchId());
     entityManager.refresh(l, jakarta.persistence.LockModeType.PESSIMISTIC_WRITE);
     return l;
   }
 
-  private void owner(Lead l) {
+  void owner(Lead l) {
     if (Users.current().role() == Role.TEACHER) throw ApiException.forbidden();
     if (l.getId() != null
         && Users.current().role() == Role.STAFF
@@ -127,6 +130,7 @@ public class LeadService {
   public LeadDto save(Long id, LeadDto.Request r) {
     Lead l = id == null ? new Lead() : lock(id);
     editable(l);
+    String previousPreference="Khóa #"+(l.getInterestedCourse()==null?null:l.getInterestedCourse().getId())+", lớp #"+(l.getPreferredClass()==null?null:l.getPreferredClass().getId())+", lịch "+l.getPreferredTime();
     if (id != null) version(l, r.version());
     Long branch = id == null ? scope.create(r.branchId()) : l.getBranchId();
     if (id == null) branches.lock(branch);
@@ -138,6 +142,9 @@ public class LeadService {
     l.setDesiredLevel(r.desiredLevel());
     l.setInterestedCourse(
         r.interestedCourseId() == null ? null : courses.forBranch(r.interestedCourseId(), branch));
+    if(r.preferredClassId()!=null){var target=entityManager.find(com.example.academic.schoolclass.SchoolClass.class,r.preferredClassId());if(target==null||!target.getBranchId().equals(branch))throw ApiException.bad("Lớp mong muốn không thuộc chi nhánh");if(l.getInterestedCourse()!=null&&!l.getInterestedCourse().getId().equals(target.getCourse().getId()))throw ApiException.bad("Lớp không thuộc khóa học quan tâm");l.setPreferredClass(target);l.setInterestedCourse(target.getCourse());}
+    if(r.preferredTime()!=null)l.setPreferredTime(r.preferredTime().trim());
+    if(l.getPreferredClass()!=null&&l.getInterestedCourse()!=null&&!l.getPreferredClass().getCourse().getId().equals(l.getInterestedCourse().getId()))throw ApiException.bad("Cập nhật nhu cầu để bỏ hoặc đổi lớp mong muốn trước khi đổi khóa học");
     if (id == null) {
       var u = Users.current();
       l.setAssignedTo(u.accountId());
@@ -145,6 +152,7 @@ public class LeadService {
       l.setNote(r.note());
     } else append(l, r.note());
     repository.save(l);
+    if(r.preferredClassId()!=null||r.preferredTime()!=null)record(l,"PREFERENCE_CHANGED","Trước: "+previousPreference+"; sau: lớp #"+r.preferredClassId()+", lịch "+l.getPreferredTime(),null,null,null,null,l.getNextContactAt());
     record(
         l,
         id == null ? "CREATED" : "PROFILE_UPDATED",
@@ -214,7 +222,7 @@ public class LeadService {
     return LeadDto.of(l);
   }
 
-  private void record(
+  void record(
       Lead l,
       String action,
       String note,

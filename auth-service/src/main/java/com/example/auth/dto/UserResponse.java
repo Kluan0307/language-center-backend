@@ -17,6 +17,7 @@ public class UserResponse {
   private LocalDateTime passwordChangedAt;
   private Long accountId;
   private Long profileId;
+  private String personnelCode;
   private String username;
   private Role role;
   private Boolean status;
@@ -39,4 +40,6 @@ public class UserResponse {
   private String certificate;
   private LocalDate hireDate;
   private String workStatus;
+  private LocalDate endDate;
+  private Long employmentVersion;
 }

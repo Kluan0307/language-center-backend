@@ -521,6 +521,7 @@ public class SessionPlanner {
           teacherCache.computeIfAbsent(
               s.getTeacherId(), id -> teachers.require(id, c.getBranchId()));
       s.setTeacherName(teacher.fullName());
+      teacher.requireDuring(s.getSessionDate(),s.getSessionDate());
       if (Objects.equals(s.getPlannedTeacherId(), s.getTeacherId()) && !s.isCustomized())
         s.setPlannedTeacherName(teacher.fullName());
       for (var other : byDate.getOrDefault(s.getSessionDate(), List.of())) {

@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-25T02:38:52.589Z",
+  "status": "passed",
+  "checks": [
+    "Both web images build and deploy from current Compose configuration",
+    "Image update preserves all rows and documents",
+    "Previous web image tags are retained and rollback starts healthy containers",
+    "Full Compose down/up retains the original DB and document volumes",
+    "All row and file hashes match after recreation of all nine containers",
+    "Nine recreated containers healthy; Gateway ready and data available",
+    "Both web origins respond after full restart",
+    "Next server resolves recreated Gateway and returns published courses"
+  ],
+  "tables": 87,
+  "rows": 8886,
+  "backupId": "ops-1795573952599-3930bc",
+  "fullStackRestart": true,
+  "imageUpdateTested": [
+    "web-admin",
+    "website"
+  ],
+  "imageRollbackTested": true,
+  "allDataPreserved": true,
+  "sourceDatabaseUsed": false
+}

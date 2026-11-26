@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-20T08:22:48.722Z",
+  "status": "passed",
+  "scope": "Website U1-U7 local automated acceptance",
+  "reports": {
+    "chrome": {
+      "apiChecks": 54,
+      "browserChecks": 293,
+      "pages": 96,
+      "actualZoomPages": 4,
+      "sourceUnchanged": true,
+      "scratchDatabaseRemoved": true
+    },
+    "edge": {
+      "apiChecks": 54,
+      "browserChecks": 293,
+      "pages": 96,
+      "actualZoomPages": 4,
+      "sourceUnchanged": true,
+      "scratchDatabaseRemoved": true
+    }
+  },
+  "build": true,
+  "typecheck": true,
+  "lint": true,
+  "physicalPhone": false,
+  "safariFirefox": false
+}

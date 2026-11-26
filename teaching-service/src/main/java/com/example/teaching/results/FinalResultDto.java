@@ -38,7 +38,7 @@ public final class FinalResultDto {
       String barrierToken,
       LocalDateTime confirmedAt,
       String confirmedByName,
-      String reason) {
+      String reason,Long gradingReleaseId) {
     public static Summary of(FinalResult r, String token) {
       return new Summary(
           r.getId(),
@@ -52,7 +52,7 @@ public final class FinalResultDto {
           token,
           r.getConfirmedAt(),
           r.getConfirmedByName(),
-          r.getReason());
+          r.getReason(),r.getGradingReleaseId());
     }
   }
 

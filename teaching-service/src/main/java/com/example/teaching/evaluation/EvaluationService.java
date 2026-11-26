@@ -19,12 +19,14 @@ public class EvaluationService {
   private final ExamRepository exams;
   private final GradeRepository grades;
   private final ExamCandidateRepository candidates;
+  private final com.example.teaching.grading.GradingBindingRepository gradingBindings;
 
   @Transactional(readOnly = true, isolation = Isolation.REPEATABLE_READ)
   public EvaluationDto.Report get(Long classId) {
     if (!Set.of(Role.SUPER_ADMIN, Role.ADMIN, Role.TEACHER).contains(Users.current().role()))
       throw ApiException.forbidden();
     var c = academic.schoolClass(classId);
+    if(gradingBindings.existsById(classId))throw ApiException.conflict("Lớp dùng quy chế mới; kết quả nháp nằm tại Đánh giá theo quy chế, chưa có tổng kết chính thức");
     var p = policies.findFirstByClassIdOrderByRevisionDesc(classId).orElse(null);
     if(p!=null&&!Objects.equals(p.getCourseId(),c.courseId()))p=null;
     var context =

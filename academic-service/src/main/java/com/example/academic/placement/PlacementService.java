@@ -89,10 +89,17 @@ public class PlacementService {
   }
 
   public PlacementDto.Preview evaluate(Student s, SchoolClass c, PlacementDto.Context r) {
+    return evaluate(s,c,r,false);
+  }
+  public PlacementDto.Preview previewProspect(Student prospect,Long classId){
+    if(prospect.getId()==null||prospect.getId()>=0)throw ApiException.bad("Sai hồ sơ xem trước");
+    return evaluate(prospect,classes.require(classId),context(prospect.getId(),classId,PlacementDto.Intent.ENROLL,null),true);
+  }
+  private PlacementDto.Preview evaluate(Student s, SchoolClass c, PlacementDto.Context r,boolean prospect) {
     operations();
     if (!Objects.equals(s.getId(), r.studentId()) || !Objects.equals(c.getId(), r.classId()))
       throw ApiException.bad("Sai ngữ cảnh phân lớp");
-    students.require(s.getId());
+    if(!prospect)students.require(s.getId());
     classes.require(c.getId());
     var from = source(r);
     var blockers = new ArrayList<PlacementDto.Issue>();

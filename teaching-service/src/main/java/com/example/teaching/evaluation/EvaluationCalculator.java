@@ -219,6 +219,9 @@ public final class EvaluationCalculator {
         : "NOT_APPLICABLE";
   }
 
+  public static EvaluationDto.Attendance attendanceFor(AcademicEvaluationContext.Learner learner,AcademicEvaluationContext context,BigDecimal minimum,LocalDate today){
+    return attendance(learner,context,minimum,today,new AttendanceIndex(context));
+  }
   private static EvaluationDto.Attendance attendance(
       AcademicEvaluationContext.Learner e,
       AcademicEvaluationContext c,

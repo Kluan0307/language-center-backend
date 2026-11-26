@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-25T09:28:31.621Z",
+  "status": "passed",
+  "target": "Docker database; Windows MySQL untouched",
+  "backupId": "ops-1795598691028-e5a7c7",
+  "sourcePhotos": 4,
+  "cloudAssets": 8,
+  "updatedPublications": 24,
+  "approvedSharedDocuments": 28,
+  "templates": [
+    {
+      "key": "mg-colours",
+      "courseId": 17,
+      "title": "Mẫu giáo - Màu sắc và số đếm"
+    },
+    {
+      "key": "primary-bag",
+      "courseId": 19,
+      "title": "Tiểu học - Đồ dùng học tập"
+    },
+    {
+      "key": "a1-routine",
+      "courseId": 21,
+      "title": "A1 - Giới thiệu và thói quen"
+    },
+    {
+      "key": "communication-plans",
+      "courseId": 23,
+      "title": "Giao tiếp - Hẹn lịch và xác nhận"
+    },
+    {
+      "key": "ielts-trends",
+      "courseId": 26,
+      "title": "IELTS 5.5 - Mô tả xu hướng"
+    },
+    {
+      "key": "toeic-email",
+      "courseId": 30,
+      "title": "TOEIC 450 - Đọc email công việc"
+    },
+    {
+      "key": "b1-study-options",
+      "courseId": 22,
+      "title": "B1 - So sánh cách học"
+    }
+  ],
+  "photos": [
+    {
+      "key": "pencils",
+      "author": "Josephina Kolpachnikof",
+      "page": "https://unsplash.com/photos/a-group-of-colored-pencils-sitting-on-top-of-each-other-AWxDuxOIOkM",
+      "cdn": "1646318591979-1f5f1ffec11c"
+    },
+    {
+      "key": "study",
+      "author": "Clay Banks",
+      "page": "https://unsplash.com/photos/open-notebook-with-pen-and-pencils-on-desk-n9AaeihA9HI",
+      "cdn": "1761322572550-967ea8c0bfd9"
+    },
+    {
+      "key": "notebook",
+      "author": "Kelly Sikkema",
+      "page": "https://unsplash.com/photos/an-open-notebook-and-pens-on-a-desk-hBdaqrr5Z3k",
+      "cdn": "1743385779312-73ea241025d8"
+    },
+    {
+      "key": "planner",
+      "author": "My Profit Tutor",
+      "page": "https://unsplash.com/photos/a-notebook-with-a-pen-on-top-of-it-v30bSAWzp4I",
+      "cdn": "1692158962119-8103c7d78c86"
+    }
+  ],
+  "checks": [
+    "Authenticated API import",
+    "Existing image references preserved",
+    "Optimistic CMS version checks",
+    "Documents approved before sharing",
+    "All 28 document downloads match original SHA-256",
+    "Cloud images downloadable and match source SHA-256",
+    "Public catalog PROGRAM: 4 images and illustration labels",
+    "Public catalog COURSE: 20 images and illustration labels",
+    "28 course/branch student lists and PDF downloads passed",
+    "28 foreign-branch downloads denied with HTTP 404",
+    "Anonymous document download denied",
+    "Chrome course page 1440px: real Cloudinary image rendered",
+    "Chrome course page 390px: real Cloudinary image rendered",
+    "Backup comparison: no unrelated business tables modified"
+  ],
+  "studentAccessVerified": true,
+  "changedTables": [
+    "accounts",
+    "document_events",
+    "document_sharing_events",
+    "documents",
+    "media_assets",
+    "student_notification_outbox",
+    "website_edit_events",
+    "website_publications"
+  ]
+}

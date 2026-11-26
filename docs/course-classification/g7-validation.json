@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-16",
+  "phases": {"G7": "implemented", "G8": "pending"},
+  "academic": {
+    "command": "mvn -f academic-service/pom.xml test -Dtest=AssistantQueryTest,CourseClassificationWorkflowTest,CourseClassificationViewTest,StatsQueryTest,ListQueryBudgetTest",
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "SUCCESS",
+    "database": "isolated H2",
+    "checks": ["canonical program and audience filters", "multi-audience course counted once", "branch restrictions", "legacy type not inferred", "HTTP filters and validation", "teacher cannot access management aggregates", "existing query budget and classification rules"]
+  },
+  "assistant": {
+    "command": "mvn -f assistant-service/pom.xml test -Dtest=*,!GeminiLiveSmokeTest,!ReadonlyLiveAcceptanceTest",
+    "tests": 346,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "build": "SUCCESS",
+    "upstream": "synthetic HTTP fixtures and scripted model; no live model calls",
+    "checks": ["five audience aliases and four program aliases", "MCP filter forwarding", "invalid codes and legacy type rejected by tool schema", "program/audience filters pinned from explicit phrases", "follow-up retains tuition and program", "count routing", "multiple groups clarified before model or business query", "full offline security and acceptance suites"]
+  },
+  "totalTests": 397,
+  "liveRecordsModified": false,
+  "schemaChanged": false,
+  "providerOrModelChanged": false,
+  "liveModelTest": "not performed",
+  "browserTest": "not performed in G7",
+  "restart": ["academic-service", "assistant-service"],
+  "dataNote": "Per G2-G6 handoff, 16 existing courses await manager audience confirmation. G7 does not infer or assign audiences."
+}

@@ -1,0 +1,12 @@
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),workspace=path.resolve(root,'../..'),admin=path.join(workspace,'language-center-web-frontend'),site=path.join(workspace,'language-center-website');
+fs.mkdirSync(path.join(admin,'deployment'),{recursive:true});
+for(const [name,dest] of [['dck4-admin.Dockerfile',path.join(admin,'Dockerfile')],['dck4-admin.dockerignore',path.join(admin,'.dockerignore')],['dck4-admin.nginx.conf',path.join(admin,'deployment/nginx.conf')],['dck4-website.dockerignore',path.join(site,'.dockerignore')]])fs.copyFileSync(path.join(__dirname,name),dest);
+const siteDocker=path.join(site,'Dockerfile');let source=fs.readFileSync(siteDocker,'utf8');source=source.replace('FROM node:22-bookworm-slim AS build','# syntax=docker/dockerfile:1\nFROM node:22-bookworm-slim AS build').replace('RUN npm ci','RUN --mount=type=cache,target=/root/.npm npm ci --no-audit --no-fund');fs.writeFileSync(siteDocker,source);
+const env=path.join(workspace,'.env.docker.local');let values=fs.readFileSync(env,'utf8');
+const additions={ADMIN_BIND_ADDRESS:'127.0.0.1',ADMIN_HOST_PORT:'15173',WEBSITE_BIND_ADDRESS:'127.0.0.1',WEBSITE_HOST_PORT:'13000',WEBSITE_PUBLIC_URL:'http://localhost:13000',WEBSITE_INDEXABLE:'false',NEXT_PUBLIC_CENTER_PHONE:'',NEXT_PUBLIC_CENTER_EMAIL:''};
+for(const [key,value] of Object.entries(additions))if(!new RegExp('^'+key+'=','m').test(values))values+='\n'+key+'='+value;
+const origins=['http://localhost:15173','http://127.0.0.1:15173','http://localhost:13000','http://127.0.0.1:13000'];
+values=values.replace(/^CORS_ALLOWED_ORIGINS=(.*)$/m,(_,old)=>'CORS_ALLOWED_ORIGINS='+[...new Set([...old.split(','),...origins])].join(','));fs.writeFileSync(env,values+'\n');
+const wrapper='name: language-center\ninclude:\n  - path:\n      - ./language-center-backend/language-center-backend/compose.yaml\n      - ./language-center-backend/language-center-backend/compose.web.yaml\n    env_file: ./.env.docker.local\n';fs.writeFileSync(path.join(workspace,'compose.yaml'),wrapper);
+console.log('Installed frontend Docker sources and updated root Compose/runtime configuration. Existing secrets preserved.');

@@ -12,6 +12,46 @@ public class ReplyFormatter {
   private static final Set<String> KEYS =
       Set.of(
           "id",
+          "outstanding",
+          "billCount",
+          "grossCollected",
+          "netCollected",
+          "firstNet",
+          "secondNet",
+          "difference",
+          "firstFrom",
+          "firstTo",
+          "secondFrom",
+          "secondTo",
+          "itemCount",
+          "category",
+          "createdAt",
+          "updatedAt",
+          "accountId",
+          "accountRole",
+          "username",
+          "remainingSeats",
+          "effectiveStudentCount",
+          "absentCount",
+          "missingCount",
+          "capacity",
+          "admissionMode",
+          "programName",
+          "programCode",
+          "audiences",
+          "classificationComplete",
+          "outputLevelName",
+          "deadlineKnown",
+          "qualification",
+          "certificate",
+          "specialization",
+          "experience",
+          "position",
+          "workStatus",
+          "hireDate",
+          "accountStatus",
+          "branchIds",
+          "activeOnly",
           "code",
           "name",
           "type",
@@ -244,7 +284,19 @@ public class ReplyFormatter {
     String status = String.valueOf(last.payload().get("status"));
     var cards = List.of(new ChatModels.Card(last.tool(), title(last.tool()), data));
     String message;
-    if (last.tool().equals("get_student_statistics")
+    if (last.tool().equals("get_personnel_statistics")
+        && data instanceof Map<?, ?> stats
+        && stats.get("value") instanceof Number n) {
+      message =
+          "Số "
+              + ("STAFF".equals(stats.get("kind")) ? "nhân viên" : "giáo viên")
+              + (Boolean.TRUE.equals(stats.get("activeOnly"))
+                  ? " đang hoạt động"
+                  : " trong mọi trạng thái")
+              + " trong phạm vi đang xem: "
+              + n
+              + ".";
+    } else if (last.tool().equals("get_student_statistics")
         && data instanceof Map<?, ?> stats
         && stats.get("value") instanceof Number n) {
       message =
@@ -287,7 +339,18 @@ public class ReplyFormatter {
         cards,
         List.of(),
         sources(evidence),
-        List.copyOf(warnings),
+        java.util.stream.Stream.concat(
+                warnings.stream(),
+                evidence.stream()
+                    .flatMap(
+                        e ->
+                            e.payload().get("warnings") instanceof List<?> list
+                                ? list.stream()
+                                    .filter(String.class::isInstance)
+                                    .map(String.class::cast)
+                                : java.util.stream.Stream.empty()))
+            .distinct()
+            .toList(),
         more,
         next);
   }
@@ -319,9 +382,28 @@ public class ReplyFormatter {
   private String title(String tool) {
     return switch (tool) {
       case "search_courses" -> "Khóa học";
+      case "find_personnel", "get_personnel_profile", "get_my_personnel_profile" -> "Hồ sơ nhân sự";
+      case "get_personnel_statistics" -> "Thống kê nhân sự";
+      case "get_teacher_classes" -> "Lớp và khóa được phân công";
       case "search_classes", "get_student_classes" -> "Lớp học";
       case "find_students" -> "Học viên";
       case "get_student_statistics" -> "Thống kê học viên";
+      case "get_debt_statistics" -> "Công nợ hiện tại";
+      case "get_cash_flow" -> "Dòng tiền trong kỳ";
+      case "compare_cash_flow" -> "So sánh dòng tiền hai kỳ";
+      case "search_leads", "get_care_statistics" -> "Chăm sóc khách hàng";
+      case "search_support_requests", "get_support_statistics" -> "Yêu cầu hỗ trợ";
+      case "get_center_statistics" -> "Thống kê tổ chức";
+      case "find_management_accounts", "get_account_statistics" -> "Tài khoản và phân công";
+      case "get_roster_statistics" -> "Học viên đang học hiệu lực";
+      case "get_student_profile" -> "Hồ sơ học viên";
+      case "search_rooms" -> "Phòng học";
+      case "find_available_teachers" -> "Giáo viên không trùng buổi đã lưu";
+      case "get_academic_statistics" -> "Thống kê theo chi nhánh";
+      case "get_attendance_summary" -> "Học viên vắng theo khoảng ngày";
+      case "list_missing_attendance" -> "Buổi còn thiếu điểm danh";
+      case "list_learning_exams" -> "Bài kiểm tra và tiến độ chấm điểm";
+      case "search_course_admissions" -> "Điều kiện đầu vào khóa học";
       case "list_sessions" -> "Lịch học và lịch dạy";
       case "get_session_attendance" -> "Điểm danh";
       case "get_learning_results" -> "Kết quả học tập";

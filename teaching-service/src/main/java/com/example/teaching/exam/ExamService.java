@@ -18,6 +18,7 @@ public class ExamService {
   private final BranchScope scope;
   private final AcademicDirectory academic;
   private final GradeRepository grades;
+  private final com.example.teaching.grading.GradingBindingRepository gradingBindings;
   private final ExamCandidateRepository candidates;
   private final com.example.teaching.publication.GradePublicationRepository publications;
 
@@ -52,6 +53,7 @@ public class ExamService {
   public ExamDto save(Long id, ExamDto.Request r) {
     var c = academic.schoolClass(r.classId());
     evaluationLock.lock(c.id(),c.branchId());
+    if(gradingBindings.existsById(c.id()))throw ApiException.conflict("Lớp dùng quy chế mới; tạo bài tại Đánh giá theo quy chế");
     Exam e = id == null ? new Exam() : locked(id);
     if(id!=null&&policies.currentReferences(e.getClassId(),id)&&(!e.getExamDate().equals(r.examDate())||e.getMaxScore().compareTo(r.maxScore())!=0||e.getWeight().compareTo(r.weight())!=0))throw ApiException.conflict("Bài đang thuộc quy tắc đã xác nhận; quản lý điều chỉnh quy tắc trước, không sửa ngầm ngày/thang/trọng số");
     if (id != null && !e.getClassId().equals(r.classId()))

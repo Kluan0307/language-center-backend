@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-11-25T04:49:40.080Z",
+  "status": "local-work-delivered-with-open-items",
+  "backup": {
+    "task": "LanguageCenter-DailyBackup",
+    "at": "02:00",
+    "wrapperExecuted": true,
+    "rehearsalVerified": true,
+    "backupId": "ops-1795581964159-355508",
+    "externalDestinationProvided": false
+  },
+  "cache": {
+    "decision": "deferred",
+    "measurements": [
+      {
+        "name": "catalog",
+        "requests": 40,
+        "concurrency": 4,
+        "errors": 0,
+        "p50Ms": 214,
+        "p95Ms": 376,
+        "maxMs": 383
+      },
+      {
+        "name": "website",
+        "requests": 40,
+        "concurrency": 4,
+        "errors": 0,
+        "p50Ms": 208,
+        "p95Ms": 284,
+        "maxMs": 296
+      }
+    ]
+  },
+  "regression": {
+    "browserChecks": 18,
+    "functionalChecks": 23
+  },
+  "schema": {
+    "tables": 87,
+    "columns": 944,
+    "foreignKeys": 32
+  },
+  "healthyContainers": 9,
+  "open": [
+    "External backup destination",
+    "Full write workflows through web/mobile UI",
+    "Physical device and provider acceptance",
+    "Class Diagram and thesis report alignment"
+  ]
+}

@@ -22,6 +22,16 @@ public class Course extends BaseEntity {
   private String name;
 
   private String type;
+  // Transitional G2 fields. G3 will make these the validated write contract.
+  private Long programId;
+  @Column(nullable=false) private long classificationRevision;
+
+  @ManyToMany(fetch=FetchType.LAZY)
+  @org.hibernate.annotations.BatchSize(size=200)
+  @JoinTable(name="course_audiences",joinColumns=@JoinColumn(name="course_id"),
+      inverseJoinColumns=@JoinColumn(name="audience_group_id"),
+      uniqueConstraints=@UniqueConstraint(name="uk_course_audience",columnNames={"course_id","audience_group_id"}))
+  private java.util.Set<AudienceGroup> audienceGroups=new java.util.HashSet<>();
   private String level;
 
   // Legacy value: no unit is inferred. New plans use expectedMinutes.

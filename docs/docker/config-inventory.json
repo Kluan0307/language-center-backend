@@ -1,0 +1,929 @@
+{
+  "auditedAt": "2026-11-24T15:19:56.863Z",
+  "privateEnvironmentRead": false,
+  "services": [
+    {
+      "name": "auth-service",
+      "port": 8081,
+      "database": true,
+      "startupDependencies": [
+        "mysql"
+      ],
+      "calls": [
+        "auth-service",
+        "academic-service",
+        "finance-service"
+      ],
+      "javaVersion": "21",
+      "springBoot": "4.1.1",
+      "health": "/actuator/health/readiness",
+      "readinessIncludes": "readinessState,db",
+      "storage": null,
+      "variables": [
+        {
+          "name": "ACADEMIC_URL",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "AUTH_URL",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "CORS_ALLOWED_ORIGINS",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application-prod.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_PASSWORD",
+          "secret": true,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application-prod.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_POOL_SIZE",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "DB_URL",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application-prod.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_USERNAME",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application-prod.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DDL_AUTO",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "EXPO_PROJECT_ID",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "EXPO_PUSH_ACCESS_TOKEN",
+          "secret": true,
+          "locations": [
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "FINANCE_URL",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_EXPIRATION",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_SECRET",
+          "secret": true,
+          "locations": [
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "LOG_FILE",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "NOTIFICATIONS_PUSH_ENABLED",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "SERVER_ADDRESS",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties",
+            "auth-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "SHOW_SQL",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "TEACHING_URL",
+          "secret": false,
+          "locations": [
+            "auth-service/src/main/resources/application-docker.properties"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "academic-service",
+      "port": 8082,
+      "database": true,
+      "startupDependencies": [
+        "mysql"
+      ],
+      "calls": [
+        "auth-service",
+        "academic-service",
+        "teaching-service",
+        "finance-service"
+      ],
+      "javaVersion": "21",
+      "springBoot": "4.1.1",
+      "health": "/actuator/health/readiness",
+      "readinessIncludes": "readinessState,db",
+      "storage": null,
+      "variables": [
+        {
+          "name": "ACADEMIC_SEED_BRANCHES_ENABLED",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ACADEMIC_URL",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "AUTH_URL",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "CORS_ALLOWED_ORIGINS",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application-prod.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_PASSWORD",
+          "secret": true,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application-prod.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_POOL_SIZE",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "DB_URL",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application-prod.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_USERNAME",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application-prod.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DDL_AUTO",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "EXPO_PROJECT_ID",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "EXPO_PUSH_ACCESS_TOKEN",
+          "secret": true,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "FINANCE_URL",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_EXPIRATION",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_SECRET",
+          "secret": true,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "LOG_FILE",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "NOTIFICATION_JOBS_ENABLED",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "NOTIFICATIONS_PUSH_ENABLED",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "SERVER_ADDRESS",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "SHOW_SQL",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "TEACHING_URL",
+          "secret": false,
+          "locations": [
+            "academic-service/src/main/resources/application-docker.properties",
+            "academic-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "WEBSITE_FORM_SECRET",
+          "secret": true,
+          "locations": [
+            "academic-service/src/main/resources/application.properties"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "teaching-service",
+      "port": 8083,
+      "database": true,
+      "startupDependencies": [
+        "mysql"
+      ],
+      "calls": [
+        "auth-service",
+        "academic-service",
+        "finance-service"
+      ],
+      "javaVersion": "21",
+      "springBoot": "4.1.1",
+      "health": "/actuator/health/readiness",
+      "readinessIncludes": "readinessState,db",
+      "storage": "/app/data/documents",
+      "variables": [
+        {
+          "name": "ACADEMIC_URL",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "AUTH_URL",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "CORS_ALLOWED_ORIGINS",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application-prod.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_PASSWORD",
+          "secret": true,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application-prod.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_POOL_SIZE",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "DB_URL",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application-prod.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_USERNAME",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application-prod.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DDL_AUTO",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DOCUMENT_STORAGE",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "FINANCE_URL",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_EXPIRATION",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_SECRET",
+          "secret": true,
+          "locations": [
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "LOG_FILE",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "SERVER_ADDRESS",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties",
+            "teaching-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "SHOW_SQL",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "TEACHING_URL",
+          "secret": false,
+          "locations": [
+            "teaching-service/src/main/resources/application-docker.properties"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "finance-service",
+      "port": 8084,
+      "database": true,
+      "startupDependencies": [
+        "mysql"
+      ],
+      "calls": [
+        "auth-service",
+        "academic-service",
+        "finance-service"
+      ],
+      "javaVersion": "21",
+      "springBoot": "4.1.1",
+      "health": "/actuator/health/readiness",
+      "readinessIncludes": "readinessState,db",
+      "storage": null,
+      "variables": [
+        {
+          "name": "ACADEMIC_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "AUTH_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "CORS_ALLOWED_ORIGINS",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application-prod.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_PASSWORD",
+          "secret": true,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application-prod.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_POOL_SIZE",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "DB_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application-prod.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DB_USERNAME",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application-prod.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "DDL_AUTO",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "FINANCE_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_EXPIRATION",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "JWT_SECRET",
+          "secret": true,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "LOG_FILE",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "NOTIFICATION_JOBS_ENABLED",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "PAYMENT_JOBS_ENABLED",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "SERVER_ADDRESS",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "SHOW_SQL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "TEACHING_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_CHECKOUT_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_ENABLED",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application-docker.properties",
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_HASH_SECRET",
+          "secret": true,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_QUERY_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_RETURN_URL",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_SERVER_IP",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_TMN_CODE",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "VNPAY_TTL_MINUTES",
+          "secret": false,
+          "locations": [
+            "finance-service/src/main/resources/application.properties"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "api-gateway",
+      "port": 8080,
+      "database": false,
+      "startupDependencies": [],
+      "calls": [
+        "auth-service",
+        "academic-service",
+        "teaching-service",
+        "finance-service",
+        "assistant-service"
+      ],
+      "javaVersion": "21",
+      "springBoot": "4.1.1",
+      "health": "/actuator/health/readiness",
+      "readinessIncludes": "readinessState",
+      "storage": null,
+      "variables": [
+        {
+          "name": "ACADEMIC_URL",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_URL",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "AUTH_URL",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "CORS_ALLOWED_ORIGINS",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application-prod.properties",
+            "api-gateway/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "FINANCE_URL",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "LOG_FILE",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "SERVER_ADDRESS",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application-prod.properties"
+          ]
+        },
+        {
+          "name": "TEACHING_URL",
+          "secret": false,
+          "locations": [
+            "api-gateway/src/main/resources/application-docker.properties",
+            "api-gateway/src/main/resources/application.properties"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "assistant-service",
+      "port": 8086,
+      "database": false,
+      "startupDependencies": [],
+      "calls": [
+        "auth-service",
+        "academic-service",
+        "teaching-service",
+        "finance-service"
+      ],
+      "optional": true,
+      "javaVersion": "21",
+      "springBoot": "4.1.1",
+      "health": "/actuator/health/readiness",
+      "readinessIncludes": "readinessState",
+      "storage": null,
+      "variables": [
+        {
+          "name": "ACADEMIC_URL",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties",
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_CHAT_ENABLED",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties",
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_CONCURRENT_PER_ACCOUNT",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_GLOBAL_MODEL_CALLS_PER_MINUTE",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_LOG_FILE",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_MCP_ENABLED",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties",
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_MODEL_CALLS_PER_MINUTE",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_PORT",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "ASSISTANT_REQUESTS_PER_MINUTE",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "AUTH_URL",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties",
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "FINANCE_URL",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties",
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "GEMINI_API_KEY",
+          "secret": true,
+          "locations": [
+            "assistant-service/src/main/java/com/example/assistant/model/GeminiGateway.java"
+          ]
+        },
+        {
+          "name": "GEMINI_MODEL",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/java/com/example/assistant/model/GeminiGateway.java"
+          ]
+        },
+        {
+          "name": "GEMINI_TIMEOUT_SECONDS",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        },
+        {
+          "name": "SERVER_ADDRESS",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties"
+          ]
+        },
+        {
+          "name": "TEACHING_URL",
+          "secret": false,
+          "locations": [
+            "assistant-service/src/main/resources/application-docker.properties",
+            "assistant-service/src/main/resources/application.properties"
+          ]
+        }
+      ]
+    }
+  ]
+}

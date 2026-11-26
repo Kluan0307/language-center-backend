@@ -1,0 +1,1 @@
+const fs=require('fs'),p='scripts/docker/verify-grading-live.cjs';let s=fs.readFileSync(p,'utf8');s=s.replace(" const point=await evaluate('"," await evaluate('[...document.querySelectorAll(\".ant-select\")].find(e=>e.textContent.includes(\"Chọn bài để nhập kết quả\")).scrollIntoView({block:\"center\"})');const point=await evaluate('");fs.writeFileSync(p,s);

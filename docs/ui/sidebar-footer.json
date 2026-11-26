@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-26T04:09:42.056Z",
+  "status": "passed",
+  "checks": [
+    "superadmin: hamburger utilities respect role visibility",
+    "superadmin: logo in sidebar; identity/scope in header; content clears header",
+    "admin1: hamburger utilities respect role visibility",
+    "admin1: logo in sidebar; identity/scope in header; content clears header",
+    "staff1: hamburger utilities respect role visibility",
+    "staff1: logo in sidebar; identity/scope in header; content clears header",
+    "teacher1: hamburger utilities respect role visibility",
+    "teacher1: logo in sidebar; identity/scope in header; content clears header",
+    "Sidebar and header stay fixed while page scrolls",
+    "Utility link navigates to company",
+    "Branch switch keeps existing confirmation and changes active scope",
+    "Account menu opens profile and exposes password/logout actions",
+    "Responsive header fits 900px without overlapping content",
+    "Responsive header fits 390px without overlapping content",
+    "Responsive header fits 320px without overlapping content",
+    "Mobile utility link closes navigation drawer",
+    "Mobile menu contains center logo and navigation, without duplicate account/branch controls"
+  ],
+  "readOnlyBusinessData": true
+}

@@ -1,0 +1,36 @@
+{
+  "completedAt": "2026-11-25T13:29:02.642Z",
+  "status": "complete",
+  "phases": [
+    "DS4",
+    "DS5",
+    "DS6"
+  ],
+  "tests": {
+    "teaching": 154,
+    "mySqlAndChrome": 17,
+    "mobile": 108,
+    "webBuild": "passed",
+    "mobileTypecheck": "passed"
+  },
+  "schemaTables": 97,
+  "migration": "V031__grading_outcomes_and_releases.sql",
+  "backupBeforeMigration": "ops-1795612730397-404829",
+  "backupBeforeImages": "ops-1795612904402-768c7d",
+  "mainCounts": {
+    "grades": 432,
+    "published_grades": 432,
+    "grading_activities": 0,
+    "grading_marks": 0,
+    "grading_releases": 0,
+    "grading_conversions": 0
+  },
+  "mainBusinessDataUnchanged": true,
+  "temporaryResourcesCleaned": true,
+  "limitations": [
+    "No automatic conversion of legacy grades",
+    "TOEIC conversion tables must be provided per test; none invented in main DB",
+    "Published outcomes do not automatically change Academic enrollment status",
+    "Physical Android and new APK build not performed"
+  ]
+}

@@ -1,4 +1,76 @@
+**Tiếp nhận TN3–TN4 (26/11/2026):** web đã thay modal cũ bằng Hồ sơ → Đăng ký → Xác nhận, chọn sẵn lớp mong muốn, kiểm tra hồ sơ tương tự và điều kiện, khôi phục khi mất phản hồi. Tạo lead có thể ghi nhận lớp/khung giờ ngay từ đầu. Đã kiểm thử cạnh tranh chỗ cuối và chống trùng trên MySQL; dữ liệu nghiệp vụ thật giữ nguyên. [Cách dùng và nghiệm thu](docs/intake/TN3-TN4.md).
 
+**Tiếp nhận TN1–TN2 (26/11/2026):** bổ sung lớp/khung giờ mong muốn, liên kết lựa chọn website và lịch sử; API xem trước và xác nhận tạo/dùng hồ sơ kèm đăng ký lớp, kiểm tra đầu vào, hồ sơ tương tự và chống lặp. V033 giữ nguyên dữ liệu cũ, schema 100 bảng. Giao diện đã hoàn thiện tại TN3–TN4. [Hợp đồng API và bàn giao](docs/intake/TN1-TN2.md).
+
+**Điểm số ĐS7–ĐS8 (25/11/2026):** thêm ba tab nghiệp vụ, tìm/lọc bảng điểm, lịch sử từng lần thi lại và CSV cá nhân/toàn lớp; đối chiếu điểm cũ có xem trước, cùng thang và xác nhận; chốt bản công bố để liên kết hoàn thành học vụ. Migration V032 giữ nguyên dữ liệu cũ, không tự chuyển điểm hay hoàn thành đăng ký. [Cách dùng, API, chuyển đổi và vận hành](docs/grading/DS7-DS8.md).
+
+**Điểm số ĐS4–ĐS6 (25/11/2026):** đã bổ sung tính điểm, thi lại, IELTS/TOEIC, duyệt/công bố/thu hồi có bản chụp bất biến và kết quả học viên. Giữ nguyên điểm cũ. [Hướng dẫn, API và nghiệm thu](docs/grading/DS4-DS6.md).
+
+**Điểm số ĐS1–ĐS3 (25/11/2026):** đã thêm quy chế có phiên bản, mặc định khóa học theo chi nhánh, bản chốt cho lớp và nhập kết quả nháp theo thang điểm/nhận xét. Giữ nguyên điểm cũ, chưa tự chuyển đổi hoặc công bố kết quả mới. [Phạm vi, API và hướng dẫn](docs/grading/DS1-DS3.md).
+
+**Dữ liệu ảnh và tài liệu mẫu (25/11/2026):** đã bổ sung ảnh minh họa cho 4 chương trình/20 khóa học và 28 tài liệu PDF đã duyệt/chia sẻ tại 4 chi nhánh trong Docker. [Nội dung, nguồn ảnh và cách xem](docs/docker/sample-learning-media.md).
+
+**Cloudinary CL3–CL4 (25/11/2026):** đã triển khai tải/thay/gỡ ảnh và thư viện ảnh theo quyền tại Nội dung website, có lối vào từ Khóa học/Chi nhánh/Giáo viên. Metadata được lưu trong media_assets; bảo vệ ảnh còn trong nội dung/lịch sử. 48 kiểm thử backend, 19 UI/Cloudinary, 9 API và hồi quy đạt. Schema hiện có 88 bảng. [Cách dùng và bàn giao](docs/docker/cloudinary-cl3-cl4.md).
+
+**Cloudinary CL1?CL2 (25/11/2026):** ?? th?m API upload ?nh c?ng khai ? Academic (`GET /media/config`, `POST /media/images` d??i `/api/v1/academic`), mapping env Docker v? ki?m tra role/chi nh?nh, JPEG/PNG t?i ?a 5 MiB. ?? nghi?m thu upload th?t sau khi c?p nh?t quy?n key: 8 ki?m tra ??t, ?nh t?ng h?p ?? ???c x?a. [C?u h?nh v? c?ch x? l?](docs/docker/cloudinary-cl1-cl2.md).
+
+**OPT4?OPT6 (25/11/2026):** th?m observation API/CPU/RAM, l?ch backup 02:00 v? log; ?? ?o baseline 80 request kh?ng l?i, ch?a c?n Redis/cache. H?i quy 18 ca Chrome v? 23 API ??t; xu?t schema hi?n t?i 87 b?ng, 944 c?t, 32 FK ?? ??i chi?u t?i li?u. C?n nghi?m thu thi?t b?/provider th?t v? c?p nh?t Class Diagram/b?o c?o. [Tr?ng th?i t?ng m?c](docs/docker/optimization-roadmap.md).
+
+**OPT1?OPT3 (25/11/2026):** audit 62 r?ng bu?c v? 23 ki?m tra HTTP ??t; b? sung index tra c?u h?c vi?n theo chi nh?nh v? h?c ph? theo h?c vi?n/ng?y ??n h?n, gi? nguy?n d? li?u. Chu?n b? c?u h?nh provider v? callback VNPAY ri?ng cho Docker. T?ch h?p th?t ch? ngrok/Expo theo l?a ch?n ng??i d?ng. [B?n giao v? ph?n c?n m?](docs/docker/opt1-opt3-handoff.md).
+
+**Docker DCK6 (25/11/2026):** hoàn tất bộ lệnh vận hành, backup/restore DB + tài liệu, thử cập nhật/rollback hai image web và restart toàn stack. 9 container healthy; Docker hiện có 419 tài khoản, 400 học viên, 20 khóa, 40 lớp. Kiểm tra đạt: 13 backup/restore, 8 lifecycle, 23 chức năng/phân quyền và 38 HTTP/web. [Hướng dẫn vận hành](docs/docker/dck6-handoff.md).
+
+**Docker DCK4 (24/11/2026):** đã ghép React/Nginx tại http://localhost:15173 và Next standalone tại http://localhost:13000; 9 container healthy, Gateway http://localhost:18080. 38 kiểm tra cấu hình/HTTP và 18 kiểm tra Chrome đạt. Chạy `.\scripts\docker\compose.ps1 -Action up -Web -Assistant`; MySQL Docker vẫn rỗng, DCK5 mới restore tài khoản/nội dung. [Hướng dẫn đầy đủ](docs/docker/dck4-handoff.md).
+
+**Docker DCK3 (24/11/2026):** Compose backend + MySQL đã chạy; 7 container backend healthy tại Gateway http://localhost:18080. Có 87 bảng rỗng, tách network/secret, volume DB/tài liệu và profile Assistant. 18 kiểm tra tích hợp đạt, đã thử tạo lại container và giữ dữ liệu/file. [Hướng dẫn và báo cáo DCK3](docs/docker/dck3-handoff.md).
+
+**Docker DCK1–DCK2 (24/11/2026):** chuẩn hóa cấu hình/container DNS, thêm profile Docker và Dockerfile chung; sáu image backend đã build. 18 kiểm tra cấu hình/probe, 26 kiểm tra image/runtime và 3 test route đạt. Gateway/Assistant chạy thử thành công; MySQL/Compose và nghiệm thu bốn service DB thuộc DCK3/DCK5. [Hướng dẫn Docker](docs/docker/README.md) · [Lộ trình](docs/docker/roadmap.md).
+
+**Website U7 (20/11/2026):** hoàn tất nghiệm thu local với 5 service thật/MySQL bản sao, Chrome và Edge; zoom thật 200%, bàn phím và focus form đã kiểm tra. Build/TypeScript/lint đạt; nguồn DB không đổi, database tạm đã dọn. Điện thoại thật/Safari/Firefox chưa kiểm thử. [Bàn giao và kết quả](docs/course-classification/u7-handoff.md).
+
+**Website U4–U6 (20/11/2026):** chỉnh danh sách/bộ lọc, trang chi tiết và form tư vấn; giữ ngữ cảnh khi đổi trang, sửa tải tùy chọn và retry. Build/TypeScript/lint toàn website đạt, 207 kiểm tra fixture đạt. U7 còn nghiệm thu backend/MySQL và thiết bị thật. [Bàn giao và ảnh](docs/course-classification/u4-u6-handoff.md).
+
+**Website U1–U3 (20/11/2026):** chuẩn hóa font Việt Be Vietnam Pro local, token, header/sticky và trang chủ responsive. Build/TypeScript và lint phần sửa đạt; 55 kiểm tra UI trên cổng 3000 và 38 hồi quy fixture đạt. Lint toàn website còn lỗi cũ ở form/catalog; U4–U7 còn mở. [Bàn giao và ảnh](docs/course-classification/u1-u3-handoff.md).
+
+**Website D5–D8 (17/11/2026):** đã xuất bản local 4 chương trình, 4 chi nhánh, 20 khóa, 4 lớp tuyển sinh và 8 giáo viên; menu theo nhóm/program và luồng tư vấn giữ ngữ cảnh. 54 kiểm tra API qua 5 service thật, 59 kiểm tra Chrome và 6 unit test đạt. Có audit/tái tạo/dry-run và kiểm chứng xuất bản lặp; chưa thử lại APK/model/VNPAY thật. [Bàn giao, cách chạy, ảnh và giới hạn kiểm chứng](docs/course-classification/d5-d8-handoff.md).
+
+**Làm mới dữ liệu D1–D4 (16/11/2026):** đã backup/phục hồi thử rồi thay dữ liệu nghiệp vụ local; giữ 419 tài khoản, nhân sự và phân quyền. Bộ mới: 20 khóa đủ phân loại, 40 lớp, 400 học viên, 432 ghi danh, 298 phiếu thu; 64 kiểm tra MySQL đạt. Phiên cũ hết hiệu lực, đăng nhập lại. Website đã được xuất bản tiếp ở D5. [Bàn giao, tài khoản mẫu và cách kiểm tra](docs/course-classification/d1-d4-handoff.md).
+
+**Phân loại khóa G8 (16/11/2026):** sửa hiển thị chương trình cũ và snapshot lớp trên website; 362 test, 49 kiểm tra Chrome đạt. Giữ `type` để tương thích. Thiếu phân loại của 16 khóa cũ sau đó được giải quyết bằng bộ mẫu mới D4. Chưa thử APK/model thật. [Bàn giao G8](docs/course-classification/g8-handoff.md).
+
+**Phân loại khóa G7 (16/11/2026):** chatbot/MCP tra cứu và đếm khóa theo chương trình/đối tượng chuẩn, không đếm trùng khóa nhiều đối tượng; 397 kiểm thử H2/offline đạt. Restart academic-service và assistant-service, mở hội thoại mới. Chưa thử model thật. [Bàn giao và câu hỏi mẫu](docs/course-classification/g7-handoff.md).
+
+**Phân loại khóa G5–G6 (16/11/2026):** website/CMS và API/app học viên đã đồng bộ; 78 test backend, 38 Chrome đạt. Chưa build APK mới. [Bàn giao](docs/course-classification/g5-g6-handoff.md).
+
+**Phân loại khóa G3–G4 (16/11/2026):** API chuẩn, chương trình/đối tượng dạng danh mục, bảo vệ policy/lớp và phiên bản phân loại; 51 test backend đạt. Cần restart academic-service và web quản lý cùng nhau. [Bàn giao](docs/course-classification/g3-g4-handoff.md).
+
+**Phân loại khóa học G1–G2 (16/11/2026):** chuẩn hóa chương trình/đối tượng, áp dụng V026 local và gắn chương trình cho 16 khóa; đối tượng còn chờ xác nhận. [Quy tắc và lộ trình](docs/course-classification/roadmap.md) · [Bàn giao](docs/course-classification/g2-handoff.md).
+
+**Website L8–L9:** quản trị nội dung, lịch sử và quyền nhánh; 106 test backend/35 Chrome đạt. Nghiệm thu MySQL/APK còn mở. [Bàn giao](docs/website-l8-l9.md).
+
+**Website L6–L7:** form tư vấn → lead có đồng ý/chống trùng/phân nhân sự, giao diện khóa–lớp–chi nhánh và giáo viên công khai. [API, cấu hình và vận hành](docs/website-l6-l7.md).
+
+**Website L4–L5:** catalog công khai và metadata xuất bản; website đọc dữ liệu đã duyệt qua gateway. [API, migration và hướng dẫn](docs/website-l4-l5.md) · [Lộ trình](docs/website-roadmap.md).
+
+
+
+**S4–S5 hoàn thành (14/11/2026):** cài đặt theo tài khoản, thông tin trung tâm và ba mục cuối sidebar đã nối đầy đủ. V022 đã áp dụng local. [Bàn giao và kiểm tra desktop/mobile](docs/improvements/company-settings-s4-s5.md).
+
+**Công ty/Hỗ trợ — S1–S3 (14/11/2026):** cơ cấu, chức vụ, danh bạ công việc và hỗ trợ nội bộ theo role; V021 đã áp dụng local. [Bàn giao và API](docs/improvements/company-support-s1-s3.md).
+
+**Dữ liệu mẫu hiện tại (14/11/2026):** 4 chi nhánh, 400 học viên, 80 lead, 16 lớp; admin1 phụ trách CN01–CN02, admin2 phụ trách CN03–CN04. Mật khẩu mẫu đã đổi thành `123456`. [Tài khoản, phân công và số liệu](docs/demo/four-branches.md).
+
+**Cập nhật G4–G6 (14/11/2026):** vòng đời nhân sự, ngày kết thúc, người giám hộ, bảo toàn lịch sử và bộ mẫu đã nạp. [Bàn giao, tài khoản mẫu và cách chạy](docs/improvements/identity-g4-g6.md).
+
+**G1–G3 chuẩn hóa danh tính (14/11/2026):** mã HV ngắn, mã nhân sự NS/GV, chặn đổi role trực tiếp và seed chi nhánh opt-in. Migration V019 đã áp dụng local; chưa nạp dữ liệu mẫu. [Bàn giao và cách chạy](docs/improvements/identity-g1-g3.md).
+
+**R7–R8 (13/11/2026):** R7 đã triển khai alias và hội thoại tiếp nối. R8: 120/120 ca host/MCP đạt; Gemini thật đạt 4 ca, timeout 1 ca, 115 ca chưa chạy nên **chưa đóng nghiệm thu R8**. Assistant 340 ca đạt (2 live opt-in bỏ qua), web 125 ca đạt; build/lint đạt. [Bàn giao, giới hạn và cách chạy lại](docs/assistant/r7-r8-completion.md).
+
+**Trợ lý R5–R6 (13/11/2026):** bổ sung công nợ, dòng tiền/hủy/hoàn theo kỳ, chăm sóc/support và thống kê tổ chức theo quyền. [Bàn giao, định nghĩa metric và cách chạy](docs/assistant/r5-r6-completion.md) · [Audit 120 câu](docs/assistant/readonly-audit.md). Hiện có 278 API chính, 36 tool MCP khác nhau; R7–R8 và nghiệm thu model thật còn mở.
+
+**Trợ lý R3–R4 (13/11/2026):** bổ sung khóa/lớp/lịch, phòng/giáo viên không trùng buổi đã lưu, sĩ số hiệu lực, chuyên cần và điểm thiếu. [Bàn giao, giới hạn và cách chạy](docs/assistant/r3-r4-completion.md). Tại mốc này có 268 API chính, 26 tool MCP khác nhau.
+
+**Trợ lý R1–R2 (13/11/2026):** thêm tra cứu/đếm giáo viên, nhân viên, bằng cấp theo quyền và lớp/khóa được giao; cập nhật chọn người trùng tên trên web. [Bàn giao, API, kiểm thử và cách khởi động](docs/assistant/r1-r2-completion.md). Tại mốc này có 259 API chính và 17 tool MCP khác nhau.
 
 **Khắc phục AI chậm (13/11/2026):** Google trả 503 quá tải cho Gemini 3.8; đã đổi sang gemini-3.1-flash-lite theo lựa chọn người dùng. Bốn luồng Gemini + MCP thật trên dữ liệu tổng hợp đạt, khoảng 1,3–4,8 giây/luồng; thêm timeout 10 giây và cooldown sau lỗi. 124 test assistant, 121 frontend đạt; 1 live opt-in skip trong bộ mặc định. [Bằng chứng, cấu hình và cách restart](docs/assistant/troubleshooting.md). C7 với API nghiệp vụ/MySQL thật vẫn chưa hoàn tất.
 
@@ -407,3 +479,5 @@ Trước chạy bản mới: backup/apply migration còn thiếu đến [V013](d
 ## Student App G9
 
 [Thông báo, trang chủ và cấu hình Expo/FCM](docs/student-app/phase-9-completion.md). Inbox/local đã kiểm chứng, push thật chờ project/credentials/thiết bị; mặc định tắt. V018 chưa áp dụng database nguồn.
+
+**Website L10:** chuẩn bị standalone/Docker/HTTPS, readiness và preflight. Chưa triển khai Internet. [Hướng dẫn](docs/website-l10.md).

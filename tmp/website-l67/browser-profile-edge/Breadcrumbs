@@ -1,0 +1,66 @@
+0:00:15 Tab1 StartNav71 #typed
+0:00:15 Tab1 FinishNav71
+0:00:15 Tab1 StartNav72 #renderer-script #link
+0:00:15 Tab1 FinishNav72
+0:00:15 Tab1 PageLoad
+0:00:16 Tab1 StartNav73 #typed
+0:00:16 Tab1 FinishNav73
+0:00:16 Tab1 StartNav74 #renderer-script #link
+0:00:16 Tab1 FinishNav74
+0:00:16 Tab1 PageLoad
+0:00:17 Microsoft.Settings.EdgeSettingsWebui2UI.Constructed
+0:00:17 Microsoft.Settings.PageDataProviderService.Constructed
+0:00:17 Tab1 StartNav75 #typed
+0:00:17 Tab1 FinishNav75
+0:00:17 Tab1 PageLoad
+0:00:17 Tab1 StartNav76 #typed
+0:00:17 Tab1 StartNav77 #renderer-script #link
+0:00:17 Tab1 FinishNav77
+0:00:17 Tab1 FinishNav76
+0:00:17 Microsoft.Settings.PageDataProviderServiceFactory.ReleasedServiceForProfile
+0:00:17 Microsoft.Settings.PageDataProviderServiceFactory.ReleasedFinalServiceRefForProfile
+0:00:17 Microsoft.Settings.PageDataProviderService.Destroyed
+0:00:17 Microsoft.Settings.EdgeSettingsWebui2UI.Destroyed
+0:00:17 Microsoft.ENP.Framework.CourtesyEngine.FrequencyCappingAllowed
+0:00:17 Microsoft.Nurturing.Framework.CourtesyEngine.FrequencyCappingAllowed
+0:00:17 Tab1 StartNav78 #renderer-script #link
+0:00:17 Tab1 FinishNav78
+0:00:17 Tab1 PageLoad
+0:00:17 Tab1 StartNav79 #typed
+0:00:17 Widget Closed: LocationBarBubbleDelegateView
+0:00:17 Tab1 FinishNav79
+0:00:17 Tab1 StartNav80 #renderer-script #link
+0:00:17 Tab1 FinishNav80
+0:00:17 Tab1 PageLoad
+0:00:18 Tab1 StartNav81 #typed
+0:00:18 Tab1 FinishNav81
+0:00:18 Tab1 StartNav82 #renderer-script #link
+0:00:18 Tab1 FinishNav82
+0:00:18 Tab1 PageLoad
+0:00:18 Tab1 StartNav83 #typed
+0:00:18 Tab1 FinishNav83
+0:00:18 Tab1 StartNav84 #renderer-script #link
+0:00:18 Tab1 FinishNav84
+0:00:18 Tab1 PageLoad
+0:00:19 Microsoft.Settings.EdgeSettingsWebui2UI.Constructed
+0:00:19 Microsoft.Settings.PageDataProviderService.Constructed
+0:00:19 Tab1 StartNav85 #typed
+0:00:19 Tab1 FinishNav85
+0:00:19 Tab1 StartNav86 #typed
+0:00:19 Tab1 FinishNav86
+0:00:19 Tab1 PageLoad
+0:00:19 Microsoft.Settings.PageDataProviderServiceFactory.ReleasedServiceForProfile
+0:00:19 Microsoft.Settings.PageDataProviderServiceFactory.ReleasedFinalServiceRefForProfile
+0:00:19 Microsoft.Settings.PageDataProviderService.Destroyed
+0:00:19 Microsoft.Settings.EdgeSettingsWebui2UI.Destroyed
+0:00:19 Microsoft.ENP.Framework.CourtesyEngine.FrequencyCappingAllowed
+0:00:19 Microsoft.Nurturing.Framework.CourtesyEngine.FrequencyCappingAllowed
+0:00:19 Tab1 StartNav87 #renderer-script #link
+0:00:19 Tab1 FinishNav87
+0:00:19 Tab1 PageLoad
+0:00:19 Tab1 StartNav88 #typed
+0:00:19 Widget Closed: LocationBarBubbleDelegateView
+0:00:19 Tab1 FinishNav88
+0:00:19 Tab1 StartNav89 #renderer-script #link
+0:00:19 Tab1 FinishNav89
+0:00:19 Tab1 PageLoad

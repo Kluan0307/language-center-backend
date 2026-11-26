@@ -1,0 +1,1 @@
+const fs=require('fs'),p='scripts/docker/verify-lead-intake-live.cjs';let s=fs.readFileSync(p,'utf8');s=s.replace('})();','})().finally(()=>clearInterval(keepAlive));');s=s.replace("body:JSON.stringify({username:'superadmin',password:'123456'})","body:JSON.stringify({username:'superadmin',password:'123456'}),signal:AbortSignal.timeout(30000)");fs.writeFileSync(p,s);

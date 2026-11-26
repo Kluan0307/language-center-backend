@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-25T09:14:19.295Z",
+  "status": "passed",
+  "checks": [
+    "Anonymous access denied",
+    "Staff access denied",
+    "Admin configuration ready; no credentials returned",
+    "Fake PNG rejected",
+    "Unassigned branch rejected",
+    "Synthetic PNG uploaded through authenticated API",
+    "Image library returns the uploaded asset",
+    "Cloudinary public delivery works",
+    "Synthetic cloud asset deleted after test"
+  ],
+  "syntheticAssetDeleted": true
+}

@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checks": [
+    "Home renders published backend program",
+    "Program links live course",
+    "Course uses minutes and conceals unpublished fee",
+    "Class shows branch name and weekly schedule",
+    "Branch uses verified backend address",
+    "Source changes appear without a website rebuild",
+    "Sitemap uses published program and course URLs",
+    "/ fits 320px",
+    "/chuong-trinh fits 320px",
+    "/chi-nhanh fits 320px",
+    "/khoa-hoc/giao-tiep-a1 fits 320px",
+    "Unpublished program detail returns 404",
+    "No fallback demonstration programs when unpublished",
+    "Backend outage shows honest recoverable notice",
+    "Class query is scoped to the selected course",
+    "No uncaught browser exceptions"
+  ],
+  "requests": 22
+}

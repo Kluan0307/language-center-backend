@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16",
+  "phase": "G8",
+  "status": "code-and-automated-acceptance-complete; operational-signoff-pending",
+  "academic": {"tests": 124, "failures": 0, "errors": 0, "skipped": 0, "build": "SUCCESS", "database": "isolated H2", "includesG8CrossProjectionTests": 3},
+  "cms": {"build": "passed", "tests": 126, "failures": 0, "browserChecks": 11, "browser": "passed", "upstream": "synthetic HTTP fixture", "sidebarRegression": "updated existing manager-only website CMS link expectation"},
+  "website": {"build": "passed", "browserChecks": 38, "browser": "passed", "upstream": "synthetic HTTP fixture"},
+  "mobile": {"typecheck": "passed", "tests": 108, "failures": 0, "apkBuilt": false, "deviceTest": "not performed"},
+  "classificationMappingRules": {"tests": 4, "failures": 0},
+  "newTestsTotal": 362,
+  "browserChecksTotal": 49,
+  "assistant": {"codeChangedInG8": false, "previousG7OfflineTests": 346, "includedInNewTestsTotal": false, "liveModelTest": "not performed"},
+  "mysql": {"audit": "g8-local-audit.json", "readOnly": true, "recordsModified": false, "integrityPassed": true, "courses": 16, "coursesWithoutAudiences": 16},
+  "legacyType": {"columnRetained": true, "migrationAdded": false, "reason": "Legacy read/filter APIs, admission reference data and existing clients remain dependencies; no new free-text classification input."},
+  "remaining": ["manager confirmation of audiences for 16 existing courses", "physical-device APK acceptance", "real-model chatbot acceptance after data classification"],
+  "artifacts": ["tmp/g8-academic.log", "tmp/g8-cms-build.log", "tmp/g8-cms-tests.log", "tmp/classification-g8-cms/result.json", "tmp/g8-website-build.log", "tmp/website-l67/result.json", "tmp/g8-mobile-types.log", "tmp/g8-mobile-tests.log"]
+}

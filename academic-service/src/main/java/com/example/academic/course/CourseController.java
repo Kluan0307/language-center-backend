@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CourseController {
   private final CourseService service;
+  private final CourseClassificationService classification;
+  @GetMapping("/classification-catalog")
+  public CourseClassificationService.Catalog catalog(){return classification.catalog();}
 
   @GetMapping
   public PageResponse<CourseDto> list(
@@ -24,8 +27,8 @@ public class CourseController {
       @RequestParam(required = false) java.math.BigDecimal minTuition,
       @RequestParam(required = false) java.math.BigDecimal maxTuition,
       @RequestParam(defaultValue = "true") boolean maxInclusive,
-      @RequestParam(defaultValue = "false") boolean allAssigned) {
-    return service.list(page, size, keyword, status, level, type, branchId,minTuition,maxTuition,maxInclusive,allAssigned);
+      @RequestParam(defaultValue = "false") boolean allAssigned,@RequestParam(required=false) Long programId,@RequestParam(required=false) Long audienceId) {
+    return service.list(page, size, keyword, status, level, type, branchId,minTuition,maxTuition,maxInclusive,allAssigned,programId,audienceId);
   }
 
   @GetMapping("/{id}")
@@ -36,13 +39,13 @@ public class CourseController {
   @PostMapping
   @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN','STAFF')")
   public CourseDto create(@Valid @RequestBody CourseDto.Request r) {
-    return service.save(null, r);
+    return classification.save(null, r);
   }
 
   @PutMapping("/{id}")
   @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN','STAFF')")
   public CourseDto update(@PathVariable Long id, @Valid @RequestBody CourseDto.Request r) {
-    return service.save(id, r);
+    return classification.save(id, r);
   }
 
   @PatchMapping("/{id}/status")

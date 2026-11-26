@@ -23,7 +23,7 @@ public record LeadDto(
     Long branchId,
     long version,
     LocalDateTime nextContactAt,
-    boolean overdue) {
+    boolean overdue, Long preferredClassId, String preferredClassName, String preferredTime) {
   public static LeadDto of(Lead l) {
     return new LeadDto(
         l.getId(),
@@ -47,7 +47,7 @@ public record LeadDto(
         l.active()
             && l.getNextContactAt() != null
             && l.getNextContactAt()
-                .isBefore(LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE)));
+                .isBefore(LocalDateTime.now(com.example.academic.common.BusinessTime.ZONE)), l.getPreferredClass()==null?null:l.getPreferredClass().getId(), l.getPreferredClass()==null?null:l.getPreferredClass().getName(), l.getPreferredTime());
   }
 
   public record Request(
@@ -59,7 +59,8 @@ public record LeadDto(
       @Size(max = 255) String desiredLevel,
       @Size(max = 2000) String note,
       Long branchId,
-      @PositiveOrZero Long version) {
+      @PositiveOrZero Long version, @Positive Long preferredClassId, @Size(max=500) String preferredTime) {
+    public Request(String fullName,String phone,String email,String source,Long interestedCourseId,String desiredLevel,String note,Long branchId,Long version){this(fullName,phone,email,source,interestedCourseId,desiredLevel,note,branchId,version,null,null);}
     public Request(
         String fullName,
         String phone,

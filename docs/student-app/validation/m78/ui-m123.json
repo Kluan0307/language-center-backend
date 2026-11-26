@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "checks": [
+    "next session precedes changes and fees",
+    "next session is visible before scrolling",
+    "five bottom tabs retained",
+    "home fits 360px",
+    "session uses real room and teacher",
+    "detail returns to the correct filtered day",
+    "week list preserves selected class",
+    "class filter has checked radio choice",
+    "clear class filter closes sheet",
+    "time grid has real events",
+    "week navigation and empty state",
+    "today restores schedule",
+    "schedule error has isolated retry",
+    "schedule retry recovers",
+    "unverified debt is not zero",
+    "unverified debt explanation",
+    "verified zero hides actionable debt card",
+    "service failures keep next session usable",
+    "home fits 320px",
+    "schedule fits 320px",
+    "bottom tab labels have room for Vietnamese text",
+    "week navigation targets at least 48px",
+    "no uncaught browser runtime exceptions"
+  ],
+  "requests": [
+    {
+      "path": "/api/v1/auth/login",
+      "method": "POST"
+    },
+    {
+      "path": "/api/v1/auth/me",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications/unread-count",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/next-session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications?unread=true&category=SCHEDULE&size=2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/sessions/1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments?group=ALL&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-15&to=2026-11-15&enrollmentId=1&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-09&to=2026-11-15&enrollmentId=1&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-09&to=2026-11-15&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-16&to=2026-11-22&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-23&to=2026-11-29&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-02&to=2026-11-08&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-02&to=2026-11-08&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    }
+  ],
+  "errors": []
+}

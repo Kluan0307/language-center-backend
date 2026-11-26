@@ -1,0 +1,9042 @@
+{
+  "observedAt": "2026-11-25T08:57:01.161Z",
+  "source": "Docker physical schema; no business data",
+  "tableCount": 88,
+  "tables": [
+    {
+      "table": "account_branch_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "account_branches",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "account_security_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "accounts",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "admins",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "assessment_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "attendance_changes",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "attendances",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "audience_groups",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "branches",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "class_admission_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "class_closure_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "class_closures",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "class_duration_plans",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "class_result_barriers",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "class_sessions",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "company_profile",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "course_admission_levels",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "course_admission_policies",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "course_audiences",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "course_duration_plans",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "courses",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "document_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "document_sharing_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "documents",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "employment_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "enrollment_admissions",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "enrollment_periods",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "enrollments",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "evaluation_policies",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "evaluation_policy_exams",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "evaluation_states",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "exam_candidates",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "exams",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "final_results",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "grade_changes",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "grade_publications",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "grades",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "internal_support_replies",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "internal_support_tickets",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "job_titles",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "lead_activities",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "leads",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "learning_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "media_assets",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "organization_assignments",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "organization_units",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payment_corrections",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payment_orders",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payment_outbox",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payment_provider_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payment_provider_transactions",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payment_reconcile_operations",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "payments",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "personnel_code_numbers",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "placement_assessments",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "placement_exceptions",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "program_levels",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "programs",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "published_grades",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "result_reopens",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "rooms",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "schedules",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "school_classes",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "session_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "staffs",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_account_provisionings",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_code_numbers",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_notification_outbox",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_notification_preferences",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_notifications",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_push_deliveries",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_push_devices",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_support_messages",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_support_operations",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_support_requests",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "student_support_status_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "students",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "super_admins",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "teacher_profile_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "teachers",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "tuition",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "tuition_adjustments",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "user_preferences",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "website_edit_events",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "website_inquiries",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "website_publications",
+      "engine": "InnoDB"
+    },
+    {
+      "table": "website_teacher_profiles",
+      "engine": "InnoDB"
+    }
+  ],
+  "columns": [
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "account_branch_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "account_branch_events",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "account_branch_events",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(30)",
+      "table": "account_branch_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "account_branch_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "account_branch_events",
+      "column": "performed_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "account_branches",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "account_branches",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "account_branches",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "account_branches",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "account_branches",
+      "column": "is_primary",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "account_branches",
+      "column": "assigned_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "account_branches",
+      "column": "assigned_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "account_branches",
+      "column": "revoked_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "account_security_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "account_security_events",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "account_security_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "account_security_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "account_security_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "account_security_events",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "accounts",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "accounts",
+      "column": "created_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "accounts",
+      "column": "last_login",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "accounts",
+      "column": "password",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('ADMIN','STAFF','STUDENT','SUPER_ADMIN','TEACHER')",
+      "table": "accounts",
+      "column": "role",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "accounts",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(50)",
+      "table": "accounts",
+      "column": "username",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "accounts",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "accounts",
+      "column": "session_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "accounts",
+      "column": "must_change_password",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "accounts",
+      "column": "password_changed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(24)",
+      "table": "accounts",
+      "column": "personnel_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "admins",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "admins",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "admins",
+      "column": "full_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(15)",
+      "table": "admins",
+      "column": "phone",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "admins",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "admins",
+      "column": "hire_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "admins",
+      "column": "work_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "admins",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "admins",
+      "column": "end_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "assessment_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "assessment_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "assessment_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "assessment_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "assessment_events",
+      "column": "after_state",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "assessment_events",
+      "column": "assessment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "assessment_events",
+      "column": "assessment_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "assessment_events",
+      "column": "before_state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "assessment_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "assessment_events",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "attendance_changes",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "attendance_changes",
+      "column": "session_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "attendance_changes",
+      "column": "enrollment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "attendance_changes",
+      "column": "student_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "attendance_changes",
+      "column": "old_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "attendance_changes",
+      "column": "new_status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "attendance_changes",
+      "column": "old_permission",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "attendance_changes",
+      "column": "new_permission",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "attendance_changes",
+      "column": "previous_recorded_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "attendance_changes",
+      "column": "previous_recorded_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "attendance_changes",
+      "column": "changed_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "attendance_changes",
+      "column": "changed_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "attendance_changes",
+      "column": "changed_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "attendance_changes",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "attendances",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "attendances",
+      "column": "has_permission",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "attendances",
+      "column": "recorded_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "attendances",
+      "column": "recorded_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "attendances",
+      "column": "session_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('ABSENT','LATE','PRESENT')",
+      "table": "attendances",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "attendances",
+      "column": "enrollment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "attendances",
+      "column": "class_session_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "audience_groups",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "audience_groups",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(32)",
+      "table": "audience_groups",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "audience_groups",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "audience_groups",
+      "column": "active",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "audience_groups",
+      "column": "sort_order",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "branches",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "branches",
+      "column": "address",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(255)",
+      "table": "branches",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "branches",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "branches",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "branches",
+      "column": "phone",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('ACTIVE','INACTIVE')",
+      "table": "branches",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "class_admission_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_admission_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_admission_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "class_admission_events",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_admission_events",
+      "column": "new_policy_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "class_admission_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_admission_events",
+      "column": "old_policy_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "class_admission_events",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_admission_events",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "class_closure_events",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closure_events",
+      "column": "actor_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_closure_events",
+      "column": "actor_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "class_closure_events",
+      "column": "changed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closure_events",
+      "column": "class_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "class_closure_events",
+      "column": "closed",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closure_events",
+      "column": "expected_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "class_closure_events",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closure_events",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "class_closures",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closures",
+      "column": "actor_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_closures",
+      "column": "actor_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "class_closures",
+      "column": "changed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "class_closures",
+      "column": "closed",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "class_closures",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closures",
+      "column": "result_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closures",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_closures",
+      "column": "source_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "class_duration_plans",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_duration_plans",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_duration_plans",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "class_duration_plans",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_duration_plans",
+      "column": "course_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_duration_plans",
+      "column": "course_revision",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "class_duration_plans",
+      "column": "expected_minutes",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "class_duration_plans",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "class_duration_plans",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_duration_plans",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('COURSE','CUSTOM','UNVERIFIED')",
+      "table": "class_duration_plans",
+      "column": "source",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "class_result_barriers",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_result_barriers",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_result_barriers",
+      "column": "confirmed_count",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_result_barriers",
+      "column": "result_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_result_barriers",
+      "column": "source_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "class_result_barriers",
+      "column": "token",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "date",
+      "table": "class_sessions",
+      "column": "session_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "time(6)",
+      "table": "class_sessions",
+      "column": "start_time",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "time(6)",
+      "table": "class_sessions",
+      "column": "end_time",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "room_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_sessions",
+      "column": "room_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "planned_teacher_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_sessions",
+      "column": "planned_teacher_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "teacher_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "class_sessions",
+      "column": "teacher_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "class_sessions",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "class_sessions",
+      "column": "kind",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "class_sessions",
+      "column": "source_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "source_schedule_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "makeup_for_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "makeup_session_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "class_sessions",
+      "column": "customized",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "class_sessions",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "class_sessions",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "class_sessions",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "class_sessions",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "company_profile",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "company_profile",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "company_profile",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "company_profile",
+      "column": "logo_url",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "company_profile",
+      "column": "address",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "company_profile",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(30)",
+      "table": "company_profile",
+      "column": "phone",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "course_admission_levels",
+      "column": "policy_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "course_admission_levels",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "course_admission_levels",
+      "column": "level_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "course_admission_levels",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "course_admission_policies",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "course_admission_policies",
+      "column": "confirmed_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "course_admission_policies",
+      "column": "confirmed_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "course_admission_policies",
+      "column": "confirmed_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "course_admission_policies",
+      "column": "course_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('OPEN_ENTRY','REQUIRES_ASSESSMENT','UNVERIFIED')",
+      "table": "course_admission_policies",
+      "column": "mode",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "course_admission_policies",
+      "column": "output_level_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "course_admission_policies",
+      "column": "output_level_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "course_admission_policies",
+      "column": "output_level_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "course_admission_policies",
+      "column": "program_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "course_admission_policies",
+      "column": "program_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "course_admission_policies",
+      "column": "program_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "course_admission_policies",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "course_admission_policies",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "course_audiences",
+      "column": "course_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "course_audiences",
+      "column": "audience_group_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "course_duration_plans",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "course_duration_plans",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "course_duration_plans",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "course_duration_plans",
+      "column": "course_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "course_duration_plans",
+      "column": "expected_minutes",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "course_duration_plans",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "course_duration_plans",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "course_duration_plans",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "courses",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "courses",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(255)",
+      "table": "courses",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "text",
+      "table": "courses",
+      "column": "content",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "courses",
+      "column": "duration",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "text",
+      "table": "courses",
+      "column": "entry_requirement",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "courses",
+      "column": "level",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "courses",
+      "column": "max_students",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "courses",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "courses",
+      "column": "scope_key",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('CLOSED','OPEN')",
+      "table": "courses",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "courses",
+      "column": "tuition_fee",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "courses",
+      "column": "type",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "courses",
+      "column": "duration_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "courses",
+      "column": "expected_minutes",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "courses",
+      "column": "program_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "courses",
+      "column": "classification_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "document_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "document_events",
+      "column": "document_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "document_events",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "document_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "document_events",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "document_events",
+      "column": "storage_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "document_events",
+      "column": "title",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "document_events",
+      "column": "description",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "document_events",
+      "column": "filename",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "document_events",
+      "column": "file_size",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "document_events",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "document_events",
+      "column": "actor_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "document_events",
+      "column": "actor_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "document_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "document_sharing_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "document_sharing_events",
+      "column": "actor_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "document_sharing_events",
+      "column": "document_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "document_sharing_events",
+      "column": "occurred_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "document_sharing_events",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "document_sharing_events",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "document_sharing_events",
+      "column": "shared_to_students",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "documents",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "documents",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "documents",
+      "column": "class_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "documents",
+      "column": "course_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "documents",
+      "column": "description",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "documents",
+      "column": "file_size",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "documents",
+      "column": "original_filename",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "documents",
+      "column": "reject_reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "documents",
+      "column": "reviewed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "documents",
+      "column": "reviewed_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "documents",
+      "column": "reviewed_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('APPROVED','PENDING','REJECTED')",
+      "table": "documents",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "documents",
+      "column": "storage_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "documents",
+      "column": "title",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "documents",
+      "column": "uploaded_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "documents",
+      "column": "uploaded_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "documents",
+      "column": "uploaded_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "documents",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "documents",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "documents",
+      "column": "last_submitted_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "documents",
+      "column": "shared_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "documents",
+      "column": "shared_to_students",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "employment_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "employment_events",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "employment_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "employment_events",
+      "column": "before_state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "employment_events",
+      "column": "after_state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "employment_events",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "employment_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "enrollment_admissions",
+      "column": "academic_status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "enrollment_admissions",
+      "column": "accepted_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "enrollment_admissions",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "approval_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "assessment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "enrollment_admissions",
+      "column": "assessment_snapshot",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "assessment_version",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "class_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "enrollment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "enrollment_admissions",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('ENROLL','RESUME','TRANSFER')",
+      "table": "enrollment_admissions",
+      "column": "intent",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "policy_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "enrollment_admissions",
+      "column": "policy_snapshot",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "reused_decision_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollment_admissions",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "enrollment_periods",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "enrollment_periods",
+      "column": "active_from",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "enrollment_periods",
+      "column": "active_until",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "enrollment_periods",
+      "column": "enrollment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "enrollments",
+      "column": "enrolled_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('COMPLETED','DROPPED','RESERVED','STUDYING','TRANSFERRED')",
+      "table": "enrollments",
+      "column": "study_status",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "billing_enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "registered_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "enrollments",
+      "column": "registered_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('CREATED','FAILED','PENDING')",
+      "table": "enrollments",
+      "column": "tuition_delivery",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "enrollments",
+      "column": "tuition_delivery_error",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "enrollments",
+      "column": "tuition_fee",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "enrollments",
+      "column": "reserved_since",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "enrollments",
+      "column": "expected_return_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "completion_result_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "enrollments",
+      "column": "completion_result_revision",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "evaluation_policies",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_policies",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "evaluation_policies",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_policies",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "evaluation_policies",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "evaluation_policies",
+      "column": "confirmed_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_policies",
+      "column": "course_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(5,2)",
+      "table": "evaluation_policies",
+      "column": "min_attendance_percent",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(5,2)",
+      "table": "evaluation_policies",
+      "column": "pass_percent",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "evaluation_policies",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_policies",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "evaluation_policy_exams",
+      "column": "policy_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "evaluation_policy_exams",
+      "column": "exam_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "evaluation_policy_exams",
+      "column": "exam_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "evaluation_policy_exams",
+      "column": "exam_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_policy_exams",
+      "column": "exam_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "evaluation_policy_exams",
+      "column": "max_score",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "evaluation_policy_exams",
+      "column": "required",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "evaluation_policy_exams",
+      "column": "weight",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "evaluation_states",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_states",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_states",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "evaluation_states",
+      "column": "source_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "exam_candidates",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "exam_candidates",
+      "column": "exam_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "exam_candidates",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "exam_candidates",
+      "column": "student_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "exam_candidates",
+      "column": "source",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "exam_candidates",
+      "column": "enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "exams",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "exams",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "exams",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "exams",
+      "column": "created_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "exams",
+      "column": "created_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "exams",
+      "column": "created_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "exams",
+      "column": "exam_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "exams",
+      "column": "exam_type",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "exams",
+      "column": "max_score",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "exams",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "exams",
+      "column": "weight",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "exams",
+      "column": "roster_frozen_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "exams",
+      "column": "roster_frozen_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "exams",
+      "column": "roster_frozen_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "exams",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "academic_source_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "class_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "final_results",
+      "column": "confirmed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "confirmed_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "final_results",
+      "column": "confirmed_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "final_results",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "final_results",
+      "column": "outcome",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "policy_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "final_results",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "final_results",
+      "column": "reopen_reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "final_results",
+      "column": "reopened_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "reopened_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "final_results",
+      "column": "reopened_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(36)",
+      "table": "final_results",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "final_results",
+      "column": "snapshot",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "final_results",
+      "column": "state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "student_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "final_results",
+      "column": "teaching_source_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "grade_changes",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "grade_changes",
+      "column": "grade_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "grade_changes",
+      "column": "modified_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grade_changes",
+      "column": "modified_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "grade_changes",
+      "column": "modified_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "grade_changes",
+      "column": "new_score",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "grade_changes",
+      "column": "old_score",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "grade_changes",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "grade_publications",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "grade_publications",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grade_publications",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grade_publications",
+      "column": "class_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "grade_publications",
+      "column": "draft_fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "grade_publications",
+      "column": "exam_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "grade_publications",
+      "column": "exam_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "grade_publications",
+      "column": "exam_type",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "grade_publications",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "grade_publications",
+      "column": "max_score",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "grade_publications",
+      "column": "published_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grade_publications",
+      "column": "published_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "grade_publications",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(36)",
+      "table": "grade_publications",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grade_publications",
+      "column": "revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "grade_publications",
+      "column": "weight",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "grade_publications",
+      "column": "exam_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "grades",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grades",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "grades",
+      "column": "comment",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "grades",
+      "column": "entered_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grades",
+      "column": "entered_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "grades",
+      "column": "entered_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "grades",
+      "column": "last_modified_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grades",
+      "column": "last_modified_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "grades",
+      "column": "last_modified_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "grades",
+      "column": "modification_reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "grades",
+      "column": "score",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grades",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "grades",
+      "column": "student_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "grades",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "grades",
+      "column": "exam_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "grades",
+      "column": "student_comment",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "internal_support_replies",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "internal_support_replies",
+      "column": "ticket_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "internal_support_replies",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "internal_support_replies",
+      "column": "message",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "internal_support_replies",
+      "column": "status_after",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "internal_support_replies",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "internal_support_tickets",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "internal_support_tickets",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "internal_support_tickets",
+      "column": "owner_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "internal_support_tickets",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(30)",
+      "table": "internal_support_tickets",
+      "column": "category",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "internal_support_tickets",
+      "column": "title",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(3000)",
+      "table": "internal_support_tickets",
+      "column": "description",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "internal_support_tickets",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "internal_support_tickets",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "internal_support_tickets",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "job_titles",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "job_titles",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "job_titles",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "job_titles",
+      "column": "active",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "lead_activities",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "lead_activities",
+      "column": "lead_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "lead_activities",
+      "column": "note",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "channel",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "old_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "new_status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "lead_activities",
+      "column": "old_assignee_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "old_assignee_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "lead_activities",
+      "column": "assignee_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "assignee_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "lead_activities",
+      "column": "old_next_contact_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "lead_activities",
+      "column": "next_contact_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "lead_activities",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "lead_activities",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "lead_activities",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "leads",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "leads",
+      "column": "assigned_to",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "leads",
+      "column": "assigned_to_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "leads",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "leads",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "leads",
+      "column": "desired_level",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "leads",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "leads",
+      "column": "full_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "leads",
+      "column": "last_contacted_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "leads",
+      "column": "note",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "leads",
+      "column": "phone",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "leads",
+      "column": "source",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('CONSULTING','CONTACTED','CONVERTED','LOST','NEW')",
+      "table": "leads",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "leads",
+      "column": "converted_student_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "leads",
+      "column": "interested_course_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "leads",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "leads",
+      "column": "next_contact_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "leads",
+      "column": "updated_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "learning_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "learning_events",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "learning_events",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "learning_events",
+      "column": "enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "learning_events",
+      "column": "related_enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "learning_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "learning_events",
+      "column": "old_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "learning_events",
+      "column": "new_status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "learning_events",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "learning_events",
+      "column": "effective_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "learning_events",
+      "column": "expected_return_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "learning_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "learning_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "learning_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "media_assets",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(200)",
+      "table": "media_assets",
+      "column": "public_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(200)",
+      "table": "media_assets",
+      "column": "asset_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(512)",
+      "table": "media_assets",
+      "column": "url",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "media_assets",
+      "column": "category",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "media_assets",
+      "column": "uploaded_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "media_assets",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "media_assets",
+      "column": "bytes",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "media_assets",
+      "column": "width",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "media_assets",
+      "column": "height",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "media_assets",
+      "column": "format",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "media_assets",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "media_assets",
+      "column": "deleted",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "organization_assignments",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_assignments",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "organization_assignments",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_assignments",
+      "column": "unit_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_assignments",
+      "column": "title_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_assignments",
+      "column": "manager_account_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "organization_assignments",
+      "column": "active",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "organization_units",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_units",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "organization_units",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_units",
+      "column": "parent_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "organization_units",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "organization_units",
+      "column": "active",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "payment_corrections",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "payment_corrections",
+      "column": "payment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "payment_corrections",
+      "column": "tuition_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "payment_corrections",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "payment_corrections",
+      "column": "type",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "payment_corrections",
+      "column": "amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "payment_corrections",
+      "column": "payment_method",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "payment_corrections",
+      "column": "reference_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "payment_corrections",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "payment_corrections",
+      "column": "request_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_corrections",
+      "column": "expected_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_corrections",
+      "column": "recorded_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "payment_corrections",
+      "column": "recorded_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_corrections",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "payment_orders",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "payment_orders",
+      "column": "amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "billing_root_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(45)",
+      "table": "payment_orders",
+      "column": "client_ip",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_orders",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(3)",
+      "table": "payment_orders",
+      "column": "currency",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "payment_orders",
+      "column": "environment",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_orders",
+      "column": "expires_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "payment_orders",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(32)",
+      "table": "payment_orders",
+      "column": "merchant_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(40)",
+      "table": "payment_orders",
+      "column": "merchant_ref",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "payment_orders",
+      "column": "provider",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "receipt_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "payment_orders",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(60)",
+      "table": "payment_orders",
+      "column": "review_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "payment_orders",
+      "column": "state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "tuition_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_orders",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_orders",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "payment_outbox",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_outbox",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_outbox",
+      "column": "delivered_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(100)",
+      "table": "payment_outbox",
+      "column": "event_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "payment_outbox",
+      "column": "order_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_outbox",
+      "column": "receipt_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_outbox",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "payment_outbox",
+      "column": "type",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "payment_provider_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "payment_provider_events",
+      "column": "amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_provider_events",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(64)",
+      "table": "payment_provider_events",
+      "column": "event_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(32)",
+      "table": "payment_provider_events",
+      "column": "merchant_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "payment_provider_events",
+      "column": "merchant_ref",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "payment_provider_events",
+      "column": "order_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(12)",
+      "table": "payment_provider_events",
+      "column": "outcome",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_provider_events",
+      "column": "paid_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_provider_events",
+      "column": "processed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_provider_events",
+      "column": "received_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(60)",
+      "table": "payment_provider_events",
+      "column": "result_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(12)",
+      "table": "payment_provider_events",
+      "column": "source",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "payment_provider_events",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(32)",
+      "table": "payment_provider_events",
+      "column": "transaction_no",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_provider_events",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "payment_provider_transactions",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "payment_provider_transactions",
+      "column": "amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_provider_transactions",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(32)",
+      "table": "payment_provider_transactions",
+      "column": "merchant_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "payment_provider_transactions",
+      "column": "order_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_provider_transactions",
+      "column": "paid_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "payment_provider_transactions",
+      "column": "receipt_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(60)",
+      "table": "payment_provider_transactions",
+      "column": "review_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "payment_provider_transactions",
+      "column": "state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(32)",
+      "table": "payment_provider_transactions",
+      "column": "transaction_no",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_provider_transactions",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "payment_reconcile_operations",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_reconcile_operations",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_reconcile_operations",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_reconcile_operations",
+      "column": "completed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payment_reconcile_operations",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payment_reconcile_operations",
+      "column": "event_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "payment_reconcile_operations",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "payment_reconcile_operations",
+      "column": "order_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "payment_reconcile_operations",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "payment_reconcile_operations",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "payments",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "payments",
+      "column": "amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "payments",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "payments",
+      "column": "note",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "payments",
+      "column": "paid_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('BANK_TRANSFER','CARD','CASH','WALLET')",
+      "table": "payments",
+      "column": "payment_method",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(255)",
+      "table": "payments",
+      "column": "receipt_no",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "payments",
+      "column": "recorded_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "payments",
+      "column": "recorded_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "payments",
+      "column": "reference_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "payments",
+      "column": "request_key",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('FAILED','PAID','PARTIAL','PENDING','REFUNDED')",
+      "table": "payments",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "payments",
+      "column": "tuition_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "personnel_code_numbers",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "placement_assessments",
+      "column": "assessed_on",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_assessments",
+      "column": "assessor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "placement_assessments",
+      "column": "confirmed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "confirmed_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_assessments",
+      "column": "confirmed_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "placement_assessments",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(90)",
+      "table": "placement_assessments",
+      "column": "current_key",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "placement_assessments",
+      "column": "level_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "level_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_assessments",
+      "column": "level_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(12,4)",
+      "table": "placement_assessments",
+      "column": "max_score",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('CERTIFICATE','INTERVIEW','OTHER','TEST')",
+      "table": "placement_assessments",
+      "column": "method",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "placement_assessments",
+      "column": "program_code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "program_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_assessments",
+      "column": "program_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "recorded_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_assessments",
+      "column": "recorded_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(12,4)",
+      "table": "placement_assessments",
+      "column": "score",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "placement_assessments",
+      "column": "source",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('CONFIRMED','DRAFT','REVOKED','SUPERSEDED')",
+      "table": "placement_assessments",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "superseded_by_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "supersedes_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "placement_assessments",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "placement_assessments",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "placement_exceptions",
+      "column": "academic_status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "assessment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "assessment_version",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "class_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "placement_exceptions",
+      "column": "consumed_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "consumed_enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "placement_exceptions",
+      "column": "context_snapshot",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "placement_exceptions",
+      "column": "decided_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "decided_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_exceptions",
+      "column": "decided_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "placement_exceptions",
+      "column": "decision_reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "placement_exceptions",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('ENROLL','RESUME','TRANSFER')",
+      "table": "placement_exceptions",
+      "column": "intent",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "policy_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "placement_exceptions",
+      "column": "requested_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "requested_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "placement_exceptions",
+      "column": "requested_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "placement_exceptions",
+      "column": "requested_reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "source_enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "source_version",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('APPROVED','CONSUMED','INVALIDATED','REJECTED','REQUESTED')",
+      "table": "placement_exceptions",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "placement_exceptions",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "program_levels",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "program_levels",
+      "column": "active",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "program_levels",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "program_levels",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "program_levels",
+      "column": "sort_order",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "program_levels",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "program_levels",
+      "column": "program_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "programs",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "programs",
+      "column": "active",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(50)",
+      "table": "programs",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "programs",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "programs",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "published_grades",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "published_grades",
+      "column": "enrollment_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(7,2)",
+      "table": "published_grades",
+      "column": "score",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "published_grades",
+      "column": "student_comment",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "published_grades",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "published_grades",
+      "column": "publication_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "result_reopens",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "result_reopens",
+      "column": "actor_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "result_reopens",
+      "column": "actor_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "result_reopens",
+      "column": "class_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "result_reopens",
+      "column": "created_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "result_reopens",
+      "column": "previous_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "result_reopens",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "rooms",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "rooms",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "rooms",
+      "column": "capacity",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(255)",
+      "table": "rooms",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "text",
+      "table": "rooms",
+      "column": "equipment",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "rooms",
+      "column": "location",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "rooms",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('AVAILABLE','MAINTENANCE')",
+      "table": "rooms",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "schedules",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('FRIDAY','MONDAY','SATURDAY','SUNDAY','THURSDAY','TUESDAY','WEDNESDAY')",
+      "table": "schedules",
+      "column": "day_of_week",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "time",
+      "table": "schedules",
+      "column": "end_time",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "time",
+      "table": "schedules",
+      "column": "start_time",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "schedules",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(255)",
+      "table": "school_classes",
+      "column": "code",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "school_classes",
+      "column": "current_size",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "school_classes",
+      "column": "end_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "school_classes",
+      "column": "max_size",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "school_classes",
+      "column": "name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "school_classes",
+      "column": "start_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('FINISHED','FULL','ONGOING','UPCOMING')",
+      "table": "school_classes",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "school_classes",
+      "column": "status_manually_set",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "teacher_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "school_classes",
+      "column": "teacher_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "course_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "room_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "school_classes",
+      "column": "session_end_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "school_classes",
+      "column": "sessions_initialized",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "admission_policy_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "admission_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "school_classes",
+      "column": "duration_revision",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "school_classes",
+      "column": "expected_minutes",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "session_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "session_events",
+      "column": "session_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "session_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "session_events",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "text",
+      "table": "session_events",
+      "column": "before_state",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "text",
+      "table": "session_events",
+      "column": "after_state",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "session_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "session_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "session_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "staffs",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "staffs",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "staffs",
+      "column": "full_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(15)",
+      "table": "staffs",
+      "column": "phone",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "staffs",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "staffs",
+      "column": "hire_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "staffs",
+      "column": "position",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "staffs",
+      "column": "work_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "staffs",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "staffs",
+      "column": "end_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "student_account_provisionings",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "student_account_provisionings",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_account_provisionings",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_account_provisionings",
+      "column": "created_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_account_provisionings",
+      "column": "expected_student_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "student_account_provisionings",
+      "column": "initial_password_hash",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_account_provisionings",
+      "column": "operation_count",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "student_account_provisionings",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "student_account_provisionings",
+      "column": "username",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_account_provisionings",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_code_numbers",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "student_notification_outbox",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(300)",
+      "table": "student_notification_outbox",
+      "column": "body",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notification_outbox",
+      "column": "branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_notification_outbox",
+      "column": "category",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notification_outbox",
+      "column": "class_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notification_outbox",
+      "column": "course_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_notification_outbox",
+      "column": "delivered_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notification_outbox",
+      "column": "enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_notification_outbox",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "student_notification_outbox",
+      "column": "previous_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "student_notification_outbox",
+      "column": "recipient_count",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(80)",
+      "table": "student_notification_outbox",
+      "column": "resource_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_notification_outbox",
+      "column": "resource_type",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "student_notification_outbox",
+      "column": "session_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(160)",
+      "table": "student_notification_outbox",
+      "column": "source_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(12)",
+      "table": "student_notification_outbox",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notification_outbox",
+      "column": "student_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "student_notification_outbox",
+      "column": "title",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "student_notification_outbox",
+      "column": "type",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_notification_preferences",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "documents",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "grades",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "payment",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "push_enabled",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "schedule",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "support",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_notification_preferences",
+      "column": "tuition",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notification_preferences",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_notifications",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notifications",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(300)",
+      "table": "student_notifications",
+      "column": "body",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_notifications",
+      "column": "category",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_notifications",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(36)",
+      "table": "student_notifications",
+      "column": "event_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_notifications",
+      "column": "read_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(80)",
+      "table": "student_notifications",
+      "column": "resource_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_notifications",
+      "column": "resource_type",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_notifications",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "student_notifications",
+      "column": "title",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(40)",
+      "table": "student_notifications",
+      "column": "type",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_push_deliveries",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_push_deliveries",
+      "column": "attempted_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_push_deliveries",
+      "column": "binding_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "student_push_deliveries",
+      "column": "installation_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "student_push_deliveries",
+      "column": "notification_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_push_deliveries",
+      "column": "receipt_checked_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(60)",
+      "table": "student_push_deliveries",
+      "column": "result_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_push_deliveries",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "student_push_deliveries",
+      "column": "ticket_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "student_push_devices",
+      "column": "installation_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_push_devices",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_push_devices",
+      "column": "binding_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_push_devices",
+      "column": "enabled",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(10)",
+      "table": "student_push_devices",
+      "column": "platform",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "student_push_devices",
+      "column": "project_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(255)",
+      "table": "student_push_devices",
+      "column": "push_token",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_push_devices",
+      "column": "session_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_push_devices",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_support_messages",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_support_messages",
+      "column": "actor_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "student_support_messages",
+      "column": "actor_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_support_messages",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "student_support_messages",
+      "column": "internal_note",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "student_support_messages",
+      "column": "message",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_support_messages",
+      "column": "sender",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "student_support_messages",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "student_support_operations",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_support_operations",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_support_operations",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_support_operations",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "student_support_operations",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "student_support_operations",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_support_requests",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_support_requests",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('ATTENDANCE','GRADE','LEAVE','MAKEUP','OTHER','PAYMENT','PROFILE')",
+      "table": "student_support_requests",
+      "column": "category",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_support_requests",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_support_requests",
+      "column": "resource_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "student_support_requests",
+      "column": "resource_type",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('CLOSED','IN_PROGRESS','OPEN','RESOLVED')",
+      "table": "student_support_requests",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "student_support_requests",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "student_support_requests",
+      "column": "subject",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_support_requests",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_support_requests",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(36)",
+      "table": "student_support_requests",
+      "column": "resource_key",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "student_support_status_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "student_support_status_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "student_support_status_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "student_support_status_events",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('CLOSED','IN_PROGRESS','OPEN','RESOLVED')",
+      "table": "student_support_status_events",
+      "column": "previous_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "student_support_status_events",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "student_support_status_events",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('CLOSED','IN_PROGRESS','OPEN','RESOLVED')",
+      "table": "student_support_status_events",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "students",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "address",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "students",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "contact_person",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "current_level",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "students",
+      "column": "date_of_birth",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "full_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('FEMALE','MALE','OTHER')",
+      "table": "students",
+      "column": "gender",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "phone",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "students",
+      "column": "registered_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('GRADUATED','PAUSED','STUDYING')",
+      "table": "students",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "guardian_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "students",
+      "column": "guardian_phone",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(40)",
+      "table": "students",
+      "column": "student_code",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "students",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "students",
+      "column": "account_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "super_admins",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "super_admins",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "super_admins",
+      "column": "full_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(15)",
+      "table": "super_admins",
+      "column": "phone",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "super_admins",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "teacher_profile_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "teacher_profile_events",
+      "column": "action",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "teacher_profile_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "teacher_profile_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "teacher_profile_events",
+      "column": "after_state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "longtext",
+      "table": "teacher_profile_events",
+      "column": "before_state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "teacher_profile_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "teacher_profile_events",
+      "column": "reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "teacher_profile_events",
+      "column": "teacher_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "teacher_profile_events",
+      "column": "teacher_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "teachers",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "teachers",
+      "column": "certificate",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "teachers",
+      "column": "email",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "teachers",
+      "column": "experience",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "teachers",
+      "column": "full_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "teachers",
+      "column": "hire_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(15)",
+      "table": "teachers",
+      "column": "phone",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "teachers",
+      "column": "qualification",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "teachers",
+      "column": "specialization",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "teachers",
+      "column": "work_status",
+      "nullable": "YES"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "teachers",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "teachers",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "teachers",
+      "column": "end_date",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "tuition",
+      "column": "adjusted_at",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "adjusted_by",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "tuition",
+      "column": "adjusted_by_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "tuition",
+      "column": "adjustment_reason",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition",
+      "column": "amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "class_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "tuition",
+      "column": "class_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "course_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "tuition",
+      "column": "course_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(10)",
+      "table": "tuition",
+      "column": "currency",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition",
+      "column": "discount_amount",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "tuition",
+      "column": "due_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "enrollment_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition",
+      "column": "original_amount",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition",
+      "column": "paid_amount",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "enum('CANCELLED','OVERDUE','PAID','PARTIAL','PENDING','UNPAID')",
+      "table": "tuition",
+      "column": "status",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "student_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "tuition",
+      "column": "student_name",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "tuition",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "tuition_adjustments",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "tuition_adjustments",
+      "column": "tuition_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "bigint",
+      "table": "tuition_adjustments",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "old_original",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "old_discount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "old_amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "tuition_adjustments",
+      "column": "old_due_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "new_original",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "new_discount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "new_amount",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "date",
+      "table": "tuition_adjustments",
+      "column": "new_due_date",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "decimal(15,2)",
+      "table": "tuition_adjustments",
+      "column": "paid_at_change",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "tuition_adjustments",
+      "column": "reason",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(100)",
+      "table": "tuition_adjustments",
+      "column": "request_key",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "tuition_adjustments",
+      "column": "expected_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "tuition_adjustments",
+      "column": "recorded_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "tuition_adjustments",
+      "column": "recorded_by_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "tuition_adjustments",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "user_preferences",
+      "column": "account_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "user_preferences",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "user_preferences",
+      "column": "compact_tables",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "int",
+      "table": "user_preferences",
+      "column": "page_size",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(10)",
+      "table": "user_preferences",
+      "column": "calendar_view",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "user_preferences",
+      "column": "default_branch_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "website_edit_events",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_edit_events",
+      "column": "actor_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(255)",
+      "table": "website_edit_events",
+      "column": "actor_name",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(20)",
+      "table": "website_edit_events",
+      "column": "kind",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "website_edit_events",
+      "column": "occurred_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(16000)",
+      "table": "website_edit_events",
+      "column": "snapshot",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_edit_events",
+      "column": "source_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(20)",
+      "table": "website_edit_events",
+      "column": "state",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "varchar(36)",
+      "table": "website_inquiries",
+      "column": "request_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_inquiries",
+      "column": "branch_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "website_inquiries",
+      "column": "class_slug",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(50)",
+      "table": "website_inquiries",
+      "column": "consent_version",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "website_inquiries",
+      "column": "course_slug",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "website_inquiries",
+      "column": "created_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(64)",
+      "table": "website_inquiries",
+      "column": "fingerprint",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_inquiries",
+      "column": "lead_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "MUL",
+      "type": "varchar(64)",
+      "table": "website_inquiries",
+      "column": "phone_hash",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "website_inquiries",
+      "column": "program_slug",
+      "nullable": "YES"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "website_publications",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "website_publications",
+      "column": "audience",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "website_publications",
+      "column": "image_url",
+      "nullable": "YES"
+    },
+    {
+      "key": "MUL",
+      "type": "enum('BRANCH','CLASS','COURSE','PROGRAM')",
+      "table": "website_publications",
+      "column": "kind",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "website_publications",
+      "column": "map_url",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "website_publications",
+      "column": "opening_hours",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(4000)",
+      "table": "website_publications",
+      "column": "outcomes",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_publications",
+      "column": "program_id",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "website_publications",
+      "column": "show_tuition",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(120)",
+      "table": "website_publications",
+      "column": "slug",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_publications",
+      "column": "source_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('DRAFT','PUBLISHED')",
+      "table": "website_publications",
+      "column": "state",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "website_publications",
+      "column": "summary",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(4000)",
+      "table": "website_publications",
+      "column": "topics",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "website_publications",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_publications",
+      "column": "updated_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_publications",
+      "column": "version",
+      "nullable": "NO"
+    },
+    {
+      "key": "PRI",
+      "type": "bigint",
+      "table": "website_teacher_profiles",
+      "column": "id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(2000)",
+      "table": "website_teacher_profiles",
+      "column": "biography",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "varchar(1000)",
+      "table": "website_teacher_profiles",
+      "column": "image_url",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "bit(1)",
+      "table": "website_teacher_profiles",
+      "column": "show_qualification",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "varchar(120)",
+      "table": "website_teacher_profiles",
+      "column": "slug",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "enum('DRAFT','PUBLISHED')",
+      "table": "website_teacher_profiles",
+      "column": "state",
+      "nullable": "NO"
+    },
+    {
+      "key": "UNI",
+      "type": "bigint",
+      "table": "website_teacher_profiles",
+      "column": "teacher_id",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "varchar(500)",
+      "table": "website_teacher_profiles",
+      "column": "teaching_focus",
+      "nullable": "YES"
+    },
+    {
+      "key": "",
+      "type": "datetime(6)",
+      "table": "website_teacher_profiles",
+      "column": "updated_at",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_teacher_profiles",
+      "column": "updated_by",
+      "nullable": "NO"
+    },
+    {
+      "key": "",
+      "type": "bigint",
+      "table": "website_teacher_profiles",
+      "column": "version",
+      "nullable": "NO"
+    }
+  ],
+  "foreignKeys": [
+    {
+      "table": "account_branch_events",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    },
+    {
+      "table": "account_branches",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    },
+    {
+      "table": "account_security_events",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    },
+    {
+      "table": "admins",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    },
+    {
+      "table": "attendance_changes",
+      "column": "session_id",
+      "parent": "class_sessions",
+      "parentColumn": "id"
+    },
+    {
+      "table": "attendances",
+      "column": "class_session_id",
+      "parent": "class_sessions",
+      "parentColumn": "id"
+    },
+    {
+      "table": "attendances",
+      "column": "enrollment_id",
+      "parent": "enrollments",
+      "parentColumn": "id"
+    },
+    {
+      "table": "class_sessions",
+      "column": "class_id",
+      "parent": "school_classes",
+      "parentColumn": "id"
+    },
+    {
+      "table": "course_admission_levels",
+      "column": "policy_id",
+      "parent": "course_admission_policies",
+      "parentColumn": "id"
+    },
+    {
+      "table": "course_audiences",
+      "column": "audience_group_id",
+      "parent": "audience_groups",
+      "parentColumn": "id"
+    },
+    {
+      "table": "course_audiences",
+      "column": "course_id",
+      "parent": "courses",
+      "parentColumn": "id"
+    },
+    {
+      "table": "courses",
+      "column": "program_id",
+      "parent": "programs",
+      "parentColumn": "id"
+    },
+    {
+      "table": "enrollment_periods",
+      "column": "enrollment_id",
+      "parent": "enrollments",
+      "parentColumn": "id"
+    },
+    {
+      "table": "enrollments",
+      "column": "class_id",
+      "parent": "school_classes",
+      "parentColumn": "id"
+    },
+    {
+      "table": "enrollments",
+      "column": "student_id",
+      "parent": "students",
+      "parentColumn": "id"
+    },
+    {
+      "table": "evaluation_policy_exams",
+      "column": "policy_id",
+      "parent": "evaluation_policies",
+      "parentColumn": "id"
+    },
+    {
+      "table": "grade_publications",
+      "column": "exam_id",
+      "parent": "exams",
+      "parentColumn": "id"
+    },
+    {
+      "table": "grades",
+      "column": "exam_id",
+      "parent": "exams",
+      "parentColumn": "id"
+    },
+    {
+      "table": "leads",
+      "column": "converted_student_id",
+      "parent": "students",
+      "parentColumn": "id"
+    },
+    {
+      "table": "leads",
+      "column": "interested_course_id",
+      "parent": "courses",
+      "parentColumn": "id"
+    },
+    {
+      "table": "placement_assessments",
+      "column": "student_id",
+      "parent": "students",
+      "parentColumn": "id"
+    },
+    {
+      "table": "program_levels",
+      "column": "program_id",
+      "parent": "programs",
+      "parentColumn": "id"
+    },
+    {
+      "table": "published_grades",
+      "column": "publication_id",
+      "parent": "grade_publications",
+      "parentColumn": "id"
+    },
+    {
+      "table": "schedules",
+      "column": "class_id",
+      "parent": "school_classes",
+      "parentColumn": "id"
+    },
+    {
+      "table": "school_classes",
+      "column": "course_id",
+      "parent": "courses",
+      "parentColumn": "id"
+    },
+    {
+      "table": "school_classes",
+      "column": "room_id",
+      "parent": "rooms",
+      "parentColumn": "id"
+    },
+    {
+      "table": "session_events",
+      "column": "session_id",
+      "parent": "class_sessions",
+      "parentColumn": "id"
+    },
+    {
+      "table": "staffs",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    },
+    {
+      "table": "student_support_messages",
+      "column": "request_id",
+      "parent": "student_support_requests",
+      "parentColumn": "id"
+    },
+    {
+      "table": "student_support_operations",
+      "column": "request_id",
+      "parent": "student_support_requests",
+      "parentColumn": "id"
+    },
+    {
+      "table": "super_admins",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    },
+    {
+      "table": "teachers",
+      "column": "account_id",
+      "parent": "accounts",
+      "parentColumn": "id"
+    }
+  ],
+  "indexes": [
+    {
+      "name": "idx_branch_event_account_time",
+      "table": "account_branch_events",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "idx_branch_event_account_time",
+      "table": "account_branch_events",
+      "column": "occurred_at",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "account_branch_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_membership_branch_status",
+      "table": "account_branches",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_membership_branch_status",
+      "table": "account_branches",
+      "column": "status",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "account_branches",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_account_branch",
+      "table": "account_branches",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "uk_account_branch",
+      "table": "account_branches",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "idx_security_event_account_time",
+      "table": "account_security_events",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "idx_security_event_account_time",
+      "table": "account_security_events",
+      "column": "occurred_at",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "account_security_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "accounts",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_account_personnel_code",
+      "table": "accounts",
+      "column": "personnel_code",
+      "position": 1
+    },
+    {
+      "name": "UKk8h1bgqoplx0rkngj01pm1rgp",
+      "table": "accounts",
+      "column": "username",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "admins",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKd1mh9asac0y4phlp5y7m02ben",
+      "table": "admins",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "idx_assessment_event",
+      "table": "assessment_events",
+      "column": "assessment_id",
+      "position": 1
+    },
+    {
+      "name": "idx_assessment_event",
+      "table": "assessment_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "assessment_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_attendance_change_session",
+      "table": "attendance_changes",
+      "column": "session_id",
+      "position": 1
+    },
+    {
+      "name": "idx_attendance_change_session",
+      "table": "attendance_changes",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "attendance_changes",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "fk_attendance_session",
+      "table": "attendances",
+      "column": "class_session_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "attendances",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_attendance_enrollment_date",
+      "table": "attendances",
+      "column": "enrollment_id",
+      "position": 1
+    },
+    {
+      "name": "uk_attendance_enrollment_date",
+      "table": "attendances",
+      "column": "session_date",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "audience_groups",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_audience_code",
+      "table": "audience_groups",
+      "column": "code",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "branches",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_branch_code",
+      "table": "branches",
+      "column": "code",
+      "position": 1
+    },
+    {
+      "name": "idx_class_admission_event",
+      "table": "class_admission_events",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "idx_class_admission_event",
+      "table": "class_admission_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "class_admission_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "class_closure_events",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "class_closures",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "class_duration_plans",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_class_duration_revision",
+      "table": "class_duration_plans",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "uk_class_duration_revision",
+      "table": "class_duration_plans",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "class_result_barriers",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "idx_session_date_room",
+      "table": "class_sessions",
+      "column": "session_date",
+      "position": 1
+    },
+    {
+      "name": "idx_session_date_room",
+      "table": "class_sessions",
+      "column": "room_id",
+      "position": 2
+    },
+    {
+      "name": "idx_session_date_room",
+      "table": "class_sessions",
+      "column": "status",
+      "position": 3
+    },
+    {
+      "name": "idx_session_date_teacher",
+      "table": "class_sessions",
+      "column": "session_date",
+      "position": 1
+    },
+    {
+      "name": "idx_session_date_teacher",
+      "table": "class_sessions",
+      "column": "teacher_id",
+      "position": 2
+    },
+    {
+      "name": "idx_session_date_teacher",
+      "table": "class_sessions",
+      "column": "status",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "class_sessions",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_session_makeup",
+      "table": "class_sessions",
+      "column": "makeup_for_id",
+      "position": 1
+    },
+    {
+      "name": "uk_session_source",
+      "table": "class_sessions",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "uk_session_source",
+      "table": "class_sessions",
+      "column": "source_date",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "company_profile",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_admission_level",
+      "table": "course_admission_levels",
+      "column": "policy_id",
+      "position": 1
+    },
+    {
+      "name": "uk_admission_level",
+      "table": "course_admission_levels",
+      "column": "level_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "course_admission_policies",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_admission_revision",
+      "table": "course_admission_policies",
+      "column": "course_id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_admission_revision",
+      "table": "course_admission_policies",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "fk_course_audience_group",
+      "table": "course_audiences",
+      "column": "audience_group_id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_audience",
+      "table": "course_audiences",
+      "column": "course_id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_audience",
+      "table": "course_audiences",
+      "column": "audience_group_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "course_duration_plans",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_duration_revision",
+      "table": "course_duration_plans",
+      "column": "course_id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_duration_revision",
+      "table": "course_duration_plans",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "fk_course_program",
+      "table": "courses",
+      "column": "program_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "courses",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_course_code_scope",
+      "table": "courses",
+      "column": "code",
+      "position": 1
+    },
+    {
+      "name": "uk_course_code_scope",
+      "table": "courses",
+      "column": "scope_key",
+      "position": 2
+    },
+    {
+      "name": "idx_document_event",
+      "table": "document_events",
+      "column": "document_id",
+      "position": 1
+    },
+    {
+      "name": "idx_document_event",
+      "table": "document_events",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "idx_document_event",
+      "table": "document_events",
+      "column": "id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "document_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "document_sharing_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_document_branch_status",
+      "table": "documents",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_document_branch_status",
+      "table": "documents",
+      "column": "status",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "documents",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_employment_account",
+      "table": "employment_events",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "idx_employment_account",
+      "table": "employment_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "employment_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "ix_enrollment_admission",
+      "table": "enrollment_admissions",
+      "column": "enrollment_id",
+      "position": 1
+    },
+    {
+      "name": "ix_enrollment_admission",
+      "table": "enrollment_admissions",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "enrollment_admissions",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_period_enrollment",
+      "table": "enrollment_periods",
+      "column": "enrollment_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "enrollment_periods",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_enrollment_class_status",
+      "table": "enrollments",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "idx_enrollment_class_status",
+      "table": "enrollments",
+      "column": "study_status",
+      "position": 2
+    },
+    {
+      "name": "idx_enrollment_student_status",
+      "table": "enrollments",
+      "column": "student_id",
+      "position": 1
+    },
+    {
+      "name": "idx_enrollment_student_status",
+      "table": "enrollments",
+      "column": "study_status",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "enrollments",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "evaluation_policies",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_evaluation_policy_revision",
+      "table": "evaluation_policies",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "uk_evaluation_policy_revision",
+      "table": "evaluation_policies",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "uk_evaluation_policy_exam",
+      "table": "evaluation_policy_exams",
+      "column": "policy_id",
+      "position": 1
+    },
+    {
+      "name": "uk_evaluation_policy_exam",
+      "table": "evaluation_policy_exams",
+      "column": "exam_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "evaluation_states",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "exam_candidates",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_exam_candidate",
+      "table": "exam_candidates",
+      "column": "exam_id",
+      "position": 1
+    },
+    {
+      "name": "uk_exam_candidate",
+      "table": "exam_candidates",
+      "column": "student_id",
+      "position": 2
+    },
+    {
+      "name": "idx_exam_branch_class",
+      "table": "exams",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_exam_branch_class",
+      "table": "exams",
+      "column": "class_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "exams",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "final_results",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKgp9m0djsiqy4sjy180mdlkt7g",
+      "table": "final_results",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "UKigquic5nddu1yvginnfstaqyj",
+      "table": "final_results",
+      "column": "enrollment_id",
+      "position": 1
+    },
+    {
+      "name": "UKigquic5nddu1yvginnfstaqyj",
+      "table": "final_results",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "idx_grade_change_grade",
+      "table": "grade_changes",
+      "column": "grade_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "grade_changes",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "grade_publications",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UK3kcndjklq9aqrj621tis27ks9",
+      "table": "grade_publications",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "UKef278hio931ai1yljjyn4y39u",
+      "table": "grade_publications",
+      "column": "exam_id",
+      "position": 1
+    },
+    {
+      "name": "UKef278hio931ai1yljjyn4y39u",
+      "table": "grade_publications",
+      "column": "revision",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "grades",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_grade_exam_student",
+      "table": "grades",
+      "column": "exam_id",
+      "position": 1
+    },
+    {
+      "name": "uk_grade_exam_student",
+      "table": "grades",
+      "column": "student_id",
+      "position": 2
+    },
+    {
+      "name": "IDX8eofj88mocvl5cc0dhanjol7d",
+      "table": "internal_support_replies",
+      "column": "ticket_id",
+      "position": 1
+    },
+    {
+      "name": "IDX8eofj88mocvl5cc0dhanjol7d",
+      "table": "internal_support_replies",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "idx_internal_replies",
+      "table": "internal_support_replies",
+      "column": "ticket_id",
+      "position": 1
+    },
+    {
+      "name": "idx_internal_replies",
+      "table": "internal_support_replies",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "internal_support_replies",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_internal_owner_branch",
+      "table": "internal_support_tickets",
+      "column": "owner_id",
+      "position": 1
+    },
+    {
+      "name": "idx_internal_owner_branch",
+      "table": "internal_support_tickets",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "IDXrktbwdbregkge3xhro412cnom",
+      "table": "internal_support_tickets",
+      "column": "owner_id",
+      "position": 1
+    },
+    {
+      "name": "IDXrktbwdbregkge3xhro412cnom",
+      "table": "internal_support_tickets",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "internal_support_tickets",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "job_titles",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_lead_activity",
+      "table": "lead_activities",
+      "column": "lead_id",
+      "position": 1
+    },
+    {
+      "name": "idx_lead_activity",
+      "table": "lead_activities",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "lead_activities",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "FKi9bcrgl5vp7bsmsn4idx1o1qq",
+      "table": "leads",
+      "column": "interested_course_id",
+      "position": 1
+    },
+    {
+      "name": "idx_lead_followup",
+      "table": "leads",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_lead_followup",
+      "table": "leads",
+      "column": "status",
+      "position": 2
+    },
+    {
+      "name": "idx_lead_followup",
+      "table": "leads",
+      "column": "next_contact_at",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "leads",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKmnswa5bo24ajxyfwnnkxgdt88",
+      "table": "leads",
+      "column": "converted_student_id",
+      "position": 1
+    },
+    {
+      "name": "idx_learning_enrollment",
+      "table": "learning_events",
+      "column": "enrollment_id",
+      "position": 1
+    },
+    {
+      "name": "idx_learning_enrollment",
+      "table": "learning_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "idx_learning_student",
+      "table": "learning_events",
+      "column": "student_id",
+      "position": 1
+    },
+    {
+      "name": "idx_learning_student",
+      "table": "learning_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "learning_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_media_owner",
+      "table": "media_assets",
+      "column": "uploaded_by",
+      "position": 1
+    },
+    {
+      "name": "idx_media_owner",
+      "table": "media_assets",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "media_assets",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "public_id",
+      "table": "media_assets",
+      "column": "public_id",
+      "position": 1
+    },
+    {
+      "name": "url",
+      "table": "media_assets",
+      "column": "url",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "organization_assignments",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UK31amyjcx9uo1ccif93y1ittm8",
+      "table": "organization_assignments",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "UK31amyjcx9uo1ccif93y1ittm8",
+      "table": "organization_assignments",
+      "column": "unit_id",
+      "position": 2
+    },
+    {
+      "name": "UK31amyjcx9uo1ccif93y1ittm8",
+      "table": "organization_assignments",
+      "column": "title_id",
+      "position": 3
+    },
+    {
+      "name": "uk_org_assignment",
+      "table": "organization_assignments",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "uk_org_assignment",
+      "table": "organization_assignments",
+      "column": "unit_id",
+      "position": 2
+    },
+    {
+      "name": "uk_org_assignment",
+      "table": "organization_assignments",
+      "column": "title_id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "organization_units",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_correction_branch_date",
+      "table": "payment_corrections",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_correction_branch_date",
+      "table": "payment_corrections",
+      "column": "created_at",
+      "position": 2
+    },
+    {
+      "name": "idx_correction_payment",
+      "table": "payment_corrections",
+      "column": "payment_id",
+      "position": 1
+    },
+    {
+      "name": "idx_correction_payment",
+      "table": "payment_corrections",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "idx_correction_tuition",
+      "table": "payment_corrections",
+      "column": "tuition_id",
+      "position": 1
+    },
+    {
+      "name": "idx_correction_tuition",
+      "table": "payment_corrections",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payment_corrections",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_correction_request",
+      "table": "payment_corrections",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "uk_correction_request",
+      "table": "payment_corrections",
+      "column": "request_key",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payment_orders",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKaubp5djw4kl9ka2tb75e9xfk1",
+      "table": "payment_orders",
+      "column": "merchant_ref",
+      "position": 1
+    },
+    {
+      "name": "UKjkg906r6ljklysq6em0wf6asb",
+      "table": "payment_orders",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "UKjkg906r6ljklysq6em0wf6asb",
+      "table": "payment_orders",
+      "column": "request_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payment_outbox",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKgadni09oi9sjwnlcwn2xb4eeo",
+      "table": "payment_outbox",
+      "column": "event_key",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payment_provider_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UK50s8jqwl82g5b2o6fdpaij370",
+      "table": "payment_provider_events",
+      "column": "event_key",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payment_provider_transactions",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKdmwmc02fjh6r99o9310aknfco",
+      "table": "payment_provider_transactions",
+      "column": "receipt_id",
+      "position": 1
+    },
+    {
+      "name": "UKmkssbsl7vjnxvhx346e9smbcj",
+      "table": "payment_provider_transactions",
+      "column": "merchant_code",
+      "position": 1
+    },
+    {
+      "name": "UKmkssbsl7vjnxvhx346e9smbcj",
+      "table": "payment_provider_transactions",
+      "column": "transaction_no",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payment_reconcile_operations",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_payment_branch_date",
+      "table": "payments",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_payment_branch_date",
+      "table": "payments",
+      "column": "paid_at",
+      "position": 2
+    },
+    {
+      "name": "idx_payment_tuition",
+      "table": "payments",
+      "column": "tuition_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "payments",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_payment_receipt",
+      "table": "payments",
+      "column": "receipt_no",
+      "position": 1
+    },
+    {
+      "name": "uk_payment_request",
+      "table": "payments",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "uk_payment_request",
+      "table": "payments",
+      "column": "request_key",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "personnel_code_numbers",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_assessment_student_program",
+      "table": "placement_assessments",
+      "column": "student_id",
+      "position": 1
+    },
+    {
+      "name": "idx_assessment_student_program",
+      "table": "placement_assessments",
+      "column": "program_id",
+      "position": 2
+    },
+    {
+      "name": "idx_assessment_student_program",
+      "table": "placement_assessments",
+      "column": "status",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "placement_assessments",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_assessment_current",
+      "table": "placement_assessments",
+      "column": "current_key",
+      "position": 1
+    },
+    {
+      "name": "ix_placement_exception_branch",
+      "table": "placement_exceptions",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "ix_placement_exception_branch",
+      "table": "placement_exceptions",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "placement_exceptions",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "program_levels",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_program_level_code",
+      "table": "program_levels",
+      "column": "program_id",
+      "position": 1
+    },
+    {
+      "name": "uk_program_level_code",
+      "table": "program_levels",
+      "column": "code",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "programs",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_program_code",
+      "table": "programs",
+      "column": "code",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "published_grades",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UK2kney3wurkrasflk6kg2kyafa",
+      "table": "published_grades",
+      "column": "publication_id",
+      "position": 1
+    },
+    {
+      "name": "UK2kney3wurkrasflk6kg2kyafa",
+      "table": "published_grades",
+      "column": "student_id",
+      "position": 2
+    },
+    {
+      "name": "UK2kney3wurkrasflk6kg2kyafa",
+      "table": "published_grades",
+      "column": "enrollment_id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "result_reopens",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "rooms",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_room_code_branch",
+      "table": "rooms",
+      "column": "code",
+      "position": 1
+    },
+    {
+      "name": "uk_room_code_branch",
+      "table": "rooms",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "idx_schedule_class_day",
+      "table": "schedules",
+      "column": "class_id",
+      "position": 1
+    },
+    {
+      "name": "idx_schedule_class_day",
+      "table": "schedules",
+      "column": "day_of_week",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "schedules",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "FK2iektjpygodribrx6k6t4rdpv",
+      "table": "school_classes",
+      "column": "room_id",
+      "position": 1
+    },
+    {
+      "name": "FKaar2qgjj7oj1q40nr741qffc4",
+      "table": "school_classes",
+      "column": "course_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "school_classes",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_class_code_branch",
+      "table": "school_classes",
+      "column": "code",
+      "position": 1
+    },
+    {
+      "name": "uk_class_code_branch",
+      "table": "school_classes",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "idx_session_event",
+      "table": "session_events",
+      "column": "session_id",
+      "position": 1
+    },
+    {
+      "name": "idx_session_event",
+      "table": "session_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "session_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "staffs",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKk0fv4fbde24uqula08y9vril2",
+      "table": "staffs",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_account_provisionings",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "uk_student_provision_account",
+      "table": "student_account_provisionings",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "uk_student_provision_student",
+      "table": "student_account_provisionings",
+      "column": "student_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_code_numbers",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_notification_outbox",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKexvwrpgfhyd2bk6h740hg2qc0",
+      "table": "student_notification_outbox",
+      "column": "source_key",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_notification_preferences",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_notifications",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKs3hefqhvgk0rlppvgpp38mc58",
+      "table": "student_notifications",
+      "column": "event_id",
+      "position": 1
+    },
+    {
+      "name": "UKs3hefqhvgk0rlppvgpp38mc58",
+      "table": "student_notifications",
+      "column": "account_id",
+      "position": 2
+    },
+    {
+      "name": "UKs3hefqhvgk0rlppvgpp38mc58",
+      "table": "student_notifications",
+      "column": "student_id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_push_deliveries",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UK4p2wl7qh8hojmg5xkmyd8gvxq",
+      "table": "student_push_deliveries",
+      "column": "notification_id",
+      "position": 1
+    },
+    {
+      "name": "UK4p2wl7qh8hojmg5xkmyd8gvxq",
+      "table": "student_push_deliveries",
+      "column": "installation_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_push_devices",
+      "column": "installation_id",
+      "position": 1
+    },
+    {
+      "name": "UKhhm9388we9gur18uv73wfdvcc",
+      "table": "student_push_devices",
+      "column": "push_token",
+      "position": 1
+    },
+    {
+      "name": "idx_support_message",
+      "table": "student_support_messages",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "idx_support_message",
+      "table": "student_support_messages",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_support_messages",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "FK6f8i5f2wxa5y3i7j3od6uogh1",
+      "table": "student_support_operations",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_support_operations",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_support_owner",
+      "table": "student_support_requests",
+      "column": "student_id",
+      "position": 1
+    },
+    {
+      "name": "idx_support_owner",
+      "table": "student_support_requests",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "idx_support_owner",
+      "table": "student_support_requests",
+      "column": "status",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_support_requests",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_support_status_request",
+      "table": "student_support_status_events",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "idx_support_status_request",
+      "table": "student_support_status_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "student_support_status_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_student_branch_id",
+      "table": "students",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_student_branch_id",
+      "table": "students",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "idx_student_phone_branch",
+      "table": "students",
+      "column": "phone",
+      "position": 1
+    },
+    {
+      "name": "idx_student_phone_branch",
+      "table": "students",
+      "column": "branch_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "students",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKcgcf3r5xk73o0etbduc1qxnol",
+      "table": "students",
+      "column": "student_code",
+      "position": 1
+    },
+    {
+      "name": "UKd8r092m3ykhh2vyn2jgeafsr3",
+      "table": "students",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "super_admins",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKp4f72x4wtciiblbq6vfs0xq3o",
+      "table": "super_admins",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "idx_teacher_event",
+      "table": "teacher_profile_events",
+      "column": "teacher_id",
+      "position": 1
+    },
+    {
+      "name": "idx_teacher_event",
+      "table": "teacher_profile_events",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "teacher_profile_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "PRIMARY",
+      "table": "teachers",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "UKfwk5qk8ju90rx58169r9dj8td",
+      "table": "teachers",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "idx_tuition_branch_due",
+      "table": "tuition",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_tuition_branch_due",
+      "table": "tuition",
+      "column": "due_date",
+      "position": 2
+    },
+    {
+      "name": "idx_tuition_branch_status",
+      "table": "tuition",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "idx_tuition_branch_status",
+      "table": "tuition",
+      "column": "status",
+      "position": 2
+    },
+    {
+      "name": "idx_tuition_student_due",
+      "table": "tuition",
+      "column": "student_id",
+      "position": 1
+    },
+    {
+      "name": "idx_tuition_student_due",
+      "table": "tuition",
+      "column": "due_date",
+      "position": 2
+    },
+    {
+      "name": "idx_tuition_student_due",
+      "table": "tuition",
+      "column": "id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "tuition",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_tuition_enrollment",
+      "table": "tuition",
+      "column": "enrollment_id",
+      "position": 1
+    },
+    {
+      "name": "idx_adjustment_tuition",
+      "table": "tuition_adjustments",
+      "column": "tuition_id",
+      "position": 1
+    },
+    {
+      "name": "idx_adjustment_tuition",
+      "table": "tuition_adjustments",
+      "column": "id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "tuition_adjustments",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_adjustment_request",
+      "table": "tuition_adjustments",
+      "column": "branch_id",
+      "position": 1
+    },
+    {
+      "name": "uk_adjustment_request",
+      "table": "tuition_adjustments",
+      "column": "request_key",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "user_preferences",
+      "column": "account_id",
+      "position": 1
+    },
+    {
+      "name": "IDXeuysgt6ro2oa1mp9s1m4rsc56",
+      "table": "website_edit_events",
+      "column": "kind",
+      "position": 1
+    },
+    {
+      "name": "IDXeuysgt6ro2oa1mp9s1m4rsc56",
+      "table": "website_edit_events",
+      "column": "source_id",
+      "position": 2
+    },
+    {
+      "name": "IDXeuysgt6ro2oa1mp9s1m4rsc56",
+      "table": "website_edit_events",
+      "column": "id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "website_edit_events",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "idx_website_inquiry_phone",
+      "table": "website_inquiries",
+      "column": "phone_hash",
+      "position": 1
+    },
+    {
+      "name": "idx_website_inquiry_phone",
+      "table": "website_inquiries",
+      "column": "created_at",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "website_inquiries",
+      "column": "request_id",
+      "position": 1
+    },
+    {
+      "name": "idx_website_public",
+      "table": "website_publications",
+      "column": "kind",
+      "position": 1
+    },
+    {
+      "name": "idx_website_public",
+      "table": "website_publications",
+      "column": "state",
+      "position": 2
+    },
+    {
+      "name": "idx_website_public",
+      "table": "website_publications",
+      "column": "source_id",
+      "position": 3
+    },
+    {
+      "name": "PRIMARY",
+      "table": "website_publications",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_website_slug",
+      "table": "website_publications",
+      "column": "kind",
+      "position": 1
+    },
+    {
+      "name": "uk_website_slug",
+      "table": "website_publications",
+      "column": "slug",
+      "position": 2
+    },
+    {
+      "name": "uk_website_source",
+      "table": "website_publications",
+      "column": "kind",
+      "position": 1
+    },
+    {
+      "name": "uk_website_source",
+      "table": "website_publications",
+      "column": "source_id",
+      "position": 2
+    },
+    {
+      "name": "PRIMARY",
+      "table": "website_teacher_profiles",
+      "column": "id",
+      "position": 1
+    },
+    {
+      "name": "uk_website_teacher_slug",
+      "table": "website_teacher_profiles",
+      "column": "slug",
+      "position": 1
+    },
+    {
+      "name": "uk_website_teacher_source",
+      "table": "website_teacher_profiles",
+      "column": "teacher_id",
+      "position": 1
+    }
+  ],
+  "addedSinceThesisSnapshot": [
+    "assessment_events",
+    "audience_groups",
+    "class_admission_events",
+    "class_closure_events",
+    "class_closures",
+    "class_duration_plans",
+    "class_result_barriers",
+    "company_profile",
+    "course_admission_levels",
+    "course_admission_policies",
+    "course_audiences",
+    "course_duration_plans",
+    "document_sharing_events",
+    "employment_events",
+    "enrollment_admissions",
+    "evaluation_policies",
+    "evaluation_policy_exams",
+    "evaluation_states",
+    "final_results",
+    "grade_publications",
+    "internal_support_replies",
+    "internal_support_tickets",
+    "job_titles",
+    "media_assets",
+    "organization_assignments",
+    "organization_units",
+    "payment_orders",
+    "payment_outbox",
+    "payment_provider_events",
+    "payment_provider_transactions",
+    "payment_reconcile_operations",
+    "personnel_code_numbers",
+    "placement_assessments",
+    "placement_exceptions",
+    "program_levels",
+    "programs",
+    "published_grades",
+    "result_reopens",
+    "student_account_provisionings",
+    "student_code_numbers",
+    "student_notification_outbox",
+    "student_notification_preferences",
+    "student_notifications",
+    "student_push_deliveries",
+    "student_push_devices",
+    "student_support_messages",
+    "student_support_operations",
+    "student_support_requests",
+    "student_support_status_events",
+    "teacher_profile_events",
+    "user_preferences",
+    "website_edit_events",
+    "website_inquiries",
+    "website_publications",
+    "website_teacher_profiles"
+  ],
+  "scope": "Physical ERD; logical cross-service references require code review and are not inferred as FK constraints."
+}

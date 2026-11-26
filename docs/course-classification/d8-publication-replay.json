@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "passes": 2,
+  "unchangedPerPass": 40,
+  "newEditorialEvents": 0,
+  "liveDataModified": false,
+  "scope": "authenticated publication replay on isolated MySQL copy"
+}

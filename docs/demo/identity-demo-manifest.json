@@ -1,0 +1,33 @@
+{
+  "generatedFor": "2026-11-14",
+  "password": "Demo@123456",
+  "accounts": 41,
+  "branches": 2,
+  "personnel": 10,
+  "teachers": 4,
+  "staff": 4,
+  "admins": 2,
+  "students": 30,
+  "courses": 6,
+  "classes": 8,
+  "sessions": 64,
+  "enrollments": 28,
+  "receipts": 20,
+  "publications": 2,
+  "unregisteredStudents": [
+    "HV0015",
+    "HV0030"
+  ],
+  "minorStudents": [
+    "HV0003",
+    "HV0018"
+  ],
+  "reservedStudent": "HV0013",
+  "studentWithPublishedGrades": "hv0003",
+  "sharedBranchTeachers": [
+    "teacher1",
+    "teacher4"
+  ],
+  "start": "2026-11-02",
+  "upcoming": "2026-11-16"
+}

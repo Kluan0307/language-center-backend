@@ -79,12 +79,12 @@ class ExpansionTest {
   }
 
   @Test
-  void missingOperationalSourcesAreExplicitlyUnsupported() {
-    for (String question :
-        List.of("Phòng trống tối nay?", "Giáo viên rảnh ngày mai?", "Học viên vắng nhiều?"))
-      assertEquals("UNSUPPORTED_CAPABILITY", harness.ask(question).status());
+  void operationalQueriesRequireWindowOrUseDefinedAbsenceCriteria() {
+    for (String question : List.of("Phòng trống tối nay?", "Giáo viên rảnh ngày mai?"))
+      assertEquals("CLARIFICATION_REQUIRED", harness.ask(question).status());
     assertEquals(0, harness.model.count);
     assertTrue(harness.backend.calls.isEmpty());
+    assertEquals("ANSWER", harness.ask("Học viên vắng nhiều?").status());
   }
 
   @Test

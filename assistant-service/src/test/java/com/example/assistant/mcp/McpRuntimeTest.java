@@ -131,6 +131,30 @@ class McpRuntimeTest {
             case "receipts" -> "search_receipts";
             case "priority-leads" -> "list_priority_leads";
             case "usage-help" -> "get_usage_help";
+            case "debt-statistics" -> "get_debt_statistics";
+            case "cash-flow" -> "get_cash_flow";
+            case "cash-comparison" -> "compare_cash_flow";
+            case "leads" -> "search_leads";
+            case "care-statistics" -> "get_care_statistics";
+            case "support-requests" -> "search_support_requests";
+            case "support-statistics" -> "get_support_statistics";
+            case "center-statistics" -> "get_center_statistics";
+            case "management-accounts" -> "find_management_accounts";
+            case "account-statistics" -> "get_account_statistics";
+            case "course-admissions" -> "search_course_admissions";
+            case "rooms" -> "search_rooms";
+            case "available-teachers" -> "find_available_teachers";
+            case "academic-statistics" -> "get_academic_statistics";
+            case "student-profile" -> "get_student_profile";
+            case "roster-statistics" -> "get_roster_statistics";
+            case "attendance-summary" -> "get_attendance_summary";
+            case "missing-attendance" -> "list_missing_attendance";
+            case "exams" -> "list_learning_exams";
+            case "personnel" -> "find_personnel";
+            case "personnel-profile" -> "get_personnel_profile";
+            case "personnel-statistics" -> "get_personnel_statistics";
+            case "my-personnel-profile" -> "get_my_personnel_profile";
+            case "teacher-classes" -> "get_teacher_classes";
             default -> "unexpected";
           };
       String mode = query.getOrDefault("scopeMode", "ACTIVE_BRANCH");
@@ -195,7 +219,7 @@ class McpRuntimeTest {
     try (var s = open()) {
       assertTrue(s.protocolClient().isInitialized());
       assertNotNull(s.protocolClient().getCurrentInitializationResult().protocolVersion());
-      assertEquals(12, s.tools().size());
+      assertEquals(35, s.tools().size());
       var r = s.call("search_courses", Map.of("maxTuition", 5000000, "maxInclusive", false));
       assertEquals(false, r.isError());
       assertNotNull(r.structuredContent());
@@ -216,7 +240,7 @@ class McpRuntimeTest {
     role = "TEACHER";
     try (var s = open()) {
       var names = s.tools().stream().map(McpSchema.Tool::name).toList();
-      assertEquals(8, names.size());
+      assertEquals(16, names.size());
       assertFalse(names.contains("search_tuitions"));
       assertFalse(names.contains("list_priority_leads"));
       assertFalse(names.contains("get_student_statistics"));
@@ -286,6 +310,20 @@ class McpRuntimeTest {
           List.of("execute_sql", "http_request", "delete_student", "../auth/me", "POST /payments"))
         error(s.call(tool, Map.of()));
       assertEquals(0, dataCalls().size());
+    }
+  }
+
+  @Test
+  void canonicalCourseFiltersAreForwardedAndLegacyTypeIsNotAToolArgument() {
+    try (var s = open()) {
+      assertFalse(s.call("search_courses", Map.of("programCode", "IELTS", "audienceCode", "SECONDARY")).isError());
+      assertEquals("IELTS", dataCalls().getLast().query().get("programCode"));
+      assertEquals("SECONDARY", dataCalls().getLast().query().get("audienceCode"));
+      int before = dataCalls().size();
+      error(s.call("search_courses", Map.of("audienceCode", "THCS")));
+      error(s.call("search_courses", Map.of("programCode", "CEFR")));
+      error(s.call("search_courses", Map.of("type", "IELTS")));
+      assertEquals(before, dataCalls().size());
     }
   }
 
@@ -414,30 +452,39 @@ class McpRuntimeTest {
   @Test
   void allRegisteredToolsUseTheirFiniteC2GetMappings() {
     try (var s = open()) {
-      Map<String, Map<String, Object>> inputs =
+      var inputs = new HashMap<String, Map<String, Object>>();
+      inputs.put("get_personnel_profile", Map.of("personnelId", 11));
+      inputs.put("get_teacher_classes", Map.of("teacherId", 11));
+      inputs.put("get_student_classes", Map.of("studentId", 11));
+      inputs.put("get_student_profile", Map.of("studentId", 11));
+      inputs.put("list_sessions", Map.of("from", "2026-11-13", "to", "2026-11-14"));
+      inputs.put("get_attendance_summary", Map.of("from", "2026-11-01", "to", "2026-11-14"));
+      inputs.put("list_missing_attendance", inputs.get("get_attendance_summary"));
+      inputs.put("get_session_attendance", Map.of("sessionId", 1));
+      inputs.put("get_learning_results", Map.of("studentId", 11, "enrollmentId", 111));
+      inputs.put("get_usage_help", Map.of("topic", "WEEKLY_CALENDAR"));
+      inputs.put(
+          "find_available_teachers",
+          Map.of("from", "2026-11-14", "startTime", "18:00", "endTime", "20:00"));
+      inputs.put("get_cash_flow", Map.of("from", "2026-11-01", "to", "2026-11-10"));
+      inputs.put(
+          "compare_cash_flow",
           Map.of(
-              "get_student_classes",
-              Map.of("studentId", 11),
-              "list_sessions",
-              Map.of("from", "2026-11-13", "to", "2026-11-14"),
-              "get_session_attendance",
-              Map.of("sessionId", 1),
-              "get_learning_results",
-              Map.of("studentId", 11, "enrollmentId", 111),
-              "get_usage_help",
-              Map.of("topic", "WEEKLY_CALENDAR"));
-      // A new private session after eight calls also proves sessions do not share a call budget.
+              "from",
+              "2026-11-01",
+              "to",
+              "2026-11-10",
+              "compareFrom",
+              "2026-11-11",
+              "compareTo",
+              "2026-11-20"));
       var names = s.tools().stream().map(McpSchema.Tool::name).toList();
-      int i = 0;
-      for (String name : names) {
-        if (i++ == 8) break;
-        assertFalse(s.call(name, inputs.getOrDefault(name, Map.of())).isError(), name);
-      }
-      try (var second = open()) {
-        for (String name : names.subList(8, names.size()))
-          assertFalse(second.call(name, inputs.getOrDefault(name, Map.of())).isError(), name);
-      }
-      assertEquals(12, dataCalls().size());
+      for (int offset = 0; offset < names.size(); offset += 8)
+        try (var session = open()) {
+          for (String name : names.subList(offset, Math.min(offset + 8, names.size())))
+            assertFalse(session.call(name, inputs.getOrDefault(name, Map.of())).isError(), name);
+        }
+      assertEquals(35, dataCalls().size());
       assertTrue(
           dataCalls().stream()
               .allMatch(r -> r.method().equals("GET") && r.path().contains("/assistant-query/")));

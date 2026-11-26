@@ -1,0 +1,15 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const backend=path.resolve(__dirname,'..'),docs=path.join(backend,'docs/course-classification'),out=path.join(backend,'tmp/website-l67');
+const result=JSON.parse(fs.readFileSync(path.join(out,'result.json'),'utf8'));assert.equal(result.status,'passed');assert.equal(result.checks.length,207);
+fs.copyFileSync(path.join(out,'result.json'),path.join(docs,'website-ui-u456-result.json'));
+fs.copyFileSync(path.join(out,'ui-u456-pages.json'),path.join(docs,'website-ui-u456-pages.json'));
+const screenshots=path.join(docs,'website-ui-u456-after');fs.mkdirSync(screenshots,{recursive:true});
+for(const name of fs.readdirSync(out).filter(n=>n.endsWith('.png')&&(n.startsWith('u456-')||n.startsWith('consultation-'))))fs.copyFileSync(path.join(out,name),path.join(screenshots,name));
+const roadmap=path.join(docs,'website-ui-roadmap.md');let plan=fs.readFileSync(roadmap,'utf8');
+plan=plan.replace('U1–U3 hoàn thành; U4–U7 chưa thực hiện','U1–U6 hoàn thành; U7 chưa thực hiện');
+if(!plan.includes('[Bàn giao U4–U6'))plan=plan.replace('## Cơ sở kiểm tra','[Bàn giao U4–U6, 207 kiểm tra và ảnh sau sửa](u4-u6-handoff.md). Build, TypeScript và lint toàn website đạt. Chưa nghiệm thu lại MySQL thật/thiết bị thật ở U7.\n\n## Cơ sở kiểm tra');
+fs.writeFileSync(roadmap,plan);
+const summary='**Website U4–U6 (20/11/2026):** chỉnh danh sách/bộ lọc, trang chi tiết và form tư vấn; giữ ngữ cảnh khi đổi trang, sửa tải tùy chọn và retry. Build/TypeScript/lint toàn website đạt, 207 kiểm tra fixture đạt. U7 còn nghiệm thu backend/MySQL và thiết bị thật. ';
+const readme=path.join(backend,'README.md');let text=fs.readFileSync(readme,'utf8');if(!text.startsWith('**Website U4–U6'))fs.writeFileSync(readme,summary+'[Bàn giao và ảnh](docs/course-classification/u4-u6-handoff.md).\n\n'+text);
+const websiteReadme='D:/hoctap/KLTN/language-center/language-center-website/README.md';text=fs.readFileSync(websiteReadme,'utf8');if(!text.startsWith('**Website U4–U6'))fs.writeFileSync(websiteReadme,summary+'[Bàn giao và ảnh](../language-center-backend/language-center-backend/docs/course-classification/u4-u6-handoff.md).\n\n'+text);
+console.log(JSON.stringify({published:true,checks:result.checks.length,pages:JSON.parse(fs.readFileSync(path.join(out,'ui-u456-pages.json'),'utf8')).pages.length}));

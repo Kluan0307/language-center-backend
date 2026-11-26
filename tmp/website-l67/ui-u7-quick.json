@@ -1,0 +1,47 @@
+{
+  "browser": "Chrome",
+  "pages": [],
+  "zoom": [],
+  "actualZoom": [
+    {
+      "route": "/",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    },
+    {
+      "route": "/khoa-hoc",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    },
+    {
+      "route": "/khoa-hoc/giao-tiep-a1",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    },
+    {
+      "route": "/tu-van",
+      "width": 711,
+      "height": 402,
+      "dpr": 2,
+      "visualScale": 1
+    }
+  ],
+  "fonts": [
+    {
+      "familyName": "Be Vietnam Pro SemiBold",
+      "postScriptName": "BeVietnamPro-SemiBold",
+      "isCustomFont": true,
+      "glyphCount": 29
+    }
+  ],
+  "limitations": [
+    "No physical phone connected"
+  ],
+  "source": "Keyboard/zoom on isolated API fixture"
+}

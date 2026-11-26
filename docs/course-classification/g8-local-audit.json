@@ -1,0 +1,61 @@
+{
+  "readOnly": true,
+  "database": "local language_center_db",
+  "observedAt": "2026-11-16T13:36:35.817Z",
+  "integrityPassed": true,
+  "data": {
+    "courses": 16,
+    "programCatalog": [
+      {
+        "code": "GE",
+        "active": 1
+      },
+      {
+        "code": "IELTS",
+        "active": 1
+      },
+      {
+        "code": "TOEIC",
+        "active": 1
+      },
+      {
+        "code": "COMMUNICATION",
+        "active": 1
+      }
+    ],
+    "audienceCatalog": [
+      {
+        "code": "PRESCHOOL",
+        "active": 1
+      },
+      {
+        "code": "PRIMARY",
+        "active": 1
+      },
+      {
+        "code": "SECONDARY",
+        "active": 1
+      },
+      {
+        "code": "HIGH_SCHOOL",
+        "active": 1
+      },
+      {
+        "code": "ADULT",
+        "active": 1
+      }
+    ],
+    "legacyTypeValues": 16,
+    "coursesWithProgram": 16,
+    "multiAudienceCourses": 0,
+    "orphanAudienceCourses": 0,
+    "duplicateAudiencePairs": 0,
+    "coursesWithoutAudiences": 16,
+    "unknownProgramAssignments": 0,
+    "unknownAudienceAssignments": 0,
+    "publicationProgramMismatches": 0,
+    "latestPolicyProgramMismatches": 0
+  },
+  "needsAudienceReview": true,
+  "recordsModified": false
+}

@@ -27,7 +27,9 @@ public class CompletionBridge {
       String state,
       String outcome,
       long academicSourceRevision,
-      String barrierToken) {}
+      String barrierToken,Long gradingReleaseId) {
+    public Result(Long id,Long classId,Long enrollmentId,Long studentId,long revision,String state,String outcome,long academicSourceRevision,String barrierToken){this(id,classId,enrollmentId,studentId,revision,state,outcome,academicSourceRevision,barrierToken,null);}
+  }
 
   public record Results(Long classId, long resultRevision, List<Result> results) {}
 
@@ -62,7 +64,7 @@ public class CompletionBridge {
         || !Objects.equals(r.studentId(), e.getStudent().getId())
         || !Objects.equals(r.enrollmentId(), e.getId())
         || !"CONFIRMED".equals(r.state())
-        || !Set.of("PASS", "FAIL").contains(r.outcome())
+        || !(Set.of("PASS", "FAIL").contains(r.outcome())||"ASSESSED".equals(r.outcome())&&r.gradingReleaseId()!=null)
         || !Objects.equals(r.barrierToken(), b.getToken())
         || r.academicSourceRevision() != b.getSourceRevision())
       throw ApiException.conflict("Kết quả chưa chốt, đã mở lại hoặc nguồn đã thay đổi");

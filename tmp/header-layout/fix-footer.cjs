@@ -1,0 +1,1 @@
+const {fs,path,workspace}=require('../../scripts/docker/data-common.cjs');const p=path.join(workspace,'language-center-web-frontend/src/components/Layout/Sidebar/index.tsx');let s=fs.readFileSync(p,'utf8');s=s.replace("if(key==='logout')logout();}}>","if(key==='logout')logout();}}}>");fs.writeFileSync(p,s);

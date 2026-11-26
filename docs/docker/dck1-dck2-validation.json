@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-11-24T15:20:58.578Z",
+  "phases": {
+    "DCK1": "complete",
+    "DCK2": "complete",
+    "DCK3": "not_started"
+  },
+  "configurationChecks": 18,
+  "imageChecks": 26,
+  "routeBindingTests": 3,
+  "images": [
+    {
+      "service": "auth-service",
+      "image": "language-center/auth-service:local",
+      "id": "sha256:1aa90384843eb55b885b51ef1272d0d20a1ba68a866880df68b55e075afaffbb"
+    },
+    {
+      "service": "academic-service",
+      "image": "language-center/academic-service:local",
+      "id": "sha256:d54ea0590aac73fd0d13307af8710ff341d0fdf45eeae408844bef0d0d43510c"
+    },
+    {
+      "service": "teaching-service",
+      "image": "language-center/teaching-service:local",
+      "id": "sha256:d06974f07b2d0498fd043a5c376ce20774cae66cb91456372f07b1b5ba32f051"
+    },
+    {
+      "service": "finance-service",
+      "image": "language-center/finance-service:local",
+      "id": "sha256:d7fca2be50e54ba99c396400beb41e74e7742b11c1e2d391a8a14e4ef1f611e4"
+    },
+    {
+      "service": "api-gateway",
+      "image": "language-center/api-gateway:local",
+      "id": "sha256:b47eae43ff105746d4fba120d5fdb8400f5feef866b8f3fc4a697af4abc00687"
+    },
+    {
+      "service": "assistant-service",
+      "image": "language-center/assistant-service:local",
+      "id": "sha256:5ea971c736cc29524b44bd1aba782f98c4a949eec65c9d5a81989e6a0841fd59"
+    }
+  ],
+  "runtimeSmoke": [
+    "api-gateway",
+    "assistant-service"
+  ],
+  "temporaryContainersRemoved": true,
+  "sourceDatabaseTouched": false,
+  "composeCreated": false,
+  "limitations": [
+    "Four DB services inspected as images/JARs; MySQL/container-network integration is DCK3/DCK5",
+    "No Compose or database restore performed",
+    "Business Maven tests skipped for packaging builds"
+  ]
+}

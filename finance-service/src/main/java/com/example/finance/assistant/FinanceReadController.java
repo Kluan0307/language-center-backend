@@ -5,14 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@org.springframework.stereotype.Component
+// Legacy Java adapter; HTTP handlers live in FinanceInsightController.
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/finance/assistant-query")
 @PreAuthorize("hasAnyRole('SUPER_ADMIN','ADMIN','STAFF')")
 public class FinanceReadController {
   private final FinanceReadService service;
 
-  @GetMapping("/tuitions")
   public ReadQuery.Result tuitions(
       @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
       @RequestParam(required = false) Long branchId,
@@ -25,7 +24,6 @@ public class FinanceReadController {
     return service.tuitions(scopeMode, branchId, studentId, classId, overdue, status, page, size);
   }
 
-  @GetMapping("/receipts")
   public ReadQuery.Result receipts(
       @RequestParam(defaultValue = "ACTIVE_BRANCH") ReadQuery.Mode scopeMode,
       @RequestParam(required = false) Long branchId,

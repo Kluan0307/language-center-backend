@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-11-25T08:56:53.830Z",
+  "status": "passed",
+  "passed": 23,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "All containers healthy",
+      "status": "passed"
+    },
+    {
+      "name": "Gateway readiness UP",
+      "status": "passed"
+    },
+    {
+      "name": "Docker DB has 88 tables with data",
+      "status": "passed"
+    },
+    {
+      "name": "Login superadmin",
+      "status": "passed"
+    },
+    {
+      "name": "Login admin1",
+      "status": "passed"
+    },
+    {
+      "name": "Login staff1",
+      "status": "passed"
+    },
+    {
+      "name": "Login teacher1",
+      "status": "passed"
+    },
+    {
+      "name": "Login student hv0006",
+      "status": "passed"
+    },
+    {
+      "name": "Unauthenticated request returns 401",
+      "status": "passed"
+    },
+    {
+      "name": "Teacher cannot access leads (403)",
+      "status": "passed"
+    },
+    {
+      "name": "Student cannot access leads (403)",
+      "status": "passed"
+    },
+    {
+      "name": "Admin can list leads",
+      "status": "passed"
+    },
+    {
+      "name": "Superadmin can list accounts",
+      "status": "passed"
+    },
+    {
+      "name": "Teacher can view own schedule",
+      "status": "passed"
+    },
+    {
+      "name": "Web admin serves login page",
+      "status": "passed"
+    },
+    {
+      "name": "Website serves homepage",
+      "status": "passed"
+    },
+    {
+      "name": "Gateway serves public catalog",
+      "status": "passed"
+    },
+    {
+      "name": "Staff can read own-branch students",
+      "status": "passed"
+    },
+    {
+      "name": "Admin cannot read unassigned branch",
+      "status": "passed"
+    },
+    {
+      "name": "Student can read own enrollment",
+      "status": "passed"
+    },
+    {
+      "name": "Student tuition and receipts reach Finance",
+      "status": "passed"
+    },
+    {
+      "name": "Next BFF loads published course data",
+      "status": "passed"
+    },
+    {
+      "name": "Actuator env endpoint is hidden (401/403/404)",
+      "status": "passed"
+    }
+  ],
+  "rowsInDocker": 8888,
+  "accounts": 419,
+  "students": 400,
+  "gateway": "http://127.0.0.1:18080"
+}

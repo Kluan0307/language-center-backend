@@ -1,0 +1,10 @@
+const fs=require('node:fs'),root='D:/hoctap/KLTN/language-center/language-center-website/';
+let css=fs.readFileSync(root+'src/app/pages.css','utf8');
+css=css.replace('max-width: 850px; padding-block: 32px','max-width: 850px; padding-block: 24px');
+css=css.replace('margin-bottom: 20px; }\n.breadcrumbs a','margin-bottom: 16px; }\n.breadcrumbs a');
+css=css.replace('gap: 16px; padding: 24px; border:','gap: 16px; padding: 20px; border:');
+css=css.replace('margin-block: 4px 20px','margin-block: 4px 16px');
+fs.writeFileSync(root+'src/app/pages.css',css);
+const branch=root+'src/app/chi-nhanh/[slug]/page.tsx';let b=fs.readFileSync(branch,'utf8');b=b.replace('key={c.slug} course={c}/>', 'key={c.slug} course={c} branch={b.slug}/>');fs.writeFileSync(branch,b);
+const programs=root+'src/app/chuong-trinh/page.tsx';let p=fs.readFileSync(programs,'utf8');p=p.replace('page>0 && <Link','!goal && page>0 && <Link').replace('result.hasNext && <Link','!goal && result.hasNext && <Link');fs.writeFileSync(programs,p);
+console.log('Reduced page rhythm and kept branch detail context.');

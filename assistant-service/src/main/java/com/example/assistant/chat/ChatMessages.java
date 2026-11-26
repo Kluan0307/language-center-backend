@@ -50,7 +50,14 @@ public final class ChatMessages {
       case "NEED_STUDENT" -> "Bạn hãy cung cấp tên hoặc mã học viên để xác định đúng người.";
       case "NEED_CLASS" -> "Bạn hãy cung cấp mã hoặc chọn đúng lớp cần xem.";
       case "NEED_SESSION" -> "Bạn hãy chọn đúng buổi học cần xem điểm danh.";
-      case "NEED_DATE" -> "Bạn muốn xem lịch vào ngày hoặc tuần nào?";
+      case "NEED_DATE" -> "Bạn muốn tra cứu vào ngày hoặc khoảng thời gian nào?";
+      case "NEED_CLASSIFICATION" -> "Bạn hãy chọn một chương trình và một nhóm đối tượng cho mỗi lần tra cứu. Một khóa có thể thuộc nhiều nhóm nên không thể cộng tổng các nhóm để đếm khóa.";
+      case "NEED_FINANCE_METRIC" ->
+          "Bạn muốn xem thực thu (tiền đã thu trừ hủy/hoàn trong kỳ) phải không? Hệ thống hiện chưa"
+              + " có báo cáo doanh thu ghi nhận theo thời gian học.";
+      case "NEED_TIME_RANGE" ->
+          "Bạn hãy cung cấp ngày cụ thể (YYYY-MM-DD) và giờ bắt đầu, kết thúc (HH:mm) để kiểm tra"
+              + " lịch trùng.";
       case "NEED_RANGE" ->
           "Mức tiền tối thiểu đang lớn hơn mức tối đa. Bạn hãy xác nhận lại khoảng học phí muốn"
               + " tìm.";

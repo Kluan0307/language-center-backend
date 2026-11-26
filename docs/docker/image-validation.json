@@ -1,0 +1,132 @@
+{
+  "checkedAt": "2026-11-24T15:18:47.726Z",
+  "status": "passed",
+  "checks": [
+    "auth-service metadata: non-root, PID1, profile, port, health and no baked secrets",
+    "auth-service runtime filesystem is minimal and document path is writable by app user",
+    "auth-service executable JAR contains Docker profile and no host environment/storage",
+    "academic-service metadata: non-root, PID1, profile, port, health and no baked secrets",
+    "academic-service runtime filesystem is minimal and document path is writable by app user",
+    "academic-service executable JAR contains Docker profile and no host environment/storage",
+    "teaching-service metadata: non-root, PID1, profile, port, health and no baked secrets",
+    "teaching-service runtime filesystem is minimal and document path is writable by app user",
+    "teaching-service executable JAR contains Docker profile and no host environment/storage",
+    "finance-service metadata: non-root, PID1, profile, port, health and no baked secrets",
+    "finance-service runtime filesystem is minimal and document path is writable by app user",
+    "finance-service executable JAR contains Docker profile and no host environment/storage",
+    "api-gateway metadata: non-root, PID1, profile, port, health and no baked secrets",
+    "api-gateway runtime filesystem is minimal and document path is writable by app user",
+    "api-gateway executable JAR contains Docker profile and no host environment/storage",
+    "assistant-service metadata: non-root, PID1, profile, port, health and no baked secrets",
+    "assistant-service runtime filesystem is minimal and document path is writable by app user",
+    "assistant-service executable JAR contains Docker profile and no host environment/storage",
+    "api-gateway runs with prod,docker and responds through published loopback port",
+    "api-gateway in-container readiness probe succeeds",
+    "api-gateway does not expose actuator environment",
+    "api-gateway handles SIGTERM without forced kill",
+    "assistant-service runs with prod,docker and responds through published loopback port",
+    "assistant-service in-container readiness probe succeeds",
+    "assistant-service does not expose actuator environment",
+    "assistant-service handles SIGTERM without forced kill"
+  ],
+  "images": [
+    {
+      "service": "auth-service",
+      "image": "language-center/auth-service:local",
+      "id": "sha256:1aa90384843eb55b885b51ef1272d0d20a1ba68a866880df68b55e075afaffbb",
+      "size": 155851655,
+      "user": "10001:10001",
+      "port": 8081,
+      "healthcheck": true,
+      "jarSha256": "a68d01ae4d9b6db415d88392f8c5fe20560790ad405ee402f532e0e17e11e565"
+    },
+    {
+      "service": "academic-service",
+      "image": "language-center/academic-service:local",
+      "id": "sha256:d54ea0590aac73fd0d13307af8710ff341d0fdf45eeae408844bef0d0d43510c",
+      "size": 156307863,
+      "user": "10001:10001",
+      "port": 8082,
+      "healthcheck": true,
+      "jarSha256": "39af28edb7c53b9c68f5f3958ff9f50a4ab15e6b0ee3c4e4194cd393caa72bce"
+    },
+    {
+      "service": "teaching-service",
+      "image": "language-center/teaching-service:local",
+      "id": "sha256:d06974f07b2d0498fd043a5c376ce20774cae66cb91456372f07b1b5ba32f051",
+      "size": 155855584,
+      "user": "10001:10001",
+      "port": 8083,
+      "healthcheck": true,
+      "jarSha256": "aff66ea3ced56c7b3095bf369a42ab24b9782225730fe987a72358cf91cc5248"
+    },
+    {
+      "service": "finance-service",
+      "image": "language-center/finance-service:local",
+      "id": "sha256:d7fca2be50e54ba99c396400beb41e74e7742b11c1e2d391a8a14e4ef1f611e4",
+      "size": 155859218,
+      "user": "10001:10001",
+      "port": 8084,
+      "healthcheck": true,
+      "jarSha256": "d2461cf003852e688b2d0c72d57481d48fcbb41f53e96b4191bf623052ac49cf"
+    },
+    {
+      "service": "api-gateway",
+      "image": "language-center/api-gateway:local",
+      "id": "sha256:b47eae43ff105746d4fba120d5fdb8400f5feef866b8f3fc4a697af4abc00687",
+      "size": 149421867,
+      "user": "10001:10001",
+      "port": 8080,
+      "healthcheck": true,
+      "jarSha256": "ea4314b6d5c6d665886e35fa72f1ceddb8c76c349f786ac28678ddffdeaf5de0"
+    },
+    {
+      "service": "assistant-service",
+      "image": "language-center/assistant-service:local",
+      "id": "sha256:5ea971c736cc29524b44bd1aba782f98c4a949eec65c9d5a81989e6a0841fd59",
+      "size": 127574490,
+      "user": "10001:10001",
+      "port": 8086,
+      "healthcheck": true,
+      "jarSha256": "cca978a84b8812ad09126f653131d12730e11276c74bd16bb55144930901539f"
+    }
+  ],
+  "bases": [
+    {
+      "image": "maven:3-eclipse-temurin-21-jammy",
+      "digests": [
+        "maven@sha256:7f8422bd81f19b9035007a75e2f82272b09af64db08848d7d4e93302466e8b6f"
+      ]
+    },
+    {
+      "image": "eclipse-temurin:21-jre-jammy",
+      "digests": [
+        "eclipse-temurin@sha256:a8bff88f760e87e0c8844f8461f807c203fd5e8f78c951c843024647e965eaf5"
+      ]
+    }
+  ],
+  "smoke": [
+    {
+      "service": "api-gateway",
+      "readiness": true,
+      "publishedPort": true,
+      "probe": true,
+      "protectedActuator": true,
+      "exitCode": 143
+    },
+    {
+      "service": "assistant-service",
+      "readiness": true,
+      "publishedPort": true,
+      "probe": true,
+      "protectedActuator": true,
+      "exitCode": 143
+    }
+  ],
+  "sourceDatabaseTouched": false,
+  "limitations": [
+    "Four DB services inspected as images/JARs; MySQL/container-network integration is DCK3/DCK5",
+    "No Compose or database restore performed",
+    "Business Maven tests skipped for packaging builds"
+  ]
+}

@@ -69,6 +69,15 @@ public class BackendGateway {
     String prefix = "/api/v1/" + target.name().toLowerCase(Locale.ROOT) + "/assistant-query/";
     if (target == Target.AUTH
         ? !fixedPath.equals("/api/v1/auth/me")
+            && !Set.of(
+                    "personnel",
+                    "personnel-profile",
+                    "personnel-statistics",
+                    "my-personnel-profile",
+                    "management-accounts",
+                    "account-statistics")
+                .stream()
+                .anyMatch(endpoint -> fixedPath.equals("/api/v1/auth/assistant-query/" + endpoint))
         : !fixedPath.startsWith(prefix) || !fixedPath.substring(prefix.length()).matches("[a-z-]+"))
       throw new McpFault("FORBIDDEN");
     StringBuilder url = new StringBuilder(origins.get(target).toString()).append(fixedPath);

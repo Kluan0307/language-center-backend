@@ -30,6 +30,7 @@ public class SecurityConfig {
                     .denyAll()
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
                     .permitAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/teaching/student/me/enrollments/*/grading-result","/api/v1/teaching/student/me/enrollments/*/grading-result/export").hasRole("STUDENT")
                     .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/teaching/student/me/enrollments/*/grades","/api/v1/teaching/student/me/enrollments/*/final-result").hasRole("STUDENT")
                     .requestMatchers(org.springframework.http.HttpMethod.GET,"/api/v1/teaching/student/me/documents","/api/v1/teaching/student/me/documents/*/download").hasRole("STUDENT")
                     .anyRequest()

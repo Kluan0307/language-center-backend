@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-16",
+  "backend": [
+    {
+      "name": "WebsiteIntakeWorkflowTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "WebsiteIntakeLimiterTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "WebsiteCatalogTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "WebsiteSecurityTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "LeadCareWorkflowTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "LeadEmploymentTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "MultiBranchSecurityTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "StudentRouteSecurityTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "CourseWriteRulesTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "AcademicServiceApplicationTests",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "AdmissionTransactionTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "StudentLearningTest",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "PlacementWorkflowTest",
+      "tests": 25,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "tests": 106,
+  "browserChecks": 35,
+  "browserStatus": "passed",
+  "managementBuild": "passed",
+  "manualMySqlAndApkAcceptance": "pending",
+  "cmsBrowserInteraction": "not performed"
+}

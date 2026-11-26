@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-26T03:20:33.062Z",
+  "status": "passed",
+  "checks": [
+    "Real MySQL stores linked preferred class and time",
+    "Preview performs placement checks without creating student or enrollment",
+    "One confirmation creates student and enrollment; same request returns same result",
+    "Request identifier cannot be reused with different intent",
+    "Multiple leads can link one existing learner without duplicate profiles",
+    "Receipt recovery returns committed result without repeating enrollment",
+    "Concurrent identical HTTP requests on MySQL create one intake",
+    "Concurrent leads cannot exceed the final available seat on MySQL",
+    "Real lead creation captures preferred class and schedule without a second edit",
+    "Real three-step Ant Design wizard preselects class and completes one-step intake",
+    "Lost confirmation response is recovered by receipt after reopening without duplicate writes",
+    "Profile-only UI creates no enrollment or tuition",
+    "Missing entry assessment blocks confirmation in the real UI",
+    "Main lead/student/enrollment data unchanged"
+  ],
+  "isolatedMySQL": true,
+  "externalFinanceAndTeachingDisabled": true,
+  "mainDataUnchanged": true,
+  "temporaryResourcesCleaned": true
+}

@@ -1,5 +1,13 @@
 # Migration V002 — tài khoản và phiên
 
+**S4–S5 hoàn thành (14/11/2026):** cài đặt theo tài khoản, thông tin trung tâm và ba mục cuối sidebar đã nối đầy đủ. V022 đã áp dụng local. [Bàn giao và kiểm tra desktop/mobile](../improvements/company-settings-s4-s5.md).
+
+**Công ty/Hỗ trợ — S1–S3 (14/11/2026):** cơ cấu, chức vụ, danh bạ công việc và hỗ trợ nội bộ theo role; V021 đã áp dụng local. [Bàn giao và API](../improvements/company-support-s1-s3.md).
+
+**Cập nhật G4–G6 (14/11/2026):** vòng đời nhân sự, ngày kết thúc, người giám hộ, bảo toàn lịch sử và bộ mẫu đã nạp. [Bàn giao, tài khoản mẫu và cách chạy](../improvements/identity-g4-g6.md).
+
+**G1–G3 chuẩn hóa danh tính (14/11/2026):** mã HV ngắn, mã nhân sự NS/GV, chặn đổi role trực tiếp và seed chi nhánh opt-in. Migration V019 đã áp dụng local; chưa nạp dữ liệu mẫu. [Bàn giao và cách chạy](../improvements/identity-g1-g3.md).
+
 ## Cài mới và mốc11/11/2026
 
 Database rỗng: tạo schema rồi chọn schema đó trong MySQL và chạy `SOURCE docs/migrations/schema-v013-clean.sql;` bằng đường dẫn thực trên máy. File chỉ có cấu trúc V013, không có dữ liệu/tài khoản và không DROP bảng; không dùng để sửa database đang có dữ liệu. Đã kiểm tra53bảng/625cột và replay13migration trên schema thử riêng.

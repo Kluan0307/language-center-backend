@@ -20,6 +20,7 @@ public class ProgramCatalogController {
   @PostMapping("/programs")
   @PreAuthorize("hasRole('SUPER_ADMIN')")
   public CatalogDto.ProgramDto create(@Valid @RequestBody CatalogDto.ProgramRequest r) {
+    if(!java.util.List.of("GE","COMMUNICATION","IELTS","TOEIC").contains(r.code().toUpperCase(java.util.Locale.ROOT)))throw com.example.academic.common.ApiException.bad("Chỉ sử dụng mã chương trình chuẩn");
     return service.save(null, r);
   }
 

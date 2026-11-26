@@ -1,0 +1,15 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),docs=path.join(root,'docs/course-classification');
+const folder=path.join(root,'tmp/website-ui-u123'),report=JSON.parse(fs.readFileSync(path.join(folder,'report.json'),'utf8'));
+assert.equal(report.base,'http://127.0.0.1:3000');assert.equal(report.checks.length,55);assert.equal(report.errors.length,0);
+fs.copyFileSync(path.join(folder,'report.json'),path.join(docs,'website-ui-u123-result.json'));
+fs.copyFileSync(path.join(root,'tmp/website-l67/result.json'),path.join(docs,'website-ui-u123-regression.json'));
+const after=path.join(docs,'website-ui-after');fs.mkdirSync(after,{recursive:true});
+for(const name of fs.readdirSync(folder).filter(f=>f.endsWith('.png')))fs.copyFileSync(path.join(folder,name),path.join(after,name));
+const roadmap=path.join(docs,'website-ui-roadmap.md');let plan=fs.readFileSync(roadmap,'utf8');
+plan=plan.replace('Trạng thái: **đã kiểm tra và lập kế hoạch; chưa sửa giao diện**.','Trạng thái cập nhật **20/11/2026: U1–U3 hoàn thành; U4–U7 chưa thực hiện**. [Bàn giao U1–U3, kiểm chứng và ảnh sau sửa](u1-u3-handoff.md).');
+fs.writeFileSync(roadmap,plan);
+const summary='**Website U1–U3 (20/11/2026):** chuẩn hóa font Việt Be Vietnam Pro local, token, header/sticky và trang chủ responsive. Build/TypeScript và lint phần sửa đạt; 55 kiểm tra UI trên cổng 3000 và 38 hồi quy fixture đạt. Lint toàn website còn lỗi cũ ở form/catalog; U4–U7 còn mở. [Bàn giao và ảnh](docs/course-classification/u1-u3-handoff.md).\n\n';
+const backendReadme=path.join(root,'README.md');let backendText=fs.readFileSync(backendReadme,'utf8');if(!backendText.startsWith('**Website U1–U3'))fs.writeFileSync(backendReadme,summary+backendText);
+const website='D:/hoctap/KLTN/language-center/language-center-website';const websiteReadme=path.join(website,'README.md');let websiteText=fs.readFileSync(websiteReadme,'utf8');if(!websiteText.startsWith('**Website U1–U3'))fs.writeFileSync(websiteReadme,'**Website U1–U3 (20/11/2026):** font Việt local, token, header và trang chủ đã chuẩn hóa; 55 kiểm tra UI và 38 hồi quy đạt. Build và lint phần sửa đạt; U4–U7 còn mở. [Bàn giao, ảnh và cách kiểm tra](../language-center-backend/language-center-backend/docs/course-classification/u1-u3-handoff.md).\n\n'+websiteText);
+console.log('Published U1-U3 report, screenshots and roadmap status.');

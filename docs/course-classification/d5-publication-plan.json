@@ -1,0 +1,349 @@
+{
+  "programSlugs": {
+    "GE": "tieng-anh-tong-quat",
+    "COMMUNICATION": "tieng-anh-giao-tiep",
+    "IELTS": "ielts",
+    "TOEIC": "toeic"
+  },
+  "targets": [
+    {
+      "kind": "PROGRAM",
+      "sourceId": 1,
+      "slug": "tieng-anh-tong-quat",
+      "summary": "Xây nền tảng tiếng Anh qua nghe, nói, đọc và viết. Chọn khóa theo giai đoạn học và mục tiêu của bạn.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh",
+      "outcomes": "Phát triển kỹ năng theo mục tiêu và trình độ của từng khóa."
+    },
+    {
+      "kind": "PROGRAM",
+      "sourceId": 2,
+      "slug": "ielts",
+      "summary": "Làm quen cấu trúc bài thi và luyện tập bốn kỹ năng theo trình độ đầu vào. Mục tiêu từng khóa là định hướng học tập, không phải cam kết điểm thi.",
+      "topics": "Nghe và đọc theo dạng bài\nViết có cấu trúc\nThực hành nói và phản hồi",
+      "outcomes": "Phát triển kỹ năng theo mục tiêu và trình độ của từng khóa."
+    },
+    {
+      "kind": "PROGRAM",
+      "sourceId": 3,
+      "slug": "toeic",
+      "summary": "Rèn luyện kỹ năng nghe và đọc, từ vựng cùng cách tiếp cận các dạng bài TOEIC. Học theo mức nền tảng và mục tiêu phù hợp.",
+      "topics": "Nghe hiểu trong công việc\nĐọc hiểu và từ vựng\nLuyện tập dạng bài TOEIC",
+      "outcomes": "Phát triển kỹ năng theo mục tiêu và trình độ của từng khóa."
+    },
+    {
+      "kind": "PROGRAM",
+      "sourceId": 4,
+      "slug": "tieng-anh-giao-tiep",
+      "summary": "Thực hành tiếng Anh trong các tình huống học tập, công việc và đời sống. Có lộ trình cơ bản và nâng cao.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến",
+      "outcomes": "Phát triển kỹ năng theo mục tiêu và trình độ của từng khóa."
+    },
+    {
+      "kind": "BRANCH",
+      "sourceId": 1,
+      "slug": "cn01",
+      "summary": "Khám phá các khóa học và lịch tuyển sinh tại Cơ sở 1. Gửi yêu cầu để được tư vấn nơi học và thời gian phù hợp."
+    },
+    {
+      "kind": "BRANCH",
+      "sourceId": 2,
+      "slug": "cn02",
+      "summary": "Khám phá các khóa học và lịch tuyển sinh tại Cơ sở 2. Gửi yêu cầu để được tư vấn nơi học và thời gian phù hợp."
+    },
+    {
+      "kind": "BRANCH",
+      "sourceId": 3,
+      "slug": "cn03",
+      "summary": "Khám phá các khóa học và lịch tuyển sinh tại Cơ sở 3. Gửi yêu cầu để được tư vấn nơi học và thời gian phù hợp."
+    },
+    {
+      "kind": "BRANCH",
+      "sourceId": 4,
+      "slug": "cn04",
+      "summary": "Khám phá các khóa học và lịch tuyển sinh tại Cơ sở 4. Gửi yêu cầu để được tư vấn nơi học và thời gian phù hợp."
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 17,
+      "slug": "mg1",
+      "programId": 1,
+      "showTuition": true,
+      "summary": "Mẫu giáo 1 gồm 8 buổi học, tổng 480 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 18,
+      "slug": "mg2",
+      "programId": 1,
+      "showTuition": true,
+      "summary": "Mẫu giáo 2 gồm 8 buổi học, tổng 480 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 19,
+      "slug": "th1",
+      "programId": 1,
+      "showTuition": true,
+      "summary": "Tiểu học 1 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 20,
+      "slug": "th2",
+      "programId": 1,
+      "showTuition": true,
+      "summary": "Tiểu học 2 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 21,
+      "slug": "cs1",
+      "programId": 1,
+      "showTuition": true,
+      "summary": "Tiếng Anh A1 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 22,
+      "slug": "pt1",
+      "programId": 1,
+      "showTuition": true,
+      "summary": "Tiếng Anh B1 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Từ vựng và cấu trúc cơ bản\nNghe hiểu và phát âm\nThực hành trong ngữ cảnh"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 23,
+      "slug": "gt1",
+      "programId": 4,
+      "showTuition": true,
+      "summary": "Giao tiếp cơ bản gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 24,
+      "slug": "gt2",
+      "programId": 4,
+      "showTuition": true,
+      "summary": "Giao tiếp nâng cao gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 25,
+      "slug": "il1",
+      "programId": 2,
+      "showTuition": true,
+      "summary": "IELTS nền tảng gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe và đọc theo dạng bài\nViết có cấu trúc\nThực hành nói và phản hồi"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 26,
+      "slug": "il2",
+      "programId": 2,
+      "showTuition": true,
+      "summary": "IELTS 5.5 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe và đọc theo dạng bài\nViết có cấu trúc\nThực hành nói và phản hồi"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 27,
+      "slug": "il3",
+      "programId": 2,
+      "showTuition": true,
+      "summary": "IELTS 6.5 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe và đọc theo dạng bài\nViết có cấu trúc\nThực hành nói và phản hồi"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 28,
+      "slug": "il4",
+      "programId": 2,
+      "showTuition": true,
+      "summary": "IELTS 7.0 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe và đọc theo dạng bài\nViết có cấu trúc\nThực hành nói và phản hồi"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 29,
+      "slug": "tc1",
+      "programId": 3,
+      "showTuition": true,
+      "summary": "TOEIC nền tảng gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe hiểu trong công việc\nĐọc hiểu và từ vựng\nLuyện tập dạng bài TOEIC"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 30,
+      "slug": "tc2",
+      "programId": 3,
+      "showTuition": true,
+      "summary": "TOEIC 450 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe hiểu trong công việc\nĐọc hiểu và từ vựng\nLuyện tập dạng bài TOEIC"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 31,
+      "slug": "tc3",
+      "programId": 3,
+      "showTuition": true,
+      "summary": "TOEIC 650 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe hiểu trong công việc\nĐọc hiểu và từ vựng\nLuyện tập dạng bài TOEIC"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 32,
+      "slug": "tc4",
+      "programId": 3,
+      "showTuition": true,
+      "summary": "TOEIC 800 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Nghe hiểu trong công việc\nĐọc hiểu và từ vựng\nLuyện tập dạng bài TOEIC"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 33,
+      "slug": "gt-cn01",
+      "programId": 4,
+      "showTuition": true,
+      "summary": "Giao tiếp CN01 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 34,
+      "slug": "gt-cn02",
+      "programId": 4,
+      "showTuition": true,
+      "summary": "Giao tiếp CN02 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 35,
+      "slug": "gt-cn03",
+      "programId": 4,
+      "showTuition": true,
+      "summary": "Giao tiếp CN03 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến"
+    },
+    {
+      "kind": "COURSE",
+      "sourceId": 36,
+      "slug": "gt-cn04",
+      "programId": 4,
+      "showTuition": true,
+      "summary": "Giao tiếp CN04 gồm 8 buổi học, tổng 720 phút. Nội dung và điều kiện đầu vào được đối chiếu với hồ sơ khóa học.",
+      "outcomes": "Thực hành kiến thức của khóa học; nhận phản hồi từ giáo viên và theo dõi kết quả kiểm tra nội bộ.",
+      "topics": "Phát âm và phản xạ\nHội thoại thực tế\nTrình bày ý kiến"
+    },
+    {
+      "kind": "CLASS",
+      "sourceId": 26,
+      "slug": "cn01-l10",
+      "summary": "Mẫu giáo 2 CN01 đang tiếp nhận nhu cầu tư vấn. Xem lịch dự kiến và điều kiện của khóa trước khi đăng ký."
+    },
+    {
+      "kind": "CLASS",
+      "sourceId": 36,
+      "slug": "cn02-l10",
+      "summary": "Mẫu giáo 2 CN02 đang tiếp nhận nhu cầu tư vấn. Xem lịch dự kiến và điều kiện của khóa trước khi đăng ký."
+    },
+    {
+      "kind": "CLASS",
+      "sourceId": 46,
+      "slug": "cn03-l10",
+      "summary": "Mẫu giáo 2 CN03 đang tiếp nhận nhu cầu tư vấn. Xem lịch dự kiến và điều kiện của khóa trước khi đăng ký."
+    },
+    {
+      "kind": "CLASS",
+      "sourceId": 56,
+      "slug": "cn04-l10",
+      "summary": "Mẫu giáo 2 CN04 đang tiếp nhận nhu cầu tư vấn. Xem lịch dự kiến và điều kiện của khóa trước khi đăng ký."
+    }
+  ],
+  "teacherTargets": [
+    {
+      "teacherId": 1,
+      "slug": "giao-vien-1",
+      "biography": "Nguyễn Hải Anh tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 2,
+      "slug": "giao-vien-2",
+      "biography": "Trần Bảo Ngọc tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 3,
+      "slug": "giao-vien-3",
+      "biography": "Lê Quang Minh tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 4,
+      "slug": "giao-vien-4",
+      "biography": "Phạm Thùy Dung tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 5,
+      "slug": "giao-vien-5",
+      "biography": "Nguyễn Minh Đức tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 6,
+      "slug": "giao-vien-6",
+      "biography": "Trần Hải Yến tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 7,
+      "slug": "giao-vien-7",
+      "biography": "Lê Quang Huy tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    },
+    {
+      "teacherId": 8,
+      "slug": "giao-vien-8",
+      "biography": "Phạm Ngọc Lan tham gia giảng dạy các lớp được phân công tại trung tâm. Học viên thực hành theo nội dung khóa học và nhận phản hồi trong quá trình học.",
+      "teachingFocus": "Thực hành kỹ năng tiếng Anh theo mục tiêu khóa học",
+      "showQualification": false
+    }
+  ],
+  "scope": "local demonstration data; no exam-score guarantees or unreviewed qualifications"
+}

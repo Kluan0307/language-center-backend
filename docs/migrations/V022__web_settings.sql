@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS user_preferences(account_id BIGINT NOT NULL PRIMARY KEY,version BIGINT NOT NULL DEFAULT 0,compact_tables BIT NOT NULL DEFAULT b'0',page_size INT NOT NULL DEFAULT 10,calendar_view VARCHAR(10) NOT NULL DEFAULT 'week',default_branch_id BIGINT NULL) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS company_profile(id BIGINT NOT NULL PRIMARY KEY,version BIGINT NOT NULL DEFAULT 0,name VARCHAR(120) NOT NULL,logo_url VARCHAR(500) NULL,address VARCHAR(255) NULL,email VARCHAR(100) NULL,phone VARCHAR(30) NULL) ENGINE=InnoDB;
+INSERT IGNORE INTO company_profile(id,version,name) VALUES(1,0,'Trung tâm ngoại ngữ');

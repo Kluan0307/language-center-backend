@@ -1,0 +1,26 @@
+/* D6: audience and program navigation use the same blue identity as the apps. */
+.catalogHeader {background:rgba(255,255,255,.98)}
+.catalogHeader .headerInner {height:76px;gap:20px}
+.headerUtility {display:flex;gap:24px;align-items:center;margin-left:auto;font-size:13px;color:var(--muted)}
+.headerUtility a:hover {color:var(--blue)}
+.catalogNav {gap:8px;padding-top:0;padding-bottom:14px;justify-content:space-between;font-size:13px;font-weight:650}
+.catalogNav > a,.navDropdown > summary {display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;min-height:44px;background:var(--cream);border:1px solid transparent;border-radius:24px;color:var(--blue);white-space:nowrap}
+.catalogNav > a:hover,.catalogNav > a[aria-current],.navDropdown[open] > summary,.navDropdown[data-active] > summary {background:var(--lime);border-color:#bfdbfe}
+.navDropdown {position:relative}
+.navDropdown > summary {list-style:none;cursor:pointer}
+.navDropdown > summary::-webkit-details-marker {display:none}
+.navDropdown > summary:focus-visible {outline:3px solid var(--blue);outline-offset:3px}
+.navChevron {font-size:16px;transition:transform .15s}
+.navDropdown[open] .navChevron {transform:rotate(180deg)}
+.navDropdownPanel {position:absolute;top:calc(100% + 8px);left:0;min-width:240px;max-width:320px;padding:8px;background:white;border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 35px rgba(15,23,42,.12);z-index:20}
+.catalogNav > .navDropdown:last-child .navDropdownPanel {left:auto;right:0}
+.catalogNav .navDropdownPanel a {display:block;padding:12px;border-radius:8px;line-height:1.5;white-space:normal}
+.navDropdownPanel a:hover,.navDropdownPanel a[aria-current] {color:var(--blue);background:var(--cream)}
+.catalogMobileNav {max-height:calc(100dvh - 76px);overflow:auto;padding-bottom:24px;overscroll-behavior:contain}
+.catalogMobileNav .navDropdown > summary {border-radius:10px;padding:14px 0;background:transparent;border-bottom:1px solid var(--border);color:var(--navy)}
+.catalogMobileNav .navDropdownPanel {position:static;max-width:none;min-width:0;box-shadow:none;margin:6px 0 12px;background:var(--cream)}
+.catalogMobileNav .navDropdownPanel a {padding:12px;font-size:14px}
+.catalogMobileNav > .button {margin-top:16px;color:white}
+@media(min-width:1101px){.catalogHeader .menuButton{display:none}.catalogHeader .desktopNav{display:flex}}
+@media(max-width:1100px){.catalogHeader .desktopNav,.catalogHeader .headerUtility{display:none}.catalogHeader .menuButton{display:block}.catalogHeader .headerCta{margin-left:auto}.catalogHeader .headerInner{height:76px}}
+@media(max-width:600px){.catalogHeader .headerCta{display:none}.catalogHeader .menuButton{margin-left:auto}.catalogHeader .brandLogo{width:42px;height:42px}.catalogHeader .brand{font-size:14px}}

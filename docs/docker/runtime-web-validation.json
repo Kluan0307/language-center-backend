@@ -1,0 +1,97 @@
+{
+  "checkedAt": "2026-11-25T08:56:59.909Z",
+  "status": "passed",
+  "checks": [
+    "Root wrapper matches services",
+    "Root wrapper matches networks",
+    "Root wrapper matches volumes",
+    "All nine containers healthy",
+    "Admin root serves HTML",
+    "HTML is not permanently cached",
+    "Admin liveness",
+    "SPA deep links resolve index",
+    "Missing asset returns 404",
+    "Hashed JS cached immutable",
+    "Browser bundle uses same-origin API",
+    "Auth request reaches backend",
+    "API errors never fall back to SPA",
+    "Admin proxy reaches catalog",
+    "Gateway allows http://localhost:15173",
+    "Gateway allows http://localhost:13000",
+    "Foreign CORS denied",
+    "Website HTTP 200 /api/health?check=ready",
+    "Website HTTP 200 /",
+    "Website HTTP 200 /khoa-hoc",
+    "Website HTTP 200 /chuong-trinh",
+    "Website HTTP 200 /chi-nhanh",
+    "Website HTTP 200 /giao-vien",
+    "Website HTTP 200 /tu-van",
+    "Website HTTP 200 /robots.txt",
+    "Website HTTP 200 /sitemap.xml",
+    "Vietnamese HTML and local canonical",
+    "Local website not indexable",
+    "Next BFF reaches Docker gateway",
+    "Form key accepted by backend; invalid data rejected",
+    "Foreign form origin rejected",
+    "Form body limit enforced",
+    "web-admin nonroot/read-only/capabilities",
+    "web-admin image has no runtime secrets",
+    "website nonroot/read-only/capabilities",
+    "website image has no runtime secrets",
+    "Website private key absent from browser assets",
+    "Docker business table counts readable"
+  ],
+  "urls": {
+    "admin": "http://127.0.0.1:15173",
+    "site": "http://127.0.0.1:13000",
+    "gateway": "http://127.0.0.1:18080"
+  },
+  "services": [
+    {
+      "name": "academic-service",
+      "health": "healthy"
+    },
+    {
+      "name": "api-gateway",
+      "health": "healthy"
+    },
+    {
+      "name": "assistant-service",
+      "health": "healthy"
+    },
+    {
+      "name": "auth-service",
+      "health": "healthy"
+    },
+    {
+      "name": "finance-service",
+      "health": "healthy"
+    },
+    {
+      "name": "mysql",
+      "health": "healthy"
+    },
+    {
+      "name": "teaching-service",
+      "health": "healthy"
+    },
+    {
+      "name": "web-admin",
+      "health": "healthy"
+    },
+    {
+      "name": "website",
+      "health": "healthy"
+    }
+  ],
+  "sourceDatabaseWritten": false,
+  "data": {
+    "accounts": 419,
+    "students": 400,
+    "courses": 20,
+    "leads": 80
+  },
+  "limitations": [
+    "Physical student device not connected."
+  ]
+}

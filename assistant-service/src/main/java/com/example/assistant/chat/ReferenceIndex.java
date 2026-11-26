@@ -39,16 +39,33 @@ final class ReferenceIndex {
   }
 
   void collect(ChatModels.Evidence evidence) {
+    if (evidence.payload().get("data") instanceof Map<?, ?> parent)
+      for (String key : List.of("examId", "classId", "sessionId", "studentId", "enrollmentId"))
+        add(key, parent.get(key));
+    if (evidence.tool().equals("get_my_personnel_profile")
+        && evidence.payload().get("data") instanceof Map<?, ?> self) {
+      add("personnelId", self.get("id"));
+      add("teacherId", self.get("id"));
+    }
     String key =
         switch (evidence.tool()) {
           case "search_courses" -> "courseId";
           case "search_classes" -> "classId";
           case "find_students" -> "studentId";
+          case "find_personnel", "get_my_personnel_profile" -> "personnelId";
           case "list_sessions" -> "sessionId";
+          case "list_learning_exams" -> "examId";
           case "search_tuitions" -> "tuitionId";
+          case "search_receipts" -> "receiptId";
+          case "search_leads" -> "leadId";
+          case "find_management_accounts" -> "accountId";
           default -> null;
         };
     for (var row : rows(evidence.payload().get("data"))) {
+      if (evidence.tool().equals("find_management_accounts")
+          && "STAFF".equals(row.get("accountRole"))) add("assigneeId", row.get("accountId"));
+      if (evidence.tool().equals("find_personnel") && "TEACHER".equals(row.get("kind")))
+        add("teacherId", row.get("id"));
       if (key != null) add(key, row.get("id"));
       for (var entry : row.entrySet())
         if (entry.getKey().endsWith("Id")) add(entry.getKey(), entry.getValue());

@@ -1,0 +1,5 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),{decide}=require('./course-classification-rules.cjs');
+test('uses confirmed policy and exact types only',()=>{assert.equal(decide({legacyType:'IELTS',policyCode:'IELTS',policyMode:'OPEN_ENTRY',policyId:1}).suggested,'IELTS');assert.equal(decide({legacyType:'Giao tiếp'}).suggested,'COMMUNICATION');});
+test('does not guess from course name or an age label',()=>{assert.equal(decide({name:'IELTS 5.5',legacyType:'Tiểu học'}).status,'REVIEW');});
+test('blocks conflicts including website mapping',()=>{assert.equal(decide({legacyType:'GE',policyCode:'IELTS',policyMode:'OPEN_ENTRY'}).status,'CONFLICT');assert.equal(decide({legacyType:'GE',websiteProgramCode:'TOEIC'}).status,'CONFLICT');});
+test('preserves existing assignments and does not trust unverified policies',()=>{assert.equal(decide({currentProgramId:1,currentProgramCode:'GE'}).status,'PRESERVED');assert.equal(decide({policyId:1,policyCode:'IELTS',policyMode:'UNVERIFIED',legacyType:'IELTS'}).status,'REVIEW');});

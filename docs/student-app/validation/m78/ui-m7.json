@@ -1,0 +1,171 @@
+{
+  "status": "passed",
+  "checks": [
+    "measured class detail request count: 1",
+    "shared class context reuses one owned response",
+    "last published grade stays readable during temporary outage",
+    "manual refresh recovers without changing screens",
+    "forbidden response removes previously cached grades",
+    "resume outage keeps the unsent draft",
+    "resume does not return to login",
+    "reconnection preserves the draft",
+    "new account cannot see previous account class data",
+    "new account fetches fresh private data",
+    "no uncaught browser runtime exceptions"
+  ],
+  "requests": [
+    {
+      "path": "/api/v1/auth/login",
+      "method": "POST"
+    },
+    {
+      "path": "/api/v1/auth/me",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications/unread-count",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/next-session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications?unread=true&category=SCHEDULE&size=2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments?group=CURRENT&page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments/1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/grades?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/final-result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments/1/attendance?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/grades?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/final-result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments/1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/grades?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/final-result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/grades?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/final-result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/grades?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/auth/me",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications/unread-count",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments/1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/auth/me",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments/1",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/grades?page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/teaching/student/me/enrollments/1/final-result",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments?group=ALL&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/schedule?from=2026-11-09&to=2026-11-15&enrollmentId=1&page=0&size=100",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/profile",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/auth/me/logout-all",
+      "method": "POST"
+    },
+    {
+      "path": "/api/v1/auth/login",
+      "method": "POST"
+    },
+    {
+      "path": "/api/v1/auth/me",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications/unread-count",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/next-session",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/finance/student/me/tuitions/summary",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/notifications?unread=true&category=SCHEDULE&size=2",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments?group=CURRENT&page=0&size=20",
+      "method": "GET"
+    },
+    {
+      "path": "/api/v1/academic/student/me/enrollments/1",
+      "method": "GET"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,273 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "error": "Filtered navigation remains active",
+  "errors": [],
+  "checks": [
+    "Home 320 has no horizontal overflow",
+    "Home 320 primary action visible before image",
+    "Vietnamese heading uses local font at 320",
+    "Home 390 has no horizontal overflow",
+    "Home 390 primary action visible before image",
+    "Vietnamese heading uses local font at 390",
+    "Home 600 has no horizontal overflow",
+    "Home 600 primary action visible before image",
+    "Vietnamese heading uses local font at 600",
+    "Home 720 has no horizontal overflow",
+    "Home 720 primary action visible before image",
+    "Vietnamese heading uses local font at 720",
+    "Home 768 has no horizontal overflow",
+    "Home 768 primary action visible before image",
+    "Vietnamese heading uses local font at 768",
+    "Home 800 has no horizontal overflow",
+    "Home 800 primary action visible before image",
+    "Vietnamese heading uses local font at 800",
+    "Home 1024 has no horizontal overflow",
+    "Home 1024 primary action visible before image",
+    "Vietnamese heading uses local font at 1024",
+    "Home 1100 has no horizontal overflow",
+    "Home 1100 primary action visible before image",
+    "Vietnamese heading uses local font at 1100",
+    "Home 1101 has no horizontal overflow",
+    "Home 1101 primary action visible before image",
+    "Vietnamese heading uses local font at 1101",
+    "Desktop menu fits at its smallest breakpoint",
+    "Home 1280 has no horizontal overflow",
+    "Home 1280 primary action visible before image",
+    "Vietnamese heading uses local font at 1280",
+    "Home 1366 has no horizontal overflow",
+    "Home 1366 primary action visible before image",
+    "Vietnamese heading uses local font at 1366",
+    "Home 1440 has no horizontal overflow",
+    "Home 1440 primary action visible before image",
+    "Vietnamese heading uses local font at 1440",
+    "Vietnamese and currency use local font at weight 400",
+    "Vietnamese and currency use local font at weight 500",
+    "Vietnamese and currency use local font at weight 600",
+    "Vietnamese and currency use local font at weight 700",
+    "Menu uses SVG chevrons",
+    "Desktop dropdown opens",
+    "Escape closes dropdown and returns focus",
+    "Outside click closes dropdown"
+  ],
+  "consoleMessages": [
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "info",
+      "args": [
+        "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools",
+        "font-weight:bold"
+      ]
+    },
+    {
+      "type": "log",
+      "args": [
+        "[HMR] connected"
+      ]
+    },
+    {
+      "type": "error",
+      "args": [
+        "%o\n\n%s",
+        "Error: Thông tin hiện chưa tải được. Vui lòng thử lại sau.\n    at request (about://React/Server/D:%5Choctap%5CKLTN%5Clanguage-center%5Clanguage-center-website%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C_00zy2j7c1l3uu._.js?0:479:15)\n    at getCatalog (about://React/Server/D:%5Choctap%5CKLTN%5Clanguage-center%5Clanguage-center-website%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C_00zy2j7c1l3uu._.js?1:487:18)\n    at Courses (about://React/Server/file:///D:/hoctap/KLTN/language-center/language-center-website/.next/dev/server/chunks/ssr/%255Broot-of-the-server%255D__117le4nk-w07m._.js?id=%255Bproject%255D/src/app/khoa-hoc/page.tsx+%255Bapp-rsc%255D+(ecmascript)?2:44:53)\n    at resolveErrorDev (http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2029:105)\n    at processFullStringRow (http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2548:29)\n    at processFullBinaryRow (http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2507:9)\n    at processBinaryChunk (http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2614:221)\n    at progress (http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js:2801:13)",
+        "The above error occurred in the <Courses> component. It was handled by the <ErrorBoundaryHandler> error boundary."
+      ]
+    }
+  ],
+  "page": {
+    "url": "http://127.0.0.1:3000/khoa-hoc?audience=SECONDARY",
+    "ready": "complete",
+    "header": true,
+    "offset": "126.09375px",
+    "scripts": [
+      "http://127.0.0.1:3000/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js",
+      "http://127.0.0.1:3000/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_client_1165-soo5tfpf._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/_1anvha4rlo79g._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/turbopack-_11q0wbt2n0d9y._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js",
+      "http://127.0.0.1:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsayzyj2p6._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_1lklf_7rjm1r0._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/src_components_1m1x1yv8-ha0e._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/src_app_error_tsx_0ts9uj72u-_iy._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/node_modules_next_1lklf_7rjm1r0._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/src_components_1m1x1yv8-ha0e._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/src_app_error_tsx_0ts9uj72u-_iy._.js",
+      "http://127.0.0.1:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0fb9-gqu7_t97._.js"
+    ],
+    "devError": "Runtime ErrorServerThông tin hiện chưa tải được. Vui lòng thử lại sau."
+  }
+}

@@ -67,6 +67,7 @@ class AdmissionTransactionTest {
               Lead.Status.CONTACTED, "Called", leadService.get(lead.id()).version()));
       var converted = leadService.convert(lead.id(), leadService.get(lead.id()).version());
       assertNotNull(converted.convertedStudent().studentCode());
+      assertTrue(converted.convertedStudent().studentCode().matches("HV[0-9]{4,}"));
       assertNull(converted.convertedStudent().dateOfBirth());
       assertEquals(
           converted.convertedStudent().id(),

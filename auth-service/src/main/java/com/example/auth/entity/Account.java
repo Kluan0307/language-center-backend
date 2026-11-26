@@ -27,6 +27,24 @@ public class Account {
   @Column(nullable = false, length = 20)
   private Role role;
 
+  @Column(unique = true, length = 24, updatable = false)
+  private String personnelCode;
+
+  @Transient private Role persistedRole;
+
+  @PostLoad
+  @PostPersist
+  private void rememberRole() {
+    persistedRole = role;
+  }
+
+  @PreUpdate
+  private void preventDirectRoleChange() {
+    if (persistedRole != null && persistedRole != role)
+      throw new IllegalStateException(
+          "Direct role changes are unsupported; preserve the existing profile and assignments");
+  }
+
   @Builder.Default
   @Column(nullable = false)
   private Boolean status = true;

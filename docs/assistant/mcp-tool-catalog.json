@@ -3,9 +3,36 @@
     "name" : "search_courses",
     "description" : "Tra cứu khóa trong phạm vi. Giá VND; dưới dùng maxInclusive=false. Không suy diễn duration legacy.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "maxInclusive" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "level" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
         "status" : {
           "default" : "OPEN",
           "type" : "string",
@@ -13,43 +40,16 @@
           "maxLength" : 120
         },
         "minTuition" : {
-          "minimum" : 0,
-          "type" : "number"
+          "type" : "number",
+          "minimum" : 0
         },
         "maxTuition" : {
-          "minimum" : 0,
-          "type" : "number"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
-        "type" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "maxInclusive" : {
-          "default" : true,
-          "type" : "boolean"
-        },
-        "level" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "number",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_courses",
@@ -63,41 +63,56 @@
     "name" : "search_classes",
     "description" : "Tra cứu lớp có quyền. recruitingOnly chỉ là còn chỗ theo dữ liệu, không bảo đảm đủ điều kiện ghi danh.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "string",
+          "maxLength" : 120
         },
         "courseId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ]
         },
         "recruitingOnly" : {
           "default" : false,
           "type" : "boolean"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "status" : {
-          "maxLength" : 120,
-          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ],
-          "type" : "string"
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_classes",
@@ -111,32 +126,51 @@
     "name" : "find_students",
     "description" : "Tìm theo tên/mã, trả lựa chọn tối thiểu. Trùng tên phải hỏi lại; giáo viên chỉ roster lớp chính mình.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "PAUSED", "GRADUATED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "relationship" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "RESERVED", "TRANSFERRED", "DROPPED", "COMPLETED" ]
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "currentLevel" : {
+          "type" : "string",
+          "maxLength" : 120
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "find_students",
@@ -150,33 +184,33 @@
     "name" : "get_student_classes",
     "description" : "Các quan hệ lớp của học viên đã xác định; phân biệt ACTIVE/NOT_STARTED/RESERVED/TRANSFERRED. Chỉ hỗ trợ hôm nay.",
     "inputSchema" : {
-      "required" : [ "studentId" ],
       "type" : "object",
       "properties" : {
+        "asOf" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "asOf" : {
-          "maxLength" : 10,
-          "type" : "string",
-          "format" : "date"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
     },
     "annotations" : {
       "title" : "get_student_classes",
@@ -190,7 +224,6 @@
     "name" : "get_student_statistics",
     "description" : "Đếm hồ sơ hoặc học viên distinct đang có lớp. Không dùng trạng thái hồ sơ thay cho đăng ký hiệu lực, chỉ hôm nay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "metric" : {
@@ -200,12 +233,13 @@
           "maxLength" : 120
         },
         "asOf" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "maxLength" : 10
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_student_statistics",
@@ -219,48 +253,61 @@
     "name" : "list_sessions",
     "description" : "Buổi thực tế, tối đa 31 ngày. Có nhãn hủy/học bù/dạy thay, giáo viên chỉ actual teacher.",
     "inputSchema" : {
-      "required" : [ "to", "from" ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
         },
         "to" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
-        },
-        "teacherId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
+          "format" : "date",
+          "maxLength" : 10
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ],
-          "type" : "string"
+          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "from" : {
-          "maxLength" : 10,
+        "kind" : {
           "type" : "string",
-          "format" : "date"
+          "maxLength" : 120,
+          "enum" : [ "REGULAR", "MAKEUP", "LEGACY" ]
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "substituteOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "upcomingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
     },
     "annotations" : {
       "title" : "list_sessions",
@@ -274,28 +321,37 @@
     "name" : "get_session_attendance",
     "description" : "Điểm danh buổi có quyền. NOT_RECORDED không phải PRESENT; buổi tương lai/hủy trả trạng thái.",
     "inputSchema" : {
-      "required" : [ "sessionId" ],
       "type" : "object",
       "properties" : {
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         },
         "sessionId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "sessionId" ]
     },
     "annotations" : {
       "title" : "get_session_attendance",
@@ -309,26 +365,9 @@
     "name" : "get_learning_results",
     "description" : "Điểm CURRENT hoặc PUBLISHED theo quyền. Điểm 0 khác chưa chấm. Không suy quyền cả lớp từ buổi dạy thay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "enrollmentId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "examId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
@@ -339,14 +378,37 @@
           "enum" : [ "CURRENT", "PUBLISHED" ],
           "maxLength" : 120
         },
-        "size" : {
+        "scoreFilter" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "ZERO", "NOT_GRADED" ],
+          "maxLength" : 120
+        },
+        "studentId" : {
+          "type" : "integer",
           "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "enrollmentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_learning_results",
@@ -360,41 +422,60 @@
     "name" : "search_tuitions",
     "description" : "Học phí và công nợ theo billing root, không cộng một trang thành tổng. Không ghi nhận thanh toán.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "classId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "overdue" : {
-          "type" : "boolean"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "dueTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "dueFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "overdue" : {
+          "type" : "boolean"
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "PENDING", "UNPAID", "PARTIAL", "PAID", "CANCELLED" ],
-          "type" : "string"
+          "enum" : [ "PENDING", "UNPAID", "PARTIAL", "PAID", "CANCELLED", "OVERDUE" ]
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "tuitionId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "outstandingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_tuitions",
@@ -408,13 +489,38 @@
     "name" : "search_receipts",
     "description" : "Phiếu thu với hủy/hoàn/khả dụng. Đơn PENDING không phải phiếu thu; không trả thành doanh thu.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "receiptNo" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "receiptState" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "VOIDED", "REFUNDED", "AVAILABLE", "LEGACY" ],
+          "maxLength" : 120
         },
         "tuitionId" : {
           "type" : "integer",
@@ -426,20 +532,20 @@
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "receiptId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_receipts",
@@ -453,17 +559,17 @@
     "name" : "list_priority_leads",
     "description" : "Ưu tiên chăm sóc theo lịch hẹn, không dự đoán khả năng mua. STAFF chỉ lead được giao.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "limit" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "list_priority_leads",
@@ -477,19 +583,1011 @@
     "name" : "get_usage_help",
     "description" : "Hướng dẫn đã duyệt về lịch tuần hoặc tra cứu khóa học; không đọc file hoặc web ngoài.",
     "inputSchema" : {
-      "required" : [ "topic" ],
       "type" : "object",
       "properties" : {
         "topic" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES" ],
-          "type" : "string"
+          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES", "PAYMENT_ACCOUNTING" ]
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "topic" ]
     },
     "annotations" : {
       "title" : "get_usage_help",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_personnel",
+    "description" : "Tìm giáo viên/nhân viên trong phân công. Trùng tên phải chọn. STAFF chỉ teacher đang hoạt động; không trả bằng cấp hoặc liên hệ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "activeOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "personnelId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER", "STAFF" ],
+          "maxLength" : 120
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "find_personnel",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_personnel_statistics",
+    "description" : "Đếm distinct profile trong phân công; activeOnly=true chỉ tài khoản mở và workStatus ACTIVE. STAFF chỉ teacher đang hoạt động.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER", "STAFF" ],
+          "maxLength" : 120
+        },
+        "activeOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_personnel_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_personnel_profile",
+    "description" : "Bằng cấp, chứng chỉ, chuyên môn hoặc vị trí của nhân sự đã xác định. Chỉ quản trị; không có email/điện thoại/secrets.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER", "STAFF" ],
+          "maxLength" : 120
+        },
+        "personnelId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "personnelId" ]
+    },
+    "annotations" : {
+      "title" : "get_personnel_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_teacher_classes",
+    "description" : "Lớp/khóa được giao cho teacherId đã xác định; currentOnly=true lớp đang trong thời gian học. Đây là phụ trách lớp, không suy từ chuyên môn hồ sơ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "currentOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "teacherId" ]
+    },
+    "annotations" : {
+      "title" : "get_teacher_classes",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_course_admissions",
+    "description" : "Khóa OPEN theo điều kiện đầu vào đã xác nhận, lấy revision mới nhất. entryLevel là mã trình độ được nhận, không phải trình độ đầu ra.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "programCode" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "entryLevel" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_course_admissions",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_rooms",
+    "description" : "Phòng theo trạng thái hoặc không trùng buổi đã lưu trong ngày/khoảng giờ xác định. Không bảo đảm khả dụng với lịch chưa sinh.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "startTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "AVAILABLE", "MAINTENANCE" ]
+        },
+        "endTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "minCapacity" : {
+          "maximum" : 10000,
+          "default" : 1,
+          "type" : "integer",
+          "minimum" : 1
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_rooms",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_available_teachers",
+    "description" : "Giáo viên ACTIVE có phân công trong scope và không trùng buổi đã lưu ở bất kỳ chi nhánh nào. Cần ngày và giờ; không xét nghỉ phép/di chuyển.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "startTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "endTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "startTime", "endTime", "from" ]
+    },
+    "annotations" : {
+      "title" : "find_available_teachers",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_academic_statistics",
+    "description" : "Nhóm theo chi nhánh: lớp đang diễn ra/đã kết thúc hoặc học viên distinct đang có lớp. Không phải ảnh chụp quá khứ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "metric" : {
+          "default" : "CLASSES_ONGOING",
+          "type" : "string",
+          "enum" : [ "CLASSES_ONGOING", "CLASSES_FINISHED", "ACTIVE_STUDENTS" ],
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_academic_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_student_profile",
+    "description" : "Hồ sơ học viên tối thiểu đã xác định; giáo viên chỉ học viên đang có quan hệ hiệu lực với lớp mình, không có liên hệ riêng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
+    },
+    "annotations" : {
+      "title" : "get_student_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_roster_statistics",
+    "description" : "Đếm distinct học viên hiệu lực hôm nay trong classId hoặc các lớp được quyền; giáo viên chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_roster_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_attendance_summary",
+    "description" : "Học viên vắng ABSENT ít nhất minAbsences buổi đã ghi nhận trong khoảng tối đa 90 ngày. Loại buổi hủy/tương lai/ngoài kỳ hiệu lực; không coi chưa ghi là vắng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "minAbsences" : {
+          "maximum" : 90,
+          "default" : 3,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "get_attendance_summary",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_missing_attendance",
+    "description" : "Buổi đã kết thúc nhưng còn roster hiệu lực chưa ghi điểm danh, tối đa 90 ngày; teacher được giao lớp hoặc buổi.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "list_missing_attendance",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_learning_exams",
+    "description" : "Bài kiểm tra và số người thiếu điểm dựa roster đã chốt. missingOnly chỉ bài đến ngày thi, không gọi là quá hạn vì chưa có deadline chấm. Teacher chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "examId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "list_learning_exams",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_debt_statistics",
+    "description" : "Tổng công nợ HIỆN TẠI theo billing root, bỏ CANCELLED, không cộng page; chưa có snapshot nợ quá khứ. Đơn PENDING không phải tiền đã thu.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "dueTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "overdue" : {
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH" ],
+          "maxLength" : 120
+        },
+        "dueFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_debt_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_cash_flow",
+    "description" : "Dòng tiền VND trong from/to theo ngày thu và ngày hủy/hoàn. netCollected=gross-void-refund, có thể âm; không phải doanh thu dồn tích.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH" ],
+          "maxLength" : 120
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "get_cash_flow",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "compare_cash_flow",
+    "description" : "So sánh hai kỳ bằng độ dài, không chồng lấn. Difference=net kỳ so sánh trừ kỳ đầu; cần đủ bốn ngày.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "compareTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "compareFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "compareTo", "from", "to", "compareFrom" ]
+    },
+    "annotations" : {
+      "title" : "compare_cash_flow",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_leads",
+    "description" : "Tìm khách theo tên, lịch hẹn, trạng thái, assignee trong scope. STAFF luôn chính mình; assigneeId là ACCOUNT ID, không phải staff profile ID.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "NEW", "CONTACTED", "CONSULTING", "CONVERTED", "LOST" ]
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "leadId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "assigneeId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "followUp" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OVERDUE", "TODAY", "UPCOMING", "UNSCHEDULED" ]
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_leads",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_care_statistics",
+    "description" : "Đếm khách khớp điều kiện trước limit; nhóm branch/assignee chỉ quản trị; STAFF chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH", "ASSIGNEE" ],
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "followUp" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OVERDUE", "TODAY", "UPCOMING", "UNSCHEDULED" ]
+        },
+        "assigneeId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_care_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_support_requests",
+    "description" : "Tra trạng thái yêu cầu hỗ trợ trong scope, không trả nội dung trao đổi/ghi chú riêng. Xem supportId cụ thể dùng openOnly=false để không ẩn bản đã đóng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED" ]
+        },
+        "supportId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_support_requests",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_support_statistics",
+    "description" : "Đếm yêu cầu OPEN/IN_PROGRESS hiện tại; nhóm chi nhánh chỉ quản trị.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED" ]
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH" ],
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_support_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_center_statistics",
+    "description" : "Đếm hiện trạng chi nhánh active, lớp, khóa, phòng; liệt kê chi nhánh chưa có ADMIN mở tài khoản và membership active. Không snapshot quá khứ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "metric" : {
+          "default" : "BRANCHES_ACTIVE",
+          "type" : "string",
+          "enum" : [ "BRANCHES_ACTIVE", "BRANCHES_WITHOUT_ADMIN", "ROOMS_COUNT", "CLASSES_COUNT", "COURSES_COUNT" ],
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "AVAILABLE", "MAINTENANCE", "OPEN", "CLOSED" ]
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_center_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_management_accounts",
+    "description" : "Tra tài khoản và phân công active trong scope, không có secrets/contact. ADMIN chỉ STAFF/TEACHER; SA có ADMIN. Trùng tên hiện danh sách, không tự gán một người.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "accountRole" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "SUPER_ADMIN", "ADMIN", "STAFF", "TEACHER", "STUDENT" ]
+        },
+        "accountId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "enabled" : {
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "find_management_accounts",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_account_statistics",
+    "description" : "Đếm distinct account theo role và trạng thái, membership active; ADMIN chỉ STAFF/TEACHER. Tổng chuỗi không cộng trùng người nhiều chi nhánh.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "accountRole" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "SUPER_ADMIN", "ADMIN", "STAFF", "TEACHER", "STUDENT" ]
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_account_statistics",
       "readOnlyHint" : true,
       "destructiveHint" : false,
       "idempotentHint" : true,
@@ -501,9 +1599,36 @@
     "name" : "search_courses",
     "description" : "Tra cứu khóa trong phạm vi. Giá VND; dưới dùng maxInclusive=false. Không suy diễn duration legacy.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "maxInclusive" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "level" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
         "status" : {
           "default" : "OPEN",
           "type" : "string",
@@ -511,43 +1636,16 @@
           "maxLength" : 120
         },
         "minTuition" : {
-          "minimum" : 0,
-          "type" : "number"
+          "type" : "number",
+          "minimum" : 0
         },
         "maxTuition" : {
-          "minimum" : 0,
-          "type" : "number"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
-        "type" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "maxInclusive" : {
-          "default" : true,
-          "type" : "boolean"
-        },
-        "level" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "number",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_courses",
@@ -561,41 +1659,56 @@
     "name" : "search_classes",
     "description" : "Tra cứu lớp có quyền. recruitingOnly chỉ là còn chỗ theo dữ liệu, không bảo đảm đủ điều kiện ghi danh.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "string",
+          "maxLength" : 120
         },
         "courseId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ]
         },
         "recruitingOnly" : {
           "default" : false,
           "type" : "boolean"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "status" : {
-          "maxLength" : 120,
-          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ],
-          "type" : "string"
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_classes",
@@ -609,32 +1722,51 @@
     "name" : "find_students",
     "description" : "Tìm theo tên/mã, trả lựa chọn tối thiểu. Trùng tên phải hỏi lại; giáo viên chỉ roster lớp chính mình.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "PAUSED", "GRADUATED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "relationship" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "RESERVED", "TRANSFERRED", "DROPPED", "COMPLETED" ]
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "currentLevel" : {
+          "type" : "string",
+          "maxLength" : 120
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "find_students",
@@ -648,33 +1780,33 @@
     "name" : "get_student_classes",
     "description" : "Các quan hệ lớp của học viên đã xác định; phân biệt ACTIVE/NOT_STARTED/RESERVED/TRANSFERRED. Chỉ hỗ trợ hôm nay.",
     "inputSchema" : {
-      "required" : [ "studentId" ],
       "type" : "object",
       "properties" : {
+        "asOf" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "asOf" : {
-          "maxLength" : 10,
-          "type" : "string",
-          "format" : "date"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
     },
     "annotations" : {
       "title" : "get_student_classes",
@@ -688,7 +1820,6 @@
     "name" : "get_student_statistics",
     "description" : "Đếm hồ sơ hoặc học viên distinct đang có lớp. Không dùng trạng thái hồ sơ thay cho đăng ký hiệu lực, chỉ hôm nay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "metric" : {
@@ -698,12 +1829,13 @@
           "maxLength" : 120
         },
         "asOf" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "maxLength" : 10
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_student_statistics",
@@ -717,48 +1849,61 @@
     "name" : "list_sessions",
     "description" : "Buổi thực tế, tối đa 31 ngày. Có nhãn hủy/học bù/dạy thay, giáo viên chỉ actual teacher.",
     "inputSchema" : {
-      "required" : [ "to", "from" ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
         },
         "to" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
-        },
-        "teacherId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
+          "format" : "date",
+          "maxLength" : 10
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ],
-          "type" : "string"
+          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "from" : {
-          "maxLength" : 10,
+        "kind" : {
           "type" : "string",
-          "format" : "date"
+          "maxLength" : 120,
+          "enum" : [ "REGULAR", "MAKEUP", "LEGACY" ]
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "substituteOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "upcomingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
     },
     "annotations" : {
       "title" : "list_sessions",
@@ -772,28 +1917,37 @@
     "name" : "get_session_attendance",
     "description" : "Điểm danh buổi có quyền. NOT_RECORDED không phải PRESENT; buổi tương lai/hủy trả trạng thái.",
     "inputSchema" : {
-      "required" : [ "sessionId" ],
       "type" : "object",
       "properties" : {
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         },
         "sessionId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "sessionId" ]
     },
     "annotations" : {
       "title" : "get_session_attendance",
@@ -807,26 +1961,9 @@
     "name" : "get_learning_results",
     "description" : "Điểm CURRENT hoặc PUBLISHED theo quyền. Điểm 0 khác chưa chấm. Không suy quyền cả lớp từ buổi dạy thay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "enrollmentId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "examId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
@@ -837,14 +1974,37 @@
           "enum" : [ "CURRENT", "PUBLISHED" ],
           "maxLength" : 120
         },
-        "size" : {
+        "scoreFilter" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "ZERO", "NOT_GRADED" ],
+          "maxLength" : 120
+        },
+        "studentId" : {
+          "type" : "integer",
           "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "enrollmentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_learning_results",
@@ -858,41 +2018,60 @@
     "name" : "search_tuitions",
     "description" : "Học phí và công nợ theo billing root, không cộng một trang thành tổng. Không ghi nhận thanh toán.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "classId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "overdue" : {
-          "type" : "boolean"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "dueTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "dueFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "overdue" : {
+          "type" : "boolean"
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "PENDING", "UNPAID", "PARTIAL", "PAID", "CANCELLED" ],
-          "type" : "string"
+          "enum" : [ "PENDING", "UNPAID", "PARTIAL", "PAID", "CANCELLED", "OVERDUE" ]
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "tuitionId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "outstandingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_tuitions",
@@ -906,13 +2085,38 @@
     "name" : "search_receipts",
     "description" : "Phiếu thu với hủy/hoàn/khả dụng. Đơn PENDING không phải phiếu thu; không trả thành doanh thu.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "receiptNo" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "receiptState" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "VOIDED", "REFUNDED", "AVAILABLE", "LEGACY" ],
+          "maxLength" : 120
         },
         "tuitionId" : {
           "type" : "integer",
@@ -924,20 +2128,20 @@
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "receiptId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_receipts",
@@ -951,17 +2155,17 @@
     "name" : "list_priority_leads",
     "description" : "Ưu tiên chăm sóc theo lịch hẹn, không dự đoán khả năng mua. STAFF chỉ lead được giao.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "limit" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "list_priority_leads",
@@ -975,19 +2179,1011 @@
     "name" : "get_usage_help",
     "description" : "Hướng dẫn đã duyệt về lịch tuần hoặc tra cứu khóa học; không đọc file hoặc web ngoài.",
     "inputSchema" : {
-      "required" : [ "topic" ],
       "type" : "object",
       "properties" : {
         "topic" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES" ],
-          "type" : "string"
+          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES", "PAYMENT_ACCOUNTING" ]
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "topic" ]
     },
     "annotations" : {
       "title" : "get_usage_help",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_personnel",
+    "description" : "Tìm giáo viên/nhân viên trong phân công. Trùng tên phải chọn. STAFF chỉ teacher đang hoạt động; không trả bằng cấp hoặc liên hệ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "activeOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "personnelId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER", "STAFF" ],
+          "maxLength" : 120
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "find_personnel",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_personnel_statistics",
+    "description" : "Đếm distinct profile trong phân công; activeOnly=true chỉ tài khoản mở và workStatus ACTIVE. STAFF chỉ teacher đang hoạt động.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER", "STAFF" ],
+          "maxLength" : 120
+        },
+        "activeOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_personnel_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_personnel_profile",
+    "description" : "Bằng cấp, chứng chỉ, chuyên môn hoặc vị trí của nhân sự đã xác định. Chỉ quản trị; không có email/điện thoại/secrets.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER", "STAFF" ],
+          "maxLength" : 120
+        },
+        "personnelId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "personnelId" ]
+    },
+    "annotations" : {
+      "title" : "get_personnel_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_teacher_classes",
+    "description" : "Lớp/khóa được giao cho teacherId đã xác định; currentOnly=true lớp đang trong thời gian học. Đây là phụ trách lớp, không suy từ chuyên môn hồ sơ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "currentOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "teacherId" ]
+    },
+    "annotations" : {
+      "title" : "get_teacher_classes",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_course_admissions",
+    "description" : "Khóa OPEN theo điều kiện đầu vào đã xác nhận, lấy revision mới nhất. entryLevel là mã trình độ được nhận, không phải trình độ đầu ra.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "programCode" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "entryLevel" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_course_admissions",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_rooms",
+    "description" : "Phòng theo trạng thái hoặc không trùng buổi đã lưu trong ngày/khoảng giờ xác định. Không bảo đảm khả dụng với lịch chưa sinh.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "startTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "AVAILABLE", "MAINTENANCE" ]
+        },
+        "endTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "minCapacity" : {
+          "maximum" : 10000,
+          "default" : 1,
+          "type" : "integer",
+          "minimum" : 1
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_rooms",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_available_teachers",
+    "description" : "Giáo viên ACTIVE có phân công trong scope và không trùng buổi đã lưu ở bất kỳ chi nhánh nào. Cần ngày và giờ; không xét nghỉ phép/di chuyển.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "startTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "endTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "startTime", "endTime", "from" ]
+    },
+    "annotations" : {
+      "title" : "find_available_teachers",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_academic_statistics",
+    "description" : "Nhóm theo chi nhánh: lớp đang diễn ra/đã kết thúc hoặc học viên distinct đang có lớp. Không phải ảnh chụp quá khứ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "metric" : {
+          "default" : "CLASSES_ONGOING",
+          "type" : "string",
+          "enum" : [ "CLASSES_ONGOING", "CLASSES_FINISHED", "ACTIVE_STUDENTS" ],
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_academic_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_student_profile",
+    "description" : "Hồ sơ học viên tối thiểu đã xác định; giáo viên chỉ học viên đang có quan hệ hiệu lực với lớp mình, không có liên hệ riêng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
+    },
+    "annotations" : {
+      "title" : "get_student_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_roster_statistics",
+    "description" : "Đếm distinct học viên hiệu lực hôm nay trong classId hoặc các lớp được quyền; giáo viên chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_roster_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_attendance_summary",
+    "description" : "Học viên vắng ABSENT ít nhất minAbsences buổi đã ghi nhận trong khoảng tối đa 90 ngày. Loại buổi hủy/tương lai/ngoài kỳ hiệu lực; không coi chưa ghi là vắng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "minAbsences" : {
+          "maximum" : 90,
+          "default" : 3,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "get_attendance_summary",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_missing_attendance",
+    "description" : "Buổi đã kết thúc nhưng còn roster hiệu lực chưa ghi điểm danh, tối đa 90 ngày; teacher được giao lớp hoặc buổi.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "list_missing_attendance",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_learning_exams",
+    "description" : "Bài kiểm tra và số người thiếu điểm dựa roster đã chốt. missingOnly chỉ bài đến ngày thi, không gọi là quá hạn vì chưa có deadline chấm. Teacher chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "examId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "list_learning_exams",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_debt_statistics",
+    "description" : "Tổng công nợ HIỆN TẠI theo billing root, bỏ CANCELLED, không cộng page; chưa có snapshot nợ quá khứ. Đơn PENDING không phải tiền đã thu.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "dueTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "overdue" : {
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH" ],
+          "maxLength" : 120
+        },
+        "dueFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_debt_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_cash_flow",
+    "description" : "Dòng tiền VND trong from/to theo ngày thu và ngày hủy/hoàn. netCollected=gross-void-refund, có thể âm; không phải doanh thu dồn tích.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH" ],
+          "maxLength" : 120
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "get_cash_flow",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "compare_cash_flow",
+    "description" : "So sánh hai kỳ bằng độ dài, không chồng lấn. Difference=net kỳ so sánh trừ kỳ đầu; cần đủ bốn ngày.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "compareTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "compareFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "compareTo", "from", "to", "compareFrom" ]
+    },
+    "annotations" : {
+      "title" : "compare_cash_flow",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_leads",
+    "description" : "Tìm khách theo tên, lịch hẹn, trạng thái, assignee trong scope. STAFF luôn chính mình; assigneeId là ACCOUNT ID, không phải staff profile ID.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "NEW", "CONTACTED", "CONSULTING", "CONVERTED", "LOST" ]
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "leadId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "assigneeId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "followUp" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OVERDUE", "TODAY", "UPCOMING", "UNSCHEDULED" ]
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_leads",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_care_statistics",
+    "description" : "Đếm khách khớp điều kiện trước limit; nhóm branch/assignee chỉ quản trị; STAFF chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH", "ASSIGNEE" ],
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "followUp" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OVERDUE", "TODAY", "UPCOMING", "UNSCHEDULED" ]
+        },
+        "assigneeId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_care_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_support_requests",
+    "description" : "Tra trạng thái yêu cầu hỗ trợ trong scope, không trả nội dung trao đổi/ghi chú riêng. Xem supportId cụ thể dùng openOnly=false để không ẩn bản đã đóng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED" ]
+        },
+        "supportId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_support_requests",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_support_statistics",
+    "description" : "Đếm yêu cầu OPEN/IN_PROGRESS hiện tại; nhóm chi nhánh chỉ quản trị.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED" ]
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE", "BRANCH" ],
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_support_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_center_statistics",
+    "description" : "Đếm hiện trạng chi nhánh active, lớp, khóa, phòng; liệt kê chi nhánh chưa có ADMIN mở tài khoản và membership active. Không snapshot quá khứ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "metric" : {
+          "default" : "BRANCHES_ACTIVE",
+          "type" : "string",
+          "enum" : [ "BRANCHES_ACTIVE", "BRANCHES_WITHOUT_ADMIN", "ROOMS_COUNT", "CLASSES_COUNT", "COURSES_COUNT" ],
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "AVAILABLE", "MAINTENANCE", "OPEN", "CLOSED" ]
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_center_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_management_accounts",
+    "description" : "Tra tài khoản và phân công active trong scope, không có secrets/contact. ADMIN chỉ STAFF/TEACHER; SA có ADMIN. Trùng tên hiện danh sách, không tự gán một người.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "accountRole" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STAFF", "TEACHER" ]
+        },
+        "accountId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "enabled" : {
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "find_management_accounts",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_account_statistics",
+    "description" : "Đếm distinct account theo role và trạng thái, membership active; ADMIN chỉ STAFF/TEACHER. Tổng chuỗi không cộng trùng người nhiều chi nhánh.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "accountRole" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STAFF", "TEACHER" ]
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_account_statistics",
       "readOnlyHint" : true,
       "destructiveHint" : false,
       "idempotentHint" : true,
@@ -999,9 +3195,36 @@
     "name" : "search_courses",
     "description" : "Tra cứu khóa trong phạm vi. Giá VND; dưới dùng maxInclusive=false. Không suy diễn duration legacy.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "maxInclusive" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "level" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
         "status" : {
           "default" : "OPEN",
           "type" : "string",
@@ -1009,43 +3232,16 @@
           "maxLength" : 120
         },
         "minTuition" : {
-          "minimum" : 0,
-          "type" : "number"
+          "type" : "number",
+          "minimum" : 0
         },
         "maxTuition" : {
-          "minimum" : 0,
-          "type" : "number"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
-        "type" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "maxInclusive" : {
-          "default" : true,
-          "type" : "boolean"
-        },
-        "level" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "number",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_courses",
@@ -1059,41 +3255,56 @@
     "name" : "search_classes",
     "description" : "Tra cứu lớp có quyền. recruitingOnly chỉ là còn chỗ theo dữ liệu, không bảo đảm đủ điều kiện ghi danh.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "string",
+          "maxLength" : 120
         },
         "courseId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ]
         },
         "recruitingOnly" : {
           "default" : false,
           "type" : "boolean"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "status" : {
-          "maxLength" : 120,
-          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ],
-          "type" : "string"
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_classes",
@@ -1107,32 +3318,51 @@
     "name" : "find_students",
     "description" : "Tìm theo tên/mã, trả lựa chọn tối thiểu. Trùng tên phải hỏi lại; giáo viên chỉ roster lớp chính mình.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "PAUSED", "GRADUATED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "relationship" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "RESERVED", "TRANSFERRED", "DROPPED", "COMPLETED" ]
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "currentLevel" : {
+          "type" : "string",
+          "maxLength" : 120
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "find_students",
@@ -1146,33 +3376,33 @@
     "name" : "get_student_classes",
     "description" : "Các quan hệ lớp của học viên đã xác định; phân biệt ACTIVE/NOT_STARTED/RESERVED/TRANSFERRED. Chỉ hỗ trợ hôm nay.",
     "inputSchema" : {
-      "required" : [ "studentId" ],
       "type" : "object",
       "properties" : {
+        "asOf" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "asOf" : {
-          "maxLength" : 10,
-          "type" : "string",
-          "format" : "date"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
     },
     "annotations" : {
       "title" : "get_student_classes",
@@ -1186,7 +3416,6 @@
     "name" : "get_student_statistics",
     "description" : "Đếm hồ sơ hoặc học viên distinct đang có lớp. Không dùng trạng thái hồ sơ thay cho đăng ký hiệu lực, chỉ hôm nay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "metric" : {
@@ -1196,12 +3425,13 @@
           "maxLength" : 120
         },
         "asOf" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
+          "format" : "date",
+          "maxLength" : 10
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_student_statistics",
@@ -1215,48 +3445,61 @@
     "name" : "list_sessions",
     "description" : "Buổi thực tế, tối đa 31 ngày. Có nhãn hủy/học bù/dạy thay, giáo viên chỉ actual teacher.",
     "inputSchema" : {
-      "required" : [ "to", "from" ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
         },
         "to" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
-        },
-        "teacherId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
+          "format" : "date",
+          "maxLength" : 10
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ],
-          "type" : "string"
+          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "from" : {
-          "maxLength" : 10,
+        "kind" : {
           "type" : "string",
-          "format" : "date"
+          "maxLength" : 120,
+          "enum" : [ "REGULAR", "MAKEUP", "LEGACY" ]
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "substituteOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "upcomingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
     },
     "annotations" : {
       "title" : "list_sessions",
@@ -1270,28 +3513,37 @@
     "name" : "get_session_attendance",
     "description" : "Điểm danh buổi có quyền. NOT_RECORDED không phải PRESENT; buổi tương lai/hủy trả trạng thái.",
     "inputSchema" : {
-      "required" : [ "sessionId" ],
       "type" : "object",
       "properties" : {
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         },
         "sessionId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "sessionId" ]
     },
     "annotations" : {
       "title" : "get_session_attendance",
@@ -1305,26 +3557,9 @@
     "name" : "get_learning_results",
     "description" : "Điểm CURRENT hoặc PUBLISHED theo quyền. Điểm 0 khác chưa chấm. Không suy quyền cả lớp từ buổi dạy thay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "enrollmentId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "examId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
@@ -1335,14 +3570,37 @@
           "enum" : [ "PUBLISHED" ],
           "maxLength" : 120
         },
-        "size" : {
+        "scoreFilter" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "ZERO", "NOT_GRADED" ],
+          "maxLength" : 120
+        },
+        "studentId" : {
+          "type" : "integer",
           "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "enrollmentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_learning_results",
@@ -1356,41 +3614,60 @@
     "name" : "search_tuitions",
     "description" : "Học phí và công nợ theo billing root, không cộng một trang thành tổng. Không ghi nhận thanh toán.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "classId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "overdue" : {
-          "type" : "boolean"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "dueTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "dueFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "overdue" : {
+          "type" : "boolean"
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "PENDING", "UNPAID", "PARTIAL", "PAID", "CANCELLED" ],
-          "type" : "string"
+          "enum" : [ "PENDING", "UNPAID", "PARTIAL", "PAID", "CANCELLED", "OVERDUE" ]
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "tuitionId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "outstandingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_tuitions",
@@ -1404,13 +3681,38 @@
     "name" : "search_receipts",
     "description" : "Phiếu thu với hủy/hoàn/khả dụng. Đơn PENDING không phải phiếu thu; không trả thành doanh thu.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "receiptNo" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "receiptState" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "VOIDED", "REFUNDED", "AVAILABLE", "LEGACY" ],
+          "maxLength" : 120
         },
         "tuitionId" : {
           "type" : "integer",
@@ -1422,20 +3724,20 @@
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "receiptId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_receipts",
@@ -1449,17 +3751,17 @@
     "name" : "list_priority_leads",
     "description" : "Ưu tiên chăm sóc theo lịch hẹn, không dự đoán khả năng mua. STAFF chỉ lead được giao.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "limit" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "list_priority_leads",
@@ -1473,19 +3775,690 @@
     "name" : "get_usage_help",
     "description" : "Hướng dẫn đã duyệt về lịch tuần hoặc tra cứu khóa học; không đọc file hoặc web ngoài.",
     "inputSchema" : {
-      "required" : [ "topic" ],
       "type" : "object",
       "properties" : {
         "topic" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES" ],
-          "type" : "string"
+          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES", "PAYMENT_ACCOUNTING" ]
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "topic" ]
     },
     "annotations" : {
       "title" : "get_usage_help",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_personnel",
+    "description" : "Tìm giáo viên/nhân viên trong phân công. Trùng tên phải chọn. STAFF chỉ teacher đang hoạt động; không trả bằng cấp hoặc liên hệ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "activeOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "personnelId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER" ],
+          "maxLength" : 120
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "find_personnel",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_personnel_statistics",
+    "description" : "Đếm distinct profile trong phân công; activeOnly=true chỉ tài khoản mở và workStatus ACTIVE. STAFF chỉ teacher đang hoạt động.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "kind" : {
+          "default" : "TEACHER",
+          "type" : "string",
+          "enum" : [ "TEACHER" ],
+          "maxLength" : 120
+        },
+        "activeOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_personnel_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_teacher_classes",
+    "description" : "Lớp/khóa được giao cho teacherId đã xác định; currentOnly=true lớp đang trong thời gian học. Đây là phụ trách lớp, không suy từ chuyên môn hồ sơ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "currentOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "teacherId" ]
+    },
+    "annotations" : {
+      "title" : "get_teacher_classes",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_course_admissions",
+    "description" : "Khóa OPEN theo điều kiện đầu vào đã xác nhận, lấy revision mới nhất. entryLevel là mã trình độ được nhận, không phải trình độ đầu ra.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "programCode" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "entryLevel" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_course_admissions",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_rooms",
+    "description" : "Phòng theo trạng thái hoặc không trùng buổi đã lưu trong ngày/khoảng giờ xác định. Không bảo đảm khả dụng với lịch chưa sinh.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "startTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "AVAILABLE", "MAINTENANCE" ]
+        },
+        "endTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "minCapacity" : {
+          "maximum" : 10000,
+          "default" : 1,
+          "type" : "integer",
+          "minimum" : 1
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_rooms",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "find_available_teachers",
+    "description" : "Giáo viên ACTIVE có phân công trong scope và không trùng buổi đã lưu ở bất kỳ chi nhánh nào. Cần ngày và giờ; không xét nghỉ phép/di chuyển.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "startTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "endTime" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "startTime", "endTime", "from" ]
+    },
+    "annotations" : {
+      "title" : "find_available_teachers",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_student_profile",
+    "description" : "Hồ sơ học viên tối thiểu đã xác định; giáo viên chỉ học viên đang có quan hệ hiệu lực với lớp mình, không có liên hệ riêng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
+    },
+    "annotations" : {
+      "title" : "get_student_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_roster_statistics",
+    "description" : "Đếm distinct học viên hiệu lực hôm nay trong classId hoặc các lớp được quyền; giáo viên chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_roster_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_attendance_summary",
+    "description" : "Học viên vắng ABSENT ít nhất minAbsences buổi đã ghi nhận trong khoảng tối đa 90 ngày. Loại buổi hủy/tương lai/ngoài kỳ hiệu lực; không coi chưa ghi là vắng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "minAbsences" : {
+          "maximum" : 90,
+          "default" : 3,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "get_attendance_summary",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_missing_attendance",
+    "description" : "Buổi đã kết thúc nhưng còn roster hiệu lực chưa ghi điểm danh, tối đa 90 ngày; teacher được giao lớp hoặc buổi.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "list_missing_attendance",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_debt_statistics",
+    "description" : "Tổng công nợ HIỆN TẠI theo billing root, bỏ CANCELLED, không cộng page; chưa có snapshot nợ quá khứ. Đơn PENDING không phải tiền đã thu.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "dueTo" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "overdue" : {
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE" ],
+          "maxLength" : 120
+        },
+        "dueFrom" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_debt_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_leads",
+    "description" : "Tìm khách theo tên, lịch hẹn, trạng thái, assignee trong scope. STAFF luôn chính mình; assigneeId là ACCOUNT ID, không phải staff profile ID.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "NEW", "CONTACTED", "CONSULTING", "CONVERTED", "LOST" ]
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "leadId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "assigneeId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "followUp" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OVERDUE", "TODAY", "UPCOMING", "UNSCHEDULED" ]
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_leads",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_care_statistics",
+    "description" : "Đếm khách khớp điều kiện trước limit; nhóm branch/assignee chỉ quản trị; STAFF chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE" ],
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "followUp" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OVERDUE", "TODAY", "UPCOMING", "UNSCHEDULED" ]
+        },
+        "assigneeId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_care_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_support_requests",
+    "description" : "Tra trạng thái yêu cầu hỗ trợ trong scope, không trả nội dung trao đổi/ghi chú riêng. Xem supportId cụ thể dùng openOnly=false để không ẩn bản đã đóng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED" ]
+        },
+        "supportId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_support_requests",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_support_statistics",
+    "description" : "Đếm yêu cầu OPEN/IN_PROGRESS hiện tại; nhóm chi nhánh chỉ quản trị.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "OPEN", "IN_PROGRESS", "RESOLVED", "CLOSED" ]
+        },
+        "openOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "groupBy" : {
+          "default" : "NONE",
+          "type" : "string",
+          "enum" : [ "NONE" ],
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_support_statistics",
       "readOnlyHint" : true,
       "destructiveHint" : false,
       "idempotentHint" : true,
@@ -1497,9 +4470,36 @@
     "name" : "search_courses",
     "description" : "Tra cứu khóa trong phạm vi. Giá VND; dưới dùng maxInclusive=false. Không suy diễn duration legacy.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "maxInclusive" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "level" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
         "status" : {
           "default" : "OPEN",
           "type" : "string",
@@ -1507,43 +4507,16 @@
           "maxLength" : 120
         },
         "minTuition" : {
-          "minimum" : 0,
-          "type" : "number"
+          "type" : "number",
+          "minimum" : 0
         },
         "maxTuition" : {
-          "minimum" : 0,
-          "type" : "number"
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
-        "type" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
-        },
-        "maxInclusive" : {
-          "default" : true,
-          "type" : "boolean"
-        },
-        "level" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "number",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_courses",
@@ -1557,41 +4530,56 @@
     "name" : "search_classes",
     "description" : "Tra cứu lớp có quyền. recruitingOnly chỉ là còn chỗ theo dữ liệu, không bảo đảm đủ điều kiện ghi danh.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "string",
+          "maxLength" : 120
         },
         "courseId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ]
         },
         "recruitingOnly" : {
           "default" : false,
           "type" : "boolean"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
-        },
-        "status" : {
-          "maxLength" : 120,
-          "enum" : [ "UPCOMING", "ONGOING", "FULL", "FINISHED" ],
-          "type" : "string"
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "search_classes",
@@ -1605,32 +4593,51 @@
     "name" : "find_students",
     "description" : "Tìm theo tên/mã, trả lựa chọn tối thiểu. Trùng tên phải hỏi lại; giáo viên chỉ roster lớp chính mình.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "keyword" : {
-          "maxLength" : 120,
-          "type" : "string"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "PAUSED", "GRADUATED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "relationship" : {
+          "type" : "string",
+          "maxLength" : 120,
+          "enum" : [ "STUDYING", "RESERVED", "TRANSFERRED", "DROPPED", "COMPLETED" ]
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "currentLevel" : {
+          "type" : "string",
+          "maxLength" : 120
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "find_students",
@@ -1644,33 +4651,33 @@
     "name" : "get_student_classes",
     "description" : "Các quan hệ lớp của học viên đã xác định; phân biệt ACTIVE/NOT_STARTED/RESERVED/TRANSFERRED. Chỉ hỗ trợ hôm nay.",
     "inputSchema" : {
-      "required" : [ "studentId" ],
       "type" : "object",
       "properties" : {
+        "asOf" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
         "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
-        },
-        "asOf" : {
-          "maxLength" : 10,
-          "type" : "string",
-          "format" : "date"
-        },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
     },
     "annotations" : {
       "title" : "get_student_classes",
@@ -1684,48 +4691,61 @@
     "name" : "list_sessions",
     "description" : "Buổi thực tế, tối đa 31 ngày. Có nhãn hủy/học bù/dạy thay, giáo viên chỉ actual teacher.",
     "inputSchema" : {
-      "required" : [ "to", "from" ],
       "type" : "object",
       "properties" : {
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
-        "size" : {
-          "minimum" : 1,
-          "maximum" : 20,
-          "default" : 5,
-          "type" : "integer"
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
         },
         "to" : {
-          "maxLength" : 10,
           "type" : "string",
-          "format" : "date"
-        },
-        "teacherId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
+          "format" : "date",
+          "maxLength" : 10
         },
         "status" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ],
-          "type" : "string"
+          "enum" : [ "SCHEDULED", "CANCELLED", "COMPLETED" ]
         },
         "classId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
         },
-        "from" : {
-          "maxLength" : 10,
+        "kind" : {
           "type" : "string",
-          "format" : "date"
+          "maxLength" : 120,
+          "enum" : [ "REGULAR", "MAKEUP", "LEGACY" ]
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "substituteOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "upcomingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
     },
     "annotations" : {
       "title" : "list_sessions",
@@ -1739,28 +4759,37 @@
     "name" : "get_session_attendance",
     "description" : "Điểm danh buổi có quyền. NOT_RECORDED không phải PRESENT; buổi tương lai/hủy trả trạng thái.",
     "inputSchema" : {
-      "required" : [ "sessionId" ],
       "type" : "object",
       "properties" : {
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        },
         "page" : {
-          "minimum" : 0,
           "maximum" : 1000000,
           "default" : 0,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 0
         },
         "size" : {
-          "minimum" : 1,
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         },
         "sessionId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "sessionId" ]
     },
     "annotations" : {
       "title" : "get_session_attendance",
@@ -1774,26 +4803,9 @@
     "name" : "get_learning_results",
     "description" : "Điểm CURRENT hoặc PUBLISHED theo quyền. Điểm 0 khác chưa chấm. Không suy quyền cả lớp từ buổi dạy thay.",
     "inputSchema" : {
-      "required" : [ ],
       "type" : "object",
       "properties" : {
-        "enrollmentId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "page" : {
-          "minimum" : 0,
-          "maximum" : 1000000,
-          "default" : 0,
-          "type" : "integer"
-        },
         "examId" : {
-          "type" : "integer",
-          "minimum" : 1,
-          "maximum" : 9223372036854775807
-        },
-        "studentId" : {
           "type" : "integer",
           "minimum" : 1,
           "maximum" : 9223372036854775807
@@ -1804,14 +4816,37 @@
           "enum" : [ "CURRENT" ],
           "maxLength" : 120
         },
-        "size" : {
+        "scoreFilter" : {
+          "default" : "ALL",
+          "type" : "string",
+          "enum" : [ "ALL", "ZERO", "NOT_GRADED" ],
+          "maxLength" : 120
+        },
+        "studentId" : {
+          "type" : "integer",
           "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "enrollmentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
           "maximum" : 20,
           "default" : 5,
-          "type" : "integer"
+          "type" : "integer",
+          "minimum" : 1
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ ]
     },
     "annotations" : {
       "title" : "get_learning_results",
@@ -1825,19 +4860,312 @@
     "name" : "get_usage_help",
     "description" : "Hướng dẫn đã duyệt về lịch tuần hoặc tra cứu khóa học; không đọc file hoặc web ngoài.",
     "inputSchema" : {
-      "required" : [ "topic" ],
       "type" : "object",
       "properties" : {
         "topic" : {
+          "type" : "string",
           "maxLength" : 120,
-          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES" ],
-          "type" : "string"
+          "enum" : [ "WEEKLY_CALENDAR", "FIND_COURSES", "PAYMENT_ACCOUNTING" ]
         }
       },
-      "additionalProperties" : false
+      "additionalProperties" : false,
+      "required" : [ "topic" ]
     },
     "annotations" : {
       "title" : "get_usage_help",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_my_personnel_profile",
+    "description" : "Hồ sơ giáo viên chính mình, gồm bằng cấp/chứng chỉ, không nhận ID người khác.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : { },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_my_personnel_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_teacher_classes",
+    "description" : "Lớp/khóa được giao cho teacherId đã xác định; currentOnly=true lớp đang trong thời gian học. Đây là phụ trách lớp, không suy từ chuyên môn hồ sơ.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "teacherId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "currentOnly" : {
+          "default" : true,
+          "type" : "boolean"
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "teacherId" ]
+    },
+    "annotations" : {
+      "title" : "get_teacher_classes",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "search_course_admissions",
+    "description" : "Khóa OPEN theo điều kiện đầu vào đã xác nhận, lấy revision mới nhất. entryLevel là mã trình độ được nhận, không phải trình độ đầu ra.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "programCode" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "entryLevel" : {
+          "type" : "string",
+          "maxLength" : 120
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "search_course_admissions",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_student_profile",
+    "description" : "Hồ sơ học viên tối thiểu đã xác định; giáo viên chỉ học viên đang có quan hệ hiệu lực với lớp mình, không có liên hệ riêng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "studentId" ]
+    },
+    "annotations" : {
+      "title" : "get_student_profile",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_roster_statistics",
+    "description" : "Đếm distinct học viên hiệu lực hôm nay trong classId hoặc các lớp được quyền; giáo viên chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "get_roster_statistics",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "get_attendance_summary",
+    "description" : "Học viên vắng ABSENT ít nhất minAbsences buổi đã ghi nhận trong khoảng tối đa 90 ngày. Loại buổi hủy/tương lai/ngoài kỳ hiệu lực; không coi chưa ghi là vắng.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "minAbsences" : {
+          "maximum" : 90,
+          "default" : 3,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "studentId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "get_attendance_summary",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_missing_attendance",
+    "description" : "Buổi đã kết thúc nhưng còn roster hiệu lực chưa ghi điểm danh, tối đa 90 ngày; teacher được giao lớp hoặc buổi.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "from" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        },
+        "to" : {
+          "type" : "string",
+          "format" : "date",
+          "maxLength" : 10
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ "from", "to" ]
+    },
+    "annotations" : {
+      "title" : "list_missing_attendance",
+      "readOnlyHint" : true,
+      "destructiveHint" : false,
+      "idempotentHint" : true,
+      "openWorldHint" : false,
+      "returnDirect" : false
+    }
+  }, {
+    "name" : "list_learning_exams",
+    "description" : "Bài kiểm tra và số người thiếu điểm dựa roster đã chốt. missingOnly chỉ bài đến ngày thi, không gọi là quá hạn vì chưa có deadline chấm. Teacher chỉ lớp chính mình.",
+    "inputSchema" : {
+      "type" : "object",
+      "properties" : {
+        "classId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "page" : {
+          "maximum" : 1000000,
+          "default" : 0,
+          "type" : "integer",
+          "minimum" : 0
+        },
+        "examId" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9223372036854775807
+        },
+        "size" : {
+          "maximum" : 20,
+          "default" : 5,
+          "type" : "integer",
+          "minimum" : 1
+        },
+        "keyword" : {
+          "type" : "string",
+          "maxLength" : 120
+        },
+        "missingOnly" : {
+          "default" : false,
+          "type" : "boolean"
+        }
+      },
+      "additionalProperties" : false,
+      "required" : [ ]
+    },
+    "annotations" : {
+      "title" : "list_learning_exams",
       "readOnlyHint" : true,
       "destructiveHint" : false,
       "idempotentHint" : true,

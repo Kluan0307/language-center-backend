@@ -1,0 +1,121 @@
+flowchart LR
+    account_branch_events["account_branch_events"]
+    account_branches["account_branches"]
+    account_security_events["account_security_events"]
+    accounts["accounts"]
+    admins["admins"]
+    assessment_events["assessment_events"]
+    attendance_changes["attendance_changes"]
+    attendances["attendances"]
+    audience_groups["audience_groups"]
+    branches["branches"]
+    class_admission_events["class_admission_events"]
+    class_closure_events["class_closure_events"]
+    class_closures["class_closures"]
+    class_duration_plans["class_duration_plans"]
+    class_result_barriers["class_result_barriers"]
+    class_sessions["class_sessions"]
+    company_profile["company_profile"]
+    course_admission_levels["course_admission_levels"]
+    course_admission_policies["course_admission_policies"]
+    course_audiences["course_audiences"]
+    course_duration_plans["course_duration_plans"]
+    courses["courses"]
+    document_events["document_events"]
+    document_sharing_events["document_sharing_events"]
+    documents["documents"]
+    employment_events["employment_events"]
+    enrollment_admissions["enrollment_admissions"]
+    enrollment_periods["enrollment_periods"]
+    enrollments["enrollments"]
+    evaluation_policies["evaluation_policies"]
+    evaluation_policy_exams["evaluation_policy_exams"]
+    evaluation_states["evaluation_states"]
+    exam_candidates["exam_candidates"]
+    exams["exams"]
+    final_results["final_results"]
+    grade_changes["grade_changes"]
+    grade_publications["grade_publications"]
+    grades["grades"]
+    internal_support_replies["internal_support_replies"]
+    internal_support_tickets["internal_support_tickets"]
+    job_titles["job_titles"]
+    lead_activities["lead_activities"]
+    leads["leads"]
+    learning_events["learning_events"]
+    media_assets["media_assets"]
+    organization_assignments["organization_assignments"]
+    organization_units["organization_units"]
+    payment_corrections["payment_corrections"]
+    payment_orders["payment_orders"]
+    payment_outbox["payment_outbox"]
+    payment_provider_events["payment_provider_events"]
+    payment_provider_transactions["payment_provider_transactions"]
+    payment_reconcile_operations["payment_reconcile_operations"]
+    payments["payments"]
+    personnel_code_numbers["personnel_code_numbers"]
+    placement_assessments["placement_assessments"]
+    placement_exceptions["placement_exceptions"]
+    program_levels["program_levels"]
+    programs["programs"]
+    published_grades["published_grades"]
+    result_reopens["result_reopens"]
+    rooms["rooms"]
+    schedules["schedules"]
+    school_classes["school_classes"]
+    session_events["session_events"]
+    staffs["staffs"]
+    student_account_provisionings["student_account_provisionings"]
+    student_code_numbers["student_code_numbers"]
+    student_notification_outbox["student_notification_outbox"]
+    student_notification_preferences["student_notification_preferences"]
+    student_notifications["student_notifications"]
+    student_push_deliveries["student_push_deliveries"]
+    student_push_devices["student_push_devices"]
+    student_support_messages["student_support_messages"]
+    student_support_operations["student_support_operations"]
+    student_support_requests["student_support_requests"]
+    student_support_status_events["student_support_status_events"]
+    students["students"]
+    super_admins["super_admins"]
+    teacher_profile_events["teacher_profile_events"]
+    teachers["teachers"]
+    tuition["tuition"]
+    tuition_adjustments["tuition_adjustments"]
+    user_preferences["user_preferences"]
+    website_edit_events["website_edit_events"]
+    website_inquiries["website_inquiries"]
+    website_publications["website_publications"]
+    website_teacher_profiles["website_teacher_profiles"]
+    account_branch_events -->|"account_id → id"| accounts
+    account_branches -->|"account_id → id"| accounts
+    account_security_events -->|"account_id → id"| accounts
+    admins -->|"account_id → id"| accounts
+    attendance_changes -->|"session_id → id"| class_sessions
+    attendances -->|"class_session_id → id"| class_sessions
+    attendances -->|"enrollment_id → id"| enrollments
+    class_sessions -->|"class_id → id"| school_classes
+    course_admission_levels -->|"policy_id → id"| course_admission_policies
+    course_audiences -->|"audience_group_id → id"| audience_groups
+    course_audiences -->|"course_id → id"| courses
+    courses -->|"program_id → id"| programs
+    enrollment_periods -->|"enrollment_id → id"| enrollments
+    enrollments -->|"class_id → id"| school_classes
+    enrollments -->|"student_id → id"| students
+    evaluation_policy_exams -->|"policy_id → id"| evaluation_policies
+    grade_publications -->|"exam_id → id"| exams
+    grades -->|"exam_id → id"| exams
+    leads -->|"converted_student_id → id"| students
+    leads -->|"interested_course_id → id"| courses
+    placement_assessments -->|"student_id → id"| students
+    program_levels -->|"program_id → id"| programs
+    published_grades -->|"publication_id → id"| grade_publications
+    schedules -->|"class_id → id"| school_classes
+    school_classes -->|"course_id → id"| courses
+    school_classes -->|"room_id → id"| rooms
+    session_events -->|"session_id → id"| class_sessions
+    staffs -->|"account_id → id"| accounts
+    student_support_messages -->|"request_id → id"| student_support_requests
+    student_support_operations -->|"request_id → id"| student_support_requests
+    super_admins -->|"account_id → id"| accounts
+    teachers -->|"account_id → id"| accounts

@@ -39,5 +39,16 @@ public class TeacherDirectory {
       Long accountId,
       String fullName,
       Long branchId,
-      java.util.List<Long> branchIds) {}
+      java.util.List<Long> branchIds,
+      java.time.LocalDate hireDate,
+      java.time.LocalDate endDate) {
+    public Teacher(Long profileId, Long accountId, String fullName, Long branchId, java.util.List<Long> branchIds) {
+      this(profileId,accountId,fullName,branchId,branchIds,null,null);
+    }
+    public void requireDuring(java.time.LocalDate from,java.time.LocalDate to) {
+      if(from==null||to==null||to.isBefore(from))throw ApiException.bad("Khoảng ngày giảng dạy không hợp lệ");
+      if(hireDate!=null&&from.isBefore(hireDate)||endDate!=null&&to.isAfter(endDate))
+        throw ApiException.conflict("Lịch giảng dạy nằm ngoài thời gian làm việc của giáo viên");
+    }
+  }
 }

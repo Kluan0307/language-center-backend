@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-11-26T03:21:13.447Z",
+  "status": "passed",
+  "scope": [
+    "TN3",
+    "TN4"
+  ],
+  "academicTests": {
+    "tests": 362,
+    "failures": 0,
+    "errors": 0
+  },
+  "webBuild": "passed",
+  "webBundleSizeAdvisory": true,
+  "liveChecks": 14,
+  "viewports": [
+    1440,
+    390
+  ],
+  "testedConcurrencyOnMySQL": true,
+  "lostResponseRecoveryTested": true,
+  "mainBusinessDataUnchanged": true,
+  "verifiedTables": [
+    "leads",
+    "lead_activities",
+    "students",
+    "enrollments",
+    "enrollment_periods",
+    "lead_intake_receipts",
+    "courses",
+    "school_classes",
+    "grades",
+    "published_grades"
+  ],
+  "temporaryResourcesCleaned": true,
+  "schemaTables": 100,
+  "additionalMigrationRequired": false,
+  "backupId": "ops-1795662452510-ccafaa",
+  "runtime": [
+    {
+      "service": "academic-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "api-gateway",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "assistant-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "auth-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "finance-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "mysql",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "teaching-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "web-admin",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "website",
+      "running": true,
+      "health": "healthy"
+    }
+  ]
+}

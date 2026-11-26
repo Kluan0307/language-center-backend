@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-11-17T06:43:51.866Z",
+  "phases": {
+    "D5": "published-local",
+    "D6": "implemented-and-built",
+    "D7": "real-services-and-browser-passed",
+    "D8": "documented-and-replay-verified"
+  },
+  "scope": "local; not deployed",
+  "websiteBuild": "passed",
+  "apiChecks": 54,
+  "realServices": [
+    "auth",
+    "academic",
+    "teaching",
+    "finance",
+    "api-gateway"
+  ],
+  "realBrowserChecks": 21,
+  "fixtureRegressionChecks": 38,
+  "browserChecksTotal": 59,
+  "unitTests": 6,
+  "localRelationalChecks": 63,
+  "gradeFingerprintsVerified": 36,
+  "fingerprintMetadataRepaired": 28,
+  "scoresChanged": false,
+  "publicationReplay": {
+    "status": "passed",
+    "passes": 2,
+    "unchangedPerPass": 40,
+    "newEditorialEvents": 0,
+    "liveDataModified": false,
+    "scope": "authenticated publication replay on isolated MySQL copy"
+  },
+  "actualPublications": {
+    "BRANCH": 4,
+    "CLASS": 4,
+    "COURSE": 20,
+    "PROGRAM": 4
+  },
+  "teacherProfiles": 8,
+  "acceptanceLeadsInLiveDatabase": 0,
+  "remainingVerification": {
+    "realModel": "not performed",
+    "physicalApk": "not performed",
+    "vnpaySandboxTransaction": "not performed"
+  },
+  "previews": [
+    "previews/d6-home-desktop.png",
+    "previews/d6-thcs-desktop.png",
+    "previews/d6-menu-mobile.png"
+  ]
+}

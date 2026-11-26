@@ -13,7 +13,8 @@ import lombok.*;
         @UniqueConstraint(name = "uk_tuition_enrollment", columnNames = "enrollment_id"),
     indexes = {
       @Index(name = "idx_tuition_branch_status", columnList = "branch_id,status"),
-      @Index(name = "idx_tuition_branch_due", columnList = "branch_id,due_date")
+      @Index(name = "idx_tuition_branch_due", columnList = "branch_id,due_date"),
+      @Index(name = "idx_tuition_student_due", columnList = "student_id,due_date,id")
     })
 @Getter
 @Setter

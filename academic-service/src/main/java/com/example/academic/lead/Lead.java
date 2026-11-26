@@ -44,6 +44,9 @@ public class Lead extends BaseEntity {
   private Course interestedCourse;
 
   private String desiredLevel;
+  @ManyToOne(fetch=FetchType.LAZY) @JoinColumn(name="preferred_class_id")
+  private com.example.academic.schoolclass.SchoolClass preferredClass;
+  @Column(length=500) private String preferredTime;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
@@ -58,8 +61,8 @@ public class Lead extends BaseEntity {
   @Column(nullable = false)
   private String assignedToName;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "converted_student_id", unique = true)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "converted_student_id")
   private Student convertedStudent;
 
   @Column(nullable = false, updatable = false)

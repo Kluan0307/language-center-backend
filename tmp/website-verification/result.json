@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "checks": [
+    "HTTP 200 /",
+    "HTTP 200 /chuong-trinh",
+    "HTTP 200 /chuong-trinh/luyen-thi-ielts",
+    "HTTP 200 /gioi-thieu",
+    "HTTP 200 /chi-nhanh",
+    "HTTP 200 /tu-van?chuong-trinh=luyen-thi-ielts",
+    "HTTP 200 /chinh-sach-bao-mat",
+    "HTTP 200 /robots.txt",
+    "HTTP 200 /sitemap.xml",
+    "HTTP 200 /icon.svg",
+    "unknown program returns 404",
+    "draft website not indexable",
+    "Vietnamese metadata and starter content removed",
+    "home has one heading and four program cards",
+    "desktop fits viewport",
+    "finder filters the intended program",
+    "detail has program-specific metadata",
+    "consultation preserves program context",
+    "mobile fits viewport",
+    "mobile menu opens",
+    "mobile menu navigates and closes",
+    "home fits 320px",
+    "program detail fits 320px",
+    "unconfirmed addresses are not fabricated",
+    "no uncaught runtime exceptions"
+  ],
+  "errors": []
+}

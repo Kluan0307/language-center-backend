@@ -1,0 +1,191 @@
+{
+   "checksum": "adf9fbe7d5525bb6464f79640f0fe11d",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13398250197347818",
+            "date_last_used": "0",
+            "guid": "fcca3f75-33b5-418f-b92e-cbbc0a7bae18",
+            "id": "14",
+            "name": "LastPass",
+            "show_icon": false,
+            "source": "import_fre",
+            "type": "url",
+            "url": "https://www.lastpass.com/hpwelcome",
+            "visit_count": 0
+         }, {
+            "date_added": "13333651759985579",
+            "date_last_used": "0",
+            "guid": "24db0fc6-5ba1-45b0-b814-6867d7c912b4",
+            "id": "15",
+            "name": "New tab",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "edge://newtab/",
+            "visit_count": 0
+         }, {
+            "date_added": "13369162313361395",
+            "date_last_used": "0",
+            "guid": "41026be8-66ef-4a0a-ad6a-97b934e0381a",
+            "id": "16",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "d",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://venge.io/#9A727E",
+            "visit_count": 1
+         }, {
+            "date_added": "13369305166638958",
+            "date_last_used": "13378847348737220",
+            "guid": "2a092cb8-4397-4b0b-9c5c-635df6447ef4",
+            "id": "17",
+            "name": "Con của Vân Dung, Công Lý và Võ Hoài Nam đóng phim",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.msn.com/vi-vn/entertainment/news/con-c%E1%BB%A7a-v%C3%A2n-dung-c%C3%B4ng-l%C3%BD-v%C3%A0-v%C3%B5-ho%C3%A0i-nam-%C4%91%C3%B3ng-phim/ar-AA1pym5X",
+            "visit_count": 1
+         }, {
+            "date_added": "13376559802532920",
+            "date_last_used": "0",
+            "guid": "4d1bb7a3-27ee-4d86-9552-85d5cb6ca000",
+            "id": "18",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "ewee",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://venge.io/#F953F6",
+            "visit_count": 1
+         }, {
+            "date_added": "13376642327613169",
+            "date_last_used": "0",
+            "guid": "e4c4b8ff-f9a4-43a0-92f0-9fedb7884c6a",
+            "id": "19",
+            "meta_info": {
+               "power_bookmark_meta": ""
+            },
+            "name": "Oasis",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://oasis.decart.ai/starting-point?journey=Desert+Expanse",
+            "visit_count": 1
+         }, {
+            "date_added": "13439635998519396",
+            "date_last_used": "0",
+            "guid": "e4ba6360-6448-41cf-802e-248ca9dececd",
+            "id": "10",
+            "name": "Booking.com",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://www.booking.com/index.html?aid=1980379&label=NW21C2EF",
+            "visit_count": 0
+         }, {
+            "date_added": "13439635998519264",
+            "date_last_used": "0",
+            "guid": "8990695a-c474-4981-b935-97b8a377143c",
+            "id": "9",
+            "name": "Express VPN",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "http://js.redirect.hp.com/jumpstation?bd=expressvpn&c=*&locale=en_us&pf=*&s=*&tp=edge",
+            "visit_count": 0
+         }, {
+            "date_added": "13439635998519049",
+            "date_last_used": "0",
+            "guid": "f8b4dab3-3595-4316-a486-7adc9e1d29e5",
+            "id": "8",
+            "name": "McAfee Security",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "http://www.mcafee.com/consumer/v/browserfav/hp.html",
+            "visit_count": 0
+         }, {
+            "date_added": "13439635998517947",
+            "date_last_used": "0",
+            "guid": "5bbe2637-13a6-4f7b-9f58-8717d808e8c7",
+            "id": "7",
+            "name": "LastPass password manager",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "http://js.redirect.hp.com/jumpstation?bd=lastpass&c=*&locale=*&pf=*&s=*&tp=edge",
+            "visit_count": 0
+         } ],
+         "date_added": "13439635998246919",
+         "date_last_used": "0",
+         "date_modified": "13439636003648487",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favorites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [ {
+            "children": [ {
+               "date_added": "13398250197347818",
+               "date_last_used": "0",
+               "guid": "dcb700f0-d65c-4715-b608-ebe16e8f645b",
+               "id": "21",
+               "name": "LastPass",
+               "show_icon": false,
+               "source": "import_fre",
+               "type": "url",
+               "url": "https://www.lastpass.com/hpwelcome",
+               "visit_count": 0
+            } ],
+            "date_added": "13439636001383636",
+            "date_last_used": "0",
+            "date_modified": "13439636003651449",
+            "guid": "0c90c611-d159-4a49-b92a-4ef78f8235d4",
+            "id": "20",
+            "name": "HP",
+            "source": "unknown",
+            "type": "folder"
+         } ],
+         "date_added": "13439635998246919",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13439635998246919",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13439635998246919",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "5",
+         "name": "Workspaces",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CjEKDgiIgQISCHqS/+2hAQAAEgAqGFNlVkhFZ3BPWUpVVmhVTFJtcTZsWUE9PUgDoAYHEowBCAUShwEKHHdSQnJaTCs2UEE5YXZLZ2pOUDdKWERMY2Z2cz0SJGUxNDkxMGYxLTY3YzgtNTRlMi1hOTJiLTJhNjhkYjlhNWNhZBgAIAAoADDQksLHlzM4qJTCx5czQKiUwseXM0ocbm14NjVzUUR2eEk4VGdFZXYrQStudHRvU240PWUAAAAAwj4CYAASrAEIFRKnAQocZ1FvZXRTcWRVTGk3WjY0RFZURElVNXJiOWVBPRIkZGNiNzAwZjAtZDY1Yy00NzE1LWI2MDgtZWJlMTZlOGY2NDViGAAgACgAMKW/laDmMDjEwZWg5jBAxMGVoOYwShxXenNrTGZqTXhYWmQvckNFb2tnMVprZWNFUlU9Wh4iHFhVVU9nREd2dTg2WUUyclgwdWc1Q3UzWERXcz1lAAAAAMI+AmACEowBCAEShwEKHHl4Si82ZnZrZWNyN2twNUVRekI0dFdMcGRiRT0SJDVjOTdkYzk3LWNkZjgtNTZlYy1hOGQwLWIyMDEzNDE2MDI2OBgAIAAoADCowYefujA4usOHn7owQLrDh5+6MEocYVJDV0xnaEY5YjVJbnFLSUR2dUovanZRa0ZjPWUAAAAAwj4CYAASrAEIDhKnAQocSW81UGxGZjdwTWhoSzh0RTg5aVBxbHJTSHlVPRIkZmNjYTNmNzUtMzNiNS00MThmLWI5MmUtY2JiYzBhN2JhZTE4GAAgACgAMKa/laDmMDjjwZWg5jBA48GVoOYwShx2M1J0czNmTGh2a08xZ0F3V3RoRmVwQkd5NVE9Wh4iHDlxMlhHRUN5ZzExV0twamdDazBhbGRQeVVtYz1lAAAAAMI+AmACEqwBCBQSpwEKHDREY2JPWnpFZXdHbGdYRm1tMjZCR0hQdG15MD0SJDBjOTBjNjExLWQxNTktNGE0OS1iOTJhLTRlZjc4ZjgyMzVkNBgAIAAoADCkv5Wg5jA4+b+VoOYwQPm/laDmMEocbytJd3FCTFcwK2gzc25BNTNjQWlBbWdxR1ZJPVoeIhwvWngyRDBDMkkzVlRuejV3bnh3NzdwN2pVSlE9ZQAAAADCPgJgABKMAQgCEocBChxZY1NUb252RVNQd3FDczRMMmNyVmh2NjhMOTg9EiRjZTczYjgyZi04YTkxLTVhODItOWYyNS0wMDIzOGZjZWJlMjYYACAAKAAwqMGHn7owONnDh5+6MEDZw4efujBKHG9QVmtod0JSYlY2NUtDV1IyK0lPTkhXb091OD1lAAAAAMI+AmAAEqwBCBASpwEKHGpxbXh0MUt5RmVGQk5hbVJ1bHdHS2lsbmlWOD0SJDQxMDI2YmU4LTY2ZWYtNGEwYS1hZDZhLTk3YjkzNGUwMzgxYRgAIAAoADDB8+P7mDI49ZPV+5gyQPWT1fuYMkocaWZLbnNJdUpKa3VBZzFLVTREZnZXMHppTExNPVoeIhxsWUE4YmJWYk93cUNyT3FHdUwwQzMrSStNV1U9Zf1KCHXCPgJgBRKtAQgTEqgBChxjRWp0Nk92aWdnN2lXK2w4a2FKZVIzRE1Ba2s9EiRlNGM0YjhmZi1mOWE0LTQzYTAtOTJmMC05ZmVkYjc4ODRjNmEYACAAKAAw+IS16rQyOOiGteq0MkDohrXqtDJKHDZ3WEZneHVnQ2RRdjc1TTZhNFVhWWVFam9FMD1aHyId7XA1MjdCV3F3RjNJUy80eFd6dFFqY09OODBMTT1lireNOcI+AmAFEq0BCBISqAEKHFFqMDVIZ0NuQit0ZGZ6TzZRa0dDSkN6djJncz0SJDRkMWJiN2EzLTI3ZWUtNGQ4Ni05NTUyLTg1ZDVjYjZjYTAwMBgAIAAoADDMp4jDtDI47oyIw7QyQO6MiMO0MkocS3FNREd3L3YwL2lIQmQ3MTgvcmNvbUtyNGFvPVofIh3baEl3dWU1NTF0Q0hyMjNLeUF1U2tnV0FsMjZJPWX9Sgh1wj4CYAUSrQEIERKoAQoceEkvQUNWRXovNlhld0lhdDR2dzhmanhIcHRBPRIkMmEwOTJjYjgtNDM5Ny00YjBiLTljNWMtNjM1ZGY2NDQ3ZWY0GAAgACgAMJHV+POJMzjcl+S/mTJA3Jfkv5kyShxGL0hoU0crRE5mNlJBNktEallHYjlZQmlkdW89Wh8iHbYzYnR4Um50aHpmTi85MHhJTFozeHNFTEtab1U9ZfUZMsTCPgJgBRKsAQgPEqcBChxJUnR6Y0pScGk0NFNKbmd5MlV1SHpZa0tuYmc9EiQyNGRiMGZjNi01YmExLTQ1YjAtYjgxNC02ODY3ZDdjOTEyYjQYACAAKAAw6NDduJs0OJOM9daUMUCTjPXWlDFKHEIxYk9SN20vTFRFLzRxUTdZRS9yZ1Nvd2pzaz1aHiIcV0JEcnJnVkNVRmlyQnVnODFsZjRtQWFvTGdBPWXYr7ACwj4CYAUSjAEIAxKHAQocbmpnRHU4OGVDcnZYcDg2cEQ3ZkhHY3FGcDg4PRIkMGE3MDlhYjUtOWE2Mi01MGU3LTg1MmUtNTZmOWY0MzJjMzIwGAAgACgAMKjBh5+6MDjHxIefujBAx8SHn7owShx5ek5CMDFjbjU0QTdjUlUwdVQrL1BnbVR0VW89ZQAAAADCPgJgADAAOAA=",
+   "version": 1
+}

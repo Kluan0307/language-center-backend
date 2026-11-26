@@ -1,0 +1,5 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),{check}=require('./preflight.cjs');
+const valid={NEXT_PUBLIC_SITE_URL:'https://center.school.vn',WEBSITE_API_URL:'https://api.center.school.vn/api/v1/academic/public/catalog/',WEBSITE_FORM_SECRET:'a'.repeat(64),WEBSITE_INDEXABLE:'false'};
+test('accepts explicit staging and stable internal backend',()=>{assert.deepEqual(check(valid),[]);assert.deepEqual(check({...valid,WEBSITE_API_URL:'http://gateway:8080/api/v1/academic/public/catalog/'}),[]);});
+test('rejects development origins and tunnels',()=>{for(const v of ['http://localhost:3000','https://test.ngrok-free.dev','https://www.example.com'])assert.ok(check({...valid,NEXT_PUBLIC_SITE_URL:v}).length);});
+test('rejects missing secret, embedded credentials and accidental indexing settings',()=>{assert.ok(check({...valid,WEBSITE_FORM_SECRET:''}).length);assert.ok(check({...valid,WEBSITE_API_URL:'https://user:pass@api.center.school.vn/api/v1/academic/public/catalog/'}).length);assert.ok(check({...valid,WEBSITE_INDEXABLE:'yes'}).length);});

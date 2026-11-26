@@ -1,0 +1,89 @@
+{
+  "completedAt": "2026-11-25T02:40:05.479Z",
+  "status": "complete",
+  "stage": "DCK6",
+  "scope": "local Docker Compose",
+  "checks": {
+    "backupRestore": 13,
+    "lifecycle": 8,
+    "functional": 23,
+    "webHttp": 38
+  },
+  "services": [
+    {
+      "service": "academic-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "api-gateway",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "assistant-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "auth-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "finance-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "mysql",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "teaching-service",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "web-admin",
+      "state": "running",
+      "health": "healthy"
+    },
+    {
+      "service": "website",
+      "state": "running",
+      "health": "healthy"
+    }
+  ],
+  "data": {
+    "accounts": 419,
+    "students": 400,
+    "courses": 20,
+    "school_classes": 40
+  },
+  "urls": {
+    "web-admin": "http://127.0.0.1:15173",
+    "website": "http://127.0.0.1:13000",
+    "api-gateway": "http://127.0.0.1:18080"
+  },
+  "backupRestoreVerified": true,
+  "mainDataPreservedDuringLifecycle": true,
+  "imageUpdateTested": [
+    "web-admin",
+    "website"
+  ],
+  "imageRollbackTested": true,
+  "mainDatabaseRestoreExecuted": false,
+  "backupLocation": "Private ignored storage/docker-backups",
+  "sourceDatabaseUsed": false,
+  "providers": {
+    "assistant": false,
+    "vnpay": false
+  },
+  "limitations": [
+    "Main restore replacement guarded and rehearsal verified; main data was not overwritten during DCK6.",
+    "Provider integrations and physical student device were not exercised.",
+    "Hosting, scheduled/off-machine backups and TLS are outside this local stage."
+  ]
+}

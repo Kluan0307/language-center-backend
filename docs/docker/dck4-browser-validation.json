@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-25T04:45:24.548Z",
+  "status": "passed",
+  "browser": "Chrome headless",
+  "checks": [
+    "Admin login renders",
+    "Admin browser API reaches gateway",
+    "Protected deep link restores login",
+    "Website / fits 1440",
+    "Website / loads without backend-error UI 1440",
+    "Website /khoa-hoc fits 1440",
+    "Website /khoa-hoc loads without backend-error UI 1440",
+    "Website /tu-van fits 1440",
+    "Website /tu-van loads without backend-error UI 1440",
+    "Website / fits 390",
+    "Website / loads without backend-error UI 390",
+    "Website /khoa-hoc fits 390",
+    "Website /khoa-hoc loads without backend-error UI 390",
+    "Website /tu-van fits 390",
+    "Website /tu-van loads without backend-error UI 390",
+    "Browser catalog loads from Next BFF",
+    "No uncaught browser errors",
+    "Browser never calls internal Docker names or old gateway port"
+  ],
+  "errors": [],
+  "viewports": [
+    1440,
+    390
+  ],
+  "screenshots": "screenshots/dck4-*.png",
+  "limitations": [
+    "No physical phone testing.",
+    "Database empty: positive authenticated flows deferred to DCK5."
+  ]
+}

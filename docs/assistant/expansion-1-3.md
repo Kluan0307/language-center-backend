@@ -1,5 +1,7 @@
 # Mở rộng mục 1–3 — nghiệm thu, hội thoại và tra cứu theo role
 
+Lộ trình tiếp theo đã được chốt lại theo phạm vi **chỉ đọc**: [R1–R8 và kịch bản theo role](readonly-roadmap.md). Các ghi chú bên dưới phản ánh đợt mở rộng trước đó.
+
 Ngày 13/11/2026. Phạm vi theo ba mục đầu của bảng lộ trình: C7, hiểu câu hỏi/hội thoại tiếp nối, tra cứu phục vụ công việc. Không thêm thao tác ghi dữ liệu.
 
 ## Đã triển khai

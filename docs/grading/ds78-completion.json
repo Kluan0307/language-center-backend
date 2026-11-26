@@ -1,0 +1,124 @@
+{
+  "checkedAt": "2026-11-25T14:08:02.693Z",
+  "status": "passed",
+  "backend": {
+    "academic": {
+      "tests": 345,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "teaching": {
+      "tests": 173,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "mobile": {
+    "typecheck": "passed",
+    "tests": 108,
+    "physicalDeviceTested": false,
+    "apkRebuilt": false
+  },
+  "web": {
+    "build": "passed",
+    "warning": "Existing bundle-size advisory",
+    "viewports": [
+      1440,
+      390
+    ]
+  },
+  "liveAcceptance": {
+    "checks": 25,
+    "isolatedMySQL": true,
+    "syntheticAcademic": true,
+    "temporaryResourcesCleaned": true
+  },
+  "migration": {
+    "version": "V032",
+    "tables": 99,
+    "oldDataUnchanged": true,
+    "verifiedTables": [
+      "grades",
+      "exams",
+      "grade_publications",
+      "published_grades",
+      "students",
+      "courses",
+      "school_classes",
+      "enrollments",
+      "teachers",
+      "staffs",
+      "grading_marks",
+      "grading_activities",
+      "grading_releases"
+    ],
+    "backupBeforeMigration": "ops-1795614773868-8b89c3",
+    "automaticLegacyConversion": false
+  },
+  "inventory": {
+    "accounts": 419,
+    "students": 400,
+    "courses": 20,
+    "school_classes": 40,
+    "exams": 36,
+    "grades": 432,
+    "published_grades": 432,
+    "grade_publications": 36,
+    "grading_templates": 4,
+    "grading_class_bindings": 0,
+    "grading_marks": 0,
+    "grading_activities": 0,
+    "grading_legacy_imports": 0,
+    "grading_completion_batches": 0
+  },
+  "runtime": [
+    {
+      "service": "academic-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "api-gateway",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "assistant-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "auth-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "finance-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "mysql",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "teaching-service",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "web-admin",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "service": "website",
+      "running": true,
+      "health": "healthy"
+    }
+  ],
+  "documentation": "docs/grading/DS7-DS8.md"
+}

@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "observedAt": "2026-11-16T15:06:11.886Z",
+  "checks": 64,
+  "branches": [
+    {
+      "code": "CN01",
+      "leads": 20,
+      "classes": 10,
+      "students": 100
+    },
+    {
+      "code": "CN02",
+      "leads": 20,
+      "classes": 10,
+      "students": 100
+    },
+    {
+      "code": "CN03",
+      "leads": 20,
+      "classes": 10,
+      "students": 100
+    },
+    {
+      "code": "CN04",
+      "leads": 20,
+      "classes": 10,
+      "students": 100
+    }
+  ],
+  "countersAligned": true,
+  "temporaryDatabasesRemaining": 0,
+  "classificationComplete": true,
+  "accountsPreserved": 419,
+  "classesByStatus": {
+    "ONGOING": 32,
+    "FINISHED": 4,
+    "UPCOMING": 4
+  },
+  "studentExamples": [
+    {
+      "accountId": 12,
+      "username": "student1",
+      "studentId": 401,
+      "studentCode": "HV0401",
+      "branchId": 1
+    },
+    {
+      "accountId": 13,
+      "username": "student2",
+      "studentId": 402,
+      "studentCode": "HV0402",
+      "branchId": 1
+    },
+    {
+      "accountId": 14,
+      "username": "student3",
+      "studentId": 403,
+      "studentCode": "HV0403",
+      "branchId": 1
+    },
+    {
+      "accountId": 15,
+      "username": "student4",
+      "studentId": 404,
+      "studentCode": "HV0404",
+      "branchId": 1
+    },
+    {
+      "accountId": 16,
+      "username": "student5",
+      "studentId": 405,
+      "studentCode": "HV0405",
+      "branchId": 1
+    }
+  ],
+  "counts": {
+    "accounts": 419,
+    "branches": 4,
+    "programs": 4,
+    "program_levels": 15,
+    "audience_groups": 5,
+    "courses": 20,
+    "school_classes": 40,
+    "class_sessions": 320,
+    "students": 400,
+    "enrollments": 432,
+    "tuition": 432,
+    "payments": 298,
+    "leads": 80,
+    "grades": 432,
+    "published_grades": 432,
+    "student_notifications": 400,
+    "website_publications": 0
+  },
+  "liveUiTest": "not performed; services were stopped before D4",
+  "externalProviderTransactionsCreated": false
+}

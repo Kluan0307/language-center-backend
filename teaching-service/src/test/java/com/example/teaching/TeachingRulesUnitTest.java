@@ -89,7 +89,7 @@ class TeachingRulesUnitTest {
             exams,
             mock(AcademicDirectory.class),
             new BranchScope(),
-            mock(ExamRosterService.class));
+            mock(ExamRosterService.class),mock(com.example.teaching.grading.GradingBindingRepository.class));
     assertThrows(
         ApiException.class,
         () -> service.save(new GradeDto.Request(5L, 6L, BigDecimal.ONE, null, "correction")));
@@ -111,7 +111,7 @@ class TeachingRulesUnitTest {
                     exams,
                     mock(AcademicDirectory.class),
                     new BranchScope(),
-                    mock(ExamRosterService.class))
+                    mock(ExamRosterService.class),mock(com.example.teaching.grading.GradingBindingRepository.class))
                 .save(new GradeDto.Request(5L, 6L, new BigDecimal("11"), null, null)));
   }
 

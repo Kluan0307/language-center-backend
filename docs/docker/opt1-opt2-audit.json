@@ -1,0 +1,560 @@
+{
+  "checkedAt": "2026-11-25T04:38:02.897Z",
+  "status": "passed",
+  "relational": [
+    {
+      "name": "FK account_branch_events.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK account_branches.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK account_security_events.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK admins.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK attendance_changes.session_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK attendances.enrollment_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK attendances.class_session_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK class_sessions.class_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK course_admission_levels.policy_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK course_audiences.course_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK course_audiences.audience_group_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK courses.program_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK enrollment_periods.enrollment_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK enrollments.student_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK enrollments.class_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK evaluation_policy_exams.policy_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK grade_publications.exam_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK grades.exam_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK leads.interested_course_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK leads.converted_student_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK placement_assessments.student_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK program_levels.program_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK published_grades.publication_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK schedules.class_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK school_classes.room_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK school_classes.course_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK session_events.session_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK staffs.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK student_support_messages.request_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK student_support_operations.request_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK super_admins.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "FK teachers.account_id",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Missing course classification",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Unsupported audience",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "New courses must not use legacy type",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Policy program differs from course",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Admission levels belong to correct program",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Class snapshot and duration",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Student account branch and role",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Every retained student account relinked once",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Minor guardian",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Class room and course branch",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Teachers active and assigned",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Enrollment branch",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Cached size and capacity",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Teacher and room conflicts",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Student schedule conflicts",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Exact planned duration",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Session valid dates",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Admission decision relation",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Verified assessment for required admission",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "No unverified current level",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Tuition enrollment and branch",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Paid amount from receipts",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Tuition status",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Receipt branch and staff",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Attendance inside verified periods",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Candidates and grade ownership",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Published grade snapshot",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Lead assignment and branch",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Notifications owned by correct student",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "Duplicate business codes",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    }
+  ],
+  "plans": [
+    {
+      "name": "student-enrollments",
+      "plan": {
+        "query_block": {
+          "select_id": 1,
+          "cost_info": {
+            "query_cost": "0.35"
+          },
+          "ordering_operation": {
+            "using_filesort": true,
+            "table": {
+              "table_name": "enrollments",
+              "access_type": "ref",
+              "possible_keys": [
+                "idx_enrollment_student_status"
+              ],
+              "key": "idx_enrollment_student_status",
+              "used_key_parts": [
+                "student_id"
+              ],
+              "key_length": "8",
+              "ref": [
+                "const"
+              ],
+              "rows_examined_per_scan": 1,
+              "rows_produced_per_join": 1,
+              "filtered": "100.00",
+              "using_index": true,
+              "cost_info": {
+                "read_cost": "0.25",
+                "eval_cost": "0.10",
+                "prefix_cost": "0.35",
+                "data_read_per_join": "2K"
+              },
+              "used_columns": [
+                "id",
+                "student_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "branch-students",
+      "plan": {
+        "query_block": {
+          "select_id": 1,
+          "cost_info": {
+            "query_cost": "10.32"
+          },
+          "ordering_operation": {
+            "using_filesort": false,
+            "table": {
+              "table_name": "students",
+              "access_type": "ref",
+              "possible_keys": [
+                "idx_student_phone_branch",
+                "idx_student_branch_id"
+              ],
+              "key": "idx_student_branch_id",
+              "used_key_parts": [
+                "branch_id"
+              ],
+              "key_length": "8",
+              "ref": [
+                "const"
+              ],
+              "rows_examined_per_scan": 100,
+              "rows_produced_per_join": 100,
+              "filtered": "100.00",
+              "backward_index_scan": true,
+              "using_index": true,
+              "cost_info": {
+                "read_cost": "0.32",
+                "eval_cost": "10.00",
+                "prefix_cost": "10.32",
+                "data_read_per_join": "818K"
+              },
+              "used_columns": [
+                "id",
+                "branch_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "lead-followup",
+      "plan": {
+        "query_block": {
+          "select_id": 1,
+          "cost_info": {
+            "query_cost": "0.75"
+          },
+          "ordering_operation": {
+            "using_filesort": false,
+            "table": {
+              "table_name": "leads",
+              "access_type": "ref",
+              "possible_keys": [
+                "idx_lead_followup"
+              ],
+              "key": "idx_lead_followup",
+              "used_key_parts": [
+                "branch_id",
+                "status"
+              ],
+              "key_length": "9",
+              "ref": [
+                "const",
+                "const"
+              ],
+              "rows_examined_per_scan": 5,
+              "rows_produced_per_join": 5,
+              "filtered": "100.00",
+              "using_index": true,
+              "cost_info": {
+                "read_cost": "0.25",
+                "eval_cost": "0.50",
+                "prefix_cost": "0.75",
+                "data_read_per_join": "30K"
+              },
+              "used_columns": [
+                "id",
+                "branch_id",
+                "status",
+                "next_contact_at"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "student-tuition",
+      "plan": {
+        "query_block": {
+          "select_id": 1,
+          "cost_info": {
+            "query_cost": "0.35"
+          },
+          "ordering_operation": {
+            "using_filesort": false,
+            "table": {
+              "table_name": "tuition",
+              "access_type": "ref",
+              "possible_keys": [
+                "idx_tuition_student_due"
+              ],
+              "key": "idx_tuition_student_due",
+              "used_key_parts": [
+                "student_id"
+              ],
+              "key_length": "8",
+              "ref": [
+                "const"
+              ],
+              "rows_examined_per_scan": 1,
+              "rows_produced_per_join": 1,
+              "filtered": "100.00",
+              "using_index": true,
+              "cost_info": {
+                "read_cost": "0.25",
+                "eval_cost": "0.10",
+                "prefix_cost": "0.35",
+                "data_read_per_join": "6K"
+              },
+              "used_columns": [
+                "id",
+                "due_date",
+                "student_id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "sourceDatabaseWritten": false
+}

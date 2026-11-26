@@ -31,9 +31,90 @@ import org.springframework.transaction.annotation.Transactional;
 class AssistantQueryTest {
   @Autowired TeachingReadService service;
   @Autowired EntityManager em;
+  @Autowired org.springframework.jdbc.core.JdbcTemplate jdbc;
   @MockitoBean AcademicDirectory academic;
   @MockitoBean RemoteApi remote;
   Exam exam;
+
+  @BeforeAll
+  static void academicSchema(@Autowired org.springframework.jdbc.core.JdbcTemplate jdbc) {
+    jdbc.execute(
+        "create table if not exists school_classes(id bigint primary key,branch_id"
+            + " bigint,teacher_id bigint)");
+  }
+
+  @Test
+  void gradeFiltersSeparateZeroFromMissingBeforePaging() {
+    var zero =
+        (Map<?, ?>)
+            service
+                .current(ReadQuery.Mode.ACTIVE_BRANCH, 1L, exam.getId(), null, "ZERO", 0, 1)
+                .data();
+    assertEquals(1, ((PageResponse<?>) zero.get("records")).totalElements());
+    var missing =
+        (Map<?, ?>)
+            service
+                .current(ReadQuery.Mode.ACTIVE_BRANCH, 1L, exam.getId(), null, "NOT_GRADED", 0, 1)
+                .data();
+    assertEquals(1, ((PageResponse<?>) missing.get("records")).totalElements());
+    assertEquals(
+        12L,
+        ((TeachingReadService.GradeRow)
+                ((PageResponse<?>) missing.get("records")).content().getFirst())
+            .studentId());
+    var filtered =
+        (Map<?, ?>)
+            service
+                .current(ReadQuery.Mode.ACTIVE_BRANCH, 1L, exam.getId(), 11L, "NOT_GRADED", 0, 1)
+                .data();
+    assertEquals(0, ((PageResponse<?>) filtered.get("records")).totalElements());
+  }
+
+  @Test
+  void unfrozenRosterCannotPretendToKnowMissingCandidates() {
+    exam.setRosterFrozenAt(null);
+    em.flush();
+    assertThrows(
+        ApiException.class,
+        () ->
+            service.current(
+                ReadQuery.Mode.ACTIVE_BRANCH, 1L, exam.getId(), null, "NOT_GRADED", 0, 5));
+    var rows =
+        (PageResponse<?>)
+            service
+                .examList(ReadQuery.Mode.ACTIVE_BRANCH, 1L, null, null, null, false, 0, 5)
+                .data();
+    assertNull(((Map<?, ?>) rows.content().getFirst()).get("missingCount"));
+  }
+
+  @Test
+  void examProgressCountsMissingNotZeroAndRespectsTeacherOwnership() {
+    jdbc.update("insert into school_classes values(9,1,11)");
+    var r = service.examList(ReadQuery.Mode.ACTIVE_BRANCH, 1L, null, null, null, true, 0, 1);
+    assertEquals(1, ((PageResponse<?>) r.data()).totalElements());
+    assertEquals(
+        1L, ((Map<?, ?>) ((PageResponse<?>) r.data()).content().getFirst()).get("missingCount"));
+    actor(Role.TEACHER, 12L, List.of(1L));
+    assertEquals(
+        0,
+        ((PageResponse<?>)
+                service
+                    .examList(ReadQuery.Mode.ACTIVE_BRANCH, 1L, null, null, null, true, 0, 5)
+                    .data())
+            .totalElements());
+    actor(Role.TEACHER, 11L, List.of(1L));
+    assertEquals(
+        1,
+        ((PageResponse<?>)
+                service
+                    .examList(ReadQuery.Mode.ACTIVE_BRANCH, 1L, null, null, null, true, 0, 5)
+                    .data())
+            .totalElements());
+    actor(Role.STAFF, 11L, List.of(1L));
+    assertThrows(
+        org.springframework.security.access.AccessDeniedException.class,
+        () -> service.examList(ReadQuery.Mode.ACTIVE_BRANCH, 1L, null, null, null, true, 0, 5));
+  }
 
   void actor(Role role, Long profile, List<Long> ids) {
     SecurityContextHolder.getContext()

@@ -189,11 +189,12 @@ public class AssistantMcpRuntime {
           var view = params.remove("view");
           if (view.equals("CURRENT")) {
             if (caller.role() == SessionVerifier.Role.STAFF) throw new McpFault("FORBIDDEN");
-            if (!params.containsKey("examId")
-                || params.containsKey("studentId")
-                || params.containsKey("enrollmentId")) throw new McpFault("INVALID_ARGUMENTS");
+            if (!params.containsKey("examId") || params.containsKey("enrollmentId"))
+              throw new McpFault("INVALID_ARGUMENTS");
             endpoint = "current-grades";
           } else {
+            if (!"ALL".equals(params.remove("scoreFilter")))
+              throw new McpFault("INVALID_ARGUMENTS");
             if (caller.role() == SessionVerifier.Role.TEACHER) throw new McpFault("FORBIDDEN");
             if (!params.containsKey("studentId")
                 || !params.containsKey("enrollmentId")
@@ -208,6 +209,7 @@ public class AssistantMcpRuntime {
               case ACADEMIC -> "academic";
               case FINANCE -> "finance";
               case TEACHING -> "teaching";
+              case AUTH -> "auth";
               default -> throw new McpFault("FORBIDDEN");
             };
         var result =

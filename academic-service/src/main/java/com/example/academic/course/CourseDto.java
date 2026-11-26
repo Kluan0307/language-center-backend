@@ -17,7 +17,8 @@ public record CourseDto(
     Course.Status status,
     Long branchId,
     Integer expectedMinutes,
-    long durationRevision) {
+    long durationRevision, Long programId,java.util.List<AudienceDto> audiences,long classificationRevision,boolean classificationComplete) {
+  public record AudienceDto(Long id,String code,String name,boolean active) {}
   public static CourseDto of(Course c) {
     return new CourseDto(
         c.getId(),
@@ -33,7 +34,7 @@ public record CourseDto(
         c.getStatus(),
         c.getBranchId(),
         c.getExpectedMinutes(),
-        c.getDurationRevision());
+        c.getDurationRevision(),c.getProgramId(),c.getAudienceGroups().stream().sorted(java.util.Comparator.comparing(AudienceGroup::getSortOrder)).map(a->new AudienceDto(a.getId(),a.getCode(),a.getName(),a.isActive())).toList(),c.getClassificationRevision(),c.getProgramId()!=null&&!c.getAudienceGroups().isEmpty());
   }
 
   public record Request(
@@ -48,7 +49,9 @@ public record CourseDto(
       String entryRequirement,
       @NotNull @Positive Integer maxStudents,
       Long branchId,
-      @Min(1) @Max(com.example.academic.duration.DurationDto.MAX_MINUTES) Integer expectedMinutes) {
+      @Min(1) @Max(com.example.academic.duration.DurationDto.MAX_MINUTES) Integer expectedMinutes,
+      Long programId,java.util.List<Long> audienceIds,Long classificationRevision) {
+    public Request(String code,String name,String type,String level,Integer duration,BigDecimal fee,String content,String entry,Integer maxStudents,Long branchId,Integer minutes){this(code,name,type,level,duration,fee,content,entry,maxStudents,branchId,minutes,null,null,null);}
     public Request(
         String code,
         String name,

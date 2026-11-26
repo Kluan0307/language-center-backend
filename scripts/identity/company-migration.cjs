@@ -1,0 +1,4 @@
+const fs=require('fs'),assert=require('assert/strict'),{query,schema,root}=require('./database.cjs');process.chdir(root);
+const sql=fs.readFileSync('docs/migrations/V021__company_internal_support.sql','utf8'),scratch='lc_company_'+Date.now();
+assert.match(scratch,/^lc_company_\d+$/);query(null,'CREATE DATABASE `'+scratch+'`;');
+try{query(scratch,schema());query(scratch,sql);query(scratch,sql);assert.equal(query(scratch,"SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME IN ('organization_units','job_titles','organization_assignments','internal_support_tickets','internal_support_replies')"),'5');if(process.argv.includes('--apply'))query('language_center_db',sql);console.log('PASS: V021 replay; applied='+process.argv.includes('--apply'));}finally{query(null,'DROP DATABASE `'+scratch+'`;');}

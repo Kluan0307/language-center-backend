@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-24T15:36:12.276Z",
+  "stage": "DCK3",
+  "status": "complete",
+  "checks": 18,
+  "services": 7,
+  "gateway": "http://127.0.0.1:18080",
+  "tableCount": 87,
+  "rowsImported": 0,
+  "sourceDatabaseWritten": false,
+  "temporaryProjectRemoved": true,
+  "productionDataMigration": "DCK5",
+  "websiteIntegration": "DCK4"
+}

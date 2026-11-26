@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface LeadRepository extends JpaRepository<Lead, Long>, JpaSpecificationExecutor<Lead> {
   @Override
-  @EntityGraph(attributePaths = {"interestedCourse", "convertedStudent"})
+  @EntityGraph(attributePaths = {"interestedCourse", "convertedStudent", "preferredClass"})
   org.springframework.data.domain.Page<Lead> findAll(
       org.springframework.data.jpa.domain.Specification<Lead> spec,
       org.springframework.data.domain.Pageable pageable);

@@ -1,0 +1,7 @@
+import Link from "@/components/loading-link";
+import {notFound} from "next/navigation";
+import {teacher} from "@/lib/teachers";
+import {PublicImage} from "@/components/public-image";
+export const dynamic="force-dynamic";
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const t=await teacher((await params).slug);return {title:t?.name||"Không tìm thấy hồ sơ giáo viên",description:t?.biography};}
+export default async function Teacher({params}:{params:Promise<{slug:string}>}){const t=await teacher((await params).slug);if(!t)notFound();return <div className="shell"><section className="pageHero compactHero"><nav className="breadcrumbs"><Link href="/giao-vien">Giáo viên</Link><span>/</span><span>{t.name}</span></nav><p className="eyebrow">{t.specialization||"ĐỘI NGŨ GIẢNG DẠY"}</p><h1>{t.name}</h1></section><div className="detailLayout"><section className="contentSection"><PublicImage src={t.imageUrl} alt={t.name}/><h2>Đồng hành cùng người học.</h2><p className="preserveLines">{t.biography}</p>{t.teachingFocus&&<><h3>Định hướng giảng dạy</h3><p>{t.teachingFocus}</p></>}{t.qualification&&<><h3>Trình độ chuyên môn</h3><p>{t.qualification}</p></>}</section><aside><div className="enrollmentPanel"><h2>Tìm lớp học phù hợp.</h2><p>Trung tâm sẽ xác nhận giáo viên phụ trách theo lớp và lịch học thực tế khi tư vấn.</p><Link className="button" href="/tu-van">Đăng ký tư vấn →</Link></div></aside></div></div>;}

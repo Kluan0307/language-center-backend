@@ -30,6 +30,7 @@ public class AuthService {
   private final AuthenticationManager authenticationManager;
   private final BranchDirectory branches;
   private final com.example.auth.student.StudentAccountService studentAccounts;
+  private final jakarta.persistence.EntityManager entityManager;
 
   private record ProfileInfo(Long profileId, String fullName) {}
 
@@ -53,8 +54,9 @@ public class AuthService {
 
     ProfileInfo profile = resolveProfile(account);
     if (profile.profileId() == null
-        || (account.getRole() != Role.SUPER_ADMIN && account.getRole() != Role.STUDENT && account.activeBranchIds().isEmpty()))
-      throw ApiException.forbidden();
+        || (account.getRole() != Role.SUPER_ADMIN
+            && account.getRole() != Role.STUDENT
+            && account.activeBranchIds().isEmpty())) throw ApiException.forbidden();
 
     String token =
         jwtUtil.generateToken(
@@ -70,6 +72,7 @@ public class AuthService {
         .token(token)
         .accountId(account.getId())
         .profileId(profile.profileId())
+        .personnelCode(account.getPersonnelCode())
         .branchId(account.getBranchId())
         .branchIds(account.activeBranchIds())
         .username(account.getUsername())
@@ -100,12 +103,19 @@ public class AuthService {
     if (branchId == null) throw ApiException.bad("Phải chọn chi nhánh cho tài khoản mới");
 
     branches.requireActive(branchId);
+    String workStatus = request.getWorkStatus() != null ? request.getWorkStatus() : "ACTIVE";
+    var employmentEnd = "INACTIVE".equals(workStatus) && request.getEndDate() == null
+        ? java.time.LocalDate.now(BusinessTime.ZONE) : request.getEndDate();
+    EmploymentRules.validate(workStatus, request.getHireDate(), employmentEnd);
+    var number = new PersonnelCodeNumber();
+    entityManager.persist(number);
     Account savedAccount =
         accountRepository.save(
             Account.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(target)
+                .personnelCode(number.code(target))
                 .status(true)
                 .mustChangePassword(true)
                 .branchId(branchId)
@@ -113,7 +123,6 @@ public class AuthService {
 
     applyAssignments(savedAccount, java.util.List.of(branchId), branchId, caller.getId());
     accountRepository.save(savedAccount);
-    String workStatus = request.getWorkStatus() != null ? request.getWorkStatus() : "ACTIVE";
 
     return switch (target) {
       case ADMIN -> {
@@ -125,6 +134,7 @@ public class AuthService {
                     .email(request.getEmail())
                     .phone(request.getPhone())
                     .hireDate(request.getHireDate())
+                    .endDate(employmentEnd)
                     .workStatus(workStatus)
                     .build());
         yield toAdminResponse(savedAccount, saved);
@@ -138,6 +148,7 @@ public class AuthService {
                     .email(request.getEmail())
                     .phone(request.getPhone())
                     .hireDate(request.getHireDate())
+                    .endDate(employmentEnd)
                     .workStatus(workStatus)
                     .position(request.getPosition())
                     .build());
@@ -156,6 +167,7 @@ public class AuthService {
                     .experience(request.getExperience())
                     .certificate(request.getCertificate())
                     .hireDate(request.getHireDate())
+                    .endDate(employmentEnd)
                     .workStatus(workStatus)
                     .build());
         yield toTeacherResponse(savedAccount, saved);
@@ -285,7 +297,14 @@ public class AuthService {
       removed.removeAll(ids);
       if (!removed.isEmpty()) branches.requireNoActiveLeads(id, removed);
     }
+    if (!new java.util.HashSet<>(account.activeBranchIds()).equals(new java.util.HashSet<>(ids))
+        || !java.util.Objects.equals(account.getBranchId(), request.primaryBranchId()))
+      account.setSessionVersion(Math.addExact(account.getSessionVersion(),1));
     applyAssignments(account, ids, request.primaryBranchId(), caller.getId());
+    var preferences=entityManager.find(com.example.auth.company.UserPreferences.class,id);
+    if(preferences!=null&&preferences.getDefaultBranchId()!=null&&!ids.contains(preferences.getDefaultBranchId())){
+      preferences.setDefaultBranchId(null);preferences.setVersion(Math.addExact(preferences.getVersion(),1));
+    }
     return getUserResponseByAccount(accountRepository.save(account));
   }
 
@@ -391,7 +410,8 @@ public class AuthService {
                                   cb.isTrue(membership.get("status")));
                           return r.get("id").in(sub);
                         })
-                    .and((r,q,cb) -> cb.notEqual(r.get("role"), Role.STUDENT)).and(Query.eq("role", role))
+                    .and((r, q, cb) -> cb.notEqual(r.get("role"), Role.STUDENT))
+                    .and(Query.eq("role", role))
                     .and(
                         (r, q, cb) -> {
                           if (keyword == null || keyword.isBlank()) return cb.conjunction();
@@ -408,9 +428,18 @@ public class AuthService {
                           var t = sub.from(Teacher.class);
                           sub.select(t.get("account").get("id"))
                               .where(cb.like(cb.lower(t.get("fullName")), pattern, '\\'));
+                          var staffNames = q.subquery(Long.class);
+                          var staff = staffNames.from(Staff.class);
+                          staffNames.select(staff.get("account").get("id"))
+                              .where(cb.like(cb.lower(staff.get("fullName")), pattern, '\\'));
+                          var adminNames = q.subquery(Long.class);
+                          var admin = adminNames.from(Admin.class);
+                          adminNames.select(admin.get("account").get("id"))
+                              .where(cb.like(cb.lower(admin.get("fullName")), pattern, '\\'));
                           return cb.or(
-                              Query.<Account>keyword(keyword, "username").toPredicate(r, q, cb),
-                              r.get("id").in(sub));
+                              Query.<Account>keyword(keyword, "username", "personnelCode")
+                                  .toPredicate(r, q, cb),
+                              r.get("id").in(sub), r.get("id").in(staffNames), r.get("id").in(adminNames));
                         }),
                 Query.page(page, size))
             .map(this::getUserResponseByAccount));
@@ -428,7 +457,8 @@ public class AuthService {
                     t.getAccount().getId(),
                     t.getFullName(),
                     t.getAccount().getBranchId(),
-                    t.getAccount().activeBranchIds()))
+                    t.getAccount().activeBranchIds(),
+                    t.getAccount().getPersonnelCode(), t.getHireDate(), t.getEndDate()))
         .toList();
   }
 
@@ -452,7 +482,8 @@ public class AuthService {
         teacher.getAccount().getId(),
         teacher.getFullName(),
         teacher.getAccount().getBranchId(),
-        teacher.getAccount().activeBranchIds());
+        teacher.getAccount().activeBranchIds(),
+        teacher.getAccount().getPersonnelCode(), teacher.getHireDate(), teacher.getEndDate());
   }
 
   private Account getCaller(String username) {
@@ -463,8 +494,24 @@ public class AuthService {
 
   private ProfileInfo resolveProfile(Account account) {
     Long id = account.getId();
+    long profiles = 0;
+    for (String type : java.util.List.of("SuperAdmin", "Admin", "Staff", "Teacher"))
+      profiles +=
+          entityManager
+              .createQuery("select count(p) from " + type + " p where p.account.id=:id", Long.class)
+              .setParameter("id", id)
+              .getSingleResult();
+    if (profiles != (account.getRole() == Role.STUDENT ? 0 : 1)) throw ApiException.forbidden();
+    if (account.getRole() == Role.ADMIN || account.getRole() == Role.STAFF || account.getRole() == Role.TEACHER) {
+      String type = account.getRole() == Role.ADMIN ? "Admin" : account.getRole() == Role.STAFF ? "Staff" : "Teacher";
+      var p = (EmploymentProfile) entityManager.createQuery("select p from " + type + " p where p.account.id=:id", Object.class).setParameter("id",id).getResultStream().findFirst().orElseThrow(ApiException::forbidden);
+      if (!"ACTIVE".equals(p.getWorkStatus()) || p.getEndDate()!=null || p.getHireDate()!=null && p.getHireDate().isAfter(java.time.LocalDate.now(BusinessTime.ZONE))) throw ApiException.forbidden();
+    }
     return switch (account.getRole()) {
-      case STUDENT -> { var p = studentAccounts.profile(id); yield new ProfileInfo(p.id(), p.fullName()); }
+      case STUDENT -> {
+        var p = studentAccounts.profile(id);
+        yield new ProfileInfo(p.id(), p.fullName());
+      }
       case SUPER_ADMIN ->
           superAdminRepository
               .findByAccountId(id)
@@ -491,7 +538,17 @@ public class AuthService {
   private UserResponse getUserResponseByAccount(Account account) {
     Long id = account.getId();
     return switch (account.getRole()) {
-      case STUDENT -> { var p = studentAccounts.profile(id); yield baseResponse(account).profileId(p.id()).branchId(p.branchId()).branchIds(java.util.List.of()).fullName(p.fullName()).email(account.isMustChangePassword() ? null : p.email()).phone(account.isMustChangePassword() ? null : p.phone()).build(); }
+      case STUDENT -> {
+        var p = studentAccounts.profile(id);
+        yield baseResponse(account)
+            .profileId(p.id())
+            .branchId(p.branchId())
+            .branchIds(java.util.List.of())
+            .fullName(p.fullName())
+            .email(account.isMustChangePassword() ? null : p.email())
+            .phone(account.isMustChangePassword() ? null : p.phone())
+            .build();
+      }
       case SUPER_ADMIN ->
           toSuperAdminResponse(account, superAdminRepository.findByAccountId(id).orElse(null));
       case ADMIN -> toAdminResponse(account, adminRepository.findByAccountId(id).orElse(null));
@@ -506,6 +563,7 @@ public class AuthService {
         .mustChangePassword(account.isMustChangePassword())
         .passwordChangedAt(account.getPasswordChangedAt())
         .accountId(account.getId())
+        .personnelCode(account.getPersonnelCode())
         .username(account.getUsername())
         .role(account.getRole())
         .status(account.getStatus())
@@ -532,6 +590,8 @@ public class AuthService {
         .phone(p != null ? p.getPhone() : null)
         .hireDate(p != null ? p.getHireDate() : null)
         .workStatus(p != null ? p.getWorkStatus() : null)
+        .endDate(p != null ? p.getEndDate() : null)
+        .employmentVersion(p != null ? p.getVersion() : null)
         .build();
   }
 
@@ -543,6 +603,8 @@ public class AuthService {
         .phone(p != null ? p.getPhone() : null)
         .hireDate(p != null ? p.getHireDate() : null)
         .workStatus(p != null ? p.getWorkStatus() : null)
+        .endDate(p != null ? p.getEndDate() : null)
+        .employmentVersion(p != null ? p.getVersion() : null)
         .position(p != null ? p.getPosition() : null)
         .build();
   }
@@ -559,6 +621,8 @@ public class AuthService {
         .certificate(p != null ? p.getCertificate() : null)
         .hireDate(p != null ? p.getHireDate() : null)
         .workStatus(p != null ? p.getWorkStatus() : null)
+        .endDate(p != null ? p.getEndDate() : null)
+        .employmentVersion(p != null ? p.getVersion() : null)
         .build();
   }
 }

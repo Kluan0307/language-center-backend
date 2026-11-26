@@ -20,7 +20,9 @@ public record TeacherProfileDto(
     String experience,
     String certificate,
     LocalDate hireDate,
-    String workStatus) {
+    String workStatus,
+    String personnelCode,
+    LocalDate endDate) {
   public record Update(
       @NotNull @PositiveOrZero Long version,
       @NotBlank @Size(max = 100) String fullName,
@@ -35,7 +37,12 @@ public record TeacherProfileDto(
   public record WorkStatus(
       @NotNull @PositiveOrZero Long version,
       @NotBlank @Pattern(regexp = "ACTIVE|INACTIVE") String workStatus,
-      @NotBlank @Size(min = 3, max = 500) String reason) {}
+      @NotBlank @Size(min = 3, max = 500) String reason,
+      LocalDate endDate) {
+    public WorkStatus(Long version, String workStatus, String reason) {
+      this(version, workStatus, reason, "INACTIVE".equals(workStatus) ? LocalDate.now(com.example.auth.common.BusinessTime.ZONE) : null);
+    }
+  }
 
   public record Event(
       Long id,

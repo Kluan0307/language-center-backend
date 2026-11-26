@@ -1,0 +1,216 @@
+{
+  "phase": "D5",
+  "status": "published-local",
+  "observedAt": "2026-11-16T15:12:57.801Z",
+  "via": "authenticated CMS APIs",
+  "backup": "private storage/data-refresh",
+  "results": [
+    {
+      "kind": "PROGRAM",
+      "slug": "tieng-anh-tong-quat",
+      "status": "published"
+    },
+    {
+      "kind": "PROGRAM",
+      "slug": "ielts",
+      "status": "published"
+    },
+    {
+      "kind": "PROGRAM",
+      "slug": "toeic",
+      "status": "published"
+    },
+    {
+      "kind": "PROGRAM",
+      "slug": "tieng-anh-giao-tiep",
+      "status": "published"
+    },
+    {
+      "kind": "BRANCH",
+      "slug": "cn01",
+      "status": "published"
+    },
+    {
+      "kind": "BRANCH",
+      "slug": "cn02",
+      "status": "published"
+    },
+    {
+      "kind": "BRANCH",
+      "slug": "cn03",
+      "status": "published"
+    },
+    {
+      "kind": "BRANCH",
+      "slug": "cn04",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "mg1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "mg2",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "th1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "th2",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "cs1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "pt1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "gt1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "gt2",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "il1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "il2",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "il3",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "il4",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "tc1",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "tc2",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "tc3",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "tc4",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "gt-cn01",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "gt-cn02",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "gt-cn03",
+      "status": "published"
+    },
+    {
+      "kind": "COURSE",
+      "slug": "gt-cn04",
+      "status": "published"
+    },
+    {
+      "kind": "CLASS",
+      "slug": "cn01-l10",
+      "status": "published"
+    },
+    {
+      "kind": "CLASS",
+      "slug": "cn02-l10",
+      "status": "published"
+    },
+    {
+      "kind": "CLASS",
+      "slug": "cn03-l10",
+      "status": "published"
+    },
+    {
+      "kind": "CLASS",
+      "slug": "cn04-l10",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-1",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-2",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-3",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-4",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-5",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-6",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-7",
+      "status": "published"
+    },
+    {
+      "kind": "TEACHER",
+      "slug": "giao-vien-8",
+      "status": "published"
+    }
+  ],
+  "counts": {
+    "programs": 4,
+    "branches": 4,
+    "courses": 20,
+    "classes": 4,
+    "teachers": 8
+  }
+}

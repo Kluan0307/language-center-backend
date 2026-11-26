@@ -1,0 +1,9 @@
+{
+  "date":"2026-11-16",
+  "phases":{"G5":"implemented","G6":"source-implemented","G7-G8":"pending"},
+  "backend":{"tests":78,"failures":0,"database":"isolated H2","checks":["public group filtering without duplicate courses","unknown/inactive groups","student ownership","legacy metadata fallback","class admission snapshot"]},
+  "website":{"typecheck":"passed","productionBuild":"passed","browserChecks":38,"browserStatus":"passed","upstream":"isolated HTTP fixture"},
+  "cms":{"productionBuild":"passed","classificationSource":"operational course","manualBrowserInteraction":"not performed"},
+  "mobile":{"typecheck":"passed","newFields":"optional","apkBuilt":false,"deviceTest":"not performed"},
+  "data":{"liveRecordsModified":false,"audiencesAutoAssigned":false,"existingCoursesAwaitingAudienceReview":16}
+}

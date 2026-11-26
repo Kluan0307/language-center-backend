@@ -1,0 +1,5 @@
+2026/11/20-15:13:21.123 37c8 Creating DB D:\hoctap\KLTN\language-center\language-center-backend\language-center-backend\tmp\website-l67\browser-profile-edge\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/11/20-15:13:21.182 37c8 Reusing MANIFEST D:\hoctap\KLTN\language-center\language-center-backend\language-center-backend\tmp\website-l67\browser-profile-edge\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/11/20-15:13:21.956 87a8 Level-0 table #5: started
+2026/11/20-15:13:21.963 87a8 Level-0 table #5: 683273 bytes OK
+2026/11/20-15:13:21.965 87a8 Delete type=0 #3

@@ -66,6 +66,12 @@ public class CourseService {
   @Transactional(readOnly = true)
   public PageResponse<CourseDto> list(int page,int size,String keyword,Course.Status status,String level,String type,Long branchId,
       java.math.BigDecimal minTuition,java.math.BigDecimal maxTuition,boolean maxInclusive,boolean allAssigned) {
+    return list(page,size,keyword,status,level,type,branchId,minTuition,maxTuition,maxInclusive,allAssigned,null,null);
+  }
+  @Transactional(readOnly=true)
+  public PageResponse<CourseDto> list(int page,int size,String keyword,Course.Status status,String level,String type,Long branchId,
+      java.math.BigDecimal minTuition,java.math.BigDecimal maxTuition,boolean maxInclusive,boolean allAssigned,Long programId,Long audienceId) {
+    if(programId!=null&&programId<=0||audienceId!=null&&audienceId<=0)throw ApiException.bad("Danh mục không hợp lệ");
     for(var money:java.util.Arrays.asList(minTuition,maxTuition))
       if(money!=null&&(money.signum()<0||money.scale()>2||money.precision()-money.scale()>13))throw ApiException.bad("Học phí phải không âm, tối đa 13 chữ số và 2 số lẻ");
     if(minTuition!=null&&maxTuition!=null&&minTuition.compareTo(maxTuition)>0)throw ApiException.bad("minTuition không được lớn hơn maxTuition");
@@ -79,6 +85,8 @@ public class CourseService {
                     .and(Query.eq("status", status))
                     .and(Query.eq("level", level))
                     .and(Query.eq("type", type))
+                    .and(Query.eq("programId",programId))
+                    .and((r,q,b)->{if(audienceId==null)return b.conjunction();var sub=q.subquery(Long.class);var c=sub.from(Course.class);var a=c.join("audienceGroups");sub.select(c.get("id")).where(b.equal(a.get("id"),audienceId));return r.get("id").in(sub);})
                     .and((r,q,b)->minTuition==null?b.conjunction():b.greaterThanOrEqualTo(r.get("tuitionFee"),minTuition))
                     .and((r,q,b)->maxTuition==null?b.conjunction():maxInclusive?b.lessThanOrEqualTo(r.get("tuitionFee"),maxTuition):b.lessThan(r.get("tuitionFee"),maxTuition)),
                 Query.page(page, size))

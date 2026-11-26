@@ -157,6 +157,7 @@ public class SchoolClassService {
     c.setRoom(room);
     sessionPlanner.lockClassTeachers(c, r.teacherId());
     var teacher = teachers.require(r.teacherId(), branch);
+    teacher.requireDuring(r.startDate(),r.endDate());
     c.setTeacherId(r.teacherId());
     c.setTeacherName(teacher.fullName());
     c.setStartDate(r.startDate());

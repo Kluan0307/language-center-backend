@@ -68,7 +68,8 @@ public class TeacherProfileService {
         t.getExperience(),
         t.getCertificate(),
         t.getHireDate(),
-        t.getWorkStatus());
+        t.getWorkStatus(),
+        a.getPersonnelCode(), t.getEndDate());
   }
 
   private static String text(String s) {
@@ -85,7 +86,7 @@ public class TeacherProfileService {
             t.getExperience(),
             t.getCertificate(),
             t.getHireDate(),
-            t.getWorkStatus())
+            t.getWorkStatus(), t.getEndDate())
         .toString();
   }
 
@@ -98,7 +99,7 @@ public class TeacherProfileService {
       String experience,
       String certificate,
       java.time.LocalDate hireDate,
-      String workStatus) {}
+      String workStatus, java.time.LocalDate endDate) {}
 
   public void record(Teacher t, String before, String action, String reason, Account actor) {
     if (before.equals(snapshot(t))) return;
@@ -126,6 +127,7 @@ public class TeacherProfileService {
     var a = caller(username);
     var t = require(id, a, true);
     version(t, r.version());
+    EmploymentRules.validate(t.getWorkStatus(), r.hireDate(), t.getEndDate());
     var before = snapshot(t);
     t.setFullName(r.fullName().trim());
     t.setEmail(text(r.email()));
@@ -182,7 +184,9 @@ public class TeacherProfileService {
       throw ApiException.bad("Trạng thái làm việc không hợp lệ");
     if (r.reason() == null || r.reason().trim().length() < 3 || r.reason().trim().length() > 500)
       throw ApiException.bad("Nhập lý do từ 3 đến 500 ký tự");
-    if (Objects.equals(t.getWorkStatus(), r.workStatus())) return dto(t, a);
+    var end = "INACTIVE".equals(r.workStatus()) ? (r.endDate() == null ? java.time.LocalDate.now(BusinessTime.ZONE) : r.endDate()) : r.endDate();
+    EmploymentRules.validate(r.workStatus(), t.getHireDate(), end);
+    if (Objects.equals(t.getWorkStatus(), r.workStatus()) && Objects.equals(t.getEndDate(), end)) return dto(t, a);
     if ("INACTIVE".equals(r.workStatus())
         && !branches
             .teachingResponsibilities(
@@ -192,6 +196,9 @@ public class TeacherProfileService {
           "Cần bàn giao lớp và xử lý mọi buổi chưa hoàn tất trước khi ngừng làm việc");
     var before = snapshot(t);
     t.setWorkStatus(r.workStatus());
+    t.setEndDate(end);
+    t.getAccount().setSessionVersion(Math.addExact(t.getAccount().getSessionVersion(), 1));
+    t.getAccount().recordSecurityEvent("EMPLOYMENT_UPDATED", a.getId(), r.reason().trim());
     record(t, before, "WORK_STATUS_CHANGED", r.reason().trim(), a);
     return dto(t, a);
   }

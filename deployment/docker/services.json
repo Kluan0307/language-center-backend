@@ -1,0 +1,8 @@
+[
+  {"name":"auth-service","port":8081,"database":true,"startupDependencies":["mysql"],"calls":["auth-service","academic-service","finance-service"]},
+  {"name":"academic-service","port":8082,"database":true,"startupDependencies":["mysql"],"calls":["auth-service","academic-service","teaching-service","finance-service"]},
+  {"name":"teaching-service","port":8083,"database":true,"startupDependencies":["mysql"],"calls":["auth-service","academic-service","finance-service"]},
+  {"name":"finance-service","port":8084,"database":true,"startupDependencies":["mysql"],"calls":["auth-service","academic-service","finance-service"]},
+  {"name":"api-gateway","port":8080,"database":false,"startupDependencies":[],"calls":["auth-service","academic-service","teaching-service","finance-service","assistant-service"]},
+  {"name":"assistant-service","port":8086,"database":false,"startupDependencies":[],"calls":["auth-service","academic-service","teaching-service","finance-service"],"optional":true}
+]

@@ -113,6 +113,7 @@ public class AdmissionPolicyService {
       throw ApiException.bad(
           "Khóa mở không chọn đầu vào; khóa cần đánh giá phải chọn ít nhất một trình độ");
     var program = catalog.lock(r.programId());
+    if(c.getProgramId()!=null&&!c.getProgramId().equals(program.getId()))throw ApiException.bad("Chính sách phải dùng chương trình đã xác nhận của khóa học");
     catalog.active(program);
     var output = catalog.level(r.outputLevelId(), program.getId(), true);
     var p = new CourseAdmissionPolicy();

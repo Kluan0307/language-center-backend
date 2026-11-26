@@ -5,4 +5,7 @@ public record TeacherResponse(
     Long accountId,
     String fullName,
     Long branchId,
-    java.util.List<Long> branchIds) {}
+    java.util.List<Long> branchIds,
+    String personnelCode,
+    java.time.LocalDate hireDate,
+    java.time.LocalDate endDate) {}

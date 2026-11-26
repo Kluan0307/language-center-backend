@@ -21,6 +21,7 @@ public class GradeService {
   private final AcademicDirectory academic;
   private final BranchScope scope;
   private final ExamRosterService rosters;
+  private final com.example.teaching.grading.GradingBindingRepository gradingBindings;
 
   @Transactional(readOnly = true)
   public PageResponse<GradeDto> list(Long examId, int page, int size) {
@@ -35,6 +36,7 @@ public class GradeService {
 
   public GradeDto save(GradeDto.Request r) {
     Exam exam = exams.locked(r.examId());
+    if(gradingBindings.existsById(exam.getClassId()))throw ApiException.conflict("Điểm cũ đã được đối chiếu sang quy chế mới; chỉnh sửa ở Đánh giá theo quy chế, giữ nguyên bản gốc");
     if (r.score().signum() < 0 || r.score().compareTo(exam.getMaxScore()) > 0)
       throw ApiException.bad("Score must be between 0 and maxScore");
     Grade g = repository.findByExamIdAndStudentId(r.examId(), r.studentId()).orElse(null);

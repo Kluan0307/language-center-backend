@@ -1,0 +1,5 @@
+const fs=require('node:fs'),assert=require('node:assert/strict');
+const file='D:/hoctap/KLTN/language-center/language-center-website/README.md';
+const text=fs.readFileSync(file,'utf8');assert.ok(!text.includes('Website D5–D8 (17/11/2026)'));
+const prefix='**Website D5–D8 (17/11/2026):** menu theo Mẫu giáo, Tiểu học, THCS, Người lớn, IELTS và TOEIC; dữ liệu lấy từ CMS đã xuất bản. Giữ nhóm/chi nhánh khi xem lớp và đăng ký tư vấn. Build đạt; 54 kiểm tra API, 59 kiểm tra Chrome và 6 unit test đạt.\n\nChạy local bằng `npm run dev` (mặc định http://localhost:3000), cùng auth/academic/teaching/finance/API Gateway ở backend. API và BFF key đã kiểm tra khớp, không cần đổi `.env.local`.\n\n[Bàn giao D5–D8, ảnh giao diện, lệnh tái tạo và các giới hạn kiểm chứng](../language-center-backend/language-center-backend/docs/course-classification/d5-d8-handoff.md). Chưa thử lại APK trên điện thoại, model AI thật hoặc giao dịch VNPAY sandbox mới.\n\n';
+fs.writeFileSync(file,prefix+text);console.log('Updated website README.');

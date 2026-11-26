@@ -1,0 +1,36 @@
+{
+  "completedAt": "2026-11-25T09:14:22.003Z",
+  "status": "complete",
+  "scope": "Public marketing images: courses, branches, teachers, program banners",
+  "checks": {
+    "backend": 48,
+    "uiCloudinary": 19,
+    "uploadApi": 9,
+    "functional": 23,
+    "httpCors": 38
+  },
+  "database": {
+    "tables": 88,
+    "columns": 957,
+    "migration": "V029__cloudinary_assets.sql",
+    "mainCmsUnchanged": true
+  },
+  "data": {
+    "accounts": 419,
+    "students": 400,
+    "courses": 20,
+    "school_classes": 40
+  },
+  "temporaryResourcesCleaned": true,
+  "syntheticAssetsDeleted": true,
+  "providers": {
+    "assistant": false,
+    "vnpay": false,
+    "cloudinary": true
+  },
+  "limitations": [
+    "Physical mobile device not tested",
+    "Student avatars/private documents are separate flows",
+    "Database backup contains Cloudinary metadata, not independent image bytes"
+  ]
+}

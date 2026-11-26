@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name = "academic.seed.branches.enabled", havingValue = "true")
 @RequiredArgsConstructor
 public class BranchSeed implements CommandLineRunner {
   private final BranchRepository repository;

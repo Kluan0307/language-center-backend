@@ -1,0 +1,80 @@
+{
+  "password": "123456",
+  "counts": {
+    "branches": 4,
+    "accounts": 419,
+    "admins": 2,
+    "staffs": 8,
+    "teachers": 8,
+    "students": 400,
+    "leads": 80,
+    "courses": 16,
+    "school_classes": 16,
+    "rooms": 12,
+    "class_sessions": 128,
+    "enrollments": 400,
+    "tuition": 400,
+    "payments": 269,
+    "attendances": 888,
+    "placement_assessments": 16,
+    "exams": 4,
+    "grades": 56,
+    "grade_publications": 4,
+    "student_support_requests": 8
+  },
+  "branches": [
+    {
+      "code": "CN01",
+      "name": "Cơ sở 1",
+      "admin": "admin1",
+      "staff": [
+        "staff1",
+        "staff2"
+      ],
+      "students": 100,
+      "leads": 20,
+      "courses": 4,
+      "classes": 4
+    },
+    {
+      "code": "CN02",
+      "name": "Cơ sở 2",
+      "admin": "admin1",
+      "staff": [
+        "staff3",
+        "staff4"
+      ],
+      "students": 100,
+      "leads": 20,
+      "courses": 4,
+      "classes": 4
+    },
+    {
+      "code": "CN03",
+      "name": "Cơ sở 3",
+      "admin": "admin2",
+      "staff": [
+        "staff5",
+        "staff6"
+      ],
+      "students": 100,
+      "leads": 20,
+      "courses": 4,
+      "classes": 4
+    },
+    {
+      "code": "CN04",
+      "name": "Cơ sở 4",
+      "admin": "admin2",
+      "staff": [
+        "staff7",
+        "staff8"
+      ],
+      "students": 100,
+      "leads": 20,
+      "courses": 4,
+      "classes": 4
+    }
+  ],
+  "studentCodeRange": "HV0001\tHV0400"
+}

@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-11-24T15:32:04.420Z",
+  "status": "passed",
+  "checks": [
+    "Compose declares MySQL and six backend services",
+    "Database has an internal network and no published port",
+    "Only gateway is published and all containers have bounded logs",
+    "Gateway/Assistant do not receive DB or signing secrets",
+    "AI credentials stay on optional Assistant profile",
+    "Default project starts five core services and MySQL healthy",
+    "Empty Docker MySQL contains all 87 expected tables",
+    "Schema initialization imports zero application rows and seed remains disabled",
+    "Runtime DB account cannot create schema objects",
+    "Gateway readiness reachable on loopback mapped port",
+    "Gateway resolves Academic DNS and returns the empty public catalog",
+    "Gateway reaches Auth and rejects unknown credentials",
+    "Gateway reaches protected Teaching and Finance routes",
+    "Document volume writable by UID 10001",
+    "MySQL data persists after container recreation",
+    "Teaching documents persist after container recreation",
+    "Optional Assistant profile starts without provider credentials",
+    "Gateway resolves Assistant DNS and preserves authentication"
+  ],
+  "tableCount": 87,
+  "rowsImported": 0,
+  "providersCalled": false,
+  "sourceDatabaseWritten": false,
+  "services": [
+    {
+      "name": "academic-service",
+      "health": "healthy"
+    },
+    {
+      "name": "api-gateway",
+      "health": "healthy"
+    },
+    {
+      "name": "assistant-service",
+      "health": "healthy"
+    },
+    {
+      "name": "auth-service",
+      "health": "healthy"
+    },
+    {
+      "name": "finance-service",
+      "health": "healthy"
+    },
+    {
+      "name": "mysql",
+      "health": "healthy"
+    },
+    {
+      "name": "teaching-service",
+      "health": "healthy"
+    }
+  ],
+  "project": "lc-dck3-1795534187333",
+  "temporaryProjectRemoved": true
+}

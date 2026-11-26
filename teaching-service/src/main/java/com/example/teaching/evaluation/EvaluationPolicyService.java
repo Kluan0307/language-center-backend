@@ -18,6 +18,7 @@ public class EvaluationPolicyService {
   private final EvaluationLock locks;
   private final ExamRepository exams;
   private final AcademicDirectory academic;
+  private final com.example.teaching.grading.GradingBindingRepository gradingBindings;
 
   private boolean manager() {
     return Set.of(Role.SUPER_ADMIN, Role.ADMIN).contains(Users.current().role());
@@ -51,6 +52,7 @@ public class EvaluationPolicyService {
     if (!manager()) throw ApiException.forbidden();
     var c = academic.schoolClass(id);
     var state = locks.lock(id, c.branchId());
+    if(gradingBindings.existsById(id))throw ApiException.conflict("Lớp đã chốt quy chế đánh giá mới, không áp dụng công thức cũ");
     if (r.expectedRevision() == null || r.expectedRevision() != state.getRevision())
       throw ApiException.conflict("Quy tắc đã thay đổi; tải lại");
     if (r.exams() == null

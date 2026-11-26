@@ -27,6 +27,12 @@ final class AccessPolicy {
         throw new ChatFault(403, "FORBIDDEN");
     }
     String mode = String.valueOf(scope.get("mode"));
+    if (s.replaceAll("[?.!]$", "").equals("chi lay chi nhanh dang chon")
+        && !mode.equals("ACTIVE_BRANCH")) return true;
+    if ((actor.role() == SessionVerifier.Role.ADMIN
+            || actor.role() == SessionVerifier.Role.SUPER_ADMIN)
+        && mode.equals("ACTIVE_BRANCH")
+        && (s.contains("theo tung chi nhanh") || s.contains("chi nhanh nao co nhieu"))) return true;
     if (s.contains("toan he thong") || s.contains("whole system")) {
       if (actor.role() != SessionVerifier.Role.SUPER_ADMIN) throw new ChatFault(403, "FORBIDDEN");
       if (!mode.equals("WHOLE_SYSTEM")) return true;

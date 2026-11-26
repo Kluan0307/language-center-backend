@@ -1,0 +1,1 @@
+{"date":"2026-11-16","phases":{"G3":"implemented","G4":"implemented","G5-G8":"pending"},"backendTests":51,"backendFailures":0,"managementBuild":"passed","browserInteraction":"not performed","database":{"V027":"applied-local","audiencesAutoAssigned":false},"compatibility":"Read DTO fields retained; old course write payloads now require canonical classification fields."}

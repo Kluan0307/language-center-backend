@@ -1,0 +1,849 @@
+{
+  "runAt": "2026-11-13T14:12:19.788945100Z",
+  "model": "gemini-3.1-flash-lite",
+  "data": "Synthetic Auth/business fixtures only; not live MySQL",
+  "cases": [
+    {
+      "id": "SUPER_ADMIN-01",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "PASS",
+      "elapsedMs": 2541
+    },
+    {
+      "id": "SUPER_ADMIN-02",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "PASS",
+      "elapsedMs": 1383
+    },
+    {
+      "id": "SUPER_ADMIN-03",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "PASS",
+      "elapsedMs": 3113
+    },
+    {
+      "id": "SUPER_ADMIN-04",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "PASS",
+      "elapsedMs": 2124
+    },
+    {
+      "id": "SUPER_ADMIN-05",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "BLOCKED",
+      "code": "MODEL_TIMEOUT",
+      "elapsedMs": 10047
+    },
+    {
+      "id": "SUPER_ADMIN-06",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-07",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-08",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-09",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-10",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-11",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-12",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-13",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-14",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-15",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-16",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-17",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-18",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-19",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-20",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-21",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-22",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-23",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "SUPER_ADMIN-24",
+      "role": "SUPER_ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-01",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-02",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-03",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-04",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-05",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-06",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-07",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-08",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-09",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-10",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-11",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-12",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-13",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-14",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-15",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-16",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-17",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-18",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-19",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-20",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-21",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-22",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-23",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "ADMIN-24",
+      "role": "ADMIN",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-01",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-02",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-03",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-04",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-05",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-06",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-07",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-08",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-09",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-10",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-11",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-12",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-13",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-14",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-15",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-16",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-17",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-18",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-19",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-20",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-21",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-22",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-23",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "STAFF-24",
+      "role": "STAFF",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-01",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-02",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-03",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-04",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-05",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-06",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-07",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-08",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-09",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-10",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-11",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-12",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-13",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-14",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-15",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-16",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-17",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-18",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-19",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-20",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-21",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-22",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-23",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "TEACHER-24",
+      "role": "TEACHER",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-01",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-02",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-03",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-04",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-05",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-06",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-07",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-08",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-09",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-10",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-11",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "FOLLOWUP-12",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-01",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-02",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-03",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-04",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-05",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-06",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-07",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-08",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-09",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-10",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-11",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    },
+    {
+      "id": "GUARD-12",
+      "role": "ROLE_MATRIX",
+      "layer": "REAL_GEMINI_SYNTHETIC_MCP",
+      "status": "NOT_RUN",
+      "reason": "MODEL_TIMEOUT"
+    }
+  ],
+  "status": "BLOCKED"
+}

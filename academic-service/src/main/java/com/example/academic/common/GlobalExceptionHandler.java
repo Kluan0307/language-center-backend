@@ -15,6 +15,10 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+  @ExceptionHandler(org.springframework.web.multipart.MaxUploadSizeExceededException.class)
+  ResponseEntity<Map<String,String>> uploadTooLarge() {
+    return ResponseEntity.status(413).body(Map.of("message","Ảnh vượt quá dung lượng cho phép (tối đa 5 MB)"));
+  }
   @ExceptionHandler(NoResourceFoundException.class)
   ResponseEntity<Map<String, String>> missing() {
     return ResponseEntity.status(404).body(Map.of("message", "Không tìm thấy API"));
